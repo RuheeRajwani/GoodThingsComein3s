@@ -7,28 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF0C642D28760FBE00359933 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0C642C28760FBE00359933 /* HomeViewController.m */; };
+		EF0C643028760FCB00359933 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0C642F28760FCB00359933 /* SearchViewController.m */; };
+		EF0C643328760FE200359933 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0C643228760FE200359933 /* ProfileViewController.m */; };
 		EFB779FA2875FAB50061EA4E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB779F92875FAB50061EA4E /* AppDelegate.m */; };
-		EFB779FD2875FAB50061EA4E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB779FC2875FAB50061EA4E /* SceneDelegate.m */; };
-		EFB77A002875FAB50061EA4E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB779FF2875FAB50061EA4E /* ViewController.m */; };
 		EFB77A032875FAB50061EA4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFB77A012875FAB50061EA4E /* Main.storyboard */; };
 		EFB77A052875FAB60061EA4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFB77A042875FAB60061EA4E /* Assets.xcassets */; };
 		EFB77A082875FAB60061EA4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFB77A062875FAB60061EA4E /* LaunchScreen.storyboard */; };
 		EFB77A0B2875FAB60061EA4E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB77A0A2875FAB60061EA4E /* main.m */; };
+		EFC241B928762BD10059EBE7 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC241B828762BD10059EBE7 /* SceneDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF0C642B28760FBE00359933 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		EF0C642C28760FBE00359933 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		EF0C642E28760FCB00359933 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		EF0C642F28760FCB00359933 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		EF0C643128760FE200359933 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		EF0C643228760FE200359933 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		EFB779F52875FAB50061EA4E /* GoodThingsComein3s.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodThingsComein3s.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFB779F82875FAB50061EA4E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EFB779F92875FAB50061EA4E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		EFB779FB2875FAB50061EA4E /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		EFB779FC2875FAB50061EA4E /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		EFB779FE2875FAB50061EA4E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		EFB779FF2875FAB50061EA4E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		EFB77A022875FAB50061EA4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EFB77A042875FAB60061EA4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EFB77A072875FAB60061EA4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EFB77A092875FAB60061EA4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFB77A0A2875FAB60061EA4E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EFC241B728762BD10059EBE7 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		EFC241B828762BD10059EBE7 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +48,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF1178C32875FC2800419278 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EF1178C42875FC3400419278 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				EF0C642B28760FBE00359933 /* HomeViewController.h */,
+				EF0C642C28760FBE00359933 /* HomeViewController.m */,
+				EF0C642E28760FCB00359933 /* SearchViewController.h */,
+				EF0C642F28760FCB00359933 /* SearchViewController.m */,
+				EF0C643128760FE200359933 /* ProfileViewController.h */,
+				EF0C643228760FE200359933 /* ProfileViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		EF1178C52875FC3C00419278 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		EFB779EC2875FAB50061EA4E = {
 			isa = PBXGroup;
 			children = (
@@ -61,17 +94,18 @@
 		EFB779F72875FAB50061EA4E /* GoodThingsComein3s */ = {
 			isa = PBXGroup;
 			children = (
+				EF1178C52875FC3C00419278 /* Models */,
+				EF1178C42875FC3400419278 /* ViewControllers */,
+				EF1178C32875FC2800419278 /* Views */,
 				EFB779F82875FAB50061EA4E /* AppDelegate.h */,
 				EFB779F92875FAB50061EA4E /* AppDelegate.m */,
-				EFB779FB2875FAB50061EA4E /* SceneDelegate.h */,
-				EFB779FC2875FAB50061EA4E /* SceneDelegate.m */,
-				EFB779FE2875FAB50061EA4E /* ViewController.h */,
-				EFB779FF2875FAB50061EA4E /* ViewController.m */,
 				EFB77A012875FAB50061EA4E /* Main.storyboard */,
 				EFB77A042875FAB60061EA4E /* Assets.xcassets */,
 				EFB77A062875FAB60061EA4E /* LaunchScreen.storyboard */,
 				EFB77A092875FAB60061EA4E /* Info.plist */,
 				EFB77A0A2875FAB60061EA4E /* main.m */,
+				EFC241B728762BD10059EBE7 /* SceneDelegate.h */,
+				EFC241B828762BD10059EBE7 /* SceneDelegate.m */,
 			);
 			path = GoodThingsComein3s;
 			sourceTree = "<group>";
@@ -146,10 +180,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFB77A002875FAB50061EA4E /* ViewController.m in Sources */,
 				EFB779FA2875FAB50061EA4E /* AppDelegate.m in Sources */,
+				EFC241B928762BD10059EBE7 /* SceneDelegate.m in Sources */,
+				EF0C643028760FCB00359933 /* SearchViewController.m in Sources */,
 				EFB77A0B2875FAB60061EA4E /* main.m in Sources */,
-				EFB779FD2875FAB50061EA4E /* SceneDelegate.m in Sources */,
+				EF0C643328760FE200359933 /* ProfileViewController.m in Sources */,
+				EF0C642D28760FBE00359933 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
