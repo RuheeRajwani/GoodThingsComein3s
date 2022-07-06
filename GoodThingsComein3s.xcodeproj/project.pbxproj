@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66921337AA63ECBC8166D421 /* Pods_GoodThingsComein3s.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212159D092100B82EEE392BD /* Pods_GoodThingsComein3s.framework */; };
 		EF0C642D28760FBE00359933 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0C642C28760FBE00359933 /* HomeViewController.m */; };
 		EF0C643028760FCB00359933 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0C642F28760FCB00359933 /* SearchViewController.m */; };
 		EF0C643328760FE200359933 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0C643228760FE200359933 /* ProfileViewController.m */; };
+		EF1670CD287642A700A8B2BF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1670CC287642A700A8B2BF /* LoginViewController.m */; };
+		EF1670D12876469300A8B2BF /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF1670D02876469300A8B2BF /* Config.plist */; };
+		EF1670D428764BD900A8B2BF /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1670D328764BD900A8B2BF /* SignUpViewController.m */; };
 		EFB779FA2875FAB50061EA4E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB779F92875FAB50061EA4E /* AppDelegate.m */; };
 		EFB77A032875FAB50061EA4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFB77A012875FAB50061EA4E /* Main.storyboard */; };
 		EFB77A052875FAB60061EA4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFB77A042875FAB60061EA4E /* Assets.xcassets */; };
@@ -19,12 +23,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		212159D092100B82EEE392BD /* Pods_GoodThingsComein3s.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodThingsComein3s.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8923209EC1933ACB4A1B0544 /* Pods-GoodThingsComein3s.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodThingsComein3s.release.xcconfig"; path = "Target Support Files/Pods-GoodThingsComein3s/Pods-GoodThingsComein3s.release.xcconfig"; sourceTree = "<group>"; };
+		EB0C132352286C6E2AF668B6 /* Pods-GoodThingsComein3s.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodThingsComein3s.debug.xcconfig"; path = "Target Support Files/Pods-GoodThingsComein3s/Pods-GoodThingsComein3s.debug.xcconfig"; sourceTree = "<group>"; };
 		EF0C642B28760FBE00359933 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		EF0C642C28760FBE00359933 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		EF0C642E28760FCB00359933 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		EF0C642F28760FCB00359933 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		EF0C643128760FE200359933 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		EF0C643228760FE200359933 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		EF1670CB287642A700A8B2BF /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		EF1670CC287642A700A8B2BF /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		EF1670D02876469300A8B2BF /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
+		EF1670D228764BD900A8B2BF /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		EF1670D328764BD900A8B2BF /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		EFB779F52875FAB50061EA4E /* GoodThingsComein3s.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodThingsComein3s.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFB779F82875FAB50061EA4E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EFB779F92875FAB50061EA4E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -42,12 +54,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66921337AA63ECBC8166D421 /* Pods_GoodThingsComein3s.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C31730878CFBDF88F49D3D3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				212159D092100B82EEE392BD /* Pods_GoodThingsComein3s.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EF1178C32875FC2800419278 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +85,10 @@
 				EF0C642F28760FCB00359933 /* SearchViewController.m */,
 				EF0C643128760FE200359933 /* ProfileViewController.h */,
 				EF0C643228760FE200359933 /* ProfileViewController.m */,
+				EF1670CB287642A700A8B2BF /* LoginViewController.h */,
+				EF1670CC287642A700A8B2BF /* LoginViewController.m */,
+				EF1670D228764BD900A8B2BF /* SignUpViewController.h */,
+				EF1670D328764BD900A8B2BF /* SignUpViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -80,6 +105,8 @@
 			children = (
 				EFB779F72875FAB50061EA4E /* GoodThingsComein3s */,
 				EFB779F62875FAB50061EA4E /* Products */,
+				FC42938A7C656A85253542AC /* Pods */,
+				5C31730878CFBDF88F49D3D3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,8 +133,18 @@
 				EFB77A0A2875FAB60061EA4E /* main.m */,
 				EFC241B728762BD10059EBE7 /* SceneDelegate.h */,
 				EFC241B828762BD10059EBE7 /* SceneDelegate.m */,
+				EF1670D02876469300A8B2BF /* Config.plist */,
 			);
 			path = GoodThingsComein3s;
+			sourceTree = "<group>";
+		};
+		FC42938A7C656A85253542AC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EB0C132352286C6E2AF668B6 /* Pods-GoodThingsComein3s.debug.xcconfig */,
+				8923209EC1933ACB4A1B0544 /* Pods-GoodThingsComein3s.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,9 +154,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EFB77A0E2875FAB60061EA4E /* Build configuration list for PBXNativeTarget "GoodThingsComein3s" */;
 			buildPhases = (
+				CDBCE9CEB60812B5AAF29F19 /* [CP] Check Pods Manifest.lock */,
 				EFB779F12875FAB50061EA4E /* Sources */,
 				EFB779F22875FAB50061EA4E /* Frameworks */,
 				EFB779F32875FAB50061EA4E /* Resources */,
+				4811D0BD05BB2C7EB54313AB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -167,6 +206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF1670D12876469300A8B2BF /* Config.plist in Resources */,
 				EFB77A082875FAB60061EA4E /* LaunchScreen.storyboard in Resources */,
 				EFB77A052875FAB60061EA4E /* Assets.xcassets in Resources */,
 				EFB77A032875FAB50061EA4E /* Main.storyboard in Resources */,
@@ -174,6 +214,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4811D0BD05BB2C7EB54313AB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GoodThingsComein3s/Pods-GoodThingsComein3s-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GoodThingsComein3s/Pods-GoodThingsComein3s-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GoodThingsComein3s/Pods-GoodThingsComein3s-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDBCE9CEB60812B5AAF29F19 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GoodThingsComein3s-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EFB779F12875FAB50061EA4E /* Sources */ = {
@@ -184,7 +266,9 @@
 				EFC241B928762BD10059EBE7 /* SceneDelegate.m in Sources */,
 				EF0C643028760FCB00359933 /* SearchViewController.m in Sources */,
 				EFB77A0B2875FAB60061EA4E /* main.m in Sources */,
+				EF1670CD287642A700A8B2BF /* LoginViewController.m in Sources */,
 				EF0C643328760FE200359933 /* ProfileViewController.m in Sources */,
+				EF1670D428764BD900A8B2BF /* SignUpViewController.m in Sources */,
 				EF0C642D28760FBE00359933 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,6 +407,7 @@
 		};
 		EFB77A0F2875FAB60061EA4E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB0C132352286C6E2AF668B6 /* Pods-GoodThingsComein3s.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -350,6 +435,7 @@
 		};
 		EFB77A102875FAB60061EA4E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8923209EC1933ACB4A1B0544 /* Pods-GoodThingsComein3s.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
