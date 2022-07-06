@@ -80,11 +80,11 @@ In our society of abundance, finding a place to eat can become overwhelming. Goo
    * restaurant view 
 
 ## Wireframes
-<img src="https://github.com/RuheeRajwani/GoodThingsComein3/blob/main/Wireframe1.png" width=600>
+<img src="https://github.com/RuheeRajwani/GoodThingsComein3s/blob/main/Wireframe1.png" width=600>
 
 ### Models
-<img src="https://github.com/RuheeRajwani/GoodThingsComein3/blob/main/Models.png" width=600>
+<img src="https://github.com/RuheeRajwani/GoodThingsComein3s/blob/main/Models.png" width=600>
 
 ### Networking
-<img src="https://github.com/RuheeRajwani/GoodThingsComein3/blob/main/Requests.png" width=600>
+<img src="https://github.com/RuheeRajwani/GoodThingsComein3s/blob/main/Requests.png" width=600>
 
