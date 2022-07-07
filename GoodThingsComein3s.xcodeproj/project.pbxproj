@@ -18,6 +18,7 @@
 		EFB77A052875FAB60061EA4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFB77A042875FAB60061EA4E /* Assets.xcassets */; };
 		EFB77A082875FAB60061EA4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFB77A062875FAB60061EA4E /* LaunchScreen.storyboard */; };
 		EFB77A0B2875FAB60061EA4E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB77A0A2875FAB60061EA4E /* main.m */; };
+		EFBC0225287763BD00B9D09F /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFBC0224287763BD00B9D09F /* Config.plist */; };
 		EFC241B928762BD10059EBE7 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC241B828762BD10059EBE7 /* SceneDelegate.m */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		EFB77A072875FAB60061EA4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EFB77A092875FAB60061EA4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFB77A0A2875FAB60061EA4E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EFBC0224287763BD00B9D09F /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		EFC241B728762BD10059EBE7 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		EFC241B828762BD10059EBE7 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +133,7 @@
 				EFB77A0A2875FAB60061EA4E /* main.m */,
 				EFC241B728762BD10059EBE7 /* SceneDelegate.h */,
 				EFC241B828762BD10059EBE7 /* SceneDelegate.m */,
+				EFBC0224287763BD00B9D09F /* Config.plist */,
 			);
 			path = GoodThingsComein3s;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFBC0225287763BD00B9D09F /* Config.plist in Resources */,
 				EFB77A082875FAB60061EA4E /* LaunchScreen.storyboard in Resources */,
 				EFB77A052875FAB60061EA4E /* Assets.xcassets in Resources */,
 				EFB77A032875FAB50061EA4E /* Main.storyboard in Resources */,

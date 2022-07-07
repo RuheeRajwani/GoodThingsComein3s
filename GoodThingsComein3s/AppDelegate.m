@@ -21,8 +21,8 @@
         
         NSString *path = [[NSBundle mainBundle] pathForResource: @"Config" ofType: @"plist"];
         NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
-        configuration.applicationId = [dict objectForKey: @"APP_ID"];
-        configuration.clientKey = [dict objectForKey: @"CLIENT_KEY"];
+        configuration.applicationId = [dict objectForKey: @"DB_APP_ID"];
+        configuration.clientKey = [dict objectForKey: @"DB_CLIENT_KEY"];
         
         configuration.server = @"https://parseapi.back4app.com/";
     }];
