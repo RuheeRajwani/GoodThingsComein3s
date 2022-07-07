@@ -17,7 +17,7 @@
 
 @implementation SignUpViewController
 
-- (IBAction)didTapSignup:(id)sender {
+- (IBAction)signUpViewControllerDidTapSignUp:(id)sender {
     PFUser *newUser = [PFUser user];
         
         // set user properties

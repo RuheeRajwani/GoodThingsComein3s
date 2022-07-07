@@ -16,7 +16,7 @@
 
 @implementation LoginViewController
 
-- (IBAction)didTapLogin:(id)sender {
+- (IBAction)loginViewControllerDidTapLogin:(id)sender {
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
        
