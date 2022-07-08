@@ -210,7 +210,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Log me in!"/>
                                         <connections>
-                                            <action selector="didTapLogin:" destination="kQR-PQ-KQl" eventType="touchUpInside" id="QTz-6M-qbQ"/>
+                                            <action selector="loginViewControllerDidTapLogin:" destination="kQR-PQ-KQl" eventType="touchUpInside" id="Izq-mv-MzT"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -273,7 +273,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Sign me up!"/>
                                         <connections>
-                                            <action selector="didTapSignup:" destination="zKV-8T-hNo" eventType="touchUpInside" id="JcH-x2-0HL"/>
+                                            <action selector="signUpViewControllerDidTapSignUp:" destination="zKV-8T-hNo" eventType="touchUpInside" id="596-df-GOe"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -526,7 +526,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8Ct-dt-owJ"/>
+        <segue reference="0mf-eL-7uO"/>
         <segue reference="OBg-6u-ox9"/>
     </inferredMetricsTieBreakers>
     <resources>
