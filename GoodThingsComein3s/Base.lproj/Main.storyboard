@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tdw-ue-L4d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="seq-Ey-itP">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -46,11 +46,17 @@
                                         <rect key="frame" x="0.0" y="0.0" width="83.5" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Cuisine"/>
+                                        <connections>
+                                            <segue destination="B3k-3l-bW2" kind="presentation" id="dZ2-yj-u1D"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GzQ-sA-Xcf">
                                         <rect key="frame" x="91.5" y="0.0" width="66" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Price"/>
+                                        <connections>
+                                            <segue destination="jGc-oQ-v7h" kind="presentation" id="fin-HV-MuT"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rUz-vT-wCO">
                                         <rect key="frame" x="165.5" y="0.0" width="93" height="31"/>
@@ -61,6 +67,9 @@
                                         <rect key="frame" x="266.5" y="0.0" width="79.5" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Rating"/>
+                                        <connections>
+                                            <segue destination="FSn-47-lAM" kind="presentation" id="mfJ-kR-y7V"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -157,7 +166,7 @@
             <objects>
                 <viewController title="Price Filter" id="jGc-oQ-v7h" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dbc-Jt-Du6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaf-Ne-edT">
@@ -270,13 +279,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fwi-BD-rQT">
-                                <rect key="frame" x="156" y="226" width="102" height="55"/>
+                                <rect key="frame" x="156" y="177" width="102" height="55"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="46"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="QV8-5D-wp8">
-                                <rect key="frame" x="140.5" y="329" width="133.5" height="179"/>
+                                <rect key="frame" x="140.5" y="280" width="133.5" height="179"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter username " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UhY-e1-DlM">
                                         <rect key="frame" x="0.0" y="0.0" width="133.5" height="34"/>
@@ -447,7 +456,7 @@
                     <connections>
                         <segue destination="p9q-M1-fJs" kind="relationship" relationship="viewControllers" id="QXA-z5-6Ul"/>
                         <segue destination="osE-qu-Ptw" kind="relationship" relationship="viewControllers" id="7vP-Nx-FSk"/>
-                        <segue destination="qNN-kF-bcg" kind="relationship" relationship="viewControllers" id="5ki-dK-iWb"/>
+                        <segue destination="Tdw-ue-L4d" kind="relationship" relationship="viewControllers" id="FYs-uw-VK8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K6I-Tz-fMg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -553,10 +562,11 @@
             </objects>
             <point key="canvasLocation" x="-6623" y="-2764"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Profile-->
         <scene sceneID="Ram-aL-ijK">
             <objects>
                 <navigationController wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="Tdw-ue-L4d" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" id="vcI-DQ-8JG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nbN-Ac-HpY">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -614,7 +624,7 @@
             <objects>
                 <viewController title="Cuisine Filter" id="B3k-3l-bW2" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KiB-aR-7de">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cuisine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlu-p9-Wff">
@@ -738,7 +748,7 @@
             <objects>
                 <viewController title="Ratings Filter" id="FSn-47-lAM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yM8-KS-Wzn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ratings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTE-WT-s4c">
@@ -791,6 +801,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GC0-BO-fiY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-6391.304347826087" y="-1923.2142857142856"/>
+        </scene>
+        <!--Price Filter-->
+        <scene sceneID="w1B-L9-oxl">
+            <objects>
+                <viewController title="Price Filter" id="CnM-Cf-EzH" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GGa-wl-X0G">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4D-6f-hrg">
+                                <rect key="frame" x="20" y="96" width="104" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="z9V-R5-777">
+                                <rect key="frame" x="20" y="163" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="LOc-4c-peh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1rH-aB-EGs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5617" y="-1923"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
