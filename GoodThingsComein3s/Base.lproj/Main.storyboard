@@ -12,7 +12,7 @@
         <!--Home-->
         <scene sceneID="39Q-sk-j8N">
             <objects>
-                <viewController title="Home" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="hl0-Ib-Nlk" customClass="HomeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" title="Home" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hl0-Ib-Nlk" customClass="HomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="goP-g7-TyF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -62,6 +62,9 @@
                                         <rect key="frame" x="165.5" y="0.0" width="93" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Distance"/>
+                                        <connections>
+                                            <segue destination="CnM-Cf-EzH" kind="presentation" id="UkZ-Za-Ior"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLp-lF-Bmx">
                                         <rect key="frame" x="266.5" y="0.0" width="79.5" height="31"/>
@@ -201,6 +204,12 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQC-fj-jVx">
+                                <rect key="frame" x="155" y="264" width="61" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Apply"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nUi-Xh-sYY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -208,12 +217,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yaX-fW-c9s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8186" y="-1929"/>
+            <point key="canvasLocation" x="-8186.9565217391309" y="-1929.2410714285713"/>
         </scene>
         <!--Profile-->
         <scene sceneID="pwb-Kz-Ya7">
             <objects>
-                <viewController title="Profile" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="tuK-zV-H98" customClass="ProfileViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" title="Profile" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tuK-zV-H98" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XrO-7P-Dlp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -466,7 +475,7 @@
         <!--Search-->
         <scene sceneID="uxS-bQ-PJq">
             <objects>
-                <viewController title="Search" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="oog-wm-T3q" customClass="SearchViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" title="Search" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oog-wm-T3q" customClass="SearchViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MdH-SQ-s9j">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -734,6 +743,12 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHL-Te-RsU">
+                                <rect key="frame" x="177" y="454" width="61" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Apply"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CCn-Qd-zCL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -793,6 +808,12 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SB3-jG-YJe">
+                                <rect key="frame" x="177" y="340" width="61" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Apply"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kAo-NH-JSO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -807,7 +828,7 @@
             <objects>
                 <viewController title="Price Filter" id="CnM-Cf-EzH" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GGa-wl-X0G">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4D-6f-hrg">
@@ -818,9 +839,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="z9V-R5-777">
-                                <rect key="frame" x="20" y="163" width="118" height="30"/>
+                                <rect key="frame" x="20" y="163" width="369" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </slider>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zD-pu-Qrp">
+                                <rect key="frame" x="165" y="248" width="61" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Apply"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LOc-4c-peh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -828,11 +855,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1rH-aB-EGs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5617" y="-1923"/>
+            <point key="canvasLocation" x="-5617.3913043478269" y="-1923.2142857142856"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="0mf-eL-7uO"/>
+        <segue reference="8Ct-dt-owJ"/>
         <segue reference="OBg-6u-ox9"/>
     </inferredMetricsTieBreakers>
     <resources>
