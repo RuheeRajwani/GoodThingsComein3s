@@ -12,6 +12,16 @@
 @end
 
 @implementation PriceFilterViewController
+- (IBAction)priceFilterViewControllerDidTapApply:(id)sender {
+}
+- (IBAction)priceFilterViewControllerDidTap1Sign:(id)sender {
+}
+- (IBAction)priceFilterViewControllerDidTap2Sign:(id)sender {
+}
+- (IBAction)priceFilterViewControllerDidTap3Sign:(id)sender {
+}
+- (IBAction)priceFilterViewControllerDidTap4Sign:(id)sender {
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

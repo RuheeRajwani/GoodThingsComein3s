@@ -185,21 +185,33 @@
                                         <rect key="frame" x="0.0" y="0.0" width="33" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="$"/>
+                                        <connections>
+                                            <action selector="priceFilterViewControllerDidTap1Sign:" destination="wPF-wB-seN" eventType="touchUpInside" id="HM5-4y-LaR"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rk8-gk-Z81">
                                         <rect key="frame" x="61" y="0.0" width="41.5" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="$$"/>
+                                        <connections>
+                                            <action selector="priceFilterViewControllerDidTap2Sign:" destination="wPF-wB-seN" eventType="touchUpInside" id="MqU-Xe-vRb"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XoV-dP-89l">
                                         <rect key="frame" x="130.5" y="0.0" width="50.5" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="$$$"/>
+                                        <connections>
+                                            <action selector="priceFilterViewControllerDidTap3Sign:" destination="wPF-wB-seN" eventType="touchUpInside" id="BWs-4c-JY1"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8LT-nM-Bup">
                                         <rect key="frame" x="209" y="0.0" width="59" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="$$$$"/>
+                                        <connections>
+                                            <action selector="priceFilterViewControllerDidTap4Sign:" destination="wPF-wB-seN" eventType="touchUpInside" id="nbg-Ai-LO5"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -207,6 +219,9 @@
                                 <rect key="frame" x="176.5" y="245" width="61" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Apply"/>
+                                <connections>
+                                    <action selector="priceFilterViewControllerDidTapApply:" destination="wPF-wB-seN" eventType="touchUpInside" id="H4H-VA-MdF"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nUi-Xh-sYY"/>
@@ -225,6 +240,7 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yaX-fW-c9s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="wPF-wB-seN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-8186.9565217391309" y="-1929.2410714285713"/>
         </scene>
@@ -896,10 +912,10 @@
             </objects>
             <point key="canvasLocation" x="-6391.304347826087" y="-1923.2142857142856"/>
         </scene>
-        <!--Price Filter-->
+        <!--Distance Filter-->
         <scene sceneID="w1B-L9-oxl">
             <objects>
-                <viewController title="Price Filter" id="CnM-Cf-EzH" sceneMemberID="viewController">
+                <viewController title="Distance Filter" id="CnM-Cf-EzH" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GGa-wl-X0G">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
