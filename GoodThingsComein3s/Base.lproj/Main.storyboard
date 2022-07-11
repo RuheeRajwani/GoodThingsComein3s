@@ -172,47 +172,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaf-Ne-edT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaf-Ne-edT">
                                 <rect key="frame" x="20" y="96" width="60" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vds-fD-3Sq">
-                                <rect key="frame" x="37" y="167" width="296" height="31"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="vds-fD-3Sq">
+                                <rect key="frame" x="73" y="167" width="268" height="31"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11u-Zg-kTc">
-                                        <rect key="frame" x="0.0" y="0.0" width="59" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="33" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="$"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rk8-gk-Z81">
-                                        <rect key="frame" x="79" y="0.0" width="59" height="31"/>
+                                        <rect key="frame" x="61" y="0.0" width="41.5" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="$$"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XoV-dP-89l">
-                                        <rect key="frame" x="158" y="0.0" width="59" height="31"/>
+                                        <rect key="frame" x="130.5" y="0.0" width="50.5" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="$$$"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8LT-nM-Bup">
-                                        <rect key="frame" x="237" y="0.0" width="59" height="31"/>
+                                        <rect key="frame" x="209" y="0.0" width="59" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="$$$$"/>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQC-fj-jVx">
-                                <rect key="frame" x="155" y="264" width="61" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQC-fj-jVx">
+                                <rect key="frame" x="176.5" y="248" width="61" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Apply"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nUi-Xh-sYY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gaf-Ne-edT" firstAttribute="leading" secondItem="nUi-Xh-sYY" secondAttribute="leading" constant="20" id="4x7-TT-rSP"/>
+                            <constraint firstItem="nUi-Xh-sYY" firstAttribute="trailing" secondItem="gaf-Ne-edT" secondAttribute="trailing" constant="334" id="5A3-Ya-S2l"/>
+                            <constraint firstItem="gaf-Ne-edT" firstAttribute="top" secondItem="nUi-Xh-sYY" secondAttribute="top" constant="52" id="Cgs-WZ-bu9"/>
+                            <constraint firstItem="FQC-fj-jVx" firstAttribute="centerX" secondItem="nUi-Xh-sYY" secondAttribute="centerX" id="EtJ-35-8Nd"/>
+                            <constraint firstItem="11u-Zg-kTc" firstAttribute="top" secondItem="gaf-Ne-edT" secondAttribute="bottom" constant="41" id="LzJ-Ob-G1B"/>
+                            <constraint firstItem="vds-fD-3Sq" firstAttribute="centerX" secondItem="nUi-Xh-sYY" secondAttribute="centerX" id="ih6-EE-Ap4"/>
+                            <constraint firstItem="vds-fD-3Sq" firstAttribute="top" secondItem="gaf-Ne-edT" secondAttribute="bottom" constant="41" id="lgJ-nT-G58"/>
+                            <constraint firstItem="FQC-fj-jVx" firstAttribute="top" secondItem="vds-fD-3Sq" secondAttribute="bottom" constant="50" id="uot-ar-g1V"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yaX-fW-c9s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
