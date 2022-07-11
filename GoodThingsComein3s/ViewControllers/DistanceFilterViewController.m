@@ -12,6 +12,8 @@
 @end
 
 @implementation DistanceFilterViewController
+- (IBAction)distanceFilterViewControllerDidTapApply:(id)sender {
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
