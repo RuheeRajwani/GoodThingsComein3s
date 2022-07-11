@@ -17,11 +17,8 @@
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         // PFUser.current() will now be nil
     }];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self performSegueWithIdentifier:@"logoutToHomeSegue" sender:nil];
+    
 }
 
 /*

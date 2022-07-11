@@ -289,6 +289,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Logout"/>
+                                <connections>
+                                    <segue destination="seq-Ey-itP" kind="show" identifier="logoutToHomeSegue" id="RwO-DP-AuV"/>
+                                </connections>
                             </button>
                             <connections>
                                 <action selector="didTapLogoutButtonProfileViewController:" destination="tuK-zV-H98" id="vyf-ke-YDf"/>
@@ -889,8 +892,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="z9V-R5-777">
-                                <rect key="frame" x="20" y="164" width="369" height="31"/>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="z9V-R5-777">
+                                <rect key="frame" x="22.5" y="164" width="369" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="365" id="onu-hO-80W"/>
+                                </constraints>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zD-pu-Qrp">
                                 <rect key="frame" x="176.5" y="244" width="61" height="31"/>
@@ -918,7 +924,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8Ct-dt-owJ"/>
+        <segue reference="RwO-DP-AuV"/>
         <segue reference="f8q-iO-TrI"/>
     </inferredMetricsTieBreakers>
     <resources>
