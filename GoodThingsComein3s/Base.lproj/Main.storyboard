@@ -817,6 +817,9 @@
                                 <rect key="frame" x="176.5" y="326" width="61" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Apply"/>
+                                <connections>
+                                    <action selector="ratingsFilterViewControllerDidTapApply:" destination="xEZ-No-HTz" eventType="touchUpInside" id="dzk-ca-8CM"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="oR3-IC-x6a">
                                 <rect key="frame" x="60" y="164" width="294" height="112"/>
@@ -828,16 +831,25 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="45" height="40"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" image="oneStarPhoto" title=""/>
+                                                <connections>
+                                                    <action selector="ratingsFilterViewControllerDidTap1Star:" destination="xEZ-No-HTz" eventType="touchUpInside" id="S4t-xW-9dH"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OEf-zx-Tun">
                                                 <rect key="frame" x="81" y="0.0" width="71" height="40"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" image="twoStars" title=""/>
+                                                <connections>
+                                                    <action selector="ratingsFilterViewControllerDidTap2Stars:" destination="xEZ-No-HTz" eventType="touchUpInside" id="86K-we-9Kh"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7B-gW-v09">
                                                 <rect key="frame" x="188" y="0.0" width="106" height="40"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" image="threeStars_50_1_50_1_85" title=""/>
+                                                <connections>
+                                                    <action selector="ratingsFilterViewControllerDidTap3Stars:" destination="xEZ-No-HTz" eventType="touchUpInside" id="9bL-bp-tbU"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -848,11 +860,17 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="128" height="39"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" image="fourStars_50_50_1_80" title=""/>
+                                                <connections>
+                                                    <action selector="ratingsFilterViewControllerDidTap4Stars:" destination="xEZ-No-HTz" eventType="touchUpInside" id="Y4M-8L-nam"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8MY-fB-SmH">
                                                 <rect key="frame" x="147" y="0.0" width="147" height="39"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" image="5_stars_50_50_1_75" title=""/>
+                                                <connections>
+                                                    <action selector="ratingsFilterViewControllerDidTap5Stars:" destination="xEZ-No-HTz" eventType="touchUpInside" id="j4L-70-ETX"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -874,6 +892,7 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GC0-BO-fiY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="xEZ-No-HTz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-6391.304347826087" y="-1923.2142857142856"/>
         </scene>
@@ -901,6 +920,9 @@
                                 <rect key="frame" x="176.5" y="244" width="61" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Apply"/>
+                                <connections>
+                                    <action selector="distanceFilterViewControllerDidTapApply:" destination="Waw-ds-NC5" eventType="touchUpInside" id="Ixz-W2-qwe"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LOc-4c-peh"/>
@@ -918,6 +940,7 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1rH-aB-EGs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Waw-ds-NC5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-5617.3913043478269" y="-1923.2142857142856"/>
         </scene>

@@ -12,6 +12,18 @@
 @end
 
 @implementation RatingFilterViewController
+- (IBAction)ratingsFilterViewControllerDidTapApply:(id)sender {
+}
+- (IBAction)ratingsFilterViewControllerDidTap5Stars:(id)sender {
+}
+- (IBAction)ratingsFilterViewControllerDidTap4Stars:(id)sender {
+}
+- (IBAction)ratingsFilterViewControllerDidTap3Stars:(id)sender {
+}
+- (IBAction)ratingsFilterViewControllerDidTap2Stars:(id)sender {
+}
+- (IBAction)ratingsFilterViewControllerDidTap1Star:(id)sender {
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
