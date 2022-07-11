@@ -9,7 +9,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol LoginViewControllerDelegate
+- (void)updateViewControllers;
+
+@end
+
 @interface LoginViewController : UIViewController
+
+@property (nonatomic, weak) id<LoginViewControllerDelegate> delegate;
 
 @end
 

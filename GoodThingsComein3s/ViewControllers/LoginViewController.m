@@ -7,6 +7,9 @@
 
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
+#import "SearchViewController.h"
+#import "HomeViewController.h"
+#import "ProfileViewController.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -25,7 +28,11 @@
         NSLog(@"User log in failed: %@", error.localizedDescription);
     } else {
         NSLog(@"User logged in successfully");
+//        [self.delegate updateViewControllers];
         [self performSegueWithIdentifier:@"loginToProfileSegue" sender:nil];
+        
+       
+        
            }
        }];
 }
