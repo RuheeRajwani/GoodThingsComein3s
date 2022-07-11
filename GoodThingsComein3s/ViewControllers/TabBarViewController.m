@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     if(PFUser.currentUser != nil){
         [self updateViewControllers];
     }
