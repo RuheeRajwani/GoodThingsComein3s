@@ -1,21 +1,21 @@
 //
-//  HomeViewController.m
+//  DistanceFilterViewController.m
 //  GoodThingsComein3s
 //
-//  Created by Ruhee Rajwani on 7/6/22.
+//  Created by Ruhee Rajwani on 7/11/22.
 //
 
-#import "HomeViewController.h"
+#import "DistanceFilterViewController.h"
 
-@interface HomeViewController ()
+@interface DistanceFilterViewController ()
 
 @end
 
-@implementation HomeViewController
+@implementation DistanceFilterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    // Do any additional setup after loading the view.
 }
 
 /*

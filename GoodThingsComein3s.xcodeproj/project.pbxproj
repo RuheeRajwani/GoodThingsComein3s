@@ -21,6 +21,10 @@
 		EFBC022E2877DE2400B9D09F /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBC022D2877DE2400B9D09F /* TabBarViewController.m */; };
 		EFBC02312877E15F00B9D09F /* SignUpLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBC02302877E15F00B9D09F /* SignUpLoginViewController.m */; };
 		EFBC02332878CF3500B9D09F /* Assests.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFBC02322878CF3500B9D09F /* Assests.xcassets */; };
+		EFBC0236287CE6BF00B9D09F /* CuisineFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBC0235287CE6BF00B9D09F /* CuisineFilterViewController.m */; };
+		EFBC0239287CE6CF00B9D09F /* PriceFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBC0238287CE6CF00B9D09F /* PriceFilterViewController.m */; };
+		EFBC023C287CE6E900B9D09F /* RatingFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBC023B287CE6E900B9D09F /* RatingFilterViewController.m */; };
+		EFBC023F287CE6FE00B9D09F /* DistanceFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBC023E287CE6FE00B9D09F /* DistanceFilterViewController.m */; };
 		EFC241B928762BD10059EBE7 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC241B828762BD10059EBE7 /* SceneDelegate.m */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +55,14 @@
 		EFBC022F2877E15F00B9D09F /* SignUpLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpLoginViewController.h; sourceTree = "<group>"; };
 		EFBC02302877E15F00B9D09F /* SignUpLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpLoginViewController.m; sourceTree = "<group>"; };
 		EFBC02322878CF3500B9D09F /* Assests.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assests.xcassets; sourceTree = "<group>"; };
+		EFBC0234287CE6BF00B9D09F /* CuisineFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CuisineFilterViewController.h; sourceTree = "<group>"; };
+		EFBC0235287CE6BF00B9D09F /* CuisineFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CuisineFilterViewController.m; sourceTree = "<group>"; };
+		EFBC0237287CE6CF00B9D09F /* PriceFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PriceFilterViewController.h; sourceTree = "<group>"; };
+		EFBC0238287CE6CF00B9D09F /* PriceFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PriceFilterViewController.m; sourceTree = "<group>"; };
+		EFBC023A287CE6E900B9D09F /* RatingFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RatingFilterViewController.h; sourceTree = "<group>"; };
+		EFBC023B287CE6E900B9D09F /* RatingFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RatingFilterViewController.m; sourceTree = "<group>"; };
+		EFBC023D287CE6FE00B9D09F /* DistanceFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistanceFilterViewController.h; sourceTree = "<group>"; };
+		EFBC023E287CE6FE00B9D09F /* DistanceFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistanceFilterViewController.m; sourceTree = "<group>"; };
 		EFC241B728762BD10059EBE7 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		EFC241B828762BD10059EBE7 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,6 +111,14 @@
 				EFBC022D2877DE2400B9D09F /* TabBarViewController.m */,
 				EFBC022F2877E15F00B9D09F /* SignUpLoginViewController.h */,
 				EFBC02302877E15F00B9D09F /* SignUpLoginViewController.m */,
+				EFBC0234287CE6BF00B9D09F /* CuisineFilterViewController.h */,
+				EFBC0235287CE6BF00B9D09F /* CuisineFilterViewController.m */,
+				EFBC0237287CE6CF00B9D09F /* PriceFilterViewController.h */,
+				EFBC0238287CE6CF00B9D09F /* PriceFilterViewController.m */,
+				EFBC023A287CE6E900B9D09F /* RatingFilterViewController.h */,
+				EFBC023B287CE6E900B9D09F /* RatingFilterViewController.m */,
+				EFBC023D287CE6FE00B9D09F /* DistanceFilterViewController.h */,
+				EFBC023E287CE6FE00B9D09F /* DistanceFilterViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -274,14 +294,18 @@
 			files = (
 				EFB779FA2875FAB50061EA4E /* AppDelegate.m in Sources */,
 				EFC241B928762BD10059EBE7 /* SceneDelegate.m in Sources */,
+				EFBC0239287CE6CF00B9D09F /* PriceFilterViewController.m in Sources */,
 				EF0C643028760FCB00359933 /* SearchViewController.m in Sources */,
 				EFB77A0B2875FAB60061EA4E /* main.m in Sources */,
 				EF1670CD287642A700A8B2BF /* LoginViewController.m in Sources */,
+				EFBC023C287CE6E900B9D09F /* RatingFilterViewController.m in Sources */,
 				EF0C643328760FE200359933 /* ProfileViewController.m in Sources */,
 				EFBC02312877E15F00B9D09F /* SignUpLoginViewController.m in Sources */,
 				EF1670D428764BD900A8B2BF /* SignUpViewController.m in Sources */,
 				EFBC022E2877DE2400B9D09F /* TabBarViewController.m in Sources */,
+				EFBC023F287CE6FE00B9D09F /* DistanceFilterViewController.m in Sources */,
 				EF0C642D28760FBE00359933 /* HomeViewController.m in Sources */,
+				EFBC0236287CE6BF00B9D09F /* CuisineFilterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

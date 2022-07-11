@@ -1,21 +1,21 @@
 //
-//  HomeViewController.m
+//  RatingFilterViewController.m
 //  GoodThingsComein3s
 //
-//  Created by Ruhee Rajwani on 7/6/22.
+//  Created by Ruhee Rajwani on 7/11/22.
 //
 
-#import "HomeViewController.h"
+#import "RatingFilterViewController.h"
 
-@interface HomeViewController ()
+@interface RatingFilterViewController ()
 
 @end
 
-@implementation HomeViewController
+@implementation RatingFilterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    // Do any additional setup after loading the view.
 }
 
 /*

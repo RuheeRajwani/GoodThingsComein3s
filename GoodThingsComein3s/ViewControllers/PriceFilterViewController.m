@@ -1,21 +1,21 @@
 //
-//  HomeViewController.m
+//  PriceFilterViewController.m
 //  GoodThingsComein3s
 //
-//  Created by Ruhee Rajwani on 7/6/22.
+//  Created by Ruhee Rajwani on 7/11/22.
 //
 
-#import "HomeViewController.h"
+#import "PriceFilterViewController.h"
 
-@interface HomeViewController ()
+@interface PriceFilterViewController ()
 
 @end
 
-@implementation HomeViewController
+@implementation PriceFilterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    // Do any additional setup after loading the view.
 }
 
 /*

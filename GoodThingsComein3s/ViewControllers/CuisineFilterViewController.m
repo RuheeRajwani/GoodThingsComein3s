@@ -1,21 +1,21 @@
 //
-//  HomeViewController.m
+//  CuisineFilterViewController.m
 //  GoodThingsComein3s
 //
-//  Created by Ruhee Rajwani on 7/6/22.
+//  Created by Ruhee Rajwani on 7/11/22.
 //
 
-#import "HomeViewController.h"
+#import "CuisineFilterViewController.h"
 
-@interface HomeViewController ()
+@interface CuisineFilterViewController ()
 
 @end
 
-@implementation HomeViewController
+@implementation CuisineFilterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    // Do any additional setup after loading the view.
 }
 
 /*
