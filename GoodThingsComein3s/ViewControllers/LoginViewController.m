@@ -19,6 +19,7 @@
 
 @implementation LoginViewController
 
+
 - (IBAction)loginViewControllerDidTapLogin:(id)sender {
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
@@ -28,14 +29,12 @@
         NSLog(@"User log in failed: %@", error.localizedDescription);
     } else {
         NSLog(@"User logged in successfully");
-//        [self.delegate updateViewControllers];
         [self performSegueWithIdentifier:@"loginToProfileSegue" sender:nil];
-        
-       
         
            }
        }];
 }
+
 
 
 @end

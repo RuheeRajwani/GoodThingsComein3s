@@ -282,7 +282,19 @@
                         <viewLayoutGuide key="safeArea" id="H1l-cj-dcV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="MIN-mu-ULU"/>
+                    <navigationItem key="navigationItem" id="MIN-mu-ULU">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="XxP-7g-xkt">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="2bj-xd-lMO">
+                                <rect key="frame" x="302" y="5" width="92" height="34.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Logout"/>
+                            </button>
+                            <connections>
+                                <action selector="didTapLogoutButtonProfileViewController:" destination="tuK-zV-H98" id="vyf-ke-YDf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTa-io-kf6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -525,7 +537,7 @@
         <!--Search-->
         <scene sceneID="i6z-5o-wud">
             <objects>
-                <navigationController wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="p9q-M1-fJs" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SearchViewControllerNav" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="p9q-M1-fJs" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" id="Pqr-cC-U2M"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fpj-BG-Acf">
@@ -544,7 +556,7 @@
         <!--Home-->
         <scene sceneID="8sH-vt-jAN">
             <objects>
-                <navigationController wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="osE-qu-Ptw" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeViewControllerNav" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="osE-qu-Ptw" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" id="o0Y-su-x9a"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hhv-ob-8vj">
@@ -563,7 +575,7 @@
         <!--Profile-->
         <scene sceneID="Gle-o8-E3b">
             <objects>
-                <navigationController wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="qNN-kF-bcg" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ProfileViewControllerNav" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qNN-kF-bcg" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" id="oJN-NV-cu4"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="shz-Pp-Lg4"/>
@@ -907,7 +919,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="8Ct-dt-owJ"/>
-        <segue reference="OBg-6u-ox9"/>
+        <segue reference="f8q-iO-TrI"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="5_stars_50_50_1_75" width="123" height="23"/>

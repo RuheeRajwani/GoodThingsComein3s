@@ -29,21 +29,17 @@
 
 -(void) updateViewControllers{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    SearchViewController *searchVC = [storyboard instantiateViewControllerWithIdentifier:@"SearchViewController"];
-    HomeViewController *homeVC = [storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
-    ProfileViewController *profileVC = [storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"];
+    UINavigationController *searchVC = [storyboard instantiateViewControllerWithIdentifier:@"SearchViewControllerNav"];
+    UINavigationController *homeVC = [storyboard instantiateViewControllerWithIdentifier:@"HomeViewControllerNav"];
+    UINavigationController *profileVC = [storyboard instantiateViewControllerWithIdentifier:@"ProfileViewControllerNav"];
     [self setViewControllers:@[searchVC, homeVC, profileVC]];
     
 }
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
+
 
 @end

@@ -6,12 +6,18 @@
 //
 
 #import "ProfileViewController.h"
+#import <Parse/Parse.h>
 
 @interface ProfileViewController ()
 
 @end
 
 @implementation ProfileViewController
+- (IBAction)didTapLogoutButtonProfileViewController:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        // PFUser.current() will now be nil
+    }];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
