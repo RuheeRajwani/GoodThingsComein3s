@@ -25,7 +25,8 @@
     if(PFUser.currentUser != nil){
         [self updateViewControllers];
     }
-}
+    self.navigationItem.hidesBackButton = YES;
+    }
 
 -(void) updateViewControllers{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
