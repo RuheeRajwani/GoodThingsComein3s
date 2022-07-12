@@ -84,6 +84,9 @@
                                 <rect key="frame" x="165.5" y="159" width="83.5" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Generate"/>
+                                <connections>
+                                    <action selector="homeViewControllerDidTapGenerate:" destination="hl0-Ib-Nlk" eventType="touchUpInside" id="0Jc-qw-lbX"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0H5-Od-7Yd"/>
@@ -100,6 +103,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mhi-4a-m5i"/>
+                    <connections>
+                        <outlet property="homeRestaurantTableView" destination="WcC-jV-8Wk" id="hfu-jB-4c7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Fd-SA-MLZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -496,7 +502,7 @@
         <!--Tab Bar View Controller-->
         <scene sceneID="PGm-bb-cO0">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarViewController " modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="seq-Ey-itP" customClass="TabBarViewController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar " modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="seq-Ey-itP" customClass="TabBarViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="W41-dY-RCj"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tSa-hn-4tQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -682,65 +688,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHL-Te-RsU">
-                                <rect key="frame" x="176.5" y="455" width="61" height="77"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Apply"/>
-                            </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="JOc-QB-DdU">
-                                <rect key="frame" x="19" y="94" width="376" height="311"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="JOc-QB-DdU">
+                                <rect key="frame" x="28.5" y="94" width="357.5" height="383"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cuisine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlu-p9-Wff">
-                                        <rect key="frame" x="0.0" y="0.0" width="376" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="357.5" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="cyE-uj-SQg">
-                                        <rect key="frame" x="0.0" y="56" width="376" height="31"/>
+                                        <rect key="frame" x="0.0" y="55" width="357.5" height="31"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4tR-WB-Nhf">
-                                                <rect key="frame" x="0.0" y="0.0" width="89.5" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="85" height="31"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" title="American"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tvc-RL-ABF">
-                                                <rect key="frame" x="149.5" y="0.0" width="73.5" height="31"/>
+                                                <rect key="frame" x="145" y="0.0" width="70" height="31"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" title="Afghan"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyX-hn-8Cd">
-                                                <rect key="frame" x="283" y="0.0" width="93" height="31"/>
+                                                <rect key="frame" x="275" y="0.0" width="82.5" height="31"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" title="Brazillian"/>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="83" translatesAutoresizingMaskIntoConstraints="NO" id="fgb-Xe-kWx">
-                                        <rect key="frame" x="0.0" y="112" width="376" height="31"/>
+                                        <rect key="frame" x="0.0" y="111" width="357.5" height="48"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="576-VJ-a38">
-                                                <rect key="frame" x="0.0" y="0.0" width="73" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="69" height="48"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" title="Filipino"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jKd-MX-hje">
-                                                <rect key="frame" x="156" y="0.0" width="65" height="31"/>
+                                                <rect key="frame" x="152" y="0.0" width="62" height="48"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" title="Greek"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qb6-IJ-bdM">
-                                                <rect key="frame" x="304" y="0.0" width="72" height="31"/>
+                                                <rect key="frame" x="297" y="0.0" width="60.5" height="48"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" title="Indian"/>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="kGr-QH-0KX">
-                                        <rect key="frame" x="0.0" y="168" width="376" height="31"/>
+                                        <rect key="frame" x="0.0" y="184" width="357.5" height="31"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9u-Hg-tIq">
-                                                <rect key="frame" x="0.0" y="0.0" width="154" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="146" height="31"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Mediterranean">
                                                     <color key="titleColor" systemColor="linkColor"/>
@@ -750,72 +751,70 @@
                                                 </buttonConfiguration>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bqs-g0-4Yj">
-                                                <rect key="frame" x="165" y="0.0" width="101" height="31"/>
+                                                <rect key="frame" x="157" y="0.0" width="96" height="31"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" title="Mexican"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9em-l1-ort">
-                                                <rect key="frame" x="277" y="0.0" width="99" height="31"/>
+                                                <rect key="frame" x="264" y="0.0" width="93.5" height="31"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" title="Turkish"/>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="59" translatesAutoresizingMaskIntoConstraints="NO" id="aut-iX-EuS">
-                                        <rect key="frame" x="0.0" y="224" width="376" height="31"/>
+                                        <rect key="frame" x="0.0" y="240" width="357.5" height="31"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tn2-QE-8gx">
-                                                <rect key="frame" x="0.0" y="0.0" width="70" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="66.5" height="31"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" title="Italian"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOU-qW-9v0">
-                                                <rect key="frame" x="129" y="0.0" width="96" height="31"/>
+                                                <rect key="frame" x="125.5" y="0.0" width="91.5" height="31"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" title="Japanese"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="weA-FY-Jb0">
-                                                <rect key="frame" x="284" y="0.0" width="92" height="31"/>
+                                                <rect key="frame" x="276" y="0.0" width="81.5" height="31"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" title="Korean"/>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="61" translatesAutoresizingMaskIntoConstraints="NO" id="5r4-vX-Gvz">
-                                        <rect key="frame" x="0.0" y="280" width="376" height="31"/>
+                                        <rect key="frame" x="0.0" y="296" width="357.5" height="31"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xUM-GR-2qU">
-                                                <rect key="frame" x="0.0" y="0.0" width="82" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="77.5" height="31"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" title="Chinese"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q86-eq-AL0">
-                                                <rect key="frame" x="143" y="0.0" width="90" height="31"/>
+                                                <rect key="frame" x="138.5" y="0.0" width="85.5" height="31"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" title="Ethiopian"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wmb-7A-5Vb">
-                                                <rect key="frame" x="294" y="0.0" width="82" height="31"/>
+                                                <rect key="frame" x="285" y="0.0" width="72.5" height="31"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" title="French"/>
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHL-Te-RsU">
+                                        <rect key="frame" x="0.0" y="352" width="357.5" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Apply"/>
+                                    </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="cyE-uj-SQg" firstAttribute="top" secondItem="nlu-p9-Wff" secondAttribute="bottom" constant="25" id="RLY-Xu-dtl"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CCn-Qd-zCL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="CCn-Qd-zCL" firstAttribute="bottom" secondItem="IHL-Te-RsU" secondAttribute="bottom" constant="310" id="1Fq-8Z-CgS"/>
-                            <constraint firstItem="IHL-Te-RsU" firstAttribute="top" secondItem="JOc-QB-DdU" secondAttribute="bottom" constant="50" id="4UF-Qw-zks"/>
-                            <constraint firstItem="JOc-QB-DdU" firstAttribute="top" secondItem="CCn-Qd-zCL" secondAttribute="top" constant="50" id="NIb-tF-aMk"/>
-                            <constraint firstItem="JOc-QB-DdU" firstAttribute="leading" secondItem="CCn-Qd-zCL" secondAttribute="leading" constant="19" id="R0d-Ik-VJ2"/>
-                            <constraint firstItem="CCn-Qd-zCL" firstAttribute="trailing" secondItem="JOc-QB-DdU" secondAttribute="trailing" constant="19" id="cux-Xd-Eyz"/>
-                            <constraint firstItem="IHL-Te-RsU" firstAttribute="centerX" secondItem="CCn-Qd-zCL" secondAttribute="centerX" id="on7-yy-D3q"/>
+                            <constraint firstItem="JOc-QB-DdU" firstAttribute="top" secondItem="CCn-Qd-zCL" secondAttribute="top" constant="50" id="38x-Ez-5ju"/>
+                            <constraint firstItem="JOc-QB-DdU" firstAttribute="centerX" secondItem="CCn-Qd-zCL" secondAttribute="centerX" id="dCh-XY-2hF"/>
                         </constraints>
                     </view>
                 </viewController>
