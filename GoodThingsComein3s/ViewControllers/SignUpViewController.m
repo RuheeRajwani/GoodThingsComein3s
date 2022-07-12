@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UITextField *locationField;
 
 @end
 
@@ -25,6 +26,7 @@
         newUser.username = self.usernameField.text;
         newUser.email = self.emailField.text;
         newUser.password = self.passwordField.text;
+        newUser[@"location"] = self.locationField.text;
         
         // call sign up function on the object
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
