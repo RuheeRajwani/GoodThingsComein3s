@@ -17,13 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XvL-qA-XkZ">
-                                <rect key="frame" x="293" y="739" width="83.5" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Generate"/>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WcC-jV-8Wk">
-                                <rect key="frame" x="0.0" y="174" width="414" height="530"/>
+                                <rect key="frame" x="0.0" y="210" width="414" height="598"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="106" id="zIG-53-2wj">
@@ -32,6 +27,15 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zIG-53-2wj" id="NoH-c1-qcD">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="106"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Restaurant name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MvW-7d-YwW">
+                                                    <rect key="frame" x="20" y="11" width="129" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="Yko-b9-5Qt" kind="show" id="OBg-6u-ox9"/>
@@ -39,11 +43,11 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DDL-KZ-tXu">
-                                <rect key="frame" x="36" y="98" width="346" height="31"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="DDL-KZ-tXu">
+                                <rect key="frame" x="48.5" y="98" width="317" height="31"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxD-Zw-QT0">
-                                        <rect key="frame" x="0.0" y="0.0" width="83.5" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Cuisine"/>
                                         <connections>
@@ -51,7 +55,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GzQ-sA-Xcf">
-                                        <rect key="frame" x="91.5" y="0.0" width="66" height="31"/>
+                                        <rect key="frame" x="86" y="0.0" width="57" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Price"/>
                                         <connections>
@@ -59,7 +63,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rUz-vT-wCO">
-                                        <rect key="frame" x="165.5" y="0.0" width="93" height="31"/>
+                                        <rect key="frame" x="157" y="0.0" width="80.5" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Distance"/>
                                         <connections>
@@ -67,7 +71,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLp-lF-Bmx">
-                                        <rect key="frame" x="266.5" y="0.0" width="79.5" height="31"/>
+                                        <rect key="frame" x="251.5" y="0.0" width="65.5" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Rating"/>
                                         <connections>
@@ -76,19 +80,23 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XvL-qA-XkZ">
+                                <rect key="frame" x="165.5" y="159" width="83.5" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Generate"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0H5-Od-7Yd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="0H5-Od-7Yd" firstAttribute="trailing" secondItem="DDL-KZ-tXu" secondAttribute="trailing" constant="32" id="2C9-vc-Loz"/>
+                            <constraint firstItem="0H5-Od-7Yd" firstAttribute="bottom" secondItem="WcC-jV-8Wk" secondAttribute="bottom" constant="5" id="47Y-ay-blU"/>
                             <constraint firstItem="WcC-jV-8Wk" firstAttribute="leading" secondItem="0H5-Od-7Yd" secondAttribute="leading" id="4O1-VQ-jfM"/>
-                            <constraint firstItem="DDL-KZ-tXu" firstAttribute="leading" secondItem="0H5-Od-7Yd" secondAttribute="leading" constant="36" id="9mt-cy-Obv"/>
-                            <constraint firstItem="WcC-jV-8Wk" firstAttribute="top" secondItem="DDL-KZ-tXu" secondAttribute="bottom" constant="45" id="VE5-Ax-hu3"/>
-                            <constraint firstItem="0H5-Od-7Yd" firstAttribute="bottom" secondItem="XvL-qA-XkZ" secondAttribute="bottom" constant="43" id="Yf9-6f-6Rs"/>
-                            <constraint firstItem="XvL-qA-XkZ" firstAttribute="leading" secondItem="0H5-Od-7Yd" secondAttribute="leading" constant="293" id="nUi-aM-dkc"/>
+                            <constraint firstItem="WcC-jV-8Wk" firstAttribute="top" secondItem="XvL-qA-XkZ" secondAttribute="bottom" constant="20" id="Fbh-Bh-UQM"/>
+                            <constraint firstItem="XvL-qA-XkZ" firstAttribute="top" secondItem="DDL-KZ-tXu" secondAttribute="bottom" constant="30" id="Fhq-uf-bII"/>
+                            <constraint firstItem="DDL-KZ-tXu" firstAttribute="centerX" secondItem="0H5-Od-7Yd" secondAttribute="centerX" id="MkY-Tz-mCM"/>
+                            <constraint firstItem="XvL-qA-XkZ" firstAttribute="centerX" secondItem="0H5-Od-7Yd" secondAttribute="centerX" id="YLM-zk-r9g"/>
                             <constraint firstItem="DDL-KZ-tXu" firstAttribute="top" secondItem="0H5-Od-7Yd" secondAttribute="top" constant="10" id="pdm-9R-fgt"/>
                             <constraint firstItem="WcC-jV-8Wk" firstAttribute="trailing" secondItem="0H5-Od-7Yd" secondAttribute="trailing" id="tEo-Fg-tR1"/>
-                            <constraint firstItem="XvL-qA-XkZ" firstAttribute="top" secondItem="WcC-jV-8Wk" secondAttribute="bottom" constant="35" id="zuL-MX-5HF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mhi-4a-m5i"/>
@@ -963,7 +971,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="8Ct-dt-owJ"/>
-        <segue reference="f8q-iO-TrI"/>
+        <segue reference="OBg-6u-ox9"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="5_stars_50_50_1_75" width="123" height="23"/>
