@@ -59,7 +59,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Price"/>
                                         <connections>
-                                            <segue destination="jGc-oQ-v7h" kind="presentation" id="fin-HV-MuT"/>
+                                            <segue destination="jGc-oQ-v7h" kind="presentation" identifier="HomeToPriceFilterSegue" id="fin-HV-MuT"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rUz-vT-wCO">
@@ -181,7 +181,7 @@
         <!--Price Filter-->
         <scene sceneID="PpX-He-wHb">
             <objects>
-                <viewController title="Price Filter" id="jGc-oQ-v7h" sceneMemberID="viewController">
+                <viewController title="Price Filter" id="jGc-oQ-v7h" customClass="PriceFilterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dbc-Jt-Du6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -200,7 +200,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="$"/>
                                         <connections>
-                                            <action selector="priceFilterViewControllerDidTap1Sign:" destination="wPF-wB-seN" eventType="touchUpInside" id="HM5-4y-LaR"/>
+                                            <action selector="priceFilterViewControllerDidTap1Sign:" destination="jGc-oQ-v7h" eventType="touchUpInside" id="Ds4-Bz-h6H"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rk8-gk-Z81">
@@ -208,7 +208,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="$$"/>
                                         <connections>
-                                            <action selector="priceFilterViewControllerDidTap2Sign:" destination="wPF-wB-seN" eventType="touchUpInside" id="MqU-Xe-vRb"/>
+                                            <action selector="priceFilterViewControllerDidTap2Sign:" destination="jGc-oQ-v7h" eventType="touchUpInside" id="edv-5L-BZH"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XoV-dP-89l">
@@ -216,7 +216,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="$$$"/>
                                         <connections>
-                                            <action selector="priceFilterViewControllerDidTap3Sign:" destination="wPF-wB-seN" eventType="touchUpInside" id="BWs-4c-JY1"/>
+                                            <action selector="priceFilterViewControllerDidTap3Sign:" destination="jGc-oQ-v7h" eventType="touchUpInside" id="TEI-wH-DFp"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8LT-nM-Bup">
@@ -224,17 +224,18 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="$$$$"/>
                                         <connections>
-                                            <action selector="priceFilterViewControllerDidTap4Sign:" destination="wPF-wB-seN" eventType="touchUpInside" id="nbg-Ai-LO5"/>
+                                            <action selector="priceFilterViewControllerDidTap4Sign:" destination="jGc-oQ-v7h" eventType="touchUpInside" id="wcG-Cz-OeE"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQC-fj-jVx">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQC-fj-jVx">
                                 <rect key="frame" x="176.5" y="245" width="61" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Apply"/>
                                 <connections>
                                     <action selector="priceFilterViewControllerDidTapApply:" destination="wPF-wB-seN" eventType="touchUpInside" id="H4H-VA-MdF"/>
+                                    <action selector="priceFilterViewControllerDidTapApply:" destination="jGc-oQ-v7h" eventType="touchUpInside" id="gPr-Wf-SJD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -252,6 +253,9 @@
                             <constraint firstItem="FQC-fj-jVx" firstAttribute="top" secondItem="vds-fD-3Sq" secondAttribute="bottom" constant="50" id="uot-ar-g1V"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="applyButton" destination="FQC-fj-jVx" id="cgg-SV-UJ2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yaX-fW-c9s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="wPF-wB-seN" userLabel="Exit" sceneMemberID="exit"/>
@@ -266,20 +270,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hi! " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPP-2p-MNc">
-                                <rect key="frame" x="40" y="88" width="102" height="91"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="48"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTN-Sh-2yB">
-                                <rect key="frame" x="109" y="101" width="219" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="48"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Pgp-wR-Orv">
                                 <rect key="frame" x="0.0" y="261" width="414" height="635"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -308,6 +298,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTN-Sh-2yB">
+                                <rect key="frame" x="40" y="99" width="219" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="H1l-cj-dcV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -321,11 +318,14 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Logout"/>
                                 <connections>
                                     <action selector="profileViewControllerDidTapLogout:" destination="tuK-zV-H98" eventType="touchUpInside" id="Mdh-4p-Fbr"/>
-                                    <segue destination="seq-Ey-itP" kind="show" identifier="logoutToHomeSegue" id="RwO-DP-AuV"/>
+                                    <segue destination="seq-Ey-itP" kind="show" identifier="logoutToTabBarSegue" id="s4j-MO-2U8"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="nameFieldToFill" destination="hTN-Sh-2yB" id="Ste-kJ-SvX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTa-io-kf6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -404,7 +404,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="HaH-Nr-eE7">
-                                <rect key="frame" x="142.5" y="281" width="129.5" height="214"/>
+                                <rect key="frame" x="142.5" y="281" width="129.5" height="275"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="abV-vJ-XUz">
                                         <rect key="frame" x="0.0" y="0.0" width="129.5" height="34"/>
@@ -421,8 +421,13 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8hR-yp-Sgd">
+                                        <rect key="frame" x="6" y="183" width="117" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lt-by-bS1">
-                                        <rect key="frame" x="14" y="183" width="101" height="31"/>
+                                        <rect key="frame" x="14" y="244" width="101" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Sign me up!"/>
                                         <connections>
@@ -450,6 +455,7 @@
                     <navigationItem key="navigationItem" id="Ymw-TD-tLh"/>
                     <connections>
                         <outlet property="emailField" destination="NBa-um-BH5" id="mfo-TZ-qXn"/>
+                        <outlet property="locationField" destination="8hR-yp-Sgd" id="YE0-aj-pgI"/>
                         <outlet property="passwordField" destination="8wB-LB-iit" id="yLt-2T-cXt"/>
                         <outlet property="usernameField" destination="abV-vJ-XUz" id="csa-cB-9yH"/>
                         <segue destination="seq-Ey-itP" kind="show" identifier="signupToProfileSegue" id="0mf-eL-7uO"/>
@@ -623,10 +629,10 @@
             </objects>
             <point key="canvasLocation" x="-6623" y="-2764"/>
         </scene>
-        <!--Profile-->
+        <!--SignUpLogin-->
         <scene sceneID="Ram-aL-ijK">
             <objects>
-                <navigationController wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="Tdw-ue-L4d" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="signUpLoginViewControllerNav" title="SignUpLogin" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Tdw-ue-L4d" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" id="vcI-DQ-8JG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nbN-Ac-HpY">
@@ -642,10 +648,10 @@
             </objects>
             <point key="canvasLocation" x="-1309" y="-3883"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Login-->
         <scene sceneID="no2-hv-vSQ">
             <objects>
-                <navigationController wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="uWj-bS-KDc" sceneMemberID="viewController">
+                <navigationController title="Login" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="uWj-bS-KDc" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="ODx-Wb-JkX"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UUl-ob-QSX">
@@ -661,10 +667,10 @@
             </objects>
             <point key="canvasLocation" x="-1839" y="-3067"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Sign Up-->
         <scene sceneID="4dp-d1-Jsu">
             <objects>
-                <navigationController wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="BUh-zC-wIc" sceneMemberID="viewController">
+                <navigationController title="Sign Up" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="BUh-zC-wIc" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="r2h-4F-NcD"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dvT-bj-OXJ">
@@ -802,7 +808,7 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHL-Te-RsU">
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHL-Te-RsU">
                                         <rect key="frame" x="0.0" y="352" width="357.5" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Apply"/>
@@ -836,7 +842,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SB3-jG-YJe">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SB3-jG-YJe">
                                 <rect key="frame" x="176.5" y="326" width="61" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Apply"/>
@@ -939,7 +945,7 @@
                                     <constraint firstAttribute="width" constant="365" id="onu-hO-80W"/>
                                 </constraints>
                             </slider>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zD-pu-Qrp">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zD-pu-Qrp">
                                 <rect key="frame" x="176.5" y="244" width="61" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Apply"/>
@@ -969,7 +975,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8Ct-dt-owJ"/>
+        <segue reference="s4j-MO-2U8"/>
         <segue reference="OBg-6u-ox9"/>
     </inferredMetricsTieBreakers>
     <resources>
