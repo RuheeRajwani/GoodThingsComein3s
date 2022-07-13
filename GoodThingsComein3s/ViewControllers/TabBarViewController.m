@@ -38,11 +38,13 @@
 
     if (PFUser.currentUser != nil){
         [self setViewControllers:@[searchVC, homeVC, profileVC]];
+        [self setSelectedIndex:2];
     }else {
         [self setViewControllers:@[searchVC, homeVC, signUpLoginVC]];
+        [self setSelectedIndex:1];
     }
     
-    [self setSelectedIndex:1];
+    
 }
 
 
