@@ -27,6 +27,11 @@
         configuration.server = @"https://parseapi.back4app.com/";
     }];
     [Parse initializeWithConfiguration:configuration];
+    if([PFUser currentUser] != nil){
+        [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+            // PFUser.current() will now be nil
+        }];
+    }
     return YES;
 }
 
