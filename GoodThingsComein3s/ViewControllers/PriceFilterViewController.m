@@ -58,15 +58,37 @@
 }
 
 - (IBAction)priceFilterViewControllerDidTap2Sign:(id)sender {
-    [self.applyButton setEnabled:YES];
+    if([sender isSelected] == NO){
+        [sender setSelected:YES];
+        [self.selectedPriceFilters addObject:@"2"];
+    } else {
+        [sender setSelected:NO];
+        [self.selectedPriceFilters removeObject:@"2"];
+    }
+    [self.applyButton setEnabled:self.selectedPriceFilters.count != 0];
 }
 
+
 - (IBAction)priceFilterViewControllerDidTap3Sign:(id)sender {
-    [self.applyButton setEnabled:YES];
+    if([sender isSelected] == NO){
+        [sender setSelected:YES];
+        [self.selectedPriceFilters addObject:@"3"];
+    } else {
+        [sender setSelected:NO];
+        [self.selectedPriceFilters removeObject:@"3"];
+    }
+    [self.applyButton setEnabled:self.selectedPriceFilters.count != 0];
 }
 
 - (IBAction)priceFilterViewControllerDidTap4Sign:(id)sender {
-    [self.applyButton setEnabled:YES];
+    if([sender isSelected] == NO){
+        [sender setSelected:YES];
+        [self.selectedPriceFilters addObject:@"4"];
+    } else {
+        [sender setSelected:NO];
+        [self.selectedPriceFilters removeObject:@"4"];
+    }
+    [self.applyButton setEnabled:self.selectedPriceFilters.count != 0];
 }
 
 @end
