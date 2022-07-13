@@ -34,8 +34,15 @@
     UINavigationController *searchVC = [storyboard instantiateViewControllerWithIdentifier:@"SearchViewControllerNav"];
     UINavigationController *homeVC = [storyboard instantiateViewControllerWithIdentifier:@"HomeViewControllerNav"];
     UINavigationController *profileVC = [storyboard instantiateViewControllerWithIdentifier:@"ProfileViewControllerNav"];
-    [self setViewControllers:@[searchVC, homeVC, profileVC]];
+    UINavigationController *signUpLoginVC = [storyboard instantiateViewControllerWithIdentifier:@"signUpLoginViewControllerNav"];
+
+    if (PFUser.currentUser != nil){
+        [self setViewControllers:@[searchVC, homeVC, profileVC]];
+    }else {
+        [self setViewControllers:@[searchVC, homeVC, signUpLoginVC]];
+    }
     
+    [self setSelectedIndex:1];
 }
 
 

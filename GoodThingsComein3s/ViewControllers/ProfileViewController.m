@@ -7,28 +7,33 @@
 
 #import "ProfileViewController.h"
 #import <Parse/Parse.h>
+#import "SceneDelegate.h"
+#import "TabBarViewController.h"
 
 @interface ProfileViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *nameFieldToFill;
 
 @end
 
 @implementation ProfileViewController
-- (IBAction)didTapLogoutButtonProfileViewController:(id)sender {
-    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        // PFUser.current() will now be nil
-    }];
-    [self performSegueWithIdentifier:@"logoutToHomeSegue" sender:nil];
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    NSString *greeting =@"Hi ";
+    NSString *exclaimation = @"!";
+    self.nameFieldToFill.text =[NSString stringWithFormat:@"%@%@%@", greeting, [PFUser currentUser].username, exclaimation];
+    
     
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)profileViewControllerDidTapLogout:(id)sender {
+    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        // PFUser.current() will now be nil
+    }];
+    
 }
-*/
+
 
 @end
