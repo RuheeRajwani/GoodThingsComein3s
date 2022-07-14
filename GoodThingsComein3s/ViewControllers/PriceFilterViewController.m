@@ -41,8 +41,6 @@
     
     [self.delegate appliedPriceFilters:priceStringToSend];
     
-    //-send prices selected to home screen
-    //-view to dismiss
 }
 
 - (IBAction)priceFilterViewControllerDidTap1Sign:(id)sender {
