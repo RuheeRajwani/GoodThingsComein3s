@@ -24,7 +24,6 @@
     self.selectedPriceFilters = [[NSMutableArray alloc] init];
 }
 - (IBAction)priceFilterViewControllerDidTapApply:(id)sender {
-    //convert selectedPriceFilters to string
     NSString *priceStringToSend = [[NSString alloc] init];
     
     if(self.selectedPriceFilters.count == 1){
@@ -38,55 +37,40 @@
             }
         }
     }
-    
     [self.delegate appliedPriceFilters:priceStringToSend];
+    
+    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+
     
 }
 
 - (IBAction)priceFilterViewControllerDidTap1Sign:(id)sender {
-    if([sender isSelected] == NO){
-        [sender setSelected:YES];
-        [self.selectedPriceFilters addObject:@"1"];
-    } else {
-        [sender setSelected:NO];
-        [self.selectedPriceFilters removeObject:@"1"];
-    }
-    [self.applyButton setEnabled:self.selectedPriceFilters.count != 0];
-
+    [self dollarSignButtonTapped:sender :@"1"];
 }
 
 - (IBAction)priceFilterViewControllerDidTap2Sign:(id)sender {
-    if([sender isSelected] == NO){
-        [sender setSelected:YES];
-        [self.selectedPriceFilters addObject:@"2"];
-    } else {
-        [sender setSelected:NO];
-        [self.selectedPriceFilters removeObject:@"2"];
-    }
-    [self.applyButton setEnabled:self.selectedPriceFilters.count != 0];
+    [self dollarSignButtonTapped:sender :@"2"];
 }
 
 
 - (IBAction)priceFilterViewControllerDidTap3Sign:(id)sender {
+    [self dollarSignButtonTapped:sender :@"3"];
+}
+
+- (IBAction)priceFilterViewControllerDidTap4Sign:(id)sender {
+    [self dollarSignButtonTapped:sender :@"4"];
+}
+
+-(void)dollarSignButtonTapped:(id)sender :(NSString *)number{
     if([sender isSelected] == NO){
         [sender setSelected:YES];
-        [self.selectedPriceFilters addObject:@"3"];
+        [self.selectedPriceFilters addObject:number];
     } else {
         [sender setSelected:NO];
-        [self.selectedPriceFilters removeObject:@"3"];
+        [self.selectedPriceFilters removeObject:number];
     }
     [self.applyButton setEnabled:self.selectedPriceFilters.count != 0];
 }
 
-- (IBAction)priceFilterViewControllerDidTap4Sign:(id)sender {
-    if([sender isSelected] == NO){
-        [sender setSelected:YES];
-        [self.selectedPriceFilters addObject:@"4"];
-    } else {
-        [sender setSelected:NO];
-        [self.selectedPriceFilters removeObject:@"4"];
-    }
-    [self.applyButton setEnabled:self.selectedPriceFilters.count != 0];
-}
 
 @end
