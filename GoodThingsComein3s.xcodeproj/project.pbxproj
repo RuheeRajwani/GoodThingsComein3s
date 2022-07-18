@@ -13,6 +13,7 @@
 		EF0C643328760FE200359933 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0C643228760FE200359933 /* ProfileViewController.m */; };
 		EF1670CD287642A700A8B2BF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1670CC287642A700A8B2BF /* LoginViewController.m */; };
 		EF1670D428764BD900A8B2BF /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1670D328764BD900A8B2BF /* SignUpViewController.m */; };
+		EFB72E6B287E0EFD00AC9C9F /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB72E6A287E0EFD00AC9C9F /* APIManager.m */; };
 		EFB779FA2875FAB50061EA4E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB779F92875FAB50061EA4E /* AppDelegate.m */; };
 		EFB77A032875FAB50061EA4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFB77A012875FAB50061EA4E /* Main.storyboard */; };
 		EFB77A082875FAB60061EA4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFB77A062875FAB60061EA4E /* LaunchScreen.storyboard */; };
@@ -26,6 +27,8 @@
 		EFBC023C287CE6E900B9D09F /* RatingFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBC023B287CE6E900B9D09F /* RatingFilterViewController.m */; };
 		EFBC023F287CE6FE00B9D09F /* DistanceFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBC023E287CE6FE00B9D09F /* DistanceFilterViewController.m */; };
 		EFC241B928762BD10059EBE7 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC241B828762BD10059EBE7 /* SceneDelegate.m */; };
+		EFD2FC8F2885C6EB0095DD85 /* RestaurantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD2FC8E2885C6EB0095DD85 /* RestaurantTableViewCell.m */; };
+		EFD2FC922885C7FB0095DD85 /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD2FC912885C7FB0095DD85 /* Restaurant.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,8 @@
 		EF1670CC287642A700A8B2BF /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		EF1670D228764BD900A8B2BF /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		EF1670D328764BD900A8B2BF /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		EFB72E69287E0EFD00AC9C9F /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		EFB72E6A287E0EFD00AC9C9F /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		EFB779F52875FAB50061EA4E /* GoodThingsComein3s.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodThingsComein3s.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFB779F82875FAB50061EA4E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EFB779F92875FAB50061EA4E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -65,6 +70,10 @@
 		EFBC023E287CE6FE00B9D09F /* DistanceFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistanceFilterViewController.m; sourceTree = "<group>"; };
 		EFC241B728762BD10059EBE7 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		EFC241B828762BD10059EBE7 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		EFD2FC8D2885C6EB0095DD85 /* RestaurantTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestaurantTableViewCell.h; sourceTree = "<group>"; };
+		EFD2FC8E2885C6EB0095DD85 /* RestaurantTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestaurantTableViewCell.m; sourceTree = "<group>"; };
+		EFD2FC902885C7FB0095DD85 /* Restaurant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
+		EFD2FC912885C7FB0095DD85 /* Restaurant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +99,8 @@
 		EF1178C32875FC2800419278 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EFD2FC8D2885C6EB0095DD85 /* RestaurantTableViewCell.h */,
+				EFD2FC8E2885C6EB0095DD85 /* RestaurantTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -126,8 +137,19 @@
 		EF1178C52875FC3C00419278 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EFD2FC902885C7FB0095DD85 /* Restaurant.h */,
+				EFD2FC912885C7FB0095DD85 /* Restaurant.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		EFB72E68287DE27000AC9C9F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				EFB72E69287E0EFD00AC9C9F /* APIManager.h */,
+				EFB72E6A287E0EFD00AC9C9F /* APIManager.m */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		EFB779EC2875FAB50061EA4E = {
@@ -151,6 +173,7 @@
 		EFB779F72875FAB50061EA4E /* GoodThingsComein3s */ = {
 			isa = PBXGroup;
 			children = (
+				EFB72E68287DE27000AC9C9F /* API */,
 				EF1178C52875FC3C00419278 /* Models */,
 				EF1178C42875FC3400419278 /* ViewControllers */,
 				EF1178C32875FC2800419278 /* Views */,
@@ -292,6 +315,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFD2FC8F2885C6EB0095DD85 /* RestaurantTableViewCell.m in Sources */,
+				EFD2FC922885C7FB0095DD85 /* Restaurant.m in Sources */,
 				EFB779FA2875FAB50061EA4E /* AppDelegate.m in Sources */,
 				EFC241B928762BD10059EBE7 /* SceneDelegate.m in Sources */,
 				EFBC0239287CE6CF00B9D09F /* PriceFilterViewController.m in Sources */,
@@ -306,6 +331,7 @@
 				EFBC023F287CE6FE00B9D09F /* DistanceFilterViewController.m in Sources */,
 				EF0C642D28760FBE00359933 /* HomeViewController.m in Sources */,
 				EFBC0236287CE6BF00B9D09F /* CuisineFilterViewController.m in Sources */,
+				EFB72E6B287E0EFD00AC9C9F /* APIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

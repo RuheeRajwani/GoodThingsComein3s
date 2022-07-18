@@ -6,6 +6,7 @@
 //
 
 #import "APIManager.h"
+#import "Restaurant.h"
 
 static NSString * const yelpBaseUrlString = @"https://api.yelp.com/v3/businesses/search";
 
@@ -65,7 +66,8 @@ static NSString * const yelpBaseUrlString = @"https://api.yelp.com/v3/businesses
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                NSLog(@"%@", dataDictionary);
-               NSMutableArray *restaurants = dataDictionary[@"businesses"];
+               NSArray *restaurantDictionaries= dataDictionary[@"businesses"];
+               NSMutableArray *restaurants = [Restaurant restaurantsWithArray:restaurantDictionaries];
                completion(restaurants,nil);
               
                

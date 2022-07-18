@@ -21,23 +21,70 @@
                                 <rect key="frame" x="0.0" y="210" width="414" height="598"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="106" id="zIG-53-2wj">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="106"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RestaurantTableViewCell" rowHeight="170" id="zIG-53-2wj" customClass="RestaurantTableViewCell">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="170"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zIG-53-2wj" id="NoH-c1-qcD">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="106"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="170"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Restaurant name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MvW-7d-YwW">
-                                                    <rect key="frame" x="20" y="11" width="129" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MvW-7d-YwW">
+                                                    <rect key="frame" x="10" y="15" width="136.5" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YoF-Bv-T9D">
+                                                    <rect key="frame" x="10" y="52.5" width="170" height="110"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="110" id="060-qM-Cv9"/>
+                                                        <constraint firstAttribute="width" constant="170" id="czN-QV-ApQ"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPW-zc-uhQ">
+                                                    <rect key="frame" x="184" y="57.5" width="69.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMM-dX-XfJ">
+                                                    <rect key="frame" x="184" y="141" width="210" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g4e-SQ-6c1">
+                                                    <rect key="frame" x="259" y="15" width="150" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="150" id="7Ke-9a-h01"/>
+                                                        <constraint firstAttribute="height" constant="35" id="KMa-5j-gzy"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="YoF-Bv-T9D" secondAttribute="bottom" constant="7.5" id="1YS-7J-amX"/>
+                                                <constraint firstItem="mPW-zc-uhQ" firstAttribute="leading" secondItem="YoF-Bv-T9D" secondAttribute="trailing" constant="4" id="2gh-P9-bry"/>
+                                                <constraint firstItem="g4e-SQ-6c1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MvW-7d-YwW" secondAttribute="trailing" constant="50" id="3Wk-6h-yI2"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mPW-zc-uhQ" secondAttribute="trailing" constant="15" id="63m-K9-lke"/>
+                                                <constraint firstItem="fMM-dX-XfJ" firstAttribute="leading" secondItem="YoF-Bv-T9D" secondAttribute="trailing" constant="4" id="C4Y-7H-6Yz"/>
+                                                <constraint firstItem="YoF-Bv-T9D" firstAttribute="top" secondItem="MvW-7d-YwW" secondAttribute="bottom" constant="20.5" id="QXw-Ud-DSM"/>
+                                                <constraint firstAttribute="bottom" secondItem="fMM-dX-XfJ" secondAttribute="bottom" constant="11" id="SD3-Dj-8rq"/>
+                                                <constraint firstAttribute="trailing" secondItem="fMM-dX-XfJ" secondAttribute="trailing" constant="20" symbolic="YES" id="WGu-oT-UXa"/>
+                                                <constraint firstItem="MvW-7d-YwW" firstAttribute="top" secondItem="NoH-c1-qcD" secondAttribute="top" constant="15" id="ZaD-sM-rPv"/>
+                                                <constraint firstItem="MvW-7d-YwW" firstAttribute="leading" secondItem="NoH-c1-qcD" secondAttribute="leading" constant="10" id="dZd-YH-PnA"/>
+                                                <constraint firstItem="mPW-zc-uhQ" firstAttribute="top" secondItem="MvW-7d-YwW" secondAttribute="bottom" constant="25.5" id="hsz-vf-6ax"/>
+                                                <constraint firstItem="fMM-dX-XfJ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="mPW-zc-uhQ" secondAttribute="bottom" constant="15" id="i8C-BP-mNp"/>
+                                                <constraint firstItem="g4e-SQ-6c1" firstAttribute="top" secondItem="MvW-7d-YwW" secondAttribute="top" id="kGI-gG-301"/>
+                                                <constraint firstItem="YoF-Bv-T9D" firstAttribute="leading" secondItem="NoH-c1-qcD" secondAttribute="leading" constant="10" id="mbQ-mS-cbx"/>
+                                                <constraint firstAttribute="trailing" secondItem="g4e-SQ-6c1" secondAttribute="trailing" constant="5" id="tHZ-vI-Ekn"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="ratingImageView" destination="g4e-SQ-6c1" id="oRf-gu-QFa"/>
+                                            <outlet property="restaurantAddressLabel" destination="fMM-dX-XfJ" id="YMp-3S-Frt"/>
+                                            <outlet property="restaurantCategoriesLabel" destination="mPW-zc-uhQ" id="8vN-ex-erT"/>
+                                            <outlet property="restaurantImageView" destination="YoF-Bv-T9D" id="OYc-yb-pcE"/>
+                                            <outlet property="restaurantNameLabel" destination="MvW-7d-YwW" id="hix-Om-atD"/>
                                             <segue destination="Yko-b9-5Qt" kind="show" id="OBg-6u-ox9"/>
                                         </connections>
                                     </tableViewCell>
@@ -859,7 +906,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="snM-Xa-Z5w">
                                                 <rect key="frame" x="0.0" y="0.0" width="45" height="40"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" image="oneStarPhoto" title=""/>
+                                                <buttonConfiguration key="configuration" style="gray" image="1Star" title=""/>
                                                 <connections>
                                                     <action selector="ratingsFilterViewControllerDidTap1Star:" destination="xEZ-No-HTz" eventType="touchUpInside" id="S4t-xW-9dH"/>
                                                 </connections>
@@ -867,7 +914,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OEf-zx-Tun">
                                                 <rect key="frame" x="81" y="0.0" width="71" height="40"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" image="twoStars" title=""/>
+                                                <buttonConfiguration key="configuration" style="gray" image="2Stars" title=""/>
                                                 <connections>
                                                     <action selector="ratingsFilterViewControllerDidTap2Stars:" destination="xEZ-No-HTz" eventType="touchUpInside" id="86K-we-9Kh"/>
                                                 </connections>
@@ -875,7 +922,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7B-gW-v09">
                                                 <rect key="frame" x="188" y="0.0" width="106" height="40"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" image="threeStars_50_1_50_1_85" title=""/>
+                                                <buttonConfiguration key="configuration" style="gray" image="3Stars" title=""/>
                                                 <connections>
                                                     <action selector="ratingsFilterViewControllerDidTap3Stars:" destination="xEZ-No-HTz" eventType="touchUpInside" id="9bL-bp-tbU"/>
                                                 </connections>
@@ -888,7 +935,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vxr-37-0WJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="128" height="39"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" image="fourStars_50_50_1_80" title=""/>
+                                                <buttonConfiguration key="configuration" style="gray" image="4Stars" title=""/>
                                                 <connections>
                                                     <action selector="ratingsFilterViewControllerDidTap4Stars:" destination="xEZ-No-HTz" eventType="touchUpInside" id="Y4M-8L-nam"/>
                                                 </connections>
@@ -896,7 +943,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8MY-fB-SmH">
                                                 <rect key="frame" x="147" y="0.0" width="147" height="39"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" image="5_stars_50_50_1_75" title=""/>
+                                                <buttonConfiguration key="configuration" style="gray" image="5Stars" title=""/>
                                                 <connections>
                                                     <action selector="ratingsFilterViewControllerDidTap5Stars:" destination="xEZ-No-HTz" eventType="touchUpInside" id="j4L-70-ETX"/>
                                                 </connections>
@@ -979,11 +1026,11 @@
         <segue reference="OBg-6u-ox9"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="5_stars_50_50_1_75" width="123" height="23"/>
-        <image name="fourStars_50_50_1_80" width="104" height="25"/>
-        <image name="oneStarPhoto" width="21" height="21"/>
-        <image name="threeStars_50_1_50_1_85" width="82" height="26"/>
-        <image name="twoStars" width="47" height="23"/>
+        <image name="1Star" width="21" height="21"/>
+        <image name="2Stars" width="47" height="23"/>
+        <image name="3Stars" width="82" height="26"/>
+        <image name="4Stars" width="104" height="25"/>
+        <image name="5Stars" width="123" height="23"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

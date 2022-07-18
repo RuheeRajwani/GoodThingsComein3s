@@ -9,6 +9,7 @@
 #import "PriceFilterViewController.h"
 #import "APIManager.h"
 #import "AFNetworking.h"
+#import "RestaurantTableViewCell.h"
 
 @interface HomeViewController () <PriceFilterViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *homeRestaurantTableView;
@@ -58,11 +59,13 @@
 
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    return Nil;
+    RestaurantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RestaurantTableViewCell" forIndexPath:indexPath];
+    cell.restaurant = self.restaurantArray[indexPath.row];
+    return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.restaurantArray.count;
+    return 3;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
