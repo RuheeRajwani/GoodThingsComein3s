@@ -48,7 +48,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMM-dX-XfJ">
-                                                    <rect key="frame" x="184" y="141" width="210" height="18"/>
+                                                    <rect key="frame" x="184" y="91" width="210" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -60,26 +60,35 @@
                                                         <constraint firstAttribute="height" constant="35" id="KMa-5j-gzy"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCA-US-qf2">
+                                                    <rect key="frame" x="355" y="128" width="58.5" height="31"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title=""/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="YoF-Bv-T9D" secondAttribute="bottom" constant="7.5" id="1YS-7J-amX"/>
                                                 <constraint firstItem="mPW-zc-uhQ" firstAttribute="leading" secondItem="YoF-Bv-T9D" secondAttribute="trailing" constant="4" id="2gh-P9-bry"/>
                                                 <constraint firstItem="g4e-SQ-6c1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MvW-7d-YwW" secondAttribute="trailing" constant="50" id="3Wk-6h-yI2"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mPW-zc-uhQ" secondAttribute="trailing" constant="15" id="63m-K9-lke"/>
+                                                <constraint firstAttribute="trailing" secondItem="dCA-US-qf2" secondAttribute="trailing" constant="0.5" id="9Ux-ip-Bj2"/>
+                                                <constraint firstAttribute="bottom" secondItem="dCA-US-qf2" secondAttribute="bottom" constant="11" id="ASI-zl-i40"/>
+                                                <constraint firstItem="dCA-US-qf2" firstAttribute="leading" secondItem="YoF-Bv-T9D" secondAttribute="trailing" constant="175" id="AyF-Im-cH7"/>
                                                 <constraint firstItem="fMM-dX-XfJ" firstAttribute="leading" secondItem="YoF-Bv-T9D" secondAttribute="trailing" constant="4" id="C4Y-7H-6Yz"/>
                                                 <constraint firstItem="YoF-Bv-T9D" firstAttribute="top" secondItem="MvW-7d-YwW" secondAttribute="bottom" constant="20.5" id="QXw-Ud-DSM"/>
-                                                <constraint firstAttribute="bottom" secondItem="fMM-dX-XfJ" secondAttribute="bottom" constant="11" id="SD3-Dj-8rq"/>
                                                 <constraint firstAttribute="trailing" secondItem="fMM-dX-XfJ" secondAttribute="trailing" constant="20" symbolic="YES" id="WGu-oT-UXa"/>
                                                 <constraint firstItem="MvW-7d-YwW" firstAttribute="top" secondItem="NoH-c1-qcD" secondAttribute="top" constant="15" id="ZaD-sM-rPv"/>
+                                                <constraint firstItem="fMM-dX-XfJ" firstAttribute="top" secondItem="mPW-zc-uhQ" secondAttribute="bottom" constant="13" id="d7i-GA-083"/>
                                                 <constraint firstItem="MvW-7d-YwW" firstAttribute="leading" secondItem="NoH-c1-qcD" secondAttribute="leading" constant="10" id="dZd-YH-PnA"/>
                                                 <constraint firstItem="mPW-zc-uhQ" firstAttribute="top" secondItem="MvW-7d-YwW" secondAttribute="bottom" constant="25.5" id="hsz-vf-6ax"/>
-                                                <constraint firstItem="fMM-dX-XfJ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="mPW-zc-uhQ" secondAttribute="bottom" constant="15" id="i8C-BP-mNp"/>
+                                                <constraint firstItem="dCA-US-qf2" firstAttribute="top" secondItem="fMM-dX-XfJ" secondAttribute="bottom" constant="19" id="ifT-yI-B2F"/>
                                                 <constraint firstItem="g4e-SQ-6c1" firstAttribute="top" secondItem="MvW-7d-YwW" secondAttribute="top" id="kGI-gG-301"/>
                                                 <constraint firstItem="YoF-Bv-T9D" firstAttribute="leading" secondItem="NoH-c1-qcD" secondAttribute="leading" constant="10" id="mbQ-mS-cbx"/>
                                                 <constraint firstAttribute="trailing" secondItem="g4e-SQ-6c1" secondAttribute="trailing" constant="5" id="tHZ-vI-Ekn"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="likeButton" destination="dCA-US-qf2" id="4qj-Hf-JR4"/>
                                             <outlet property="ratingImageView" destination="g4e-SQ-6c1" id="oRf-gu-QFa"/>
                                             <outlet property="restaurantAddressLabel" destination="fMM-dX-XfJ" id="YMp-3S-Frt"/>
                                             <outlet property="restaurantCategoriesLabel" destination="mPW-zc-uhQ" id="8vN-ex-erT"/>
@@ -1031,6 +1040,7 @@
         <image name="3Stars" width="82" height="26"/>
         <image name="4Stars" width="104" height="25"/>
         <image name="5Stars" width="123" height="23"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
