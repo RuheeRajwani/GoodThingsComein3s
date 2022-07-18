@@ -31,6 +31,7 @@
     [self.refreshControl addTarget:self action:@selector(fetchRestaurants) forControlEvents:UIControlEventValueChanged];
     [self.homeRestaurantTableView insertSubview:self.refreshControl atIndex:0];
     
+    
 }
 
 - (void)viewDidLoad {
@@ -38,6 +39,7 @@
     
     self.homeRestaurantTableView.dataSource = self;
     self.homeRestaurantTableView.delegate = self;
+    self.homeRestaurantTableView.hidden = YES;
     
 }
 
@@ -51,6 +53,7 @@
         }
         [self.homeRestaurantTableView reloadData];
         [self.refreshControl endRefreshing];
+        self.homeRestaurantTableView.hidden = NO;
     }];
     }
         

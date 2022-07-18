@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *restaurantImageView;
 @property (weak, nonatomic) IBOutlet UILabel *restaurantAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *restaurantCategoriesLabel;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (nonatomic) Restaurant *restaurant;
 
 @end
