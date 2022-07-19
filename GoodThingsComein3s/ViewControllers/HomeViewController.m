@@ -18,6 +18,7 @@
 @property (nonatomic) NSString *categories;
 @property (nonatomic) NSInteger *radius;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 
 
@@ -26,6 +27,7 @@
 
 @implementation HomeViewController
 - (IBAction)homeViewControllerDidTapGenerate:(id)sender {
+    self.homeRestaurantTableView.hidden = YES;
     [self fetchRestaurants];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchRestaurants) forControlEvents:UIControlEventValueChanged];
@@ -40,10 +42,13 @@
     self.homeRestaurantTableView.dataSource = self;
     self.homeRestaurantTableView.delegate = self;
     self.homeRestaurantTableView.hidden = YES;
+    self.activityIndicator.hidden =YES;
     
 }
 
 -(void) fetchRestaurants{
+    self.activityIndicator.hidden = NO;
+    [self.activityIndicator startAnimating];
     [[APIManager shared] getGeneratedRestaurants:@"Seattle" price:self.priceFilters categories:self.categories radius:0 completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
         if(restaurants){
             self.restaurantArray = (NSMutableArray*) restaurants;
@@ -53,6 +58,7 @@
         }
         [self.homeRestaurantTableView reloadData];
         [self.refreshControl endRefreshing];
+        [self.activityIndicator stopAnimating];
         self.homeRestaurantTableView.hidden = NO;
     }];
     }
