@@ -45,19 +45,19 @@
     int ratingValue = (int)(rating.doubleValue +.5);
     
     if(ratingValue == 1){
-        self.ratingImage = [UIImage imageNamed:@"1Star"];
+        self.ratingImage = [UIImage imageNamed:@"1StarWhiteBackground"];
         
     } else if (ratingValue == 2){
-        self.ratingImage = [UIImage imageNamed:@"2Stars"];
+        self.ratingImage = [UIImage imageNamed:@"2StarsWhiteBackground"];
         
     } else if (ratingValue == 3){
-        self.ratingImage = [UIImage imageNamed:@"3Stars"];
+        self.ratingImage = [UIImage imageNamed:@"3StarsWhiteBackground"];
         
     }else if (ratingValue == 4){
-        self.ratingImage = [UIImage imageNamed:@"4Stars"];
+        self.ratingImage = [UIImage imageNamed:@"4StarsWhiteBackground"];
         
     }else if(ratingValue == 5){
-        self.ratingImage = [UIImage imageNamed:@"5Stars"];
+        self.ratingImage = [UIImage imageNamed:@"5StarsWhiteBackground"];
         
     }
     
