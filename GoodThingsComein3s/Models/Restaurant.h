@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UIImage+AFNetworking.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -13,10 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *price;
-@property (nonatomic) NSNumber *rating;
-@property (nonatomic) NSArray *categories;
-@property (nonatomic) NSArray *displayAddress;
-@property (nonatomic) NSString *imageURL; 
+@property (nonatomic) NSString *categories;
+@property (nonatomic) NSString *displayAddress;
+@property (nonatomic) UIImage *restaurantImage;
+@property (nonatomic) UIImage *ratingImage;
 
 
 
