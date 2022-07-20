@@ -58,7 +58,7 @@
                                                     <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title=""/>
                                                     <connections>
                                                         <action selector="homeViewControllerDidTapLike:" destination="zIG-53-2wj" eventType="touchUpInside" id="G9f-33-nWx"/>
-                                                        <segue destination="Tdw-ue-L4d" kind="show" identifier="likeToLoginSegue" id="K3H-VA-b2J"/>
+                                                        <segue destination="Tdw-ue-L4d" kind="show" identifier="LikeToLoginSignUpSegue" id="d2S-Vz-OeT"/>
                                                     </connections>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="7VE-ac-BNb">
@@ -1049,7 +1049,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="FYs-uw-VK8"/>
+        <segue reference="d2S-Vz-OeT"/>
         <segue reference="8Ct-dt-owJ"/>
         <segue reference="OBg-6u-ox9"/>
     </inferredMetricsTieBreakers>

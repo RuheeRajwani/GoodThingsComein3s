@@ -28,10 +28,19 @@
 }
 
 - (IBAction)profileViewControllerDidTapLogout:(id)sender {
-    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        // PFUser.current() will now be nil
+        SceneDelegate *mySceneDelegate = (SceneDelegate * ) UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        TabBarViewController *tabBarVC = [storyboard instantiateViewControllerWithIdentifier:@"tabBar"];
+        mySceneDelegate.window.rootViewController = tabBarVC;
+        
     }];
+    
+    
+//    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+//    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+//
+//    }];
     
 }
 

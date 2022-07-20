@@ -27,7 +27,8 @@
           }
         }];
     }else{
-
+        
+        [self.delegate userLoginSignUp];
     }
     
 }

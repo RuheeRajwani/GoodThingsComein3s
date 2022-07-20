@@ -10,7 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol RestaurantTableViewCellDelegate
+
+-(void) userLoginSignUp;
+
+@end
+
 @interface RestaurantTableViewCell : UITableViewCell
+
+@property (nonatomic, weak) id<RestaurantTableViewCellDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UILabel *restaurantNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *ratingImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *restaurantImageView;
