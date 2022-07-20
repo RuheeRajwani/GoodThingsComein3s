@@ -7,9 +7,30 @@
 
 #import "RestaurantTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
+#import <Parse/Parse.h>
 
 
 @implementation RestaurantTableViewCell
+- (IBAction)homeViewControllerDidTapLike:(id)sender {
+    PFUser *curr = [PFUser currentUser];
+    if(curr != nil){
+        [self.likeButton setImage:[UIImage systemImageNamed:@"heart.fill"] forState:UIControlStateNormal];
+        
+        [curr[@"likedRestaurants"] addObject: self.restaurant.restaurantID];
+        [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+          if (succeeded) {
+              NSLog(@"Successfully added");
+              NSLog(@"%@", curr[@"likedRestaurants"][0]);
+          } else {
+              NSLog(@"Error liking restaurant");
+              
+          }
+        }];
+    }else{
+
+    }
+    
+}
 
 -(void) setRestaurant:(Restaurant *)restaurant{
     if(restaurant !=nil){

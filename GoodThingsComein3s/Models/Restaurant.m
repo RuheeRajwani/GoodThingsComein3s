@@ -14,6 +14,7 @@
     
     self.name = buisness[@"name"];
     self.price = buisness[@"price"];
+    self.restaurantID = buisness[@"id"];
     
     NSURL *restaurantImageURL = [NSURL URLWithString: buisness[@"image_url"]];
     NSData *restaurantImageData = [NSData dataWithContentsOfURL:restaurantImageURL];
