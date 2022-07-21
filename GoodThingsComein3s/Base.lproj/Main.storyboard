@@ -349,19 +349,47 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wI2-bt-I0i">
-                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="itemSize" width="180" height="162"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="w8V-Mb-zML">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RestaurantCollectionViewCell" id="w8V-Mb-zML" customClass="RestaurantCollectionViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="162"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="h8q-gN-pUA">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="162"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Vq-BH-fYu">
+                                                    <rect key="frame" x="15" y="10" width="150" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="150" id="UfW-MT-uNZ"/>
+                                                        <constraint firstAttribute="height" constant="100" id="nmx-oS-6Wy"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Rl-44-OhB">
+                                                    <rect key="frame" x="24" y="118" width="132" height="23"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5Vq-BH-fYu" firstAttribute="top" secondItem="h8q-gN-pUA" secondAttribute="top" constant="10" id="C4G-Mz-RId"/>
+                                                <constraint firstItem="5Vq-BH-fYu" firstAttribute="centerX" secondItem="h8q-gN-pUA" secondAttribute="centerX" id="KJb-fV-hXa"/>
+                                                <constraint firstAttribute="bottom" secondItem="6Rl-44-OhB" secondAttribute="bottom" constant="21" id="PTv-qL-EC6"/>
+                                                <constraint firstItem="6Rl-44-OhB" firstAttribute="centerX" secondItem="h8q-gN-pUA" secondAttribute="centerX" id="VDY-j2-M14"/>
+                                                <constraint firstItem="6Rl-44-OhB" firstAttribute="top" secondItem="5Vq-BH-fYu" secondAttribute="bottom" constant="8" symbolic="YES" id="z3m-zR-8W7"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="180" height="162"/>
+                                        <connections>
+                                            <outlet property="restaurantImage" destination="5Vq-BH-fYu" id="0jk-L6-jWl"/>
+                                            <outlet property="restaurantName" destination="6Rl-44-OhB" id="6Ld-qr-Tat"/>
+                                            <segue destination="Yko-b9-5Qt" kind="show" id="ivS-0Z-ATf"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -399,12 +427,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="nameFieldToFill" destination="hTN-Sh-2yB" id="Ste-kJ-SvX"/>
+                        <outlet property="profileLikedRestaurantsCollectionView" destination="Pgp-wR-Orv" id="7m8-I7-MRx"/>
                         <segue destination="Tdw-ue-L4d" kind="presentation" identifier="profileToSignUpLogin" id="LAg-Ox-4cE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTa-io-kf6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4986" y="-2675"/>
+            <point key="canvasLocation" x="-4986.9565217391309" y="-2675.2232142857142"/>
         </scene>
         <!--Login-->
         <scene sceneID="srg-47-Xn2">
@@ -1052,7 +1081,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="s4j-MO-2U8"/>
         <segue reference="xcO-Bp-M1A"/>
-        <segue reference="OBg-6u-ox9"/>
+        <segue reference="ivS-0Z-ATf"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1Star" width="21" height="21"/>

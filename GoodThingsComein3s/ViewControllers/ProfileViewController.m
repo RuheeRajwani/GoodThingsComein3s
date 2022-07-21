@@ -9,25 +9,41 @@
 #import <Parse/Parse.h>
 #import "SceneDelegate.h"
 #import "TabBarViewController.h"
+#import "RestaurantCollectionViewCell.h"
+#import "APIManager.h"
+#import "AFNetworking.h"
 
-@interface ProfileViewController ()
+@interface ProfileViewController ()<UICollectionViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UILabel *nameFieldToFill;
+@property (weak, nonatomic) IBOutlet UICollectionView *profileLikedRestaurantsCollectionView;
+@property (nonatomic) NSMutableArray *likedRestaurants;
 
 @end
 
 @implementation ProfileViewController
 
+-(void) viewDidAppear{
+    if( [PFUser currentUser]!=nil){
+        [self.profileLikedRestaurantsCollectionView reloadData];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.profileLikedRestaurantsCollectionView.dataSource = self;
+    self.likedRestaurants = [[NSMutableArray alloc]init];
+
+    
     PFUser *curr = [PFUser currentUser];
     if(curr != nil){
-    NSString *greeting =@"Hi ";
-    NSString *exclaimation = @"!";
-    self.nameFieldToFill.text =[NSString stringWithFormat:@"%@%@%@", greeting, [PFUser currentUser].username, exclaimation];
+        NSString *greeting =@"Hi ";
+        NSString *exclaimation = @"!";
+        self.nameFieldToFill.text =[NSString stringWithFormat:@"%@%@%@", greeting, [PFUser currentUser].username, exclaimation];
+        [self populateRestaurantArray: curr[@"likedRestaurants"]];
     } else {
-        [self performSegueWithIdentifier:@"profileToSignUpLogin" sender:@"profileView"];
-    }
+        [self performSegueWithIdentifier:@"profileToSignUpLogin" sender:@"profileView"];    }
     
     
 }
@@ -44,6 +60,34 @@
 
     
 }
+
+
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    RestaurantCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RestaurantCollectionViewCell" forIndexPath:indexPath];
+    cell.dictionary = self.likedRestaurants[indexPath.row];
+    return cell;
+    
+}
+
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.likedRestaurants.count;
+}
+
+-(void)populateRestaurantArray:(NSArray *) likedRestaurantIDs {
+        for(NSString *restaurantID in likedRestaurantIDs){
+            [[APIManager shared] getRestaurantByID:[PFUser currentUser][@"location"] restaurantID:restaurantID completion:^(NSObject * _Nonnull restaurant, NSError * _Nonnull error) {
+                if(restaurant){
+                    [self.likedRestaurants addObject:restaurant] ;
+                    NSLog(@"Successfully added restaurant");
+                } else{
+                    NSLog(@"Error adding restaurant");
+                }
+            
+            }];
+    }
+
+}
+
 
 
 @end

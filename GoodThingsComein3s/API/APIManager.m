@@ -8,8 +8,8 @@
 #import "APIManager.h"
 #import "Restaurant.h"
 
-static NSString * const yelpBaseUrlString = @"https://api.yelp.com/v3/businesses/search";
-
+static NSString * const yelpBuisnessSearchString = @"https://api.yelp.com/v3/businesses/search";
+static NSString * const yelpBuisnessSearchByID = @"https://api.yelp.com/v3/businesses/";
 @interface APIManager()
 
 @property (nonatomic) NSString *APIKey;
@@ -35,7 +35,7 @@ static NSString * const yelpBaseUrlString = @"https://api.yelp.com/v3/businesses
 
 
 - (void)getGeneratedRestaurants:(NSString *)location price:(NSString *)price categories:(NSString *)categories radius:(NSInteger)radius completion:(void(^)(NSArray *restaurants, NSError *error))completion{
-    NSString *urlString = yelpBaseUrlString;
+    NSString *urlString = yelpBuisnessSearchString;
     
     //adding parameters to url
     if(location==nil){
@@ -69,6 +69,37 @@ static NSString * const yelpBaseUrlString = @"https://api.yelp.com/v3/businesses
                NSArray *restaurantDictionaries= dataDictionary[@"businesses"];
                NSMutableArray *restaurants = [Restaurant restaurantsWithArray:restaurantDictionaries];
                completion(restaurants,nil);
+              
+               
+           }
+    }];
+    [task resume];
+}
+
+- (void)getRestaurantByID:(NSString *)location restaurantID:(NSString *)restaurantID completion:(void(^)(NSObject *restaurant, NSError *error))completion{
+    NSString *urlString = yelpBuisnessSearchByID;
+    
+    urlString = [NSString stringWithFormat:@"%@%@",urlString, restaurantID];
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource: @"Config" ofType: @"plist"];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
+    NSString *key = [dict objectForKey: @"YELP_API_KEY"];
+    NSString *authHeader = [NSString stringWithFormat:@"Bearer %@", key];
+    [request setValue:authHeader forHTTPHeaderField:@"Authorization"];
+
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+           if (error != nil) {
+               NSLog(@"%@",error.description);
+           }
+           else {
+               NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+               NSLog(@"%@", dataDictionary);
+               NSObject *restaurant = dataDictionary;
+               completion(restaurant,nil);
               
                
            }
