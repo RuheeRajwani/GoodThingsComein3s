@@ -44,17 +44,6 @@
     self.searchTableView.dataSource = self;
     
     self.searchBar.delegate = self;
-
-    
-//    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-//    self.searchController.searchResultsUpdater = self;
-//
-//    self.searchController.obscuresBackgroundDuringPresentation = NO;
-//
-//    [self.searchController.searchBar sizeToFit];
-//    self.searchTableView.tableHeaderView = self.searchController.searchBar;
-//
-//    self.definesPresentationContext = YES;
     
     self.filteredData = [[NSArray alloc] init];
     
