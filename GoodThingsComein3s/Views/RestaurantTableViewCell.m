@@ -15,12 +15,13 @@
     PFUser *curr = [PFUser currentUser];
     if(curr != nil){
         [self.likeButton setImage:[UIImage systemImageNamed:@"heart.fill"] forState:UIControlStateNormal];
-        
-        [curr[@"likedRestaurants"] addObject: self.restaurant.restaurantID];
+        NSMutableArray *likedRestaurants =  curr[@"likedRestaurants"];
+        [likedRestaurants addObject: self.restaurant.restaurantID];
+        curr[@"likedRestaurants"]=likedRestaurants;
         [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
           if (succeeded) {
               NSLog(@"Successfully added");
-              NSLog(@"%@", curr[@"likedRestaurants"][0]);
+              NSLog(@"%@", curr[@"likedRestaurants"]);
           } else {
               NSLog(@"Error liking restaurant");
               
