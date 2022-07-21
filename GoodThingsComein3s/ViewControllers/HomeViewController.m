@@ -5,10 +5,10 @@
 //  Created by Ruhee Rajwani on 7/6/22.
 //
 
+#import "AFNetworking.h"
 #import "HomeViewController.h"
 #import "PriceFilterViewController.h"
 #import "APIManager.h"
-#import "AFNetworking.h"
 #import "RestaurantTableViewCell.h"
 
 @interface HomeViewController () <PriceFilterViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
