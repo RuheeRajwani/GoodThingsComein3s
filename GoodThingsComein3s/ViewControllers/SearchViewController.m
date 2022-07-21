@@ -29,6 +29,7 @@
         if(restaurants){
             self.filteredData = (NSMutableArray*) restaurants;
             NSLog(@"Successfully loaded array");
+            [self.searchTableView reloadData];
         } else{
             NSLog(@"Error loading restaurants");
         }
