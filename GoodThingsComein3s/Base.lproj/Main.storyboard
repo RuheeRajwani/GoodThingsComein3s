@@ -58,7 +58,6 @@
                                                     <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title=""/>
                                                     <connections>
                                                         <action selector="homeViewControllerDidTapLike:" destination="zIG-53-2wj" eventType="touchUpInside" id="G9f-33-nWx"/>
-                                                        <segue destination="Tdw-ue-L4d" kind="show" identifier="LikeToLoginSignUpSegue" id="d2S-Vz-OeT"/>
                                                     </connections>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="7VE-ac-BNb">
@@ -179,6 +178,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="bfb-UT-bol" id="qh5-UT-TKx"/>
                         <outlet property="homeRestaurantTableView" destination="WcC-jV-8Wk" id="hfu-jB-4c7"/>
+                        <segue destination="gAB-pC-lhx" kind="show" identifier="LikeToLoginSignUpSegue" id="xcO-Bp-M1A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Fd-SA-MLZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -548,7 +548,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfr-wk-2fK">
-                                <rect key="frame" x="162.5" y="381" width="89" height="47"/>
+                                <rect key="frame" x="162.5" y="337" width="89" height="47"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign up" buttonSize="large"/>
                                 <connections>
@@ -556,7 +556,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TB3-MY-gDG">
-                                <rect key="frame" x="167.5" y="266" width="79.5" height="47"/>
+                                <rect key="frame" x="167.5" y="222" width="79.5" height="47"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title=" Login" buttonSize="large"/>
                                 <connections>
@@ -1049,8 +1049,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="d2S-Vz-OeT"/>
         <segue reference="8Ct-dt-owJ"/>
+        <segue reference="xcO-Bp-M1A"/>
         <segue reference="OBg-6u-ox9"/>
     </inferredMetricsTieBreakers>
     <resources>
