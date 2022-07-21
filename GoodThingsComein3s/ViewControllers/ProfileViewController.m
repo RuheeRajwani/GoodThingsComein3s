@@ -20,9 +20,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    PFUser *curr = [PFUser currentUser];
+    if(curr != nil){
     NSString *greeting =@"Hi ";
     NSString *exclaimation = @"!";
     self.nameFieldToFill.text =[NSString stringWithFormat:@"%@%@%@", greeting, [PFUser currentUser].username, exclaimation];
+    } else {
+        [self performSegueWithIdentifier:@"profileToSignUpLogin" sender:@"profileView"];
+    }
     
     
 }
@@ -36,11 +41,7 @@
         
     }];
     
-    
-//    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
-//    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-//
-//    }];
+
     
 }
 

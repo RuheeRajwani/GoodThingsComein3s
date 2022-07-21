@@ -399,11 +399,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="nameFieldToFill" destination="hTN-Sh-2yB" id="Ste-kJ-SvX"/>
+                        <segue destination="Tdw-ue-L4d" kind="presentation" identifier="profileToSignUpLogin" id="LAg-Ox-4cE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTa-io-kf6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5191" y="-2764"/>
+            <point key="canvasLocation" x="-4986" y="-2675"/>
         </scene>
         <!--Login-->
         <scene sceneID="srg-47-Xn2">
@@ -414,13 +415,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fwi-BD-rQT">
-                                <rect key="frame" x="156" y="177" width="102" height="55"/>
+                                <rect key="frame" x="156" y="226" width="102" height="55"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="46"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="QV8-5D-wp8">
-                                <rect key="frame" x="140.5" y="280" width="133.5" height="179"/>
+                                <rect key="frame" x="140.5" y="329" width="133.5" height="179"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter username " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UhY-e1-DlM">
                                         <rect key="frame" x="0.0" y="0.0" width="133.5" height="34"/>
@@ -552,7 +553,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign up" buttonSize="large"/>
                                 <connections>
-                                    <segue destination="BUh-zC-wIc" kind="show" id="RJw-TQ-ee9"/>
+                                    <segue destination="BUh-zC-wIc" kind="presentation" id="RJw-TQ-ee9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TB3-MY-gDG">
@@ -560,7 +561,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title=" Login" buttonSize="large"/>
                                 <connections>
-                                    <segue destination="uWj-bS-KDc" kind="show" id="vvh-BU-aAA"/>
+                                    <segue destination="uWj-bS-KDc" kind="presentation" id="vvh-BU-aAA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -597,7 +598,7 @@
                     <connections>
                         <segue destination="p9q-M1-fJs" kind="relationship" relationship="viewControllers" id="QXA-z5-6Ul"/>
                         <segue destination="osE-qu-Ptw" kind="relationship" relationship="viewControllers" id="7vP-Nx-FSk"/>
-                        <segue destination="Tdw-ue-L4d" kind="relationship" relationship="viewControllers" id="FYs-uw-VK8"/>
+                        <segue destination="qNN-kF-bcg" kind="relationship" relationship="viewControllers" id="WuR-rd-V5j"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K6I-Tz-fMg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -695,12 +696,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="tuK-zV-H98" kind="relationship" relationship="rootViewController" id="ygr-WI-GUz"/>
+                        <segue destination="tuK-zV-H98" kind="relationship" relationship="rootViewController" id="5Jv-pL-lhJ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Uu-Oz-yrF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6623" y="-2764"/>
+            <point key="canvasLocation" x="-6617" y="-2705"/>
         </scene>
         <!--SignUpLogin-->
         <scene sceneID="Ram-aL-ijK">
@@ -1049,7 +1050,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8Ct-dt-owJ"/>
+        <segue reference="s4j-MO-2U8"/>
         <segue reference="xcO-Bp-M1A"/>
         <segue reference="OBg-6u-ox9"/>
     </inferredMetricsTieBreakers>
