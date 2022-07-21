@@ -50,18 +50,8 @@ static NSString * const yelpBaseUrlString = @"https://api.yelp.com/v3/businesses
         urlString = [NSString stringWithFormat:@"%@%@%@",urlString, @"&categories=", price];
     }
     
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource: @"Config" ofType: @"plist"];
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
-    NSString *key = [dict objectForKey: @"YELP_API_KEY"];
-    NSString *authHeader = [NSString stringWithFormat:@"Bearer %@", key];
-    [request setValue:authHeader forHTTPHeaderField:@"Authorization"];
-
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-           if (error != nil) {
+    NSArray *requestAndSession =  [self setRequestAndSession:urlString];
+    NSURLSessionDataTask *task = [requestAndSession[1] dataTaskWithRequest:requestAndSession[0] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {           if (error != nil) {
                NSLog(@"%@",error.description);
            }
            else {
@@ -82,17 +72,8 @@ static NSString * const yelpBaseUrlString = @"https://api.yelp.com/v3/businesses
     urlString = [NSString stringWithFormat:@"%@%@%@",urlString, @"?location=", location];
     urlString = [NSString stringWithFormat:@"%@%@%@",urlString, @"&term=", searchTerm];
     
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource: @"Config" ofType: @"plist"];
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
-    NSString *key = [dict objectForKey: @"YELP_API_KEY"];
-    NSString *authHeader = [NSString stringWithFormat:@"Bearer %@", key];
-    [request setValue:authHeader forHTTPHeaderField:@"Authorization"];
-
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSArray *requestAndSession =  [self setRequestAndSession:urlString];
+    NSURLSessionDataTask *task = [requestAndSession[1] dataTaskWithRequest:requestAndSession[0] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
            if (error != nil) {
                NSLog(@"%@",error.description);
            }
@@ -108,8 +89,32 @@ static NSString * const yelpBaseUrlString = @"https://api.yelp.com/v3/businesses
     }];
     [task resume];
     
-    
 }
+
+-(NSArray*) setRequestAndSession: (NSString *)urlString{
+    
+    NSMutableArray *toReturn = [[NSMutableArray alloc] init];
+
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource: @"Config" ofType: @"plist"];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
+    NSString *key = [dict objectForKey: @"YELP_API_KEY"];
+    NSString *authHeader = [NSString stringWithFormat:@"Bearer %@", key];
+    [request setValue:authHeader forHTTPHeaderField:@"Authorization"];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    
+    [toReturn addObject:request];
+    [toReturn addObject:session];
+    
+    return toReturn;
+}
+
+
+
+
 
 
 
