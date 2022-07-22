@@ -578,7 +578,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfr-wk-2fK">
-                                <rect key="frame" x="162.5" y="337" width="89" height="47"/>
+                                <rect key="frame" x="162.5" y="381" width="89" height="47"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign up" buttonSize="large"/>
                                 <connections>
@@ -586,7 +586,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TB3-MY-gDG">
-                                <rect key="frame" x="167.5" y="222" width="79.5" height="47"/>
+                                <rect key="frame" x="167.5" y="266" width="79.5" height="47"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title=" Login" buttonSize="large"/>
                                 <connections>
@@ -1079,9 +1079,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="s4j-MO-2U8"/>
-        <segue reference="xcO-Bp-M1A"/>
-        <segue reference="ivS-0Z-ATf"/>
+        <segue reference="8Ct-dt-owJ"/>
+        <segue reference="LIJ-OP-C7V"/>
+        <segue reference="OBg-6u-ox9"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1Star" width="21" height="21"/>

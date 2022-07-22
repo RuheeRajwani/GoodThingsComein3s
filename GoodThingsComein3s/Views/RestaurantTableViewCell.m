@@ -16,7 +16,7 @@
     if(curr != nil){
         [self.likeButton setImage:[UIImage systemImageNamed:@"heart.fill"] forState:UIControlStateNormal];
         NSMutableArray *likedRestaurants =  curr[@"likedRestaurants"];
-        [likedRestaurants addObject: self.restaurant.restaurantID];
+        [likedRestaurants addObject: [self restaurantToParseObject]];
         curr[@"likedRestaurants"]=likedRestaurants;
         [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
           if (succeeded) {
@@ -49,4 +49,13 @@
     
 }
 
+- (PFObject *)restaurantToParseObject {
+    PFObject *restaurantToAdd = [[PFObject alloc] initWithClassName:@"Restaurant"];
+    restaurantToAdd[@"name"] = self.restaurant.name;
+    NSData *imageData = UIImagePNGRepresentation(self.restaurant.restaurantImage);
+    NSString *imageName = [NSString stringWithFormat:@"%@%@",self.restaurant.restaurantID, @"image"];
+    restaurantToAdd[@"image"] = [PFFileObject fileObjectWithName:imageName data:imageData];
+    return restaurantToAdd;
+   
+}
 @end

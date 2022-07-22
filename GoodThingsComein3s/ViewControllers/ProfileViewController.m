@@ -23,12 +23,6 @@
 
 @implementation ProfileViewController
 
--(void) viewDidAppear{
-    if( [PFUser currentUser]!=nil){
-        [self.profileLikedRestaurantsCollectionView reloadData];
-    }
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -41,7 +35,9 @@
         NSString *greeting =@"Hi ";
         NSString *exclaimation = @"!";
         self.nameFieldToFill.text =[NSString stringWithFormat:@"%@%@%@", greeting, [PFUser currentUser].username, exclaimation];
-        [self populateRestaurantArray: curr[@"likedRestaurants"]];
+        self.likedRestaurants = [PFUser currentUser][@"likedRestaurants"];
+        [self.profileLikedRestaurantsCollectionView reloadData];
+       
     } else {
         [self performSegueWithIdentifier:@"profileToSignUpLogin" sender:@"profileView"];    }
     
@@ -64,28 +60,13 @@
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     RestaurantCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RestaurantCollectionViewCell" forIndexPath:indexPath];
-    cell.dictionary = self.likedRestaurants[indexPath.row];
+    cell.restaurant = self.likedRestaurants[indexPath.row];
     return cell;
     
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.likedRestaurants.count;
-}
-
--(void)populateRestaurantArray:(NSArray *) likedRestaurantIDs {
-        for(NSString *restaurantID in likedRestaurantIDs){
-            [[APIManager shared] getRestaurantByID:[PFUser currentUser][@"location"] restaurantID:restaurantID completion:^(NSObject * _Nonnull restaurant, NSError * _Nonnull error) {
-                if(restaurant){
-                    [self.likedRestaurants addObject:restaurant] ;
-                    NSLog(@"Successfully added restaurant");
-                } else{
-                    NSLog(@"Error adding restaurant");
-                }
-            
-            }];
-    }
-
 }
 
 

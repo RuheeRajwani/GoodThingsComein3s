@@ -6,18 +6,21 @@
 //
 
 #import "RestaurantCollectionViewCell.h"
+#import <Parse/Parse.h>
 
 @implementation RestaurantCollectionViewCell
 
--(void) setRestaurant:(NSDictionary *)dictionary{
-    if(dictionary !=nil){
-        _dictionary = dictionary;
-        
-        self.restaurantName.text = self.dictionary[@"name"];
-        
-        NSURL *restaurantImageURL = [NSURL URLWithString: dictionary[@"image_url"]];
-        NSData *restaurantImageData = [NSData dataWithContentsOfURL:restaurantImageURL];
-        self.restaurantImage.image = [UIImage imageWithData:restaurantImageData];
+-(void) setRestaurant:(PFObject *)restaurant{
+    _restaurant = restaurant;
+    [self.restaurant fetchIfNeeded];
+    if(restaurant != nil){
+        self.restaurantName = self.restaurant[@"name"];
+        [self.restaurant[@"image"] getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:imageData];
+                self.restaurantImage.image = image;
+            }
+        }];
     }
 }
 
