@@ -14,13 +14,14 @@
     _restaurant = restaurant;
     [self.restaurant fetchIfNeeded];
     if(restaurant != nil){
-        self.restaurantName = self.restaurant[@"name"];
+        self.restaurantName.text = self.restaurant[@"name"];
         [self.restaurant[@"image"] getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
             if (!error) {
                 UIImage *image = [UIImage imageWithData:imageData];
                 self.restaurantImage.image = image;
             }
         }];
+        
     }
 }
 
