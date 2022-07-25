@@ -23,6 +23,10 @@
 
 @implementation ProfileViewController
 
+- (void) viewDidAppear{
+    [self viewDidLoad];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
