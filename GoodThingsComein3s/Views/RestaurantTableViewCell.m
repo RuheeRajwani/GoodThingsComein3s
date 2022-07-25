@@ -13,8 +13,8 @@
 @implementation RestaurantTableViewCell
 - (IBAction)homeViewControllerDidTapLike:(id)sender {
     PFUser *curr = [PFUser currentUser];
+    [self.likeButton setImage:[UIImage systemImageNamed:@"heart.fill"] forState:UIControlStateNormal];
     if(curr != nil){
-        [self.likeButton setImage:[UIImage systemImageNamed:@"heart.fill"] forState:UIControlStateNormal];
         NSMutableArray *likedRestaurants =  curr[@"likedRestaurants"];
         [likedRestaurants addObject: [self restaurantToParseObject]];
         curr[@"likedRestaurants"]=likedRestaurants;
@@ -28,7 +28,6 @@
           }
         }];
     }else{
-        
         [self.delegate userLoginSignUp];
     }
     

@@ -35,7 +35,11 @@
                 NSLog(@"Error: %@", error.localizedDescription);
             } else {
                 NSLog(@"User registered successfully");
-                [self performSegueWithIdentifier:@"signupToProfileSegue" sender:nil];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    NSLog(@"view dismissed");
+                    [self.delegate dismissLoginSignUpFromSignUp];
+                }];
+                
             }
         }];
 }

@@ -178,7 +178,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="bfb-UT-bol" id="qh5-UT-TKx"/>
                         <outlet property="homeRestaurantTableView" destination="WcC-jV-8Wk" id="hfu-jB-4c7"/>
-                        <segue destination="gAB-pC-lhx" kind="show" identifier="LikeToLoginSignUpSegue" id="xcO-Bp-M1A"/>
+                        <segue destination="gAB-pC-lhx" kind="presentation" identifier="LikeToLoginSignUpSegue" id="xcO-Bp-M1A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Fd-SA-MLZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -362,29 +362,32 @@
                                             <rect key="frame" x="0.0" y="0.0" width="180" height="162"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Vq-BH-fYu">
-                                                    <rect key="frame" x="15" y="10" width="150" height="100"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="150" id="UfW-MT-uNZ"/>
-                                                        <constraint firstAttribute="height" constant="100" id="nmx-oS-6Wy"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Rl-44-OhB">
-                                                    <rect key="frame" x="24" y="118" width="132" height="23"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="leN-bV-a6J">
+                                                    <rect key="frame" x="15" y="10" width="150" height="128.5"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Vq-BH-fYu">
+                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="150" id="UfW-MT-uNZ"/>
+                                                                <constraint firstAttribute="height" constant="100" id="nmx-oS-6Wy"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Rl-44-OhB">
+                                                            <rect key="frame" x="0.0" y="108" width="150" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="5Vq-BH-fYu" firstAttribute="top" secondItem="h8q-gN-pUA" secondAttribute="top" constant="10" id="C4G-Mz-RId"/>
-                                                <constraint firstItem="5Vq-BH-fYu" firstAttribute="centerX" secondItem="h8q-gN-pUA" secondAttribute="centerX" id="KJb-fV-hXa"/>
-                                                <constraint firstAttribute="bottom" secondItem="6Rl-44-OhB" secondAttribute="bottom" constant="21" id="PTv-qL-EC6"/>
-                                                <constraint firstItem="6Rl-44-OhB" firstAttribute="centerX" secondItem="h8q-gN-pUA" secondAttribute="centerX" id="VDY-j2-M14"/>
-                                                <constraint firstItem="6Rl-44-OhB" firstAttribute="top" secondItem="5Vq-BH-fYu" secondAttribute="bottom" constant="8" symbolic="YES" id="z3m-zR-8W7"/>
+                                                <constraint firstItem="leN-bV-a6J" firstAttribute="top" secondItem="h8q-gN-pUA" secondAttribute="top" constant="10" id="7AK-MB-zY4"/>
+                                                <constraint firstAttribute="bottom" secondItem="leN-bV-a6J" secondAttribute="bottom" constant="23.5" id="koz-zb-mhr"/>
+                                                <constraint firstAttribute="trailing" secondItem="leN-bV-a6J" secondAttribute="trailing" constant="15" id="tXk-9U-6Hc"/>
+                                                <constraint firstItem="leN-bV-a6J" firstAttribute="leading" secondItem="h8q-gN-pUA" secondAttribute="leading" constant="15" id="ynR-Zf-XNJ"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="180" height="162"/>
                                         <connections>
                                             <outlet property="restaurantImage" destination="5Vq-BH-fYu" id="0jk-L6-jWl"/>
                                             <outlet property="restaurantName" destination="6Rl-44-OhB" id="6Ld-qr-Tat"/>
@@ -502,13 +505,13 @@
         <!--Sign Up-->
         <scene sceneID="l5B-6s-NAb">
             <objects>
-                <viewController title="Sign Up" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="zKV-8T-hNo" customClass="SignUpViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" title="Sign Up" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zKV-8T-hNo" customClass="SignUpViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mWG-9O-JyI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="HaH-Nr-eE7">
-                                <rect key="frame" x="142.5" y="281" width="129.5" height="275"/>
+                                <rect key="frame" x="142.5" y="237" width="129.5" height="275"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="abV-vJ-XUz">
                                         <rect key="frame" x="0.0" y="0.0" width="129.5" height="34"/>
@@ -541,7 +544,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llY-AF-1P8">
-                                <rect key="frame" x="133.5" y="165" width="147.5" height="55"/>
+                                <rect key="frame" x="133.5" y="121" width="147.5" height="55"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="46"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -582,7 +585,8 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign up" buttonSize="large"/>
                                 <connections>
-                                    <segue destination="BUh-zC-wIc" kind="presentation" id="RJw-TQ-ee9"/>
+                                    <action selector="signUpViewControllerDidTapSignUp:" destination="gAB-pC-lhx" eventType="touchUpInside" id="4nM-Ge-OGA"/>
+                                    <segue destination="zKV-8T-hNo" kind="presentation" identifier="signUpSegue" id="R5h-qt-MoD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TB3-MY-gDG">
@@ -590,7 +594,8 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title=" Login" buttonSize="large"/>
                                 <connections>
-                                    <segue destination="uWj-bS-KDc" kind="presentation" id="vvh-BU-aAA"/>
+                                    <action selector="signUpViewControllerDidTapLogin:" destination="gAB-pC-lhx" eventType="touchUpInside" id="AXs-tL-hP6"/>
+                                    <segue destination="kQR-PQ-KQl" kind="presentation" identifier="loginSegue" id="1Dh-sD-DOH"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -639,7 +644,7 @@
             <objects>
                 <viewController storyboardIdentifier="SearchViewController" title="Search" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oog-wm-T3q" customClass="SearchViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MdH-SQ-s9j">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="icb-ln-721">
@@ -682,7 +687,7 @@
                     <tabBarItem key="tabBarItem" title="Search" id="Pqr-cC-U2M"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fpj-BG-Acf">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -735,7 +740,7 @@
         <!--SignUpLogin-->
         <scene sceneID="Ram-aL-ijK">
             <objects>
-                <navigationController storyboardIdentifier="signUpLoginViewControllerNav" title="SignUpLogin" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Tdw-ue-L4d" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="signUpLoginViewControllerNav" title="SignUpLogin" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Tdw-ue-L4d" customClass="LoginSignUpNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" id="vcI-DQ-8JG"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="cS3-3Z-mWU"/>
@@ -751,44 +756,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Hd-iD-E0T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1309" y="-3883"/>
-        </scene>
-        <!--Login-->
-        <scene sceneID="no2-hv-vSQ">
-            <objects>
-                <navigationController title="Login" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="uWj-bS-KDc" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="ODx-Wb-JkX"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UUl-ob-QSX">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="kQR-PQ-KQl" kind="relationship" relationship="rootViewController" id="7dt-8y-Jck"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7no-Nv-ooy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1839" y="-3067"/>
-        </scene>
-        <!--Sign Up-->
-        <scene sceneID="4dp-d1-Jsu">
-            <objects>
-                <navigationController title="Sign Up" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="BUh-zC-wIc" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="r2h-4F-NcD"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dvT-bj-OXJ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="zKV-8T-hNo" kind="relationship" relationship="rootViewController" id="kiF-5Y-Rmd"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rkp-jz-Xq0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="426" y="-3068"/>
         </scene>
         <!--Cuisine Filter-->
         <scene sceneID="SUL-VS-Xe0">
@@ -1079,9 +1046,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="s4j-MO-2U8"/>
+        <segue reference="0mf-eL-7uO"/>
         <segue reference="LIJ-OP-C7V"/>
-        <segue reference="ivS-0Z-ATf"/>
+        <segue reference="OBg-6u-ox9"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1Star" width="21" height="21"/>
