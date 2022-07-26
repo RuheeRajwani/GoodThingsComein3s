@@ -23,29 +23,20 @@
 
 @implementation ProfileViewController
 
-- (void) viewDidAppear{
-    [self viewDidLoad];
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
+    
+    [self getUserInformation];
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.profileLikedRestaurantsCollectionView.dataSource = self;
     self.likedRestaurants = [[NSMutableArray alloc]init];
-
     
-    PFUser *curr = [PFUser currentUser];
-    if(curr != nil){
-        NSString *greeting =@"Hi ";
-        NSString *exclaimation = @"!";
-        self.nameFieldToFill.text =[NSString stringWithFormat:@"%@%@%@", greeting, [PFUser currentUser].username, exclaimation];
-        self.likedRestaurants = [PFUser currentUser][@"likedRestaurants"];
-        [self.profileLikedRestaurantsCollectionView reloadData];
-       
-    } else {
-        [self performSegueWithIdentifier:@"profileToSignUpLogin" sender:@"profileView"];    }
-    
-    
+    [self getUserInformation];
 }
 
 - (IBAction)profileViewControllerDidTapLogout:(id)sender {
@@ -56,9 +47,6 @@
         mySceneDelegate.window.rootViewController = tabBarVC;
         
     }];
-    
-
-    
 }
 
 
@@ -66,7 +54,6 @@
     RestaurantCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RestaurantCollectionViewCell" forIndexPath:indexPath];
     cell.restaurant = self.likedRestaurants[indexPath.row];
     return cell;
-    
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -74,5 +61,18 @@
 }
 
 
+-(void) getUserInformation{
+    PFUser *curr = [PFUser currentUser];
+    if(curr != nil){
+        NSString *greeting =@"Hi ";
+        NSString *exclaimation = @"!";
+        self.nameFieldToFill.text =[NSString stringWithFormat:@"%@%@%@", greeting, [PFUser currentUser].username, exclaimation];
+        self.likedRestaurants = [PFUser currentUser][@"likedRestaurants"];
+        [self.profileLikedRestaurantsCollectionView reloadData];
+       
+    } else {
+        [self performSegueWithIdentifier:@"profileToSignUpLogin" sender:@"profileView"];
+    }
+}
 
 @end
