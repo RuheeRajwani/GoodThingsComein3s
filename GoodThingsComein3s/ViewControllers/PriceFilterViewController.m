@@ -10,6 +10,12 @@
 @interface PriceFilterViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *applyButton;
+@property (weak, nonatomic) IBOutlet UIButton *oneSignButton;
+@property (weak, nonatomic) IBOutlet UIButton *twoSignButton;
+@property (weak, nonatomic) IBOutlet UIButton *threeSignButton;
+@property (weak, nonatomic) IBOutlet UIButton *fourSignButton;
+
+
 @property (nonatomic) NSMutableArray *selectedPriceFilters;
 
 
@@ -22,7 +28,29 @@
     [super viewDidLoad];
     
     self.selectedPriceFilters = [[NSMutableArray alloc] init];
+    
+    if(self.alreadySelectedFilters != nil){
+        [self.applyButton setEnabled:YES];
+        
+        for(int i=0; i<self.alreadySelectedFilters.length; i++){
+            NSString *currChar = [NSString stringWithFormat:@"%c", [self.alreadySelectedFilters characterAtIndex:i]];
+            if([currChar isEqualToString:@"1"]){
+                [self.selectedPriceFilters addObject:@"1"];
+                [self.oneSignButton setSelected:YES];
+            } else if([currChar isEqualToString:@"2"]){
+                [self.selectedPriceFilters addObject:@"2"];
+                [self.twoSignButton setSelected:YES];
+            } else if ([currChar isEqualToString:@"3"]){
+                [self.selectedPriceFilters addObject:@"3"];
+                [self.threeSignButton setSelected:YES];
+            } else if ([currChar isEqualToString:@"4"]){
+                [self.selectedPriceFilters addObject:@"4"];
+                [self.fourSignButton setSelected:YES];
+            }
+        }
+    }
 }
+    
 - (IBAction)priceFilterViewControllerDidTapApply:(id)sender {
     NSString *priceStringToSend = [[NSString alloc] init];
     

@@ -325,6 +325,10 @@
                     </view>
                     <connections>
                         <outlet property="applyButton" destination="FQC-fj-jVx" id="cgg-SV-UJ2"/>
+                        <outlet property="fourSignButton" destination="8LT-nM-Bup" id="Gqs-kw-joq"/>
+                        <outlet property="oneSignButton" destination="11u-Zg-kTc" id="TUA-wr-PED"/>
+                        <outlet property="threeSignButton" destination="XoV-dP-89l" id="BJH-hp-pnY"/>
+                        <outlet property="twoSignButton" destination="rk8-gk-Z81" id="1nr-hK-ZnA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yaX-fW-c9s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

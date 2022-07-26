@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PriceFilterViewController : UIViewController
 @property (nonatomic, weak) id<PriceFilterViewControllerDelegate> delegate;
+@property (nonatomic) NSString *alreadySelectedFilters;
 
 @end
 

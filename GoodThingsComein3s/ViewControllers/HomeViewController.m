@@ -80,6 +80,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"HomeToPriceFilterSegue"]) {
         PriceFilterViewController *priceFilterVC = [segue destinationViewController];
+
+        NSString *alreadySelectedFilters = self.priceFilters;
+        priceFilterVC.alreadySelectedFilters = alreadySelectedFilters;
+        
         priceFilterVC.delegate= self;
     }
     
