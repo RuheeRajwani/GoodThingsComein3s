@@ -45,6 +45,7 @@
         self.restaurantPriceLabel.text = self.restaurant.price;
         self.restaurantImageView.image = self.restaurant.restaurantImage;
         self.ratingImageView.image = self.restaurant.ratingImage;
+        [self.likeButton setImage:[UIImage systemImageNamed:@"heart"] forState:UIControlStateNormal];
         
         if([PFUser currentUser] != nil){
             for( PFObject *likedRestaurant in [PFUser currentUser][@"likedRestaurants"]){
