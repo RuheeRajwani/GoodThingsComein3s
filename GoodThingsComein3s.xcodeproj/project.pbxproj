@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		66921337AA63ECBC8166D421 /* Pods_GoodThingsComein3s.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212159D092100B82EEE392BD /* Pods_GoodThingsComein3s.framework */; };
 		EF0C642D28760FBE00359933 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0C642C28760FBE00359933 /* HomeViewController.m */; };
-		EF0C643028760FCB00359933 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0C642F28760FCB00359933 /* SearchViewController.m */; };
 		EF0C643328760FE200359933 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0C643228760FE200359933 /* ProfileViewController.m */; };
 		EF1670CD287642A700A8B2BF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1670CC287642A700A8B2BF /* LoginViewController.m */; };
 		EF1670D428764BD900A8B2BF /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1670D328764BD900A8B2BF /* SignUpViewController.m */; };
@@ -30,6 +29,7 @@
 		EFD2FC8F2885C6EB0095DD85 /* RestaurantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD2FC8E2885C6EB0095DD85 /* RestaurantTableViewCell.m */; };
 		EFD2FC922885C7FB0095DD85 /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD2FC912885C7FB0095DD85 /* Restaurant.m */; };
 		EFD2FC9A2889FCA60095DD85 /* RestaurantCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD2FC992889FCA60095DD85 /* RestaurantCollectionViewCell.m */; };
+		EFD2FC972889B6650095DD85 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD2FC962889B6650095DD85 /* SearchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +38,6 @@
 		EB0C132352286C6E2AF668B6 /* Pods-GoodThingsComein3s.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodThingsComein3s.debug.xcconfig"; path = "Target Support Files/Pods-GoodThingsComein3s/Pods-GoodThingsComein3s.debug.xcconfig"; sourceTree = "<group>"; };
 		EF0C642B28760FBE00359933 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		EF0C642C28760FBE00359933 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		EF0C642E28760FCB00359933 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
-		EF0C642F28760FCB00359933 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		EF0C643128760FE200359933 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		EF0C643228760FE200359933 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		EF1670CB287642A700A8B2BF /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -75,8 +73,6 @@
 		EFD2FC8E2885C6EB0095DD85 /* RestaurantTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestaurantTableViewCell.m; sourceTree = "<group>"; };
 		EFD2FC902885C7FB0095DD85 /* Restaurant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
 		EFD2FC912885C7FB0095DD85 /* Restaurant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
-		EFD2FC982889FCA60095DD85 /* RestaurantCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestaurantCollectionViewCell.h; sourceTree = "<group>"; };
-		EFD2FC992889FCA60095DD85 /* RestaurantCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestaurantCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +111,6 @@
 			children = (
 				EF0C642B28760FBE00359933 /* HomeViewController.h */,
 				EF0C642C28760FBE00359933 /* HomeViewController.m */,
-				EF0C642E28760FCB00359933 /* SearchViewController.h */,
-				EF0C642F28760FCB00359933 /* SearchViewController.m */,
 				EF0C643128760FE200359933 /* ProfileViewController.h */,
 				EF0C643228760FE200359933 /* ProfileViewController.m */,
 				EF1670CB287642A700A8B2BF /* LoginViewController.h */,
@@ -135,6 +129,8 @@
 				EFBC023B287CE6E900B9D09F /* RatingFilterViewController.m */,
 				EFBC023D287CE6FE00B9D09F /* DistanceFilterViewController.h */,
 				EFBC023E287CE6FE00B9D09F /* DistanceFilterViewController.m */,
+				EFD2FC952889B6650095DD85 /* SearchViewController.h */,
+				EFD2FC962889B6650095DD85 /* SearchViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -325,7 +321,7 @@
 				EFB779FA2875FAB50061EA4E /* AppDelegate.m in Sources */,
 				EFC241B928762BD10059EBE7 /* SceneDelegate.m in Sources */,
 				EFBC0239287CE6CF00B9D09F /* PriceFilterViewController.m in Sources */,
-				EF0C643028760FCB00359933 /* SearchViewController.m in Sources */,
+				EFD2FC972889B6650095DD85 /* SearchViewController.m in Sources */,
 				EFB77A0B2875FAB60061EA4E /* main.m in Sources */,
 				EF1670CD287642A700A8B2BF /* LoginViewController.m in Sources */,
 				EFBC023C287CE6E900B9D09F /* RatingFilterViewController.m in Sources */,
