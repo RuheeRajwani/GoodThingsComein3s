@@ -11,6 +11,7 @@
 
 
 @interface SignUpLoginViewController ()<LoginViewControllerDelegate,SignUpViewControllerDelegate>
+
 @end
 
 @implementation SignUpLoginViewController

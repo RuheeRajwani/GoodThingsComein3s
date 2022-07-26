@@ -92,7 +92,6 @@
 
 - (void)userLoginSignUp {
     [self performSegueWithIdentifier:@"LikeToLoginSignUpSegue" sender:@"unauthLiking"];
-    //from login we should come back to homeTabBar
 }
 
 
