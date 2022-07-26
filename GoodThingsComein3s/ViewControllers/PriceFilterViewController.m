@@ -72,4 +72,5 @@
     [self.applyButton setEnabled:self.selectedPriceFilters.count != 0];
 }
 
+
 @end

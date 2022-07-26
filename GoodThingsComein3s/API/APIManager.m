@@ -8,8 +8,8 @@
 #import "APIManager.h"
 #import "Restaurant.h"
 
-static NSString * const yelpBuisnessSearchString = @"https://api.yelp.com/v3/businesses/search";
-static NSString * const yelpBuisnessSearchByID = @"https://api.yelp.com/v3/businesses/";
+static NSString * const yelpBaseUrlString = @"https://api.yelp.com/v3/businesses/search";
+
 @interface APIManager()
 
 @property (nonatomic) NSString *APIKey;
@@ -36,7 +36,7 @@ static NSString * const yelpBuisnessSearchByID = @"https://api.yelp.com/v3/busin
 
 
 - (void)getGeneratedRestaurants:(NSString *)location price:(NSString *)price categories:(NSString *)categories radius:(NSInteger)radius completion:(void(^)(NSArray *restaurants, NSError *error))completion{
-    NSString *urlString = yelpBuisnessSearchString;
+    NSString *urlString = yelpBaseUrlString;
     
     //adding parameters to url
     if(location==nil){
@@ -111,4 +111,11 @@ static NSString * const yelpBuisnessSearchByID = @"https://api.yelp.com/v3/busin
     
     return toReturn;
 }
+
+
+
+
+
+
+
 @end

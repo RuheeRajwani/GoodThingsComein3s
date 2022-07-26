@@ -22,7 +22,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WcC-jV-8Wk">
-                                <rect key="frame" x="0.0" y="166" width="414" height="642"/>
+                                <rect key="frame" x="0.0" y="210" width="414" height="598"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RestaurantTableViewCell" rowHeight="170" id="zIG-53-2wj" customClass="RestaurantTableViewCell">
@@ -56,9 +56,6 @@
                                                     <rect key="frame" x="355" y="128" width="58.5" height="31"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title=""/>
-                                                    <connections>
-                                                        <action selector="homeViewControllerDidTapLike:" destination="zIG-53-2wj" eventType="touchUpInside" id="G9f-33-nWx"/>
-                                                    </connections>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="7VE-ac-BNb">
                                                     <rect key="frame" x="188" y="60" width="69.5" height="95"/>
@@ -116,7 +113,7 @@
                                 </prototypes>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="DDL-KZ-tXu">
-                                <rect key="frame" x="48.5" y="54" width="317" height="31"/>
+                                <rect key="frame" x="48.5" y="98" width="317" height="31"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxD-Zw-QT0">
                                         <rect key="frame" x="0.0" y="0.0" width="72" height="31"/>
@@ -153,7 +150,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XvL-qA-XkZ">
-                                <rect key="frame" x="165.5" y="115" width="83.5" height="31"/>
+                                <rect key="frame" x="165.5" y="159" width="83.5" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Generate"/>
                                 <connections>
@@ -178,7 +175,6 @@
                     <connections>
                         <outlet property="activityIndicator" destination="bfb-UT-bol" id="qh5-UT-TKx"/>
                         <outlet property="homeRestaurantTableView" destination="WcC-jV-8Wk" id="hfu-jB-4c7"/>
-                        <segue destination="gAB-pC-lhx" kind="presentation" identifier="LikeToLoginSignUpSegue" id="xcO-Bp-M1A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Fd-SA-MLZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -349,50 +345,19 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wI2-bt-I0i">
-                                    <size key="itemSize" width="180" height="162"/>
+                                    <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RestaurantCollectionViewCell" id="w8V-Mb-zML" customClass="RestaurantCollectionViewCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="180" height="162"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="w8V-Mb-zML">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="h8q-gN-pUA">
-                                            <rect key="frame" x="0.0" y="0.0" width="180" height="162"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="leN-bV-a6J">
-                                                    <rect key="frame" x="15" y="10" width="150" height="128.5"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Vq-BH-fYu">
-                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="150" id="UfW-MT-uNZ"/>
-                                                                <constraint firstAttribute="height" constant="100" id="nmx-oS-6Wy"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Rl-44-OhB">
-                                                            <rect key="frame" x="0.0" y="108" width="150" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="leN-bV-a6J" firstAttribute="top" secondItem="h8q-gN-pUA" secondAttribute="top" constant="10" id="7AK-MB-zY4"/>
-                                                <constraint firstAttribute="bottom" secondItem="leN-bV-a6J" secondAttribute="bottom" constant="23.5" id="koz-zb-mhr"/>
-                                                <constraint firstAttribute="trailing" secondItem="leN-bV-a6J" secondAttribute="trailing" constant="15" id="tXk-9U-6Hc"/>
-                                                <constraint firstItem="leN-bV-a6J" firstAttribute="leading" secondItem="h8q-gN-pUA" secondAttribute="leading" constant="15" id="ynR-Zf-XNJ"/>
-                                            </constraints>
                                         </collectionViewCellContentView>
-                                        <connections>
-                                            <outlet property="restaurantImage" destination="5Vq-BH-fYu" id="0jk-L6-jWl"/>
-                                            <outlet property="restaurantName" destination="6Rl-44-OhB" id="6Ld-qr-Tat"/>
-                                            <segue destination="Yko-b9-5Qt" kind="show" id="ivS-0Z-ATf"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -430,13 +395,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="nameFieldToFill" destination="hTN-Sh-2yB" id="Ste-kJ-SvX"/>
-                        <outlet property="profileLikedRestaurantsCollectionView" destination="Pgp-wR-Orv" id="7m8-I7-MRx"/>
-                        <segue destination="Tdw-ue-L4d" kind="presentation" identifier="profileToSignUpLogin" id="LAg-Ox-4cE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTa-io-kf6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4986.9565217391309" y="-2675.2232142857142"/>
+            <point key="canvasLocation" x="-5191" y="-2764"/>
         </scene>
         <!--Login-->
         <scene sceneID="srg-47-Xn2">
@@ -447,13 +410,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fwi-BD-rQT">
-                                <rect key="frame" x="156" y="226" width="102" height="55"/>
+                                <rect key="frame" x="156" y="177" width="102" height="55"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="46"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="QV8-5D-wp8">
-                                <rect key="frame" x="140.5" y="329" width="133.5" height="179"/>
+                                <rect key="frame" x="140.5" y="280" width="133.5" height="179"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter username " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UhY-e1-DlM">
                                         <rect key="frame" x="0.0" y="0.0" width="133.5" height="34"/>
@@ -505,13 +468,13 @@
         <!--Sign Up-->
         <scene sceneID="l5B-6s-NAb">
             <objects>
-                <viewController storyboardIdentifier="SignUpViewController" title="Sign Up" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zKV-8T-hNo" customClass="SignUpViewController" sceneMemberID="viewController">
+                <viewController title="Sign Up" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="zKV-8T-hNo" customClass="SignUpViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mWG-9O-JyI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="HaH-Nr-eE7">
-                                <rect key="frame" x="142.5" y="237" width="129.5" height="275"/>
+                                <rect key="frame" x="142.5" y="281" width="129.5" height="275"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="abV-vJ-XUz">
                                         <rect key="frame" x="0.0" y="0.0" width="129.5" height="34"/>
@@ -544,7 +507,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llY-AF-1P8">
-                                <rect key="frame" x="133.5" y="121" width="147.5" height="55"/>
+                                <rect key="frame" x="133.5" y="165" width="147.5" height="55"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="46"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -581,21 +544,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfr-wk-2fK">
-                                <rect key="frame" x="162.5" y="337" width="89" height="47"/>
+                                <rect key="frame" x="162.5" y="381" width="89" height="47"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign up" buttonSize="large"/>
                                 <connections>
-                                    <action selector="signUpViewControllerDidTapSignUp:" destination="gAB-pC-lhx" eventType="touchUpInside" id="4nM-Ge-OGA"/>
-                                    <segue destination="zKV-8T-hNo" kind="presentation" identifier="signUpSegue" id="R5h-qt-MoD"/>
+                                    <segue destination="BUh-zC-wIc" kind="show" id="RJw-TQ-ee9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TB3-MY-gDG">
-                                <rect key="frame" x="167.5" y="222" width="79.5" height="47"/>
+                                <rect key="frame" x="167.5" y="266" width="79.5" height="47"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title=" Login" buttonSize="large"/>
                                 <connections>
-                                    <action selector="signUpViewControllerDidTapLogin:" destination="gAB-pC-lhx" eventType="touchUpInside" id="AXs-tL-hP6"/>
-                                    <segue destination="kQR-PQ-KQl" kind="presentation" identifier="loginSegue" id="1Dh-sD-DOH"/>
+                                    <segue destination="uWj-bS-KDc" kind="show" id="vvh-BU-aAA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -617,7 +578,7 @@
         <!--Tab Bar View Controller-->
         <scene sceneID="PGm-bb-cO0">
             <objects>
-                <tabBarController storyboardIdentifier="tabBar" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="seq-Ey-itP" customClass="TabBarViewController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar " modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="seq-Ey-itP" customClass="TabBarViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="W41-dY-RCj"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tSa-hn-4tQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -632,7 +593,7 @@
                     <connections>
                         <segue destination="p9q-M1-fJs" kind="relationship" relationship="viewControllers" id="QXA-z5-6Ul"/>
                         <segue destination="osE-qu-Ptw" kind="relationship" relationship="viewControllers" id="7vP-Nx-FSk"/>
-                        <segue destination="qNN-kF-bcg" kind="relationship" relationship="viewControllers" id="WuR-rd-V5j"/>
+                        <segue destination="Tdw-ue-L4d" kind="relationship" relationship="viewControllers" id="FYs-uw-VK8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K6I-Tz-fMg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -644,7 +605,7 @@
             <objects>
                 <viewController storyboardIdentifier="SearchViewController" title="Search" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oog-wm-T3q" customClass="SearchViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MdH-SQ-s9j">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="icb-ln-721">
@@ -783,7 +744,7 @@
                     <tabBarItem key="tabBarItem" title="Search" id="Pqr-cC-U2M"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fpj-BG-Acf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -798,10 +759,11 @@
         <!--Home-->
         <scene sceneID="8sH-vt-jAN">
             <objects>
-                <navigationController storyboardIdentifier="HomeViewControllerNav" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="osE-qu-Ptw" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeViewControllerNav" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="osE-qu-Ptw" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" id="o0Y-su-x9a"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hhv-ob-8vj">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -826,20 +788,19 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="tuK-zV-H98" kind="relationship" relationship="rootViewController" id="5Jv-pL-lhJ"/>
+                        <segue destination="tuK-zV-H98" kind="relationship" relationship="rootViewController" id="ygr-WI-GUz"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Uu-Oz-yrF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6617" y="-2705"/>
+            <point key="canvasLocation" x="-6623" y="-2764"/>
         </scene>
         <!--SignUpLogin-->
         <scene sceneID="Ram-aL-ijK">
             <objects>
-                <navigationController storyboardIdentifier="signUpLoginViewControllerNav" title="SignUpLogin" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Tdw-ue-L4d" customClass="LoginSignUpNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="signUpLoginViewControllerNav" title="SignUpLogin" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Tdw-ue-L4d" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" id="vcI-DQ-8JG"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="cS3-3Z-mWU"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nbN-Ac-HpY">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -852,6 +813,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Hd-iD-E0T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1309" y="-3883"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="no2-hv-vSQ">
+            <objects>
+                <navigationController title="Login" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="uWj-bS-KDc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="ODx-Wb-JkX"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UUl-ob-QSX">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kQR-PQ-KQl" kind="relationship" relationship="rootViewController" id="7dt-8y-Jck"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7no-Nv-ooy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1839" y="-3067"/>
+        </scene>
+        <!--Sign Up-->
+        <scene sceneID="4dp-d1-Jsu">
+            <objects>
+                <navigationController title="Sign Up" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="BUh-zC-wIc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="r2h-4F-NcD"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dvT-bj-OXJ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zKV-8T-hNo" kind="relationship" relationship="rootViewController" id="kiF-5Y-Rmd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rkp-jz-Xq0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="426" y="-3068"/>
         </scene>
         <!--Cuisine Filter-->
         <scene sceneID="SUL-VS-Xe0">
@@ -1142,8 +1141,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="0mf-eL-7uO"/>
-        <segue reference="xcO-Bp-M1A"/>
+        <segue reference="s4j-MO-2U8"/>
         <segue reference="OBg-6u-ox9"/>
     </inferredMetricsTieBreakers>
     <resources>

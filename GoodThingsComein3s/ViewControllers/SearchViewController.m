@@ -60,4 +60,13 @@
     return cell;
 }
 
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    
+    NSString *searchText = searchController.searchBar.text;
+    if (searchText) {
+        
+    }
+
+}
+
 @end

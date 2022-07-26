@@ -28,7 +28,6 @@
 		EFC241B928762BD10059EBE7 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC241B828762BD10059EBE7 /* SceneDelegate.m */; };
 		EFD2FC8F2885C6EB0095DD85 /* RestaurantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD2FC8E2885C6EB0095DD85 /* RestaurantTableViewCell.m */; };
 		EFD2FC922885C7FB0095DD85 /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD2FC912885C7FB0095DD85 /* Restaurant.m */; };
-		EFD2FC9A2889FCA60095DD85 /* RestaurantCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD2FC992889FCA60095DD85 /* RestaurantCollectionViewCell.m */; };
 		EFD2FC972889B6650095DD85 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD2FC962889B6650095DD85 /* SearchViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +72,8 @@
 		EFD2FC8E2885C6EB0095DD85 /* RestaurantTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestaurantTableViewCell.m; sourceTree = "<group>"; };
 		EFD2FC902885C7FB0095DD85 /* Restaurant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
 		EFD2FC912885C7FB0095DD85 /* Restaurant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
+		EFD2FC952889B6650095DD85 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		EFD2FC962889B6650095DD85 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +101,6 @@
 			children = (
 				EFD2FC8D2885C6EB0095DD85 /* RestaurantTableViewCell.h */,
 				EFD2FC8E2885C6EB0095DD85 /* RestaurantTableViewCell.m */,
-				EFD2FC982889FCA60095DD85 /* RestaurantCollectionViewCell.h */,
-				EFD2FC992889FCA60095DD85 /* RestaurantCollectionViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -331,7 +330,6 @@
 				EFBC022E2877DE2400B9D09F /* TabBarViewController.m in Sources */,
 				EFBC023F287CE6FE00B9D09F /* DistanceFilterViewController.m in Sources */,
 				EF0C642D28760FBE00359933 /* HomeViewController.m in Sources */,
-				EFD2FC9A2889FCA60095DD85 /* RestaurantCollectionViewCell.m in Sources */,
 				EFBC0236287CE6BF00B9D09F /* CuisineFilterViewController.m in Sources */,
 				EFB72E6B287E0EFD00AC9C9F /* APIManager.m in Sources */,
 			);

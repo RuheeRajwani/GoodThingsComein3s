@@ -11,7 +11,7 @@
 #import "APIManager.h"
 #import "RestaurantTableViewCell.h"
 
-@interface HomeViewController () <PriceFilterViewControllerDelegate, RestaurantTableViewCellDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface HomeViewController () <PriceFilterViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *homeRestaurantTableView;
 @property (nonatomic) NSArray *restaurantArray;
 @property (nonatomic) NSString *priceFilters;
@@ -70,7 +70,6 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     RestaurantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RestaurantTableViewCell" forIndexPath:indexPath];
     cell.restaurant = self.restaurantArray[indexPath.row];
-    cell.delegate = self;
     return cell;
 }
 
@@ -89,10 +88,5 @@
 - (void)appliedPriceFilters:(NSString *)priceStringToSend {
     self.priceFilters = priceStringToSend;
 }
-
-- (void)userLoginSignUp {
-    [self performSegueWithIdentifier:@"LikeToLoginSignUpSegue" sender:@"unauthLiking"];
-}
-
 
 @end
