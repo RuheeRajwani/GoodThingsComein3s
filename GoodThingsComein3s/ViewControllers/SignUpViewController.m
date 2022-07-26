@@ -27,6 +27,7 @@
         newUser.email = self.emailField.text;
         newUser.password = self.passwordField.text;
         newUser[@"location"] = self.locationField.text;
+        newUser[@"likedRestaurants"] = [[NSArray alloc]init];
         
         // call sign up function on the object
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
@@ -34,7 +35,11 @@
                 NSLog(@"Error: %@", error.localizedDescription);
             } else {
                 NSLog(@"User registered successfully");
-                [self performSegueWithIdentifier:@"signupToProfileSegue" sender:nil];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    NSLog(@"view dismissed");
+                    [self.delegate dismissLoginSignUpFromSignUp];
+                }];
+                
             }
         }];
 }
