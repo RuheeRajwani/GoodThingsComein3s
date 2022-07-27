@@ -38,8 +38,9 @@ In our society of abundance, finding a place to eat can become overwhelming. Goo
 * View restaurant details: location, reviews, menu, photos 
 * Profile page with 
   * liked/saved restaurants 
+  * previous searches
 * Search 
-  * basic search with term 
+* Reservation Functionallity 
   
 
 **Optional Nice-to-have Stories**
@@ -50,9 +51,6 @@ In our society of abundance, finding a place to eat can become overwhelming. Goo
   * Caching already fetched results
 * Map of restuarants near us 
 * Unsaving restuarants 
-* Showing previous searches 
-* Showing applied filters on homepage 
-
 
 
 ### 2. Screen Archetypes

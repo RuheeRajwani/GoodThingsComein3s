@@ -1,0 +1,6 @@
+${PODS_ROOT}/Target Support Files/Pods-GoodThingsComein3s/Pods-GoodThingsComein3s-frameworks.sh
+${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework
+${BUILT_PRODUCTS_DIR}/BDBOAuth1Manager/BDBOAuth1Manager.framework
+${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework
+${BUILT_PRODUCTS_DIR}/Parse/Parse.framework
+${BUILT_PRODUCTS_DIR}/YelpAPI/YelpAPI.framework
