@@ -76,10 +76,4 @@ static NSString * const yelpBuisnessSearchByID = @"https://api.yelp.com/v3/busin
     [task resume];
 }
 
-
-
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of b49917d (Merge pull request #12 from RuheeRajwani/search)
 @end

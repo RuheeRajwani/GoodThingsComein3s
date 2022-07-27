@@ -16,9 +16,5 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of b49917d (Merge pull request #12 from RuheeRajwani/search)
 
 @end
