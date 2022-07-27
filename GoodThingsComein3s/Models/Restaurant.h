@@ -5,9 +5,8 @@
 //  Created by Ruhee Rajwani on 7/18/22.
 //
 
-#import "UIImage+AFNetworking.h"
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "UIImage+AFNetworking.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

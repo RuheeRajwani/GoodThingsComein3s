@@ -20,11 +20,6 @@
 
 @implementation TabBarViewController
 
--(void) viewDidAppear{
-    [super viewDidAppear:YES];
-    [self viewDidLoad];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     

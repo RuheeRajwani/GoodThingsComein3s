@@ -26,7 +26,6 @@ static NSString * const yelpBaseUrlString = @"https://api.yelp.com/v3/businesses
     });
     return sharedManager;
 }
-
 - (instancetype)initWithAPIKey:(NSString *)APIKey {
     if (self =[super init]){
         self.APIKey= APIKey;
@@ -50,30 +49,17 @@ static NSString * const yelpBaseUrlString = @"https://api.yelp.com/v3/businesses
         urlString = [NSString stringWithFormat:@"%@%@%@",urlString, @"&categories=", price];
     }
     
-    NSArray *requestAndSession =  [self setRequestAndSession:urlString];
-    NSURLSessionDataTask *task = [requestAndSession[1] dataTaskWithRequest:requestAndSession[0] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {           if (error != nil) {
-               NSLog(@"%@",error.description);
-           }
-           else {
-               NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               NSLog(@"%@", dataDictionary);
-               NSArray *restaurantDictionaries= dataDictionary[@"businesses"];
-               NSMutableArray *restaurants = [Restaurant restaurantsWithArray:restaurantDictionaries];
-               completion(restaurants,nil);
-              
-               
-           }
-    }];
-    [task resume];
-}
-
--(void)getRestaurantSearchResults:(NSString *)location searchTerm:(NSString *)searchTerm completion:(void(^)(NSArray *restaurants, NSError *error))completion{
-    NSString *urlString = yelpBaseUrlString;
-    urlString = [NSString stringWithFormat:@"%@%@%@",urlString, @"?location=", location];
-    urlString = [NSString stringWithFormat:@"%@%@%@",urlString, @"&term=", searchTerm];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     
-    NSArray *requestAndSession =  [self setRequestAndSession:urlString];
-    NSURLSessionDataTask *task = [requestAndSession[1] dataTaskWithRequest:requestAndSession[0] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSString *path = [[NSBundle mainBundle] pathForResource: @"Config" ofType: @"plist"];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
+    NSString *key = [dict objectForKey: @"YELP_API_KEY"];
+    NSString *authHeader = [NSString stringWithFormat:@"Bearer %@", key];
+    [request setValue:authHeader forHTTPHeaderField:@"Authorization"];
+
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
            if (error != nil) {
                NSLog(@"%@",error.description);
            }
@@ -88,12 +74,8 @@ static NSString * const yelpBaseUrlString = @"https://api.yelp.com/v3/businesses
            }
     }];
     [task resume];
-    
 }
 
--(NSArray*) setRequestAndSession: (NSString *)urlString{
-    
-    NSMutableArray *toReturn = [[NSMutableArray alloc] init];
 
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
@@ -111,11 +93,5 @@ static NSString * const yelpBaseUrlString = @"https://api.yelp.com/v3/businesses
     
     return toReturn;
 }
-
-
-
-
-
-
 
 @end
