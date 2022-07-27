@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSString *displayAddress;
 @property (nonatomic) UIImage *restaurantImage;
 @property (nonatomic) UIImage *ratingImage;
-@property (nonatomic) NSString *restaurantID;
+
 
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;

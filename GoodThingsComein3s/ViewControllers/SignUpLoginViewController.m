@@ -6,47 +6,11 @@
 //
 
 #import "SignUpLoginViewController.h"
-#import "LoginViewController.h"
-#import "SignUpViewController.h"
 
-
-@interface SignUpLoginViewController ()<LoginViewControllerDelegate,SignUpViewControllerDelegate>
+@interface SignUpLoginViewController ()
 
 @end
 
 @implementation SignUpLoginViewController
-
-- (IBAction)signUpViewControllerDidTapLogin:(id)sender {
-    [self performSegueWithIdentifier:@"loginSegue" sender:nil];
-}
-
-
-- (IBAction)signUpViewControllerDidTapSignUp:(id)sender {
-    [self performSegueWithIdentifier:@"signUpSegue" sender:nil];
-}
-
-- (void)dismissLoginSignUpFromLogin {
-    [self dismissLoginSignUp];
-}
-
-- (void)dismissLoginSignUpFromSignUp {
-    [self dismissLoginSignUp];
-}
-
-- (void)dismissLoginSignUp {
-    [self dismissViewControllerAnimated:YES completion:^{
-        NSLog(@"signUpLoginVC dismissed");
-    }];
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([[segue identifier] isEqualToString:@"loginSegue"]) {
-        LoginViewController *loginVC = [segue destinationViewController];
-        loginVC.delegate= self;
-    } else  if ([[segue identifier] isEqualToString:@"signUpSegue"]) {
-        SignUpViewController *signUpVC = [segue destinationViewController];
-        signUpVC.delegate= self;
-    }
-}
 
 @end

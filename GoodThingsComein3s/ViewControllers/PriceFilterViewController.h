@@ -15,7 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface PriceFilterViewController : UIViewController
-
 @property (nonatomic, weak) id<PriceFilterViewControllerDelegate> delegate;
 
 @end
