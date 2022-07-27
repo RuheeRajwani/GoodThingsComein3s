@@ -72,4 +72,8 @@
     return restaurantToAdd;
    
 }
+
+-(void) addLikedRestaurant{
+    
+}
 @end
