@@ -9,10 +9,9 @@
 #import "Restaurant.h"
 
 static NSString * const yelpBuisnessSearchString = @"https://api.yelp.com/v3/businesses/search";
-static NSString * const yelpBuisnessSearchByID = @"https://api.yelp.com/v3/businesses/";
 @interface APIManager()
 
-@property (nonatomic) NSString *APIKey;
+@property (nonatomic) NSString *authHeader;
 
 @end
 
@@ -26,10 +25,11 @@ static NSString * const yelpBuisnessSearchByID = @"https://api.yelp.com/v3/busin
     });
     return sharedManager;
 }
-- (instancetype)initWithAPIKey:(NSString *)APIKey {
-    if (self =[super init]){
-        self.APIKey= APIKey;
-    }
+- (instancetype)init{
+    NSString *path = [[NSBundle mainBundle] pathForResource: @"Config" ofType: @"plist"];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
+    NSString *key = [dict objectForKey: @"YELP_API_KEY"];
+    self.authHeader = [NSString stringWithFormat:@"Bearer %@", key];
     return self;
 }
 
@@ -49,18 +49,8 @@ static NSString * const yelpBuisnessSearchByID = @"https://api.yelp.com/v3/busin
         urlString = [NSString stringWithFormat:@"%@%@%@",urlString, @"&categories=", price];
     }
     
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource: @"Config" ofType: @"plist"];
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
-    NSString *key = [dict objectForKey: @"YELP_API_KEY"];
-    NSString *authHeader = [NSString stringWithFormat:@"Bearer %@", key];
-    [request setValue:authHeader forHTTPHeaderField:@"Authorization"];
-
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-           if (error != nil) {
+    NSArray *requestAndSession =  [self setRequestAndSession:urlString];
+    NSURLSessionDataTask *task = [requestAndSession[1] dataTaskWithRequest:requestAndSession[0] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {           if (error != nil) {
                NSLog(@"%@",error.description);
            }
            else {
@@ -75,5 +65,48 @@ static NSString * const yelpBuisnessSearchByID = @"https://api.yelp.com/v3/busin
     }];
     [task resume];
 }
+
+-(void)getRestaurantSearchResults:(NSString *)location searchTerm:(NSString *)searchTerm completion:(void(^)(NSArray *restaurants, NSError *error))completion{
+    NSString *urlString = yelpBuisnessSearchString;
+    urlString = [NSString stringWithFormat:@"%@%@%@",urlString, @"?location=", location];
+    urlString = [NSString stringWithFormat:@"%@%@%@",urlString, @"&term=", searchTerm];
+    
+    NSArray *requestAndSession =  [self setRequestAndSession:urlString];
+    NSURLSessionDataTask *task = [requestAndSession[1] dataTaskWithRequest:requestAndSession[0] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+           if (error != nil) {
+               NSLog(@"%@",error.description);
+           }
+           else {
+               NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+               NSLog(@"%@", dataDictionary);
+               NSArray *restaurantDictionaries= dataDictionary[@"businesses"];
+               NSMutableArray *restaurants = [Restaurant restaurantsWithArray:restaurantDictionaries];
+               completion(restaurants,nil);
+              
+               
+           }
+    }];
+    [task resume];
+    
+}
+
+-(NSArray*) setRequestAndSession: (NSString *)urlString{
+    
+    NSMutableArray *toReturn = [[NSMutableArray alloc] init];
+
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+    
+    [request setValue:self.authHeader forHTTPHeaderField:@"Authorization"];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    
+    [toReturn addObject:request];
+    [toReturn addObject:session];
+    
+    return toReturn;
+}
+
+
 
 @end
