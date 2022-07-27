@@ -16,6 +16,4 @@
 - (IBAction)distanceFilterViewControllerDidTapApply:(id)sender {
 }
 
-
-
 @end

@@ -7,9 +7,8 @@
 
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
-#import "SearchViewController.h"
-#import "HomeViewController.h"
 #import "ProfileViewController.h"
+#import "SignUpLoginViewController.h"
 
 @interface LoginViewController ()
 
@@ -25,16 +24,16 @@
     NSString *password = self.passwordField.text;
        
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
-    if (error != nil) {
-        NSLog(@"User log in failed: %@", error.localizedDescription);
-    } else {
-        NSLog(@"User logged in successfully");
-        [self performSegueWithIdentifier:@"loginToProfileSegue" sender:nil];
-        
-           }
-       }];
+        if (error != nil) {
+            NSLog(@"User log in failed: %@", error.localizedDescription);
+        } else {
+            NSLog(@"User logged in successfully");
+            [self dismissViewControllerAnimated:YES completion:^{
+                NSLog(@"view dismissed");
+                [self.delegate dismissLoginSignUpFromLogin];
+            }];
+        }
+    }];
 }
-
-
 
 @end
