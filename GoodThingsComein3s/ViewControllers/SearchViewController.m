@@ -21,13 +21,4 @@
 
 >>>>>>> parent of b49917d (Merge pull request #12 from RuheeRajwani/search)
 
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    
-    NSString *searchText = searchController.searchBar.text;
-    if (searchText) {
-        
-    }
-
-}
-
 @end
