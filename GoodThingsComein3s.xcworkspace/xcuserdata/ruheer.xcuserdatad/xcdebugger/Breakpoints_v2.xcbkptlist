@@ -55,16 +55,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FB74B915-6E9A-49F2-8F6E-26B581EDF90F"
+            uuid = "835A46E6-3CD3-4DEE-BE85-99D7F279EA0E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GoodThingsComein3s/ViewControllers/SearchViewController.m"
+            filePath = "GoodThingsComein3s/Views/RestaurantTableViewCell.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "-searchViewControllerDidTapSearch:"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "-homeViewControllerDidTapLike:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

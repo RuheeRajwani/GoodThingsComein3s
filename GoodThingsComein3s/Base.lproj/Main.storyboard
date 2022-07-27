@@ -684,7 +684,7 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title=""/>
                                                     <connections>
-                                                        <action selector="homeViewControllerDidTapLike:" destination="FKF-3l-LBl" eventType="touchUpInside" id="ZtO-yo-iWs"/>
+                                                        <action selector="homeViewControllerDidTapLike:" destination="FKF-3l-LBl" eventType="touchUpInside" id="82e-uq-hp0"/>
                                                     </connections>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="Rwr-ka-rpW">
@@ -737,6 +737,7 @@
                                             <outlet property="restaurantImageView" destination="o8W-TY-etS" id="FM3-OY-cKn"/>
                                             <outlet property="restaurantNameLabel" destination="Mxp-rr-62D" id="R2u-bM-5tJ"/>
                                             <outlet property="restaurantPriceLabel" destination="HbS-dr-ARl" id="pud-9u-dNw"/>
+                                            <segue destination="Yko-b9-5Qt" kind="show" id="NGB-XO-8pC"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
