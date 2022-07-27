@@ -33,15 +33,12 @@ In our society of abundance, finding a place to eat can become overwhelming. Goo
   * price 
   * cuisine 
   * ratings
-  * based off previous saves/visits (stretch) 
+  * regenerate results with unique restaurants 
 * Like/save reccomendations 
 * View restaurant details: location, reviews, menu, photos 
 * Profile page with 
   * liked/saved restaurants 
-  * previous searches
-* Search 
-* Reservation Functionallity 
-  
+* Search   
 
 **Optional Nice-to-have Stories**
 
@@ -51,6 +48,8 @@ In our society of abundance, finding a place to eat can become overwhelming. Goo
   * Caching already fetched results
 * Map of restuarants near us 
 * Unsaving restuarants 
+* Saving searches to user
+
 
 
 ### 2. Screen Archetypes
