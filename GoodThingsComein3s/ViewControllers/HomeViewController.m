@@ -10,8 +10,10 @@
 #import "APIManager.h"
 #import "AFNetworking.h"
 #import "RestaurantTableViewCell.h"
+#import "SignUpLoginViewController.h"
 
-@interface HomeViewController () <PriceFilterViewControllerDelegate, RestaurantTableViewCellDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface HomeViewController () <PriceFilterViewControllerDelegate, RestaurantTableViewCellDelegate, SignUpLoginViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *homeRestaurantTableView;
 @property (nonatomic) NSArray *restaurantArray;
 @property (nonatomic) NSString *priceFilters;
@@ -19,6 +21,7 @@
 @property (nonatomic) NSInteger *radius;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (nonatomic) Restaurant *restaurantToAddToLikes;
 
 
 
@@ -83,7 +86,11 @@
         PriceFilterViewController *priceFilterVC = [segue destinationViewController];
         priceFilterVC.delegate= self;
     }
-    
+    if ([[segue identifier] isEqualToString:@"LiketoSignUpLoginSegue"]) {
+        SignUpLoginViewController *signUpLoginVC = [segue destinationViewController];
+        signUpLoginVC.restaurantToAddToLikes = self.restaurantToAddToLikes;
+        signUpLoginVC.delegate= self;
+    }
 }
 
 - (void)appliedPriceFilters:(NSString *)priceStringToSend {
@@ -91,7 +98,39 @@
 }
 
 - (void)userLoginSignUp {
-    [self performSegueWithIdentifier:@"LikeToLoginSignUpSegue" sender:@"unauthLiking"];
+    [self performSegueWithIdentifier:@"LiketoSignUpLoginSegue" sender:@"unauthLiking"];
+}
+
+
+- (PFObject *)restaurantToParseObject:(Restaurant *) restaurantToConvert {
+    PFObject *restaurantToAdd = [[PFObject alloc] initWithClassName:@"Restaurant"];
+    restaurantToAdd[@"name"] = restaurantToConvert.name;
+    restaurantToAdd[@"yelpID"] = restaurantToConvert.restaurantID;
+    NSData *imageData = UIImagePNGRepresentation(restaurantToConvert.restaurantImage);
+    NSString *imageName = [NSString stringWithFormat:@"%@%@",restaurantToConvert.restaurantID, @"image"];
+    restaurantToAdd[@"image"] = [PFFileObject fileObjectWithName:imageName data:imageData];
+    return restaurantToAdd;
+   
+}
+
+- (void)addLikedRestaurantToUser:(nonnull PFUser *)currUser restaurant:(nonnull Restaurant *)restaurant {
+    if(currUser != nil){
+        NSMutableArray *likedRestaurants =  (NSMutableArray*) currUser[@"likedRestaurants"];
+        [likedRestaurants addObject: [self restaurantToParseObject:restaurant]];
+        currUser[@"likedRestaurants"]=likedRestaurants;
+        [currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+          if (succeeded) {
+              NSLog(@"Successfully added");
+              NSLog(@"%@", currUser[@"likedRestaurants"]);
+          } else {
+              NSLog(@"Error liking restaurant");
+          }
+        }];
+    }else{
+        self.restaurantToAddToLikes = restaurant;
+        [self userLoginSignUp];
+        
+    }
 }
 
 

@@ -14,7 +14,6 @@
 		EF1670CD287642A700A8B2BF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1670CC287642A700A8B2BF /* LoginViewController.m */; };
 		EF1670D428764BD900A8B2BF /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1670D328764BD900A8B2BF /* SignUpViewController.m */; };
 		EF3498C92891D5F20072024A /* RestaurantCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3498C82891D5F20072024A /* RestaurantCollectionViewCell.m */; };
-		EF3498CB2891D67B0072024A /* Pods in Resources */ = {isa = PBXBuildFile; fileRef = EF3498CA2891D67B0072024A /* Pods */; };
 		EFB72E6B287E0EFD00AC9C9F /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB72E6A287E0EFD00AC9C9F /* APIManager.m */; };
 		EFB779FA2875FAB50061EA4E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB779F92875FAB50061EA4E /* AppDelegate.m */; };
 		EFB77A032875FAB50061EA4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFB77A012875FAB50061EA4E /* Main.storyboard */; };
@@ -49,7 +48,6 @@
 		EF1670D328764BD900A8B2BF /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		EF3498C72891D5E10072024A /* RestaurantCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantCollectionViewCell.h; sourceTree = "<group>"; };
 		EF3498C82891D5F20072024A /* RestaurantCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantCollectionViewCell.m; sourceTree = "<group>"; };
-		EF3498CA2891D67B0072024A /* Pods */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Pods; sourceTree = "<group>"; };
 		EFB72E69287E0EFD00AC9C9F /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		EFB72E6A287E0EFD00AC9C9F /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		EFB779F52875FAB50061EA4E /* GoodThingsComein3s.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodThingsComein3s.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,7 +199,6 @@
 		FC42938A7C656A85253542AC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				EF3498CA2891D67B0072024A /* Pods */,
 				EB0C132352286C6E2AF668B6 /* Pods-GoodThingsComein3s.debug.xcconfig */,
 				8923209EC1933ACB4A1B0544 /* Pods-GoodThingsComein3s.release.xcconfig */,
 			);
@@ -270,7 +267,6 @@
 				EFBC0225287763BD00B9D09F /* Config.plist in Resources */,
 				EFB77A082875FAB60061EA4E /* LaunchScreen.storyboard in Resources */,
 				EFBC02332878CF3500B9D09F /* Assests.xcassets in Resources */,
-				EF3498CB2891D67B0072024A /* Pods in Resources */,
 				EFB77A032875FAB50061EA4E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,12 +7,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Restaurant.h"
+#import <Parse/Parse.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol RestaurantTableViewCellDelegate
 
--(void) userLoginSignUp;
+-(void) addLikedRestaurantToUser:(PFUser *)currUser restaurant:(Restaurant *)restaurant;
 
 @end
 

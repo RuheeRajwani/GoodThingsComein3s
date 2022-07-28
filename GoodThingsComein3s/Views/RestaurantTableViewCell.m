@@ -13,7 +13,7 @@
 @implementation RestaurantTableViewCell
 - (IBAction)homeViewControllerDidTapLike:(id)sender {
     PFUser *curr = [PFUser currentUser];
-    [self addLikedRestaurant:curr];
+    [self.delegate addLikedRestaurantToUser:curr restaurant:self.restaurant];
     [self.likeButton setImage:[UIImage systemImageNamed:@"heart.fill"] forState:UIControlStateNormal];
     
     
@@ -46,35 +46,6 @@
     
 }
 
-- (PFObject *)restaurantToParseObject {
-    PFObject *restaurantToAdd = [[PFObject alloc] initWithClassName:@"Restaurant"];
-    restaurantToAdd[@"name"] = self.restaurant.name;
-    restaurantToAdd[@"yelpID"] = self.restaurant.restaurantID;
-    NSData *imageData = UIImagePNGRepresentation(self.restaurant.restaurantImage);
-    NSString *imageName = [NSString stringWithFormat:@"%@%@",self.restaurant.restaurantID, @"image"];
-    restaurantToAdd[@"image"] = [PFFileObject fileObjectWithName:imageName data:imageData];
-    return restaurantToAdd;
-   
-}
 
--(void) addLikedRestaurant:(PFUser *)curr{
-    if(curr != nil){
-        NSMutableArray *likedRestaurants =  curr[@"likedRestaurants"];
-        [likedRestaurants addObject: [self restaurantToParseObject]];
-        curr[@"likedRestaurants"]=likedRestaurants;
-        [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-          if (succeeded) {
-              NSLog(@"Successfully added");
-              NSLog(@"%@", curr[@"likedRestaurants"]);
-          } else {
-              NSLog(@"Error liking restaurant");
-              
-          }
-        }];
-    }else{
-        [self.delegate userLoginSignUp];
-        
-        
-    }
-}
+
 @end
