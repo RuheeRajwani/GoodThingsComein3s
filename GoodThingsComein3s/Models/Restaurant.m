@@ -59,10 +59,7 @@
         
     }else if(ratingValue == 5){
         self.ratingImage = [UIImage imageNamed:@"5StarsWhiteBackground"];
-        
     }
-    
-    
     return self;
 }
 
@@ -74,6 +71,5 @@
     }
     return restaurants;
 }
-
 
 @end

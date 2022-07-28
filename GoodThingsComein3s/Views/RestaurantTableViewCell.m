@@ -15,8 +15,6 @@
     PFUser *curr = [PFUser currentUser];
     [self.delegate addLikedRestaurantToUser:curr restaurant:self.restaurant];
     [self.likeButton setImage:[UIImage systemImageNamed:@"heart.fill"] forState:UIControlStateNormal];
-    
-    
 }
 
 -(void) setRestaurant:(Restaurant *)restaurant{
@@ -39,13 +37,7 @@
                 }
             }
         }
-        
-        
     }
-    
-    
 }
-
-
 
 @end

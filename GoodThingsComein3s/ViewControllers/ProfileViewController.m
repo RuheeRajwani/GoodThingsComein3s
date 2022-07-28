@@ -29,7 +29,6 @@
     [self getUserInformation];
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     

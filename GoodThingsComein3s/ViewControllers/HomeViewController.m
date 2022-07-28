@@ -23,20 +23,16 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (nonatomic) Restaurant *restaurantToAddToLikes;
 
-
-
-
 @end
 
 @implementation HomeViewController
+
 - (IBAction)homeViewControllerDidTapGenerate:(id)sender {
     self.homeRestaurantTableView.hidden = YES;
     [self fetchRestaurants];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchRestaurants) forControlEvents:UIControlEventValueChanged];
     [self.homeRestaurantTableView insertSubview:self.refreshControl atIndex:0];
-    
-    
 }
 
 - (void)viewDidLoad {
@@ -46,7 +42,6 @@
     self.homeRestaurantTableView.delegate = self;
     self.homeRestaurantTableView.hidden = YES;
     self.activityIndicator.hidden =YES;
-    
 }
 
 -(void) fetchRestaurants{
@@ -66,10 +61,6 @@
     }];
     }
         
-    
-
-
-
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     RestaurantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RestaurantTableViewCell" forIndexPath:indexPath];
     cell.restaurant = self.restaurantArray[indexPath.row];
@@ -129,9 +120,7 @@
     }else{
         self.restaurantToAddToLikes = restaurant;
         [self userLoginSignUp];
-        
     }
 }
-
 
 @end

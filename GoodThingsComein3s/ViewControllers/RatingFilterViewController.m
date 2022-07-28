@@ -12,6 +12,7 @@
 @end
 
 @implementation RatingFilterViewController
+
 - (IBAction)ratingsFilterViewControllerDidTapApply:(id)sender {
 }
 - (IBAction)ratingsFilterViewControllerDidTap5Stars:(id)sender {

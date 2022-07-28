@@ -21,7 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<SignUpLoginViewControllerDelegate> delegate;
 @property (nonatomic) Restaurant *restaurantToAddToLikes;
 
-
 @end
 
 NS_ASSUME_NONNULL_END
