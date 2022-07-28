@@ -25,6 +25,7 @@ static NSString * const yelpBuisnessSearchString = @"https://api.yelp.com/v3/bus
     });
     return sharedManager;
 }
+
 - (instancetype)init{
     NSString *path = [[NSBundle mainBundle] pathForResource: @"Config" ofType: @"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
@@ -32,7 +33,6 @@ static NSString * const yelpBuisnessSearchString = @"https://api.yelp.com/v3/bus
     self.authHeader = [NSString stringWithFormat:@"Bearer %@", key];
     return self;
 }
-
 
 - (void)getGeneratedRestaurants:(NSString *)location price:(NSString *)price categories:(NSString *)categories radius:(NSInteger)radius completion:(void(^)(NSArray *restaurants, NSError *error))completion{
     NSString *urlString = yelpBuisnessSearchString;
@@ -82,8 +82,6 @@ static NSString * const yelpBuisnessSearchString = @"https://api.yelp.com/v3/bus
                NSArray *restaurantDictionaries= dataDictionary[@"businesses"];
                NSMutableArray *restaurants = [Restaurant restaurantsWithArray:restaurantDictionaries];
                completion(restaurants,nil);
-              
-               
            }
     }];
     [task resume];
@@ -106,7 +104,5 @@ static NSString * const yelpBuisnessSearchString = @"https://api.yelp.com/v3/bus
     
     return toReturn;
 }
-
-
 
 @end

@@ -11,7 +11,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
-
 @end
 
 NS_ASSUME_NONNULL_END

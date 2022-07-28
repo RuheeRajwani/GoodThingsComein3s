@@ -25,17 +25,11 @@
     [self performSegueWithIdentifier:@"signUpSegue" sender:nil];
 }
 
-- (void)dismissLoginSignUpFromLogin {
-    [self dismissLoginSignUp];
-}
-
-- (void)dismissLoginSignUpFromSignUp {
-    [self dismissLoginSignUp];
-}
-
 - (void)dismissLoginSignUp {
     [self dismissViewControllerAnimated:YES completion:^{
         NSLog(@"signUpLoginVC dismissed");
+        [self.delegate addLikedRestaurantToUser:[PFUser currentUser] restaurant:self.restaurantToAddToLikes];
+        
     }];
 }
 

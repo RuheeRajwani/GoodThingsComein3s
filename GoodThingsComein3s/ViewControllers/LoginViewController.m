@@ -30,7 +30,7 @@
             NSLog(@"User logged in successfully");
             [self dismissViewControllerAnimated:YES completion:^{
                 NSLog(@"view dismissed");
-                [self.delegate dismissLoginSignUpFromLogin];
+                [self.delegate dismissLoginSignUp];
             }];
         }
     }];

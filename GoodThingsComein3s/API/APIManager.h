@@ -11,7 +11,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface APIManager : AFHTTPSessionManager
 
-
 +(instancetype) shared;
 
 - (void)getGeneratedRestaurants:(NSString *)location price:(NSString *)price categories:(NSString *)categories radius:(NSInteger)radius  completion:(void(^)(NSArray *restaurants, NSError *error))completion;
