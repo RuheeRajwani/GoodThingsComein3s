@@ -115,7 +115,7 @@
 
 - (void)addLikedRestaurantToUser:(nonnull PFUser *)currUser restaurant:(nonnull Restaurant *)restaurant {
     if(currUser != nil){
-        NSMutableArray *likedRestaurants =  (NSMutableArray*) currUser[@"likedRestaurants"];
+        NSMutableArray *likedRestaurants = currUser[@"likedRestaurants"];
         [likedRestaurants addObject: [self restaurantToParseObject:restaurant]];
         currUser[@"likedRestaurants"]=likedRestaurants;
         [currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
