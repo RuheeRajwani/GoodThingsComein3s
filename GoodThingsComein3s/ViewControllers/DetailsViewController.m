@@ -8,15 +8,19 @@
 #import "DetailsViewController.h"
 #import "APIManager.h"
 #import "AFNetworking.h"
+#import "RestaurantPhotoCollectionViewCell.h"
 
-@interface DetailsViewController ()
+@interface DetailsViewController () <UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UILabel *restaurantNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *restaurantPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *restaurantCategoriesLabel;
-@property (weak, nonatomic) IBOutlet UILabel *restaurantHoursLabel;
 @property (weak, nonatomic) IBOutlet UILabel *restaurantAddressLabel;
-@property (weak, nonatomic) IBOutlet UICollectionView *restaurantPhotosCollectionVIew;
+@property (weak, nonatomic) IBOutlet UICollectionView *restaurantPhotosCollectionView;
+@property (weak, nonatomic) IBOutlet UIImageView *restaurantRatingImageView;
 @property (nonatomic) NSDictionary *restaurantToShow;
+@property (nonatomic) NSMutableArray *imageURLS;
+@property (weak, nonatomic) IBOutlet UIPageControl *restaurantImageCollectionViewPageControl;
+@property (nonatomic) int currentIndex;
 
 @end
 
@@ -24,6 +28,15 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    
+    self.restaurantPhotosCollectionView.delegate = self;
+    self.restaurantPhotosCollectionView.dataSource = self;
+    
+    
+
+    
+    self.imageURLS = [[NSMutableArray alloc] init];
+    
     [[APIManager shared] getRestaurantDetails:self.yelpRestaurantID completion:^(NSDictionary * _Nonnull restaurant, NSError * _Nonnull error) {
         if(error == nil){
         self.restaurantToShow = restaurant;
@@ -57,19 +70,19 @@
     int ratingValue = (int)(rating.doubleValue +.5);
     
     if(ratingValue == 1){
-        self.restaurantRatingImage.image = [UIImage imageNamed:@"1StarWhiteBackground"];
+        self.restaurantRatingImageView.image = [UIImage imageNamed:@"1StarWhiteBackground"];
         
     } else if (ratingValue == 2){
-        self.restaurantRatingImage.image = [UIImage imageNamed:@"2StarsWhiteBackground"];
+        self.restaurantRatingImageView.image = [UIImage imageNamed:@"2StarsWhiteBackground"];
         
     } else if (ratingValue == 3){
-        self.restaurantRatingImage.image = [UIImage imageNamed:@"3StarsWhiteBackground"];
+        self.restaurantRatingImageView.image = [UIImage imageNamed:@"3StarsWhiteBackground"];
         
     }else if (ratingValue == 4){
-        self.restaurantRatingImage.image = [UIImage imageNamed:@"4StarsWhiteBackground"];
+        self.restaurantRatingImageView.image = [UIImage imageNamed:@"4StarsWhiteBackground"];
         
     }else if(ratingValue == 5){
-        self.restaurantRatingImage.image = [UIImage imageNamed:@"5StarsWhiteBackground"];
+        self.restaurantRatingImageView.image = [UIImage imageNamed:@"5StarsWhiteBackground"];
     }
     
     for(NSObject *imageURL in self.restaurantToShow[@"photos"]){
@@ -77,28 +90,11 @@
         [self.imageURLS addObject:[NSURL URLWithString:urlString]];
     }
     
-    self.pageIndicator.numberOfPages = self.imageURLS.count;
-    
-    [self startTimeThread];
+    self.restaurantImageCollectionViewPageControl.numberOfPages = self.imageURLS.count;
+    self.currentIndex = 0;
     [self.restaurantPhotosCollectionView reloadData];
     
 }
-
--(void) startTimeThread {
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
-}
-
--(void) timerAction{
-    
-    int desiredScrollPostion = (self.currentIndex < self.imageURLS.count-1)?self.currentIndex+=1:0;
-    [self.restaurantPhotosCollectionView layoutIfNeeded];
-    
-    [self.restaurantPhotosCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:desiredScrollPostion inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-    
-    
-    
-}
-
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
 }
@@ -111,14 +107,27 @@
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     RestaurantPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RestaurantPhotoCollectionViewCell" forIndexPath:indexPath];
     
-    NSString *urlString =[NSString stringWithFormat:@"%@", [self.imageURLS objectAtIndex:indexPath.row]];
-    NSURL *restaurantImageURL = [NSURL URLWithString:urlString];
+    NSString *restaurantImageURLString = [NSString stringWithFormat:@"%@",self.imageURLS[indexPath.row]];
+    NSURL *restaurantImageURL = [NSURL URLWithString: restaurantImageURLString];
     NSData *restaurantImageData = [NSData dataWithContentsOfURL:restaurantImageURL];
     cell.restaurantSlideImage.image = [UIImage imageWithData:restaurantImageData];
-    cell.restaurantSlideImage.contentMode = UIViewContentModeScaleAspectFill;
+    
+    cell.restaurantSlideImage.contentMode= UIViewContentModeScaleAspectFill;
     
     return cell;
+}
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake(collectionView.frame.size.width, collectionView.frame.size.height);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    self.currentIndex = scrollView.contentOffset.x / self.restaurantPhotosCollectionView.frame.size.width;
+    self.restaurantImageCollectionViewPageControl.currentPage = self.currentIndex;
 }
 
 
