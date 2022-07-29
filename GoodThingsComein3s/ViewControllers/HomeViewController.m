@@ -11,6 +11,7 @@
 #import "AFNetworking.h"
 #import "RestaurantTableViewCell.h"
 #import "SignUpLoginViewController.h"
+#import "DetailsViewController.h"
 
 @interface HomeViewController () <PriceFilterViewControllerDelegate, RestaurantTableViewCellDelegate, SignUpLoginViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -82,6 +83,14 @@
         signUpLoginVC.restaurantToAddToLikes = self.restaurantToAddToLikes;
         signUpLoginVC.delegate= self;
     }
+    if ([[segue identifier] isEqualToString:@"RestaurantTableViewCellToRestaurantDetailsView"]) {
+        NSIndexPath *restaurantIndexPath = [self.homeRestaurantTableView indexPathForCell:sender];
+        Restaurant *restaurantToView = self.restaurantArray[restaurantIndexPath.row];
+        DetailsViewController *detailVC = [segue destinationViewController];
+        detailVC.yelpRestaurantID = restaurantToView.restaurantID;
+        
+    }
+    
 }
 
 - (void)appliedPriceFilters:(NSString *)priceStringToSend {

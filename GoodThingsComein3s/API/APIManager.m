@@ -9,6 +9,8 @@
 #import "Restaurant.h"
 
 static NSString * const yelpBuisnessSearchString = @"https://api.yelp.com/v3/businesses/search";
+static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/businesses/";
+
 @interface APIManager()
 
 @property (nonatomic) NSString *authHeader;
@@ -59,8 +61,6 @@ static NSString * const yelpBuisnessSearchString = @"https://api.yelp.com/v3/bus
                NSArray *restaurantDictionaries= dataDictionary[@"businesses"];
                NSMutableArray *restaurants = [Restaurant restaurantsWithArray:restaurantDictionaries];
                completion(restaurants,nil);
-              
-               
            }
     }];
     [task resume];
@@ -85,7 +85,23 @@ static NSString * const yelpBuisnessSearchString = @"https://api.yelp.com/v3/bus
            }
     }];
     [task resume];
+}
+
+- (void)getRestaurantDetails:(NSString *)restaurantID completion:(void(^)(NSDictionary *restaurant, NSError *error))completion{
+    NSString *urlString = yelpBuisnessDetailsString;
+    urlString = [NSString stringWithFormat:@"%@%@", urlString, restaurantID];
     
+    NSArray *requestAndSession = [self setRequestAndSession:urlString];
+    NSURLSessionDataTask *task = [requestAndSession[1] dataTaskWithRequest:requestAndSession[0] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+           if (error != nil) {
+               NSLog(@"%@",error.description);
+           }
+           else {
+               NSDictionary *restaurantDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+               completion(restaurantDictionary,nil);
+           }
+    }];
+    [task resume];
 }
 
 -(NSArray*) setRequestAndSession: (NSString *)urlString{
@@ -104,5 +120,7 @@ static NSString * const yelpBuisnessSearchString = @"https://api.yelp.com/v3/bus
     
     return toReturn;
 }
+
+
 
 @end
