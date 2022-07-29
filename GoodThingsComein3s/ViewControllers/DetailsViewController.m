@@ -11,6 +11,7 @@
 #import "RestaurantPhotoCollectionViewCell.h"
 
 @interface DetailsViewController () <UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+
 @property (weak, nonatomic) IBOutlet UILabel *restaurantNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *restaurantPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *restaurantCategoriesLabel;
@@ -21,6 +22,7 @@
 @property (nonatomic) NSMutableArray *imageURLS;
 @property (weak, nonatomic) IBOutlet UIPageControl *restaurantImageCollectionViewPageControl;
 @property (nonatomic) int currentIndex;
+@property (nonatomic) NSTimer *timer;
 
 @end
 
@@ -31,10 +33,7 @@
     
     self.restaurantPhotosCollectionView.delegate = self;
     self.restaurantPhotosCollectionView.dataSource = self;
-    
-    
 
-    
     self.imageURLS = [[NSMutableArray alloc] init];
     
     [[APIManager shared] getRestaurantDetails:self.yelpRestaurantID completion:^(NSDictionary * _Nonnull restaurant, NSError * _Nonnull error) {
@@ -92,9 +91,25 @@
     
     self.restaurantImageCollectionViewPageControl.numberOfPages = self.imageURLS.count;
     self.currentIndex = 0;
+        
     [self.restaurantPhotosCollectionView reloadData];
+    [self startTimeThread];
     
 }
+
+-(void) startTimeThread {
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+    
+}
+
+-(void) timerAction{
+    int desiredScrollPosition = (self.currentIndex <self.imageURLS.count - 1) ? self.currentIndex + 1 : 0;
+    [self.restaurantPhotosCollectionView setNeedsLayout];
+    [self.restaurantPhotosCollectionView layoutIfNeeded];
+    [self.restaurantPhotosCollectionView setContentOffset:CGPointMake(desiredScrollPosition*self.restaurantPhotosCollectionView.frame.size.width, 0) animated:YES];
+    
+}
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
 }
@@ -121,14 +136,9 @@
     return CGSizeMake(collectionView.frame.size.width, collectionView.frame.size.height);
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     self.currentIndex = scrollView.contentOffset.x / self.restaurantPhotosCollectionView.frame.size.width;
     self.restaurantImageCollectionViewPageControl.currentPage = self.currentIndex;
 }
-
 
 @end
