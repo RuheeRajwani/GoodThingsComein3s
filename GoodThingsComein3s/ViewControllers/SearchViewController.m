@@ -9,6 +9,7 @@
 #import "SearchViewController.h"
 #import "RestaurantTableViewCell.h"
 #import "APIManager.h"
+#import "DetailsViewController.h"
 
 
 @interface SearchViewController ()
@@ -46,6 +47,16 @@
     
     self.filteredData = [[NSArray alloc] init];
     
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([[segue identifier] isEqualToString:@"RestaurantSearchCellToRestaurantDetailsView"]) {
+        NSIndexPath *restaurantIndexPath = [self.searchTableView indexPathForCell:sender];
+        Restaurant *restaurantToView = self.filteredData[restaurantIndexPath.row];
+        DetailsViewController *detailVC = [segue destinationViewController];
+        detailVC.yelpRestaurantID = restaurantToView.restaurantID;
+        
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
