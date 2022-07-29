@@ -11,6 +11,7 @@
 		EF0C642D28760FBE00359933 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0C642C28760FBE00359933 /* HomeViewController.m */; };
 		EF0C643028760FCB00359933 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0C642F28760FCB00359933 /* SearchViewController.m */; };
 		EF0C643328760FE200359933 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0C643228760FE200359933 /* ProfileViewController.m */; };
+		EF0DCC5F289490BE00BD7C45 /* RestaurantReviewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0DCC5E289490BE00BD7C45 /* RestaurantReviewTableViewCell.m */; };
 		EF1670CD287642A700A8B2BF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1670CC287642A700A8B2BF /* LoginViewController.m */; };
 		EF1670D428764BD900A8B2BF /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1670D328764BD900A8B2BF /* SignUpViewController.m */; };
 		EF3498C92891D5F20072024A /* RestaurantCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3498C82891D5F20072024A /* RestaurantCollectionViewCell.m */; };
@@ -44,6 +45,8 @@
 		EF0C642F28760FCB00359933 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		EF0C643128760FE200359933 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		EF0C643228760FE200359933 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		EF0DCC5D289490BE00BD7C45 /* RestaurantReviewTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestaurantReviewTableViewCell.h; sourceTree = "<group>"; };
+		EF0DCC5E289490BE00BD7C45 /* RestaurantReviewTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestaurantReviewTableViewCell.m; sourceTree = "<group>"; };
 		EF1670CB287642A700A8B2BF /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		EF1670CC287642A700A8B2BF /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		EF1670D228764BD900A8B2BF /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
@@ -114,6 +117,8 @@
 				EFD2FC8E2885C6EB0095DD85 /* RestaurantTableViewCell.m */,
 				EFF4691E289371F100EAB67B /* RestaurantPhotoCollectionViewCell.h */,
 				EFF4691F289371F100EAB67B /* RestaurantPhotoCollectionViewCell.m */,
+				EF0DCC5D289490BE00BD7C45 /* RestaurantReviewTableViewCell.h */,
+				EF0DCC5E289490BE00BD7C45 /* RestaurantReviewTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -341,6 +346,7 @@
 				EF1670CD287642A700A8B2BF /* LoginViewController.m in Sources */,
 				EFBC023C287CE6E900B9D09F /* RatingFilterViewController.m in Sources */,
 				EF0C643328760FE200359933 /* ProfileViewController.m in Sources */,
+				EF0DCC5F289490BE00BD7C45 /* RestaurantReviewTableViewCell.m in Sources */,
 				EFBC02312877E15F00B9D09F /* SignUpLoginViewController.m in Sources */,
 				EFF46920289371F100EAB67B /* RestaurantPhotoCollectionViewCell.m in Sources */,
 				EF1670D428764BD900A8B2BF /* SignUpViewController.m in Sources */,

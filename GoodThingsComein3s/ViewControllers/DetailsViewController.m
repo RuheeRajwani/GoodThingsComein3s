@@ -9,8 +9,9 @@
 #import "APIManager.h"
 #import "AFNetworking.h"
 #import "RestaurantPhotoCollectionViewCell.h"
+#import "RestaurantReviewTableViewCell.h"
 
-@interface DetailsViewController () <UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface DetailsViewController () <UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UILabel *restaurantNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *restaurantPriceLabel;
@@ -20,9 +21,12 @@
 @property (weak, nonatomic) IBOutlet UIImageView *restaurantRatingImageView;
 @property (nonatomic) NSDictionary *restaurantToShow;
 @property (nonatomic) NSMutableArray *imageURLS;
+@property (nonatomic) NSArray *reviews;
 @property (weak, nonatomic) IBOutlet UIPageControl *restaurantImageCollectionViewPageControl;
 @property (nonatomic) int currentIndex;
 @property (nonatomic) NSTimer *timer;
+@property (weak, nonatomic) IBOutlet UITableView *restaurantReviewsTableView;
+
 
 @end
 
@@ -33,18 +37,30 @@
     
     self.restaurantPhotosCollectionView.delegate = self;
     self.restaurantPhotosCollectionView.dataSource = self;
+    
+    self.restaurantReviewsTableView.delegate = self;
+    self.restaurantReviewsTableView.dataSource = self;
 
     self.imageURLS = [[NSMutableArray alloc] init];
     
     [[APIManager shared] getRestaurantDetails:self.yelpRestaurantID completion:^(NSDictionary * _Nonnull restaurant, NSError * _Nonnull error) {
         if(error == nil){
         self.restaurantToShow = restaurant;
-        [self setView];
+        [self setRestaurantView];
         }
     }];
+    
+    [[APIManager shared] getRestaurantReviews:self.yelpRestaurantID completion:^(NSArray * _Nonnull reviews, NSError * _Nonnull error) {
+        if (error == nil){
+            self.reviews = reviews;
+            [self.restaurantReviewsTableView reloadData];
+        }
+    }];
+    
+    
 }
 
--(void) setView {
+-(void) setRestaurantView {
     self.restaurantNameLabel.text = self.restaurantToShow[@"name"];
     self.restaurantPriceLabel.text = self.restaurantToShow[@"price"];
     
@@ -97,6 +113,7 @@
     
 }
 
+
 -(void) startTimeThread {
     self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
     
@@ -139,6 +156,22 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     self.currentIndex = scrollView.contentOffset.x / self.restaurantPhotosCollectionView.frame.size.width;
     self.restaurantImageCollectionViewPageControl.currentPage = self.currentIndex;
+}
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    RestaurantReviewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RestaurantReviewTableViewCell" forIndexPath:indexPath];
+    
+    NSDictionary *review = self.reviews[indexPath.row];
+    
+    cell.restaurantReviewUsernameLabel.text = review[@"user"][@"name"];
+    cell.restaurantReviewTextLabel.text = review[@"text"];
+    
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.reviews.count;
 }
 
 @end
