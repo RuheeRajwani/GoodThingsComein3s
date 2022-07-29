@@ -12,6 +12,7 @@
 #import "RestaurantCollectionViewCell.h"
 #import "APIManager.h"
 #import "AFNetworking.h"
+#import "DetailsViewController.h"
 
 @interface ProfileViewController ()<UICollectionViewDataSource>
 
@@ -46,6 +47,16 @@
         mySceneDelegate.window.rootViewController = tabBarVC;
         
     }];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([[segue identifier] isEqualToString:@"likedRestaurantToDetailsView"]) {
+        NSIndexPath *restaurantIndexPath = [self.profileLikedRestaurantsCollectionView indexPathForCell:sender];
+        PFObject *restaurantToView = self.likedRestaurants[restaurantIndexPath.row];
+        DetailsViewController *detailVC = [segue destinationViewController];
+        detailVC.yelpRestaurantID = restaurantToView[@"yelpID"];
+        
+    }
 }
 
 
