@@ -104,6 +104,25 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
     [task resume];
 }
 
+- (void)getRestaurantReviews:(NSString *)restaurantID completion:(void(^)(NSArray *reviews, NSError *error))completion{
+    NSString *urlString = yelpBuisnessDetailsString;
+    urlString = [NSString stringWithFormat:@"%@%@%@", urlString, restaurantID,@"/reviews"];
+    
+    NSArray *requestAndSession = [self setRequestAndSession:urlString];
+    NSURLSessionDataTask *task = [requestAndSession[1] dataTaskWithRequest:requestAndSession[0] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+           if (error != nil) {
+               NSLog(@"%@",error.description);
+           }
+           else {
+               NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+               NSArray *reviews= dataDictionary[@"reviews"];
+               completion(reviews,nil);
+              
+           }
+    }];
+    [task resume];
+}
+
 -(NSArray*) setRequestAndSession: (NSString *)urlString{
     
     NSMutableArray *toReturn = [[NSMutableArray alloc] init];

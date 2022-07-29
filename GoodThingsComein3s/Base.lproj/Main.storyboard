@@ -194,7 +194,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Name " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10y-at-SGP">
-                                <rect key="frame" x="107.5" y="100" width="199.5" height="31.5"/>
+                                <rect key="frame" x="107.5" y="56" width="199.5" height="75.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -232,21 +232,21 @@
                                 <rect key="frame" x="0.0" y="557" width="414" height="339"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="101" id="lEY-aO-vUu">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RestaurantReviewTableViewCell" rowHeight="101" id="lEY-aO-vUu" customClass="RestaurantReviewTableViewCell">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lEY-aO-vUu" id="AdV-ug-nD8">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="101"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Wz-8N-2qs">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@username" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Wz-8N-2qs">
                                                     <rect key="frame" x="20" y="5" width="91" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="review text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LD8-Yx-dzB">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="review text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LD8-Yx-dzB">
                                                     <rect key="frame" x="25.5" y="38" width="79.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -256,10 +256,14 @@
                                             <constraints>
                                                 <constraint firstItem="LD8-Yx-dzB" firstAttribute="top" secondItem="1Wz-8N-2qs" secondAttribute="bottom" constant="8" symbolic="YES" id="0TD-Sm-8do"/>
                                                 <constraint firstItem="LD8-Yx-dzB" firstAttribute="leading" secondItem="AdV-ug-nD8" secondAttribute="leading" constant="25.5" id="5k3-LP-Iv1"/>
-                                                <constraint firstAttribute="trailing" secondItem="LD8-Yx-dzB" secondAttribute="trailing" constant="309" id="Dj2-uV-Bur"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LD8-Yx-dzB" secondAttribute="trailing" constant="5" id="Dj2-uV-Bur"/>
                                                 <constraint firstAttribute="bottom" secondItem="LD8-Yx-dzB" secondAttribute="bottom" constant="42.5" id="Y3a-ML-S6A"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="restaurantReviewTextLabel" destination="LD8-Yx-dzB" id="1uw-Ho-Daz"/>
+                                            <outlet property="restaurantReviewUsernameLabel" destination="1Wz-8N-2qs" id="0Z2-Tm-2Rh"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -360,6 +364,7 @@
                         <outlet property="restaurantPhotosCollectionView" destination="DdO-E4-bqc" id="VSe-8f-09t"/>
                         <outlet property="restaurantPriceLabel" destination="ByP-yC-NBA" id="ZVd-x1-qmp"/>
                         <outlet property="restaurantRatingImageView" destination="cQn-gE-saJ" id="iup-P7-9HC"/>
+                        <outlet property="restaurantReviewsTableView" destination="rkt-O4-oNe" id="aEi-8h-Iae"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ea-rD-vZb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1261,7 +1266,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="s4j-MO-2U8"/>
         <segue reference="xcO-Bp-M1A"/>
-        <segue reference="ivS-0Z-ATf"/>
+        <segue reference="OBg-6u-ox9"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1Star" width="21" height="21"/>

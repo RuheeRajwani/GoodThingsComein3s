@@ -83,7 +83,7 @@
         signUpLoginVC.restaurantToAddToLikes = self.restaurantToAddToLikes;
         signUpLoginVC.delegate= self;
     }
-    if ([[segue identifier] isEqualToString:@"RestaurantSearchCellToRestaurantDetailsView"]) {
+    if ([[segue identifier] isEqualToString:@"RestaurantTableViewCellToRestaurantDetailsView"]) {
         NSIndexPath *restaurantIndexPath = [self.homeRestaurantTableView indexPathForCell:sender];
         Restaurant *restaurantToView = self.restaurantArray[restaurantIndexPath.row];
         DetailsViewController *detailVC = [segue destinationViewController];
