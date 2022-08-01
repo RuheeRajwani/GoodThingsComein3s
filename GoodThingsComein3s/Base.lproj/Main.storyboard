@@ -180,7 +180,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="bfb-UT-bol" id="qh5-UT-TKx"/>
                         <outlet property="homeRestaurantTableView" destination="WcC-jV-8Wk" id="hfu-jB-4c7"/>
-                        <segue destination="gAB-pC-lhx" kind="presentation" identifier="LiketoSignUpLoginSegue" id="xcO-Bp-M1A"/>
+                        <segue destination="gAB-pC-lhx" kind="presentation" identifier="LiketoSignUpLoginSegue" modalPresentationStyle="automatic" id="xcO-Bp-M1A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Fd-SA-MLZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -721,7 +721,7 @@
             <objects>
                 <viewController title="Login/SignUp" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="gAB-pC-lhx" customClass="SignUpLoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yBk-VD-4Ub">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfr-wk-2fK">
