@@ -27,7 +27,7 @@
     [[APIManager shared] getRestaurantSearchResults:@"Seattle" searchTerm:searchText completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
 
         if (restaurants) {
-            self.filteredData = (NSMutableArray*) restaurants;
+            self.filteredData = restaurants;
             NSLog(@"Successfully loaded array");
             [self.searchTableView reloadData];
         } else {
