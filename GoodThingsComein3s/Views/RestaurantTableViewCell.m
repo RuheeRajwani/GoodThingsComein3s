@@ -12,8 +12,7 @@
 
 @implementation RestaurantTableViewCell
 - (IBAction)homeViewControllerDidTapLike:(id)sender {
-    PFUser *curr = [PFUser currentUser];
-    [self.delegate addLikedRestaurantToUser:curr restaurant:self.restaurant];
+    [self.delegate didTapLikeForRestaurant:self.restaurant];
     [self.likeButton setImage:[UIImage systemImageNamed:@"heart.fill"] forState:UIControlStateNormal];
 }
 

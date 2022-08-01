@@ -22,7 +22,7 @@
 @property (nonatomic) NSInteger *radius;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property (nonatomic) Restaurant *restaurantToAddToLikes;
+@property (nonatomic) Restaurant *restaurantToAddToLikesFollowingLoginSignup;
 
 @end
 
@@ -80,7 +80,6 @@
     }
     if ([[segue identifier] isEqualToString:@"LiketoSignUpLoginSegue"]) {
         SignUpLoginViewController *signUpLoginVC = [segue destinationViewController];
-        signUpLoginVC.restaurantToAddToLikes = self.restaurantToAddToLikes;
         signUpLoginVC.delegate= self;
     }
     if ([[segue identifier] isEqualToString:@"RestaurantTableViewCellToRestaurantDetailsView"]) {
@@ -113,7 +112,8 @@
    
 }
 
-- (void)addLikedRestaurantToUser:(nonnull PFUser *)currUser restaurant:(nonnull Restaurant *)restaurant {
+- (void)addLikedRestaurantToUser: (Restaurant*) restaurant {
+    PFUser *currUser = [PFUser currentUser];
     if(currUser != nil) {
         NSMutableArray *likedRestaurants = currUser[@"likedRestaurants"];
         [likedRestaurants addObject: [self restaurantToParseObject:restaurant]];
@@ -127,9 +127,21 @@
           }
         }];
     } else {
-        self.restaurantToAddToLikes = restaurant;
+        self.restaurantToAddToLikesFollowingLoginSignup = restaurant;
         [self userLoginSignUp];
     }
 }
 
+- (void)didTapLikeForRestaurant:(nonnull Restaurant *)restaurant {
+    [self addLikedRestaurantToUser:restaurant];
+}
+
+- (void)signUpLoginViewControllerDidDismissForUser {
+    [self addLikedRestaurantToUser:self.restaurantToAddToLikesFollowingLoginSignup];
+}
+
+
+
 @end
+
+

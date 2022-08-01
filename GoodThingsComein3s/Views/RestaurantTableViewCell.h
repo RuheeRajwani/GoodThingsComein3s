@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol RestaurantTableViewCellDelegate
 
--(void) addLikedRestaurantToUser:(PFUser *)currUser restaurant:(Restaurant *)restaurant;
+-(void) didTapLikeForRestaurant:(Restaurant *)restaurant;
 
 @end
 

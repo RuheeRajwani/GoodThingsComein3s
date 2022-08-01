@@ -12,14 +12,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol SignUpLoginViewControllerDelegate
--(void) addLikedRestaurantToUser:(PFUser *)currUser restaurant:(Restaurant *)restaurant;
+-(void) signUpLoginViewControllerDidDismissForUser;
 
 @end
 
 @interface SignUpLoginViewController : UIViewController
 
 @property (nonatomic, weak) id<SignUpLoginViewControllerDelegate> delegate;
-@property (nonatomic) Restaurant *restaurantToAddToLikes;
 
 @end
 

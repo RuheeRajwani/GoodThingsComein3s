@@ -26,16 +26,16 @@
 }
 
 - (void)signUpViewControllerDidDismissAfterSuccessfulSignUp {
-    [self dissmissViewAndAddRestarant];
+    [self dissmissViewFollowingLoginAndSignUp];
 }
 
 - (void)loginViewControllerDidDismissAfterSuccessfulLogin {
-    [self dissmissViewAndAddRestarant];
+    [self dissmissViewFollowingLoginAndSignUp];
 }
 
-- (void) dissmissViewAndAddRestarant {
+- (void) dissmissViewFollowingLoginAndSignUp {
     [self dismissViewControllerAnimated:YES completion:^{
-        [self.delegate addLikedRestaurantToUser:[PFUser currentUser] restaurant:self.restaurantToAddToLikes];
+        [self.delegate signUpLoginViewControllerDidDismissForUser];
         
     }];
 }
