@@ -51,18 +51,6 @@
 -(void) fetchRestaurants {
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
-//    [[APIManager shared] getGeneratedRestaurants:@"Seattle" price:self.priceFilters categories:self.categories radius:0 completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
-//        if (restaurants) {
-//            self.restaurantArray = (NSMutableArray*) restaurants;
-//            NSLog(@"Successfully loaded array");
-//        } else {
-//            NSLog(@"Error loading restaurants");
-//        }
-//        [self.homeRestaurantTableView reloadData];
-//        [self.refreshControl endRefreshing];
-//        [self.activityIndicator stopAnimating];
-//        self.homeRestaurantTableView.hidden = NO;
-//    }];
     }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
