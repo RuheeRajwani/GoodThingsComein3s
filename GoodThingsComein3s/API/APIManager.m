@@ -27,7 +27,7 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
     return sharedManager;
 }
 
-- (instancetype)init{
+- (instancetype)init {
     NSString *path = [[NSBundle mainBundle] pathForResource: @"Config" ofType: @"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
     NSString *key = [dict objectForKey: @"YELP_API_KEY"];
@@ -35,23 +35,24 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
     return self;
 }
 
-- (void)getGeneratedRestaurants:(NSString *)location price:(NSString *)price categories:(NSString *)categories radius:(NSInteger)radius completion:(void(^)(NSArray *restaurants, NSError *error))completion{
+- (void)getGeneratedRestaurants:(NSString *)location price:(NSString *)price categories:(NSString *)categories radius:(NSInteger)radius completion:(void(^)(NSArray *restaurants, NSError *error))completion {
     NSString *urlString = yelpBuisnessSearchString;
     
     //adding parameters to url
-    if(location==nil){
+    if (location==nil) {
         location = @"Seattle";
     }
     urlString = [NSString stringWithFormat:@"%@%@%@",urlString, @"?location=", location];
-    if(price!=nil){
+    if (price!=nil) {
         urlString = [NSString stringWithFormat:@"%@%@%@",urlString, @"&price=", price];
     }
-    if(categories!=nil){
+    if (categories!=nil) {
         urlString = [NSString stringWithFormat:@"%@%@%@",urlString, @"&categories=", price];
     }
     
     NSArray *requestAndSession =  [self setRequestAndSession:urlString];
-    NSURLSessionDataTask *task = [requestAndSession[1] dataTaskWithRequest:requestAndSession[0] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {           if (error != nil) {
+    NSURLSessionDataTask *task = [requestAndSession[1] dataTaskWithRequest:requestAndSession[0] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            if (error != nil) {
                NSLog(@"%@",error.description);
            }
            else {
@@ -64,7 +65,7 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
     [task resume];
 }
 
--(void)getRestaurantSearchResults:(NSString *)location searchTerm:(NSString *)searchTerm completion:(void(^)(NSArray *restaurants, NSError *error))completion{
+-(void)getRestaurantSearchResults:(NSString *)location searchTerm:(NSString *)searchTerm completion:(void(^)(NSArray *restaurants, NSError *error))completion {
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%@", yelpBuisnessSearchString,@"?location=",location, @"&term=", searchTerm];
     
     NSArray *requestAndSession =  [self setRequestAndSession:urlString];
@@ -82,7 +83,7 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
     [task resume];
 }
 
-- (void)getRestaurantDetails:(NSString *)restaurantID completion:(void(^)(NSDictionary *restaurant, NSError *error))completion{
+- (void)getRestaurantDetails:(NSString *)restaurantID completion:(void(^)(NSDictionary *restaurant, NSError *error))completion {
     NSString *urlString = [NSString stringWithFormat:@"%@%@", yelpBuisnessDetailsString, restaurantID];
     
     NSArray *requestAndSession = [self setRequestAndSession:urlString];
@@ -98,7 +99,7 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
     [task resume];
 }
 
-- (void)getRestaurantReviews:(NSString *)restaurantID completion:(void(^)(NSArray *reviews, NSError *error))completion{
+- (void)getRestaurantReviews:(NSString *)restaurantID completion:(void(^)(NSArray *reviews, NSError *error))completion {
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@", yelpBuisnessDetailsString, restaurantID,@"/reviews"];
     
     NSArray *requestAndSession = [self setRequestAndSession:urlString];
@@ -116,7 +117,7 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
     [task resume];
 }
 
--(NSArray*) setRequestAndSession: (NSString *)urlString{
+-(NSArray*) setRequestAndSession: (NSString *)urlString {
     
     NSMutableArray *toReturn = [[NSMutableArray alloc] init];
 

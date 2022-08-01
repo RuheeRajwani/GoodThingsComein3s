@@ -45,14 +45,14 @@
     self.activityIndicator.hidden =YES;
 }
 
--(void) fetchRestaurants{
+-(void) fetchRestaurants {
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
     [[APIManager shared] getGeneratedRestaurants:@"Seattle" price:self.priceFilters categories:self.categories radius:0 completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
-        if(restaurants){
+        if (restaurants) {
             self.restaurantArray = (NSMutableArray*) restaurants;
             NSLog(@"Successfully loaded array");
-        } else{
+        } else {
             NSLog(@"Error loading restaurants");
         }
         [self.homeRestaurantTableView reloadData];
@@ -114,7 +114,7 @@
 }
 
 - (void)addLikedRestaurantToUser:(nonnull PFUser *)currUser restaurant:(nonnull Restaurant *)restaurant {
-    if(currUser != nil){
+    if(currUser != nil) {
         NSMutableArray *likedRestaurants = currUser[@"likedRestaurants"];
         [likedRestaurants addObject: [self restaurantToParseObject:restaurant]];
         currUser[@"likedRestaurants"]=likedRestaurants;
@@ -126,7 +126,7 @@
               NSLog(@"Error liking restaurant");
           }
         }];
-    }else{
+    } else {
         self.restaurantToAddToLikes = restaurant;
         [self userLoginSignUp];
     }

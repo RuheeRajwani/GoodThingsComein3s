@@ -26,11 +26,11 @@
     NSString *searchText = self.searchBar.text;
     [[APIManager shared] getRestaurantSearchResults:@"Seattle" searchTerm:searchText completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
 
-        if(restaurants){
+        if (restaurants) {
             self.filteredData = (NSMutableArray*) restaurants;
             NSLog(@"Successfully loaded array");
             [self.searchTableView reloadData];
-        } else{
+        } else {
             NSLog(@"Error loading restaurants");
         }
     }];
@@ -47,7 +47,7 @@
     self.filteredData = [[NSArray alloc] init];
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"RestaurantSearchCellToRestaurantDetailsView"]) {
         NSIndexPath *restaurantIndexPath = [self.searchTableView indexPathForCell:sender];
         Restaurant *restaurantToView = self.filteredData[restaurantIndexPath.row];

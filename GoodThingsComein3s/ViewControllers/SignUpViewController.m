@@ -36,7 +36,7 @@
             } else {
                 NSLog(@"User registered successfully");
                 [self dismissViewControllerAnimated:YES completion:^{
-                    [self.delegate dismissLoginSignUp];
+                    [self.delegate signUpViewControllerDidDismissAfterSuccessfulSignUp];
                 }];
                 
             }

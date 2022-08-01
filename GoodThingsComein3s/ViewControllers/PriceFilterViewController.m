@@ -18,7 +18,7 @@
 
 @implementation PriceFilterViewController
 
--(void) viewDidLoad{
+-(void) viewDidLoad {
     [super viewDidLoad];
     
     self.selectedPriceFilters = [[NSMutableArray alloc] init];
@@ -26,11 +26,11 @@
 - (IBAction)priceFilterViewControllerDidTapApply:(id)sender {
     NSString *priceStringToSend = [[NSString alloc] init];
     
-    if(self.selectedPriceFilters.count == 1){
+    if (self.selectedPriceFilters.count == 1) {
         priceStringToSend = [self.selectedPriceFilters objectAtIndex:0];
     } else {
-        for (int i=0; i<self.selectedPriceFilters.count; i++){
-            if(i < self.selectedPriceFilters.count -1){
+        for (int i=0; i<self.selectedPriceFilters.count; i++) {
+            if (i < self.selectedPriceFilters.count -1) {
             priceStringToSend = [NSString stringWithFormat:@"%@%@%@", priceStringToSend, [self.selectedPriceFilters objectAtIndex:i], @","];
             } else {
             priceStringToSend = [NSString stringWithFormat:@"%@%@", priceStringToSend, [self.selectedPriceFilters objectAtIndex:i]];
@@ -61,8 +61,8 @@
     [self dollarSignButtonTapped:sender :@"4"];
 }
 
--(void)dollarSignButtonTapped:(id)sender :(NSString *)number{
-    if([sender isSelected] == NO){
+-(void)dollarSignButtonTapped:(id)sender :(NSString *)number {
+    if([sender isSelected] == NO) {
         [sender setSelected:YES];
         [self.selectedPriceFilters addObject:number];
     } else {

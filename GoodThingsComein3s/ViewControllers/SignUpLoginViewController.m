@@ -25,18 +25,26 @@
     [self performSegueWithIdentifier:@"signUpSegue" sender:nil];
 }
 
-- (void)dismissLoginSignUp {
+- (void)signUpViewControllerDidDismissAfterSuccessfulSignUp {
+    [self dissmissViewAndAddRestarant];
+}
+
+- (void)loginViewControllerDidDismissAfterSuccessfulLogin {
+    [self dissmissViewAndAddRestarant];
+}
+
+- (void) dissmissViewAndAddRestarant {
     [self dismissViewControllerAnimated:YES completion:^{
         [self.delegate addLikedRestaurantToUser:[PFUser currentUser] restaurant:self.restaurantToAddToLikes];
         
     }];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"loginSegue"]) {
         LoginViewController *loginVC = [segue destinationViewController];
         loginVC.delegate= self;
-    } else  if ([[segue identifier] isEqualToString:@"signUpSegue"]) {
+    } else if ([[segue identifier] isEqualToString:@"signUpSegue"]) {
         SignUpViewController *signUpVC = [segue destinationViewController];
         signUpVC.delegate= self;
     }

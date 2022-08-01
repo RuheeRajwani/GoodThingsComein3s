@@ -24,7 +24,7 @@
 
 @implementation ProfileViewController
 
-- (void)viewDidAppear:(BOOL)animated{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     
     [self getUserInformation];
@@ -49,7 +49,7 @@
     }];
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"likedRestaurantToDetailsView"]) {
         NSIndexPath *restaurantIndexPath = [self.profileLikedRestaurantsCollectionView indexPathForCell:sender];
         PFObject *restaurantToView = self.likedRestaurants[restaurantIndexPath.row];
@@ -71,9 +71,9 @@
 }
 
 
--(void) getUserInformation{
+-(void) getUserInformation {
     PFUser *curr = [PFUser currentUser];
-    if(curr != nil){
+    if(curr != nil) {
         NSString *greeting =@"Hi ";
         NSString *exclaimation = @"!";
         self.nameFieldToFill.text =[NSString stringWithFormat:@"%@%@%@", greeting, [PFUser currentUser].username, exclaimation];
