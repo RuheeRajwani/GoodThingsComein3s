@@ -42,8 +42,21 @@
     self.homeRestaurantTableView.dataSource = self;
     self.homeRestaurantTableView.delegate = self;
     self.homeRestaurantTableView.hidden = YES;
+    
+//    UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didDoubleTap:_:)];
+//    doubleTapRecognizer.numberOfTapsRequired = 2;
+//    [self.homeRestaurantTableView addGestureRecognizer:doubleTapRecognizer];
+//    doubleTapRecognizer.delegate = self;
+    
     self.activityIndicator.hidden =YES;
 }
+
+//-(void) didDoubleTap:(UITapGestureRecognizer *)recognizer{
+//    if (recognizer.state == UIGestureRecognizerStateEnded){
+//        UITableViewCell *tapLocation = [recognizer locationInView:(self.homeRestaurantTableView)];
+//
+//    }
+//}
 
 -(void) fetchRestaurants {
     self.activityIndicator.hidden = NO;
