@@ -10,6 +10,10 @@
 @interface PriceFilterViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *applyButton;
+@property (weak, nonatomic) IBOutlet UIButton *oneDollarSignButton;
+@property (weak, nonatomic) IBOutlet UIButton *twoDollarSignButton;
+@property (weak, nonatomic) IBOutlet UIButton *threeDollarSignButton;
+@property (weak, nonatomic) IBOutlet UIButton *fourDollarSignButton;
 @property (nonatomic) NSMutableArray *selectedPriceFilters;
 
 
@@ -21,27 +25,30 @@
 -(void) viewDidLoad {
     [super viewDidLoad];
     
-    self.selectedPriceFilters = [[NSMutableArray alloc] init];
+    self.selectedPriceFilters = [self.previouslySelectedPriceFilters mutableCopy];
+    [self setButtons];
 }
-- (IBAction)priceFilterViewControllerDidTapApply:(id)sender {
-    NSString *priceStringToSend = [[NSString alloc] init];
-    
-    if (self.selectedPriceFilters.count == 1) {
-        priceStringToSend = [self.selectedPriceFilters objectAtIndex:0];
-    } else {
-        for (int i=0; i<self.selectedPriceFilters.count; i++) {
-            if (i < self.selectedPriceFilters.count -1) {
-            priceStringToSend = [NSString stringWithFormat:@"%@%@%@", priceStringToSend, [self.selectedPriceFilters objectAtIndex:i], @","];
-            } else {
-            priceStringToSend = [NSString stringWithFormat:@"%@%@", priceStringToSend, [self.selectedPriceFilters objectAtIndex:i]];
-            }
-        }
-    }
-    [self.delegate appliedPriceFilters:priceStringToSend];
-    
-    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 
+-(void)setButtons{
+    [self.applyButton setEnabled:self.selectedPriceFilters.count != 0];
     
+    if ([self.selectedPriceFilters containsObject:@"1"]) {
+        [self.oneDollarSignButton setSelected:YES];
+    }
+    if ([self.selectedPriceFilters containsObject:@"2"]) {
+        [self.twoDollarSignButton setSelected:YES];
+    }
+    if ([self.selectedPriceFilters containsObject:@"3"]) {
+        [self.threeDollarSignButton setSelected:YES];
+    }
+    if ([self.selectedPriceFilters containsObject:@"4"]) {
+        [self.fourDollarSignButton setSelected:YES];
+    }
+}
+
+- (IBAction)priceFilterViewControllerDidTapApply:(id)sender {
+    [self.delegate appliedPriceFilters:[self.selectedPriceFilters copy]];
+    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)priceFilterViewControllerDidTap1Sign:(id)sender {

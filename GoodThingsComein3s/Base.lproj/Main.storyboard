@@ -133,7 +133,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Price"/>
                                         <connections>
-                                            <segue destination="jGc-oQ-v7h" kind="presentation" identifier="HomeToPriceFilterSegue" id="fin-HV-MuT"/>
+                                            <segue destination="jGc-oQ-v7h" kind="presentation" identifier="HomeToPriceFilterSegue" modalPresentationStyle="automatic" id="fin-HV-MuT"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rUz-vT-wCO">
@@ -180,6 +180,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="bfb-UT-bol" id="qh5-UT-TKx"/>
                         <outlet property="homeRestaurantTableView" destination="WcC-jV-8Wk" id="hfu-jB-4c7"/>
+                        <outlet property="priceFilterButton" destination="GzQ-sA-Xcf" id="uJy-un-PO6"/>
                         <segue destination="gAB-pC-lhx" kind="presentation" identifier="LiketoSignUpLoginSegue" modalPresentationStyle="automatic" id="xcO-Bp-M1A"/>
                     </connections>
                 </viewController>
@@ -451,6 +452,10 @@
                     </view>
                     <connections>
                         <outlet property="applyButton" destination="FQC-fj-jVx" id="cgg-SV-UJ2"/>
+                        <outlet property="fourDollarSignButton" destination="8LT-nM-Bup" id="hde-K8-pHb"/>
+                        <outlet property="oneDollarSignButton" destination="11u-Zg-kTc" id="QL9-2P-Agz"/>
+                        <outlet property="threeDollarSignButton" destination="XoV-dP-89l" id="c5O-he-8yT"/>
+                        <outlet property="twoDollarSignButton" destination="rk8-gk-Z81" id="boz-hV-TTn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yaX-fW-c9s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
