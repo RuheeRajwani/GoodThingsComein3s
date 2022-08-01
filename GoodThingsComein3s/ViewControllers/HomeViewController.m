@@ -22,7 +22,7 @@
 @property (nonatomic) NSInteger *radius;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property (nonatomic) Restaurant *restaurantToAddToLikes;
+@property (nonatomic) Restaurant *restaurantToAddToLikesFollowingLoginSignup;
 
 @end
 
@@ -45,14 +45,14 @@
     self.activityIndicator.hidden =YES;
 }
 
--(void) fetchRestaurants{
+-(void) fetchRestaurants {
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
     [[APIManager shared] getGeneratedRestaurants:@"Seattle" price:self.priceFilters categories:self.categories radius:0 completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
-        if(restaurants){
+        if (restaurants) {
             self.restaurantArray = (NSMutableArray*) restaurants;
             NSLog(@"Successfully loaded array");
-        } else{
+        } else {
             NSLog(@"Error loading restaurants");
         }
         [self.homeRestaurantTableView reloadData];
@@ -61,6 +61,25 @@
         self.homeRestaurantTableView.hidden = NO;
     }];
     }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"HomeToPriceFilterSegue"]) {
+        PriceFilterViewController *priceFilterVC = [segue destinationViewController];
+        priceFilterVC.delegate= self;
+    }
+    if ([[segue identifier] isEqualToString:@"LiketoSignUpLoginSegue"]) {
+        SignUpLoginViewController *signUpLoginVC = [segue destinationViewController];
+        signUpLoginVC.delegate= self;
+    }
+    if ([[segue identifier] isEqualToString:@"RestaurantTableViewCellToRestaurantDetailsView"]) {
+        NSIndexPath *restaurantIndexPath = [self.homeRestaurantTableView indexPathForCell:sender];
+        Restaurant *restaurantToView = self.restaurantArray[restaurantIndexPath.row];
+        DetailsViewController *detailVC = [segue destinationViewController];
+        detailVC.yelpRestaurantID = restaurantToView.restaurantID;
+    }
+}
+
+#pragma mark - Table view
         
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     RestaurantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RestaurantTableViewCell" forIndexPath:indexPath];
@@ -73,48 +92,15 @@
     return 3;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"HomeToPriceFilterSegue"]) {
-        PriceFilterViewController *priceFilterVC = [segue destinationViewController];
-        priceFilterVC.delegate= self;
-    }
-    if ([[segue identifier] isEqualToString:@"LiketoSignUpLoginSegue"]) {
-        SignUpLoginViewController *signUpLoginVC = [segue destinationViewController];
-        signUpLoginVC.restaurantToAddToLikes = self.restaurantToAddToLikes;
-        signUpLoginVC.delegate= self;
-    }
-    if ([[segue identifier] isEqualToString:@"RestaurantTableViewCellToRestaurantDetailsView"]) {
-        NSIndexPath *restaurantIndexPath = [self.homeRestaurantTableView indexPathForCell:sender];
-        Restaurant *restaurantToView = self.restaurantArray[restaurantIndexPath.row];
-        DetailsViewController *detailVC = [segue destinationViewController];
-        detailVC.yelpRestaurantID = restaurantToView.restaurantID;
-        
-    }
-    
-}
+#pragma mark - Delegates
 
 - (void)appliedPriceFilters:(NSString *)priceStringToSend {
     self.priceFilters = priceStringToSend;
 }
 
-- (void)userLoginSignUp {
-    [self performSegueWithIdentifier:@"LiketoSignUpLoginSegue" sender:@"unauthLiking"];
-}
-
-
-- (PFObject *)restaurantToParseObject:(Restaurant *) restaurantToConvert {
-    PFObject *restaurantToAdd = [[PFObject alloc] initWithClassName:@"Restaurant"];
-    restaurantToAdd[@"name"] = restaurantToConvert.name;
-    restaurantToAdd[@"yelpID"] = restaurantToConvert.restaurantID;
-    NSData *imageData = UIImagePNGRepresentation(restaurantToConvert.restaurantImage);
-    NSString *imageName = [NSString stringWithFormat:@"%@%@",restaurantToConvert.restaurantID, @"image"];
-    restaurantToAdd[@"image"] = [PFFileObject fileObjectWithName:imageName data:imageData];
-    return restaurantToAdd;
-   
-}
-
-- (void)addLikedRestaurantToUser:(nonnull PFUser *)currUser restaurant:(nonnull Restaurant *)restaurant {
-    if(currUser != nil){
+- (void)addLikedRestaurantToUser: (Restaurant*) restaurant {
+    PFUser *currUser = [PFUser currentUser];
+    if(currUser != nil) {
         NSMutableArray *likedRestaurants = currUser[@"likedRestaurants"];
         [likedRestaurants addObject: [self restaurantToParseObject:restaurant]];
         currUser[@"likedRestaurants"]=likedRestaurants;
@@ -126,10 +112,30 @@
               NSLog(@"Error liking restaurant");
           }
         }];
-    }else{
-        self.restaurantToAddToLikes = restaurant;
-        [self userLoginSignUp];
+    } else {
+        self.restaurantToAddToLikesFollowingLoginSignup = restaurant;
+        [self performSegueWithIdentifier:@"LiketoSignUpLoginSegue" sender:nil];
     }
 }
 
+- (PFObject *)restaurantToParseObject:(Restaurant *) restaurantToConvert {
+    PFObject *restaurantToAdd = [[PFObject alloc] initWithClassName:@"Restaurant"];
+    restaurantToAdd[@"name"] = restaurantToConvert.name;
+    restaurantToAdd[@"yelpID"] = restaurantToConvert.restaurantID;
+    NSData *imageData = UIImagePNGRepresentation(restaurantToConvert.restaurantImage);
+    NSString *imageName = [NSString stringWithFormat:@"%@%@",restaurantToConvert.restaurantID, @"image"];
+    restaurantToAdd[@"image"] = [PFFileObject fileObjectWithName:imageName data:imageData];
+    return restaurantToAdd;
+}
+
+- (void)didTapLikeForRestaurant:(nonnull Restaurant *)restaurant {
+    [self addLikedRestaurantToUser:restaurant];
+}
+
+- (void)signUpLoginViewControllerDidDismissForUser {
+    [self addLikedRestaurantToUser:self.restaurantToAddToLikesFollowingLoginSignup];
+}
+
 @end
+
+

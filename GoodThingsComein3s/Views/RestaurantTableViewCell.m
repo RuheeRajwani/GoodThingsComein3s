@@ -12,13 +12,12 @@
 
 @implementation RestaurantTableViewCell
 - (IBAction)homeViewControllerDidTapLike:(id)sender {
-    PFUser *curr = [PFUser currentUser];
-    [self.delegate addLikedRestaurantToUser:curr restaurant:self.restaurant];
+    [self.delegate didTapLikeForRestaurant:self.restaurant];
     [self.likeButton setImage:[UIImage systemImageNamed:@"heart.fill"] forState:UIControlStateNormal];
 }
 
--(void) setRestaurant:(Restaurant *)restaurant{
-    if(restaurant !=nil){
+-(void) setRestaurant:(Restaurant *)restaurant {
+    if (restaurant !=nil) {
         _restaurant = restaurant;
         
         self.restaurantNameLabel.text = self.restaurant.name;
@@ -29,10 +28,10 @@
         self.ratingImageView.image = self.restaurant.ratingImage;
         [self.likeButton setImage:[UIImage systemImageNamed:@"heart"] forState:UIControlStateNormal];
         
-        if([PFUser currentUser] != nil){
-            for( PFObject *likedRestaurant in [PFUser currentUser][@"likedRestaurants"]){
+        if ([PFUser currentUser] != nil) {
+            for (PFObject *likedRestaurant in [PFUser currentUser][@"likedRestaurants"]) {
                 [likedRestaurant fetchIfNeeded];
-                if([likedRestaurant[@"yelpID"] isEqualToString:self.restaurant.restaurantID]){
+                if ([likedRestaurant[@"yelpID"] isEqualToString:self.restaurant.restaurantID]) {
                     [self.likeButton setImage:[UIImage systemImageNamed:@"heart.fill"] forState:UIControlStateNormal];
                 }
             }

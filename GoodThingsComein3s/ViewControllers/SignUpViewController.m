@@ -21,7 +21,7 @@
 
 - (IBAction)signUpViewControllerDidTapSignUp:(id)sender {
     PFUser *newUser = [PFUser user];
-        
+    
         // set user properties
         newUser.username = self.usernameField.text;
         newUser.email = self.emailField.text;
@@ -36,8 +36,7 @@
             } else {
                 NSLog(@"User registered successfully");
                 [self dismissViewControllerAnimated:YES completion:^{
-                    NSLog(@"view dismissed");
-                    [self.delegate dismissLoginSignUp];
+                    [self.delegate signUpViewControllerDidDismissAfterSuccessfulSignUp];
                 }];
                 
             }

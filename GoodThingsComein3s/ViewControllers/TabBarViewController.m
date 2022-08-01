@@ -20,8 +20,4 @@
 
 @implementation TabBarViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    }
-    
 @end

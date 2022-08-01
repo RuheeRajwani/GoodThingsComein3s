@@ -26,15 +26,14 @@
     NSString *searchText = self.searchBar.text;
     [[APIManager shared] getRestaurantSearchResults:@"Seattle" searchTerm:searchText completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
 
-        if(restaurants){
-            self.filteredData = (NSMutableArray*) restaurants;
+        if (restaurants) {
+            self.filteredData = restaurants;
             NSLog(@"Successfully loaded array");
             [self.searchTableView reloadData];
-        } else{
+        } else {
             NSLog(@"Error loading restaurants");
         }
     }];
-    
 }
 
 - (void)viewDidLoad {
@@ -46,18 +45,18 @@
     self.searchBar.delegate = self;
     
     self.filteredData = [[NSArray alloc] init];
-    
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"RestaurantSearchCellToRestaurantDetailsView"]) {
         NSIndexPath *restaurantIndexPath = [self.searchTableView indexPathForCell:sender];
         Restaurant *restaurantToView = self.filteredData[restaurantIndexPath.row];
         DetailsViewController *detailVC = [segue destinationViewController];
         detailVC.yelpRestaurantID = restaurantToView.restaurantID;
-        
     }
 }
+
+#pragma mark - Table view
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.filteredData.count;
@@ -68,15 +67,6 @@
                                                                  forIndexPath:indexPath];
     cell.restaurant = self.filteredData[indexPath.row];
     return cell;
-}
-
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    
-    NSString *searchText = searchController.searchBar.text;
-    if (searchText) {
-        
-    }
-
 }
 
 @end

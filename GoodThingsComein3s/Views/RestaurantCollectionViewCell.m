@@ -10,10 +10,10 @@
 
 @implementation RestaurantCollectionViewCell
 
--(void) setRestaurant:(PFObject *)restaurant{
+-(void) setRestaurant:(PFObject *)restaurant {
     _restaurant = restaurant;
     [self.restaurant fetchIfNeeded];
-    if(restaurant != nil){
+    if (restaurant != nil) {
         self.restaurantName.text = self.restaurant[@"name"];
         [self.restaurant[@"image"] getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
             if (!error) {

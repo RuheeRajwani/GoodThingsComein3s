@@ -24,10 +24,24 @@
 
 @implementation ProfileViewController
 
-- (void)viewDidAppear:(BOOL)animated{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     
     [self getUserInformation];
+}
+
+-(void) getUserInformation {
+    PFUser *curr = [PFUser currentUser];
+    if(curr != nil) {
+        NSString *greeting =@"Hi ";
+        NSString *exclaimation = @"!";
+        self.nameFieldToFill.text =[NSString stringWithFormat:@"%@%@%@", greeting, [PFUser currentUser].username, exclaimation];
+        self.likedRestaurants = [PFUser currentUser][@"likedRestaurants"];
+        [self.profileLikedRestaurantsCollectionView reloadData];
+       
+    } else {
+        [self performSegueWithIdentifier:@"profileToSignUpLogin" sender:@"profileView"];
+    }
 }
 
 - (void)viewDidLoad {
@@ -39,6 +53,7 @@
     [self getUserInformation];
 }
 
+
 - (IBAction)profileViewControllerDidTapLogout:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         SceneDelegate *mySceneDelegate = (SceneDelegate * ) UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
@@ -49,7 +64,7 @@
     }];
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"likedRestaurantToDetailsView"]) {
         NSIndexPath *restaurantIndexPath = [self.profileLikedRestaurantsCollectionView indexPathForCell:sender];
         PFObject *restaurantToView = self.likedRestaurants[restaurantIndexPath.row];
@@ -58,6 +73,8 @@
         
     }
 }
+
+#pragma mark - Collection View
 
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -71,18 +88,6 @@
 }
 
 
--(void) getUserInformation{
-    PFUser *curr = [PFUser currentUser];
-    if(curr != nil){
-        NSString *greeting =@"Hi ";
-        NSString *exclaimation = @"!";
-        self.nameFieldToFill.text =[NSString stringWithFormat:@"%@%@%@", greeting, [PFUser currentUser].username, exclaimation];
-        self.likedRestaurants = [PFUser currentUser][@"likedRestaurants"];
-        [self.profileLikedRestaurantsCollectionView reloadData];
-       
-    } else {
-        [self performSegueWithIdentifier:@"profileToSignUpLogin" sender:@"profileView"];
-    }
-}
+
 
 @end
