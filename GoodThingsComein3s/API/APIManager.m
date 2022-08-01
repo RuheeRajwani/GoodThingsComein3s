@@ -4,7 +4,6 @@
 //
 //  Created by Ruhee Rajwani on 7/12/22.
 //
-
 #import "APIManager.h"
 #import "Restaurant.h"
 
@@ -57,7 +56,6 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
            }
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               NSLog(@"%@", dataDictionary);
                NSArray *restaurantDictionaries= dataDictionary[@"businesses"];
                NSMutableArray *restaurants = [Restaurant restaurantsWithArray:restaurantDictionaries];
                completion(restaurants,nil);
@@ -67,9 +65,7 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
 }
 
 -(void)getRestaurantSearchResults:(NSString *)location searchTerm:(NSString *)searchTerm completion:(void(^)(NSArray *restaurants, NSError *error))completion{
-    NSString *urlString = yelpBuisnessSearchString;
-    urlString = [NSString stringWithFormat:@"%@%@%@",urlString, @"?location=", location];
-    urlString = [NSString stringWithFormat:@"%@%@%@",urlString, @"&term=", searchTerm];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%@", yelpBuisnessSearchString,@"?location=",location, @"&term=", searchTerm];
     
     NSArray *requestAndSession =  [self setRequestAndSession:urlString];
     NSURLSessionDataTask *task = [requestAndSession[1] dataTaskWithRequest:requestAndSession[0] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -78,9 +74,8 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
            }
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               NSLog(@"%@", dataDictionary);
                NSArray *restaurantDictionaries= dataDictionary[@"businesses"];
-               NSMutableArray *restaurants = [Restaurant restaurantsWithArray:restaurantDictionaries];
+               NSArray *restaurants = [Restaurant restaurantsWithArray:restaurantDictionaries];
                completion(restaurants,nil);
            }
     }];
@@ -88,8 +83,7 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
 }
 
 - (void)getRestaurantDetails:(NSString *)restaurantID completion:(void(^)(NSDictionary *restaurant, NSError *error))completion{
-    NSString *urlString = yelpBuisnessDetailsString;
-    urlString = [NSString stringWithFormat:@"%@%@", urlString, restaurantID];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", yelpBuisnessDetailsString, restaurantID];
     
     NSArray *requestAndSession = [self setRequestAndSession:urlString];
     NSURLSessionDataTask *task = [requestAndSession[1] dataTaskWithRequest:requestAndSession[0] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -105,8 +99,7 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
 }
 
 - (void)getRestaurantReviews:(NSString *)restaurantID completion:(void(^)(NSArray *reviews, NSError *error))completion{
-    NSString *urlString = yelpBuisnessDetailsString;
-    urlString = [NSString stringWithFormat:@"%@%@%@", urlString, restaurantID,@"/reviews"];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", yelpBuisnessDetailsString, restaurantID,@"/reviews"];
     
     NSArray *requestAndSession = [self setRequestAndSession:urlString];
     NSURLSessionDataTask *task = [requestAndSession[1] dataTaskWithRequest:requestAndSession[0] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -139,7 +132,5 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
     
     return toReturn;
 }
-
-
 
 @end

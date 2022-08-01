@@ -27,7 +27,6 @@
 
 - (void)dismissLoginSignUp {
     [self dismissViewControllerAnimated:YES completion:^{
-        NSLog(@"signUpLoginVC dismissed");
         [self.delegate addLikedRestaurantToUser:[PFUser currentUser] restaurant:self.restaurantToAddToLikes];
         
     }];

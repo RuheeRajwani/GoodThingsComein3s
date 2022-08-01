@@ -34,7 +34,6 @@
             NSLog(@"Error loading restaurants");
         }
     }];
-    
 }
 
 - (void)viewDidLoad {
@@ -46,7 +45,6 @@
     self.searchBar.delegate = self;
     
     self.filteredData = [[NSArray alloc] init];
-    
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -55,7 +53,6 @@
         Restaurant *restaurantToView = self.filteredData[restaurantIndexPath.row];
         DetailsViewController *detailVC = [segue destinationViewController];
         detailVC.yelpRestaurantID = restaurantToView.restaurantID;
-        
     }
 }
 
@@ -68,15 +65,6 @@
                                                                  forIndexPath:indexPath];
     cell.restaurant = self.filteredData[indexPath.row];
     return cell;
-}
-
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    
-    NSString *searchText = searchController.searchBar.text;
-    if (searchText) {
-        
-    }
-
 }
 
 @end
