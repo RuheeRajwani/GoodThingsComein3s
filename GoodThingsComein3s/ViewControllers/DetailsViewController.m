@@ -113,10 +113,8 @@
     
 }
 
-
 -(void) startTimeThread {
     self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
-    
 }
 
 -(void) timerAction {
@@ -124,8 +122,9 @@
     [self.restaurantPhotosCollectionView setNeedsLayout];
     [self.restaurantPhotosCollectionView layoutIfNeeded];
     [self.restaurantPhotosCollectionView setContentOffset:CGPointMake(desiredScrollPosition*self.restaurantPhotosCollectionView.frame.size.width, 0) animated:YES];
-    
 }
+
+#pragma mark - Image Collection View
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -157,6 +156,8 @@
     self.currentIndex = scrollView.contentOffset.x / self.restaurantPhotosCollectionView.frame.size.width;
     self.restaurantImageCollectionViewPageControl.currentPage = self.currentIndex;
 }
+
+#pragma mark - Reviews Table View
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     RestaurantReviewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RestaurantReviewTableViewCell" forIndexPath:indexPath];

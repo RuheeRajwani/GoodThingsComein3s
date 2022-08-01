@@ -56,6 +56,8 @@
     }
 }
 
+#pragma mark - Table view
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.filteredData.count;
 }

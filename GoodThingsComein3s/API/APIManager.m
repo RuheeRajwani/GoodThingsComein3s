@@ -35,6 +35,25 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
     return self;
 }
 
+-(NSArray*) setRequestAndSession: (NSString *)urlString {
+    
+    NSMutableArray *toReturn = [[NSMutableArray alloc] init];
+
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+    
+    [request setValue:self.authHeader forHTTPHeaderField:@"Authorization"];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    
+    [toReturn addObject:request];
+    [toReturn addObject:session];
+    
+    return toReturn;
+}
+
+#pragma mark - Requests
+
 - (void)getGeneratedRestaurants:(NSString *)location price:(NSString *)price categories:(NSString *)categories radius:(NSInteger)radius completion:(void(^)(NSArray *restaurants, NSError *error))completion {
     NSString *urlString = yelpBuisnessSearchString;
     
@@ -115,23 +134,6 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
            }
     }];
     [task resume];
-}
-
--(NSArray*) setRequestAndSession: (NSString *)urlString {
-    
-    NSMutableArray *toReturn = [[NSMutableArray alloc] init];
-
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
-    
-    [request setValue:self.authHeader forHTTPHeaderField:@"Authorization"];
-    
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-    
-    [toReturn addObject:request];
-    [toReturn addObject:session];
-    
-    return toReturn;
 }
 
 @end

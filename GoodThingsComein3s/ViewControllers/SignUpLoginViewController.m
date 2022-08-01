@@ -25,6 +25,18 @@
     [self performSegueWithIdentifier:@"signUpSegue" sender:nil];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"loginSegue"]) {
+        LoginViewController *loginVC = [segue destinationViewController];
+        loginVC.delegate= self;
+    } else if ([[segue identifier] isEqualToString:@"signUpSegue"]) {
+        SignUpViewController *signUpVC = [segue destinationViewController];
+        signUpVC.delegate= self;
+    }
+}
+
+#pragma mark - Delegates
+
 - (void)signUpViewControllerDidDismissAfterSuccessfulSignUp {
     [self dissmissViewFollowingLoginAndSignUp];
 }
@@ -40,14 +52,5 @@
     }];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"loginSegue"]) {
-        LoginViewController *loginVC = [segue destinationViewController];
-        loginVC.delegate= self;
-    } else if ([[segue identifier] isEqualToString:@"signUpSegue"]) {
-        SignUpViewController *signUpVC = [segue destinationViewController];
-        signUpVC.delegate= self;
-    }
-}
 
 @end

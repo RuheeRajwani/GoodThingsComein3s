@@ -21,7 +21,7 @@
 
 - (IBAction)signUpViewControllerDidTapSignUp:(id)sender {
     PFUser *newUser = [PFUser user];
-        
+    
         // set user properties
         newUser.username = self.usernameField.text;
         newUser.email = self.emailField.text;

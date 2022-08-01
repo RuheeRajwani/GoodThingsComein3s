@@ -30,6 +30,20 @@
     [self getUserInformation];
 }
 
+-(void) getUserInformation {
+    PFUser *curr = [PFUser currentUser];
+    if(curr != nil) {
+        NSString *greeting =@"Hi ";
+        NSString *exclaimation = @"!";
+        self.nameFieldToFill.text =[NSString stringWithFormat:@"%@%@%@", greeting, [PFUser currentUser].username, exclaimation];
+        self.likedRestaurants = [PFUser currentUser][@"likedRestaurants"];
+        [self.profileLikedRestaurantsCollectionView reloadData];
+       
+    } else {
+        [self performSegueWithIdentifier:@"profileToSignUpLogin" sender:@"profileView"];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -38,6 +52,7 @@
     
     [self getUserInformation];
 }
+
 
 - (IBAction)profileViewControllerDidTapLogout:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -59,6 +74,8 @@
     }
 }
 
+#pragma mark - Collection View
+
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     RestaurantCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RestaurantCollectionViewCell" forIndexPath:indexPath];
@@ -71,18 +88,6 @@
 }
 
 
--(void) getUserInformation {
-    PFUser *curr = [PFUser currentUser];
-    if(curr != nil) {
-        NSString *greeting =@"Hi ";
-        NSString *exclaimation = @"!";
-        self.nameFieldToFill.text =[NSString stringWithFormat:@"%@%@%@", greeting, [PFUser currentUser].username, exclaimation];
-        self.likedRestaurants = [PFUser currentUser][@"likedRestaurants"];
-        [self.profileLikedRestaurantsCollectionView reloadData];
-       
-    } else {
-        [self performSegueWithIdentifier:@"profileToSignUpLogin" sender:@"profileView"];
-    }
-}
+
 
 @end
