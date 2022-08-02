@@ -47,7 +47,7 @@
 }
 
 - (IBAction)priceFilterViewControllerDidTapApply:(id)sender {
-    [self.delegate appliedPriceFilters:[self.selectedPriceFilters copy]];
+    [self.delegate didApplyPriceFilters:[self.selectedPriceFilters copy]];
     [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 }
 

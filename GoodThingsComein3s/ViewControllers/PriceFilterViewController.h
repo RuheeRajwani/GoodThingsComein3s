@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol PriceFilterViewControllerDelegate
--(void) appliedPriceFilters:(NSArray *)selectedFilters;
+-(void) didApplyPriceFilters:(NSArray *)selectedFilters;
 
 @end
 

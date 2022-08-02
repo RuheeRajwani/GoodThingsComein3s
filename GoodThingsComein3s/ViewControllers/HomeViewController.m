@@ -85,7 +85,7 @@
 
 #pragma mark - Delegates
 
-- (void)appliedPriceFilters:(NSArray *)selectedFilters {
+- (void)didApplyPriceFilters:(NSArray *)selectedFilters {
     self.priceFilters = selectedFilters;
     if(self.priceFilters.count != 0){
         [self.priceFilterButton setSelected:YES];
