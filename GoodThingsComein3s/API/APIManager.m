@@ -76,7 +76,7 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
     [task resume];
 }
 
--(void)getRestaurantSearchResults:(NSString *)location searchTerm:(NSString *)searchTerm completion:(void(^)(NSArray *restaurants, NSError *error))completion {
+- (void)getRestaurantSearchResults:(NSString *)location searchTerm:(NSString *)searchTerm completion:(void(^)(NSArray *restaurants, NSError *error))completion {
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%@", yelpBuisnessSearchString,@"?location=",location, @"&term=", searchTerm];
     
     NSMutableURLRequest *request =  [self _getURLRequestForURLString:urlString];
