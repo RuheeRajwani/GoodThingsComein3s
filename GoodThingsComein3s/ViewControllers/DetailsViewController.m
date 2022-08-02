@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "RestaurantPhotoCollectionViewCell.h"
 #import "RestaurantReviewTableViewCell.h"
+#import "Restaurant.h"
 
 @interface DetailsViewController () <UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource>
 
@@ -19,20 +20,20 @@
 @property (weak, nonatomic) IBOutlet UILabel *restaurantAddressLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *restaurantPhotosCollectionView;
 @property (weak, nonatomic) IBOutlet UIImageView *restaurantRatingImageView;
-@property (nonatomic) NSDictionary *restaurantToShow;
 @property (nonatomic) NSMutableArray *imageURLS;
 @property (nonatomic) NSArray *reviews;
 @property (weak, nonatomic) IBOutlet UIPageControl *restaurantImageCollectionViewPageControl;
 @property (nonatomic) int currentIndex;
 @property (nonatomic) NSTimer *timer;
 @property (weak, nonatomic) IBOutlet UITableView *restaurantReviewsTableView;
+@property (nonatomic) NSDictionary *additionalRestaurantDetails;
 
 
 @end
 
 @implementation DetailsViewController
 
-- (void) viewDidLoad {
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     self.restaurantPhotosCollectionView.delegate = self;
@@ -43,14 +44,14 @@
 
     self.imageURLS = [[NSMutableArray alloc] init];
     
-    [[APIManager shared] getRestaurantDetails:self.yelpRestaurantID completion:^(NSDictionary * _Nonnull restaurant, NSError * _Nonnull error) {
+    [[APIManager shared] getRestaurantDetails:self.restaurantToShow.restaurantYelpID completion:^(NSDictionary * _Nonnull restaurant, NSError * _Nonnull error) {
         if (error == nil) {
-        self.restaurantToShow = restaurant;
+        self.additionalRestaurantDetails = restaurant;
         [self setRestaurantView];
         }
     }];
-    
-    [[APIManager shared] getRestaurantReviews:self.yelpRestaurantID completion:^(NSArray * _Nonnull reviews, NSError * _Nonnull error) {
+
+    [[APIManager shared] getRestaurantReviews:self.restaurantToShow.restaurantYelpID completion:^(NSArray * _Nonnull reviews, NSError * _Nonnull error) {
         if (error == nil) {
             self.reviews = reviews;
             [self.restaurantReviewsTableView reloadData];
@@ -61,46 +62,13 @@
 }
 
 -(void) setRestaurantView {
-    self.restaurantNameLabel.text = self.restaurantToShow[@"name"];
-    self.restaurantPriceLabel.text = self.restaurantToShow[@"price"];
+    self.restaurantNameLabel.text = self.restaurantToShow.name;
+    self.restaurantPriceLabel.text = self.restaurantToShow.price;
+    self.restaurantCategoriesLabel.text = self.restaurantToShow.categories;
+    self.restaurantAddressLabel.text = self.restaurantToShow.displayAddress;
+    self.restaurantRatingImageView.image = self.restaurantToShow.ratingImage;
     
-    NSArray *categories = self.restaurantToShow[@"categories"];
-    NSString *categoryString = categories[0][@"title"];
-    for (int i=1; i<categories.count; i++) {
-        categoryString = [NSString stringWithFormat:@"%@%@%@", categoryString,@", ",categories[i][@"title"] ];
-    }
-    self.restaurantCategoriesLabel.text = categoryString;
-    
-    NSString *locationLabelText = [[NSString alloc] init];
-    for(NSString *partOfLocation in self.restaurantToShow[@"location"][@"display_address"]) {
-        if ([locationLabelText isEqualToString:@""]) {
-            locationLabelText = partOfLocation;
-        } else {
-            locationLabelText = [NSString stringWithFormat:@"%@%@%@", locationLabelText,@", " ,partOfLocation];
-        }
-    }
-    self.restaurantAddressLabel.text = locationLabelText;
-    
-    NSNumber *rating = self.restaurantToShow[@"rating"];
-    int ratingValue = (int)(rating.doubleValue +.5);
-    
-    if (ratingValue == 1) {
-        self.restaurantRatingImageView.image = [UIImage imageNamed:@"1StarWhiteBackground"];
-        
-    } else if (ratingValue == 2) {
-        self.restaurantRatingImageView.image = [UIImage imageNamed:@"2StarsWhiteBackground"];
-        
-    } else if (ratingValue == 3) {
-        self.restaurantRatingImageView.image = [UIImage imageNamed:@"3StarsWhiteBackground"];
-        
-    }else if (ratingValue == 4) {
-        self.restaurantRatingImageView.image = [UIImage imageNamed:@"4StarsWhiteBackground"];
-        
-    }else if(ratingValue == 5) {
-        self.restaurantRatingImageView.image = [UIImage imageNamed:@"5StarsWhiteBackground"];
-    }
-    
-    for (NSObject *imageURL in self.restaurantToShow[@"photos"]) {
+    for (NSObject *imageURL in self.additionalRestaurantDetails[@"photos"]) {
         NSString *urlString = (NSString *)imageURL;
         [self.imageURLS addObject:[NSURL URLWithString:urlString]];
     }

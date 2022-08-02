@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "Restaurant.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UIImageView *restaurantImage;
 @property (weak, nonatomic) IBOutlet UILabel *restaurantName;
-@property (nonatomic) PFObject *restaurant;
+@property (nonatomic) Restaurant *restaurant;
 
 @end
 

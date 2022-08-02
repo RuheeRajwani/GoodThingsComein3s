@@ -31,7 +31,7 @@
         if ([PFUser currentUser] != nil) {
             for (PFObject *likedRestaurant in [PFUser currentUser][@"likedRestaurants"]) {
                 [likedRestaurant fetchIfNeeded];
-                if ([likedRestaurant[@"yelpID"] isEqualToString:self.restaurant.restaurantID]) {
+                if ([likedRestaurant[@"restaurantYelpID"] isEqualToString:self.restaurant.restaurantYelpID]) {
                     [self.likeButton setImage:[UIImage systemImageNamed:@"heart.fill"] forState:UIControlStateNormal];
                 }
             }

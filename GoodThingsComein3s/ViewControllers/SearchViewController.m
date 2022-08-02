@@ -50,9 +50,8 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"RestaurantSearchCellToRestaurantDetailsView"]) {
         NSIndexPath *restaurantIndexPath = [self.searchTableView indexPathForCell:sender];
-        Restaurant *restaurantToView = self.filteredData[restaurantIndexPath.row];
         DetailsViewController *detailVC = [segue destinationViewController];
-        detailVC.yelpRestaurantID = restaurantToView.restaurantID;
+        detailVC.restaurantToShow = self.filteredData[restaurantIndexPath.row];
     }
 }
 

@@ -73,9 +73,8 @@
     }
     if ([[segue identifier] isEqualToString:@"RestaurantTableViewCellToRestaurantDetailsView"]) {
         NSIndexPath *restaurantIndexPath = [self.homeRestaurantTableView indexPathForCell:sender];
-        Restaurant *restaurantToView = self.restaurantArray[restaurantIndexPath.row];
         DetailsViewController *detailVC = [segue destinationViewController];
-        detailVC.yelpRestaurantID = restaurantToView.restaurantID;
+        detailVC.restaurantToShow = self.restaurantArray[restaurantIndexPath.row];
     }
 }
 
@@ -102,7 +101,7 @@
     PFUser *currUser = [PFUser currentUser];
     if(currUser != nil) {
         NSMutableArray *likedRestaurants = currUser[@"likedRestaurants"];
-        [likedRestaurants addObject: [self restaurantToParseObject:restaurant]];
+        [likedRestaurants addObject: [self _restaurantToParseObject:restaurant]];
         currUser[@"likedRestaurants"]=likedRestaurants;
         [currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
           if (succeeded) {
@@ -118,13 +117,22 @@
     }
 }
 
-- (PFObject *)restaurantToParseObject:(Restaurant *) restaurantToConvert {
+- (PFObject *) _restaurantToParseObject:(Restaurant *) restaurantToConvert {
     PFObject *restaurantToAdd = [[PFObject alloc] initWithClassName:@"Restaurant"];
     restaurantToAdd[@"name"] = restaurantToConvert.name;
-    restaurantToAdd[@"yelpID"] = restaurantToConvert.restaurantID;
-    NSData *imageData = UIImagePNGRepresentation(restaurantToConvert.restaurantImage);
-    NSString *imageName = [NSString stringWithFormat:@"%@%@",restaurantToConvert.restaurantID, @"image"];
-    restaurantToAdd[@"image"] = [PFFileObject fileObjectWithName:imageName data:imageData];
+    restaurantToAdd[@"restaurantYelpID"] = restaurantToConvert.restaurantYelpID;
+    restaurantToAdd[@"price"] = restaurantToConvert.price;
+    restaurantToAdd[@"displayAddress"] =  restaurantToConvert.displayAddress;
+    restaurantToAdd[@"categories"] = restaurantToConvert.categories;
+    
+    NSData *restaurantImageData = UIImagePNGRepresentation(restaurantToConvert.restaurantImage);
+    NSString *restaurantImageName = [NSString stringWithFormat:@"%@%@",restaurantToConvert.restaurantYelpID, @"image"];
+    restaurantToAdd[@"restaurantImage"] = [PFFileObject fileObjectWithName:restaurantImageName data:restaurantImageData];
+    
+    NSData *ratingImageData = UIImagePNGRepresentation(restaurantToConvert.ratingImage);
+    NSString *ratingImageName = [NSString stringWithFormat:@"%@%@",restaurantToConvert.restaurantYelpID, @"image"];
+    restaurantToAdd[@"ratingImage"] = [PFFileObject fileObjectWithName:ratingImageName data:ratingImageData];
+    
     return restaurantToAdd;
 }
 
