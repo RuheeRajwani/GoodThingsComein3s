@@ -9,21 +9,81 @@
 
 @interface RatingFilterViewController ()
 
+@property (nonatomic) NSMutableArray *selectedRatingFilters;
+@property (weak, nonatomic) IBOutlet UIButton *oneStarButton;
+@property (weak, nonatomic) IBOutlet UIButton *applyButton;
+@property (weak, nonatomic) IBOutlet UIButton *twoStarButton;
+@property (weak, nonatomic) IBOutlet UIButton *threeStarButton;
+@property (weak, nonatomic) IBOutlet UIButton *fourStarButton;
+@property (weak, nonatomic) IBOutlet UIButton *fiveStarButton;
+
 @end
 
 @implementation RatingFilterViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.selectedRatingFilters = [self.previouslySelectedRatingFilters mutableCopy];
+    [self setButtons];
+}
+
+- (void)setButtons {
+    [self.applyButton setEnabled:self.selectedRatingFilters.count!=0];
+    
+    if ([self.selectedRatingFilters containsObject:@"1"]) {
+        [self.oneStarButton setSelected:YES];
+    }
+    if ([self.selectedRatingFilters containsObject:@"2"]) {
+        [self.twoStarButton setSelected:YES];
+    }
+    if ([self.selectedRatingFilters containsObject:@"3"]) {
+        [self.threeStarButton setSelected:YES];
+    }
+    if ([self.selectedRatingFilters containsObject:@"4"]) {
+        [self.fourStarButton setSelected:YES];
+    }
+    if ([self.selectedRatingFilters containsObject:@"5"]) {
+        [self.fourStarButton setSelected:YES];
+    }
+
+}
+
 - (IBAction)ratingsFilterViewControllerDidTapApply:(id)sender {
+    [self.delegate didApplyRatingFilters:[self.selectedRatingFilters copy]];
+    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (IBAction)ratingsFilterViewControllerDidTap5Stars:(id)sender {
+    [self ratingButtonTapped:sender :@"5"];
 }
+
 - (IBAction)ratingsFilterViewControllerDidTap4Stars:(id)sender {
+    [self ratingButtonTapped:sender :@"4"];
 }
+
 - (IBAction)ratingsFilterViewControllerDidTap3Stars:(id)sender {
+    [self ratingButtonTapped:sender :@"3"];
 }
+
 - (IBAction)ratingsFilterViewControllerDidTap2Stars:(id)sender {
+    [self ratingButtonTapped:sender :@"2"];
 }
+
 - (IBAction)ratingsFilterViewControllerDidTap1Star:(id)sender {
+    [self ratingButtonTapped:sender :@"1"];
 }
+
+- (void)ratingButtonTapped:(id)sender :(NSString *)number {
+    if([sender isSelected] == NO) {
+        [sender setSelected:YES];
+        [self.selectedRatingFilters addObject:number];
+    } else {
+        [sender setSelected:NO];
+        [self.selectedRatingFilters removeObject:number];
+    }
+    [self.applyButton setEnabled:self.selectedRatingFilters.count != 0];
+}
+
 
 @end

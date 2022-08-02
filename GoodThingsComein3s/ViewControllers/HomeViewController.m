@@ -6,24 +6,27 @@
 //
 
 #import "HomeViewController.h"
-#import "PriceFilterViewController.h"
 #import "APIManager.h"
 #import "AFNetworking.h"
 #import "RestaurantTableViewCell.h"
 #import "SignUpLoginViewController.h"
 #import "DetailsViewController.h"
+#import "PriceFilterViewController.h"
 #import "CuisineFilterViewController.h"
 #import "DistanceFilterViewController.h"
+#import "RatingFilterViewController.h"
 
-@interface HomeViewController () <PriceFilterViewControllerDelegate, CuisineFilterDelegate, DistanceFilterDelegate, RestaurantTableViewCellDelegate, SignUpLoginViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface HomeViewController () <PriceFilterViewControllerDelegate, CuisineFilterDelegate, DistanceFilterDelegate, RatingFilterViewControllerDelegate, RestaurantTableViewCellDelegate, SignUpLoginViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *homeRestaurantTableView;
 @property (nonatomic) NSArray *restaurantArray;
 @property (nonatomic) NSArray *priceFilters;
 @property (nonatomic) NSArray *cuisineFilters;
+@property (nonatomic) NSArray *ratingFilters;
 @property (nonatomic) NSNumber *radius;
 @property (weak, nonatomic) IBOutlet UIButton *priceFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *cuisineFilterButton;
+@property (weak, nonatomic) IBOutlet UIButton *ratingFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *distanceFilterButton;
 @property (nonatomic) NSString *categories;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -52,6 +55,7 @@
     
     self.priceFilters = [[NSArray alloc] init];
     self.cuisineFilters = [[NSArray alloc] init];
+    self.ratingFilters = [[NSArray alloc] init];
 }
 
 - (void)fetchRestaurants {
@@ -60,11 +64,6 @@
     }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"HomeToPriceFilterSegue"]) {
-        PriceFilterViewController *priceFilterVC = [segue destinationViewController];
-        priceFilterVC.previouslySelectedPriceFilters = self.priceFilters;
-        priceFilterVC.delegate= self;
-    }
     if ([[segue identifier] isEqualToString:@"LiketoSignUpLoginSegue"]) {
         SignUpLoginViewController *signUpLoginVC = [segue destinationViewController];
         signUpLoginVC.delegate= self;
@@ -83,6 +82,16 @@
         DistanceFilterViewController *distanceFilterVC = [segue destinationViewController];
         distanceFilterVC.previouslySelectedRadius = self.radius;
         distanceFilterVC.delegate= self;
+    }
+    if ([[segue identifier] isEqualToString:@"HomeToPriceFilterSegue"]) {
+        PriceFilterViewController *priceFilterVC = [segue destinationViewController];
+        priceFilterVC.previouslySelectedPriceFilters = self.priceFilters;
+        priceFilterVC.delegate= self;
+    }
+    if ([[segue identifier] isEqualToString:@"HomeToRatingFilterSegue"]) {
+        RatingFilterViewController *ratingFilterVC = [segue destinationViewController];
+        ratingFilterVC.previouslySelectedRatingFilters = self.ratingFilters;
+        ratingFilterVC.delegate= self;
     }
     
 }
@@ -106,6 +115,13 @@
     self.priceFilters = selectedFilters;
     if(self.priceFilters.count != 0){
         [self.priceFilterButton setSelected:YES];
+    }
+}
+
+- (void)didApplyRatingFilters:(nonnull NSArray *)selectedFilters {
+    self.ratingFilters = selectedFilters;
+    if(self.ratingFilters.count != 0){
+        [self.ratingFilterButton setSelected:YES];
     }
 }
 

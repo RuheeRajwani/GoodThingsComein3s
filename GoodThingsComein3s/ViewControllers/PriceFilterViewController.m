@@ -29,7 +29,7 @@
     [self setButtons];
 }
 
--(void)setButtons{
+-(void)setButtons {
     [self.applyButton setEnabled:self.selectedPriceFilters.count != 0];
     
     if ([self.selectedPriceFilters containsObject:@"1"]) {

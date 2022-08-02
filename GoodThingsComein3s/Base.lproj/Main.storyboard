@@ -149,7 +149,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Rating"/>
                                         <connections>
-                                            <segue destination="FSn-47-lAM" kind="presentation" id="mfJ-kR-y7V"/>
+                                            <segue destination="FSn-47-lAM" kind="presentation" identifier="HomeToRatingFilterSegue" id="mfJ-kR-y7V"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -183,6 +183,7 @@
                         <outlet property="distanceFilterButton" destination="rUz-vT-wCO" id="J3f-pO-5Ql"/>
                         <outlet property="homeRestaurantTableView" destination="WcC-jV-8Wk" id="hfu-jB-4c7"/>
                         <outlet property="priceFilterButton" destination="GzQ-sA-Xcf" id="uJy-un-PO6"/>
+                        <outlet property="ratingFilterButton" destination="nLp-lF-Bmx" id="EcC-Eg-XB6"/>
                         <segue destination="gAB-pC-lhx" kind="presentation" identifier="LiketoSignUpLoginSegue" modalPresentationStyle="automatic" id="xcO-Bp-M1A"/>
                     </connections>
                 </viewController>
@@ -1098,7 +1099,7 @@
         <!--Ratings Filter-->
         <scene sceneID="o57-i4-sct">
             <objects>
-                <viewController title="Ratings Filter" id="FSn-47-lAM" sceneMemberID="viewController">
+                <viewController title="Ratings Filter" id="FSn-47-lAM" customClass="RatingFilterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yM8-KS-Wzn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1114,6 +1115,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Apply"/>
                                 <connections>
+                                    <action selector="ratingsFilterViewControllerDidTapApply:" destination="FSn-47-lAM" eventType="touchUpInside" id="GqA-gk-bZN"/>
                                     <action selector="ratingsFilterViewControllerDidTapApply:" destination="xEZ-No-HTz" eventType="touchUpInside" id="dzk-ca-8CM"/>
                                 </connections>
                             </button>
@@ -1128,6 +1130,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" image="1Star" title=""/>
                                                 <connections>
+                                                    <action selector="ratingsFilterViewControllerDidTap1Star:" destination="FSn-47-lAM" eventType="touchUpInside" id="Gi4-Ls-biL"/>
                                                     <action selector="ratingsFilterViewControllerDidTap1Star:" destination="xEZ-No-HTz" eventType="touchUpInside" id="S4t-xW-9dH"/>
                                                 </connections>
                                             </button>
@@ -1137,6 +1140,7 @@
                                                 <buttonConfiguration key="configuration" style="gray" image="2Stars" title=""/>
                                                 <connections>
                                                     <action selector="ratingsFilterViewControllerDidTap2Stars:" destination="xEZ-No-HTz" eventType="touchUpInside" id="86K-we-9Kh"/>
+                                                    <action selector="ratingsFilterViewControllerDidTap2Stars:" destination="FSn-47-lAM" eventType="touchUpInside" id="Ruc-Ym-twJ"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7B-gW-v09">
@@ -1145,6 +1149,7 @@
                                                 <buttonConfiguration key="configuration" style="gray" image="3Stars" title=""/>
                                                 <connections>
                                                     <action selector="ratingsFilterViewControllerDidTap3Stars:" destination="xEZ-No-HTz" eventType="touchUpInside" id="9bL-bp-tbU"/>
+                                                    <action selector="ratingsFilterViewControllerDidTap3Stars:" destination="FSn-47-lAM" eventType="touchUpInside" id="btt-Mz-Z0b"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1158,6 +1163,7 @@
                                                 <buttonConfiguration key="configuration" style="gray" image="4Stars" title=""/>
                                                 <connections>
                                                     <action selector="ratingsFilterViewControllerDidTap4Stars:" destination="xEZ-No-HTz" eventType="touchUpInside" id="Y4M-8L-nam"/>
+                                                    <action selector="ratingsFilterViewControllerDidTap4Stars:" destination="FSn-47-lAM" eventType="touchUpInside" id="geW-vG-3Pt"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8MY-fB-SmH">
@@ -1166,6 +1172,7 @@
                                                 <buttonConfiguration key="configuration" style="gray" image="5Stars" title=""/>
                                                 <connections>
                                                     <action selector="ratingsFilterViewControllerDidTap5Stars:" destination="xEZ-No-HTz" eventType="touchUpInside" id="j4L-70-ETX"/>
+                                                    <action selector="ratingsFilterViewControllerDidTap5Stars:" destination="FSn-47-lAM" eventType="touchUpInside" id="pw2-3p-NW1"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1186,6 +1193,14 @@
                             <constraint firstItem="kAo-NH-JSO" firstAttribute="bottom" secondItem="SB3-jG-YJe" secondAttribute="bottom" constant="485" id="vJw-9b-Idw"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="applyButton" destination="SB3-jG-YJe" id="6hR-RR-sWV"/>
+                        <outlet property="fiveStarButton" destination="8MY-fB-SmH" id="cdn-Oy-gLP"/>
+                        <outlet property="fourStarButton" destination="Vxr-37-0WJ" id="E3C-fA-zf7"/>
+                        <outlet property="oneStarButton" destination="OEf-zx-Tun" id="keu-ei-W5X"/>
+                        <outlet property="threeStarButton" destination="u7B-gW-v09" id="6md-Ru-hhU"/>
+                        <outlet property="twoStarButton" destination="OEf-zx-Tun" id="y4W-fG-r6i"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GC0-BO-fiY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="xEZ-No-HTz" userLabel="Exit" sceneMemberID="exit"/>
