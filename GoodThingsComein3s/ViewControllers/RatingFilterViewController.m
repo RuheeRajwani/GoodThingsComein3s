@@ -28,6 +28,13 @@
     [self setButtons];
 }
 
+- (IBAction)ratingsFilterViewControllerDidTapApply:(id)sender {
+    [self.delegate didApplyRatingFilters:[self.selectedRatingFilters copy]];
+    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Button logic
+
 - (void)setButtons {
     [self.applyButton setEnabled:self.selectedRatingFilters.count!=0];
     
@@ -47,11 +54,6 @@
         [self.fourStarButton setSelected:YES];
     }
 
-}
-
-- (IBAction)ratingsFilterViewControllerDidTapApply:(id)sender {
-    [self.delegate didApplyRatingFilters:[self.selectedRatingFilters copy]];
-    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)ratingsFilterViewControllerDidTap5Stars:(id)sender {
@@ -84,6 +86,8 @@
     }
     [self.applyButton setEnabled:self.selectedRatingFilters.count != 0];
 }
+
+
 
 
 @end

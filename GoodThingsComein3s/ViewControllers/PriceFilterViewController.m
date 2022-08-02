@@ -29,6 +29,13 @@
     [self setButtons];
 }
 
+- (IBAction)priceFilterViewControllerDidTapApply:(id)sender {
+    [self.delegate didApplyPriceFilters:[self.selectedPriceFilters copy]];
+    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Button logic
+
 -(void)setButtons {
     [self.applyButton setEnabled:self.selectedPriceFilters.count != 0];
     
@@ -44,11 +51,6 @@
     if ([self.selectedPriceFilters containsObject:@"4"]) {
         [self.fourDollarSignButton setSelected:YES];
     }
-}
-
-- (IBAction)priceFilterViewControllerDidTapApply:(id)sender {
-    [self.delegate didApplyPriceFilters:[self.selectedPriceFilters copy]];
-    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)priceFilterViewControllerDidTap1Sign:(id)sender {

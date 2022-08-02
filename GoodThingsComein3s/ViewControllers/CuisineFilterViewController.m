@@ -39,6 +39,18 @@
     [self.applyButton setEnabled:self.selectedCuisineFilters.count != 0];
 }
 
+- (void)didTapFilterButton:(UIButton *)button{
+    if ([self.selectedCuisineFilters containsObject:button.titleLabel.text]){
+        [self.selectedCuisineFilters removeObject:button.titleLabel.text];
+        [button setSelected:NO];
+    } else {
+        [self.selectedCuisineFilters addObject:button.titleLabel.text];
+        [button setSelected:YES];
+    }
+    [self.applyButton setEnabled:self.selectedCuisineFilters.count != 0];
+}
+
+#pragma mark - Collection view
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     CuisineFilterButtonCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CuisineFilterButtonCollectionViewCell" forIndexPath:indexPath];
@@ -52,17 +64,6 @@
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.cuisineButtonText.count;
-}
-
-- (void)didTapFilterButton:(UIButton *)button{
-    if ([self.selectedCuisineFilters containsObject:button.titleLabel.text]){
-        [self.selectedCuisineFilters removeObject:button.titleLabel.text];
-        [button setSelected:NO];
-    } else {
-        [self.selectedCuisineFilters addObject:button.titleLabel.text];
-        [button setSelected:YES];
-    }
-    [self.applyButton setEnabled:self.selectedCuisineFilters.count != 0];
 }
 
 
