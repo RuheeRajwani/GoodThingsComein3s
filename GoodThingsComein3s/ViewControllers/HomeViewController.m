@@ -13,17 +13,19 @@
 #import "SignUpLoginViewController.h"
 #import "DetailsViewController.h"
 #import "CuisineFilterViewController.h"
+#import "DistanceFilterViewController.h"
 
-@interface HomeViewController () <PriceFilterViewControllerDelegate, CuisineFilterDelegate, RestaurantTableViewCellDelegate, SignUpLoginViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface HomeViewController () <PriceFilterViewControllerDelegate, CuisineFilterDelegate, DistanceFilterDelegate, RestaurantTableViewCellDelegate, SignUpLoginViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *homeRestaurantTableView;
 @property (nonatomic) NSArray *restaurantArray;
 @property (nonatomic) NSArray *priceFilters;
 @property (nonatomic) NSArray *cuisineFilters;
+@property (nonatomic) NSNumber *radius;
 @property (weak, nonatomic) IBOutlet UIButton *priceFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *cuisineFilterButton;
+@property (weak, nonatomic) IBOutlet UIButton *distanceFilterButton;
 @property (nonatomic) NSString *categories;
-@property (nonatomic) NSInteger *radius;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (nonatomic) Restaurant *restaurantToAddToLikesFollowingLoginSignup;
@@ -77,6 +79,11 @@
         cuisineFilterVC.previouslySelectedCuisineFilters = self.cuisineFilters;
         cuisineFilterVC.delegate= self;
     }
+    if ([[segue identifier] isEqualToString:@"HomeToDistanceFilterSegue"]) {
+        DistanceFilterViewController *distanceFilterVC = [segue destinationViewController];
+        distanceFilterVC.previouslySelectedRadius = self.radius;
+        distanceFilterVC.delegate= self;
+    }
     
 }
 
@@ -106,6 +113,13 @@
     self.cuisineFilters = selectedFilters;
     if(self.cuisineFilters.count != 0){
         [self.cuisineFilterButton setSelected:YES];
+    }
+}
+
+- (void)didApplyDistanceFilter:(NSNumber *)radius {
+    self.radius = radius;
+    if(self.radius != nil) {
+        [self.distanceFilterButton setSelected:YES];
     }
 }
 

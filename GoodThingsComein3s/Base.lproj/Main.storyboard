@@ -141,7 +141,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Distance"/>
                                         <connections>
-                                            <segue destination="CnM-Cf-EzH" kind="presentation" id="UkZ-Za-Ior"/>
+                                            <segue destination="CnM-Cf-EzH" kind="presentation" identifier="HomeToDistanceFilterSegue" id="UkZ-Za-Ior"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLp-lF-Bmx">
@@ -180,6 +180,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="bfb-UT-bol" id="qh5-UT-TKx"/>
                         <outlet property="cuisineFilterButton" destination="xxD-Zw-QT0" id="d10-6P-i1K"/>
+                        <outlet property="distanceFilterButton" destination="rUz-vT-wCO" id="J3f-pO-5Ql"/>
                         <outlet property="homeRestaurantTableView" destination="WcC-jV-8Wk" id="hfu-jB-4c7"/>
                         <outlet property="priceFilterButton" destination="GzQ-sA-Xcf" id="uJy-un-PO6"/>
                         <segue destination="gAB-pC-lhx" kind="presentation" identifier="LiketoSignUpLoginSegue" modalPresentationStyle="automatic" id="xcO-Bp-M1A"/>
@@ -469,11 +470,11 @@
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" title="Profile" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tuK-zV-H98" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XrO-7P-Dlp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Pgp-wR-Orv">
-                                <rect key="frame" x="20" y="254.5" width="374" height="641.5"/>
+                                <rect key="frame" x="20" y="222.5" width="374" height="619.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wI2-bt-I0i">
                                     <size key="itemSize" width="180" height="162"/>
@@ -524,13 +525,13 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your saved restaurants:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZx-Go-Qm6">
-                                <rect key="frame" x="40" y="199" width="179" height="20.5"/>
+                                <rect key="frame" x="40" y="167" width="179" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTN-Sh-2yB">
-                                <rect key="frame" x="20" y="99" width="239" height="57.5"/>
+                                <rect key="frame" x="20" y="67" width="239" height="57.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="48"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -555,7 +556,7 @@
                     <navigationItem key="navigationItem" id="MIN-mu-ULU">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="XxP-7g-xkt">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="2bj-xd-lMO">
-                                <rect key="frame" x="302" y="5" width="92" height="34.5"/>
+                                <rect key="frame" x="302" y="10.5" width="92" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Logout"/>
@@ -740,7 +741,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TB3-MY-gDG">
-                                <rect key="frame" x="167.5" y="222" width="79.5" height="47"/>
+                                <rect key="frame" x="167.5" y="222" width="79" height="47"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title=" Login" buttonSize="large"/>
                                 <connections>
@@ -975,7 +976,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="shz-Pp-Lg4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gYc-zn-VoG">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1194,7 +1195,7 @@
         <!--Distance Filter-->
         <scene sceneID="w1B-L9-oxl">
             <objects>
-                <viewController title="Distance Filter" id="CnM-Cf-EzH" sceneMemberID="viewController">
+                <viewController title="Distance Filter" id="CnM-Cf-EzH" customClass="DistanceFilterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GGa-wl-X0G">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1205,39 +1206,69 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="z9V-R5-777">
-                                <rect key="frame" x="22.5" y="164" width="369" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="365" id="onu-hO-80W"/>
-                                </constraints>
-                            </slider>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zD-pu-Qrp">
-                                <rect key="frame" x="176.5" y="244" width="61" height="31"/>
+                                <rect key="frame" x="176.5" y="285.5" width="61" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Apply"/>
                                 <connections>
-                                    <action selector="distanceFilterViewControllerDidTapApply:" destination="Waw-ds-NC5" eventType="touchUpInside" id="Ixz-W2-qwe"/>
+                                    <action selector="distanceFilterViewControllerDidTapApply:" destination="CnM-Cf-EzH" eventType="touchUpInside" id="AGF-TA-WHb"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fwv-GX-4U2">
+                                <rect key="frame" x="14" y="164" width="386" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gl2-ni-DQ0">
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.20000000000000001" minValue="0.0" maxValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="z9V-R5-777">
+                                        <rect key="frame" x="3" y="0.0" width="380" height="31"/>
+                                        <connections>
+                                            <action selector="distanceSliderValueDidChange:" destination="CnM-Cf-EzH" eventType="valueChanged" id="lYX-h4-6XX"/>
+                                        </connections>
+                                    </slider>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25 miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZi-2M-dJ2">
+                                        <rect key="frame" x="386" y="0.0" width="0.0" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lrb-Vn-CpQ">
+                                <rect key="frame" x="136.5" y="215" width="141" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LOc-4c-peh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="LOc-4c-peh" firstAttribute="trailing" secondItem="s4D-6f-hrg" secondAttribute="trailing" constant="290" id="5Jt-Dm-cPp"/>
-                            <constraint firstItem="z9V-R5-777" firstAttribute="centerX" secondItem="LOc-4c-peh" secondAttribute="centerX" id="NQZ-Td-53G"/>
-                            <constraint firstItem="s4D-6f-hrg" firstAttribute="top" secondItem="LOc-4c-peh" secondAttribute="top" constant="50" id="Orq-fm-4bq"/>
-                            <constraint firstItem="s4D-6f-hrg" firstAttribute="leading" secondItem="LOc-4c-peh" secondAttribute="leading" constant="20" id="k7Y-ZL-HPs"/>
-                            <constraint firstItem="7zD-pu-Qrp" firstAttribute="top" secondItem="z9V-R5-777" secondAttribute="bottom" constant="50" id="kC7-9N-4RQ"/>
-                            <constraint firstItem="z9V-R5-777" firstAttribute="top" secondItem="s4D-6f-hrg" secondAttribute="bottom" constant="40" id="qTJ-wZ-TBZ"/>
-                            <constraint firstItem="7zD-pu-Qrp" firstAttribute="centerX" secondItem="LOc-4c-peh" secondAttribute="centerX" id="z3O-Lu-OpO"/>
-                            <constraint firstItem="LOc-4c-peh" firstAttribute="bottom" secondItem="7zD-pu-Qrp" secondAttribute="bottom" constant="567" id="zGr-Ny-ylb"/>
+                            <constraint firstItem="LOc-4c-peh" firstAttribute="trailing" secondItem="s4D-6f-hrg" secondAttribute="trailing" constant="290" id="308-zd-1xY"/>
+                            <constraint firstItem="fwv-GX-4U2" firstAttribute="centerX" secondItem="LOc-4c-peh" secondAttribute="centerX" id="KPK-pd-7fL"/>
+                            <constraint firstItem="s4D-6f-hrg" firstAttribute="leading" secondItem="LOc-4c-peh" secondAttribute="leading" constant="20" id="Lrt-PR-Y79"/>
+                            <constraint firstItem="s4D-6f-hrg" firstAttribute="top" secondItem="LOc-4c-peh" secondAttribute="top" constant="50" id="QZs-Qk-QXy"/>
+                            <constraint firstItem="Lrb-Vn-CpQ" firstAttribute="centerX" secondItem="LOc-4c-peh" secondAttribute="centerX" id="Vf2-ra-wCE"/>
+                            <constraint firstItem="LOc-4c-peh" firstAttribute="bottom" secondItem="7zD-pu-Qrp" secondAttribute="bottom" constant="525.5" id="eiH-Gf-VAM"/>
+                            <constraint firstItem="fwv-GX-4U2" firstAttribute="top" secondItem="s4D-6f-hrg" secondAttribute="bottom" constant="40" id="kdf-LW-4zy"/>
+                            <constraint firstItem="fwv-GX-4U2" firstAttribute="leading" secondItem="LOc-4c-peh" secondAttribute="leading" constant="14" id="l6i-ts-kk2"/>
+                            <constraint firstItem="Lrb-Vn-CpQ" firstAttribute="top" secondItem="fwv-GX-4U2" secondAttribute="bottom" constant="21" id="oZX-YQ-mO2"/>
+                            <constraint firstItem="7zD-pu-Qrp" firstAttribute="centerX" secondItem="LOc-4c-peh" secondAttribute="centerX" id="pjp-Jg-YOe"/>
+                            <constraint firstItem="7zD-pu-Qrp" firstAttribute="top" secondItem="Lrb-Vn-CpQ" secondAttribute="bottom" constant="50" id="uPm-zQ-g8I"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="applyButton" destination="7zD-pu-Qrp" id="Kap-ox-8OR"/>
+                        <outlet property="distanceSlider" destination="z9V-R5-777" id="pEJ-5q-Y0N"/>
+                        <outlet property="distanceSliderValueLabel" destination="Lrb-Vn-CpQ" id="OIu-rv-45L"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1rH-aB-EGs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="Waw-ds-NC5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-5617.3913043478269" y="-1923.2142857142856"/>
+            <point key="canvasLocation" x="-5620" y="-1923.6966824644549"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
