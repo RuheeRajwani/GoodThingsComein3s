@@ -9,7 +9,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol CuisineFilterDelegate
+-(void) didApplyCuisineFilters:(NSArray *)selectedFilters;
+
+@end
+
 @interface CuisineFilterViewController : UIViewController
+
+@property (nonatomic, weak) id<CuisineFilterDelegate> delegate;
+@property (nonatomic) NSArray *previouslySelectedCuisineFilters;
 
 @end
 

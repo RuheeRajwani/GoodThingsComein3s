@@ -12,13 +12,16 @@
 #import "RestaurantTableViewCell.h"
 #import "SignUpLoginViewController.h"
 #import "DetailsViewController.h"
+#import "CuisineFilterViewController.h"
 
-@interface HomeViewController () <PriceFilterViewControllerDelegate, RestaurantTableViewCellDelegate, SignUpLoginViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface HomeViewController () <PriceFilterViewControllerDelegate, CuisineFilterDelegate, RestaurantTableViewCellDelegate, SignUpLoginViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *homeRestaurantTableView;
 @property (nonatomic) NSArray *restaurantArray;
 @property (nonatomic) NSArray *priceFilters;
+@property (nonatomic) NSArray *cuisineFilters;
 @property (weak, nonatomic) IBOutlet UIButton *priceFilterButton;
+@property (weak, nonatomic) IBOutlet UIButton *cuisineFilterButton;
 @property (nonatomic) NSString *categories;
 @property (nonatomic) NSInteger *radius;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -46,6 +49,7 @@
     self.activityIndicator.hidden =YES;
     
     self.priceFilters = [[NSArray alloc] init];
+    self.cuisineFilters = [[NSArray alloc] init];
 }
 
 - (void)fetchRestaurants {
@@ -68,6 +72,12 @@
         DetailsViewController *detailVC = [segue destinationViewController];
         detailVC.restaurantToShow = self.restaurantArray[restaurantIndexPath.row];
     }
+    if ([[segue identifier] isEqualToString:@"HomeToCuisineFilterSegue"]) {
+        CuisineFilterViewController *cuisineFilterVC = [segue destinationViewController];
+        cuisineFilterVC.previouslySelectedCuisineFilters = self.cuisineFilters;
+        cuisineFilterVC.delegate= self;
+    }
+    
 }
 
 #pragma mark - Table view
@@ -89,6 +99,13 @@
     self.priceFilters = selectedFilters;
     if(self.priceFilters.count != 0){
         [self.priceFilterButton setSelected:YES];
+    }
+}
+
+- (void)didApplyCuisineFilters:(nonnull NSArray *)selectedFilters {
+    self.cuisineFilters = selectedFilters;
+    if(self.cuisineFilters.count != 0){
+        [self.cuisineFilterButton setSelected:YES];
     }
 }
 

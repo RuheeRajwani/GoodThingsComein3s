@@ -7,48 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4A32D9AC-7440-4FB7-9621-1F097E0B11E6"
-            shouldBeEnabled = "Yes"
+            uuid = "0BEDCE66-4304-47FE-BE7F-26A0B4DE4B96"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GoodThingsComein3s/ViewControllers/LoginSignUpNavigationController.m"
+            filePath = "GoodThingsComein3s/ViewControllers/HomeViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "-dismissLoginSignUpFromLogin"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "-prepareForSegue:sender:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B7739397-CAE1-4160-8AE0-775C21011A92"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoodThingsComein3s/ViewControllers/LoginSignUpNavigationController.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "-dismissLoginSignUpFromSignUp"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "282E162B-2682-47D2-B20B-52C8DDFBC9D9"
+            uuid = "697D5C2D-2AAE-4F8D-A10A-89C506E4AE73"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodThingsComein3s/ViewControllers/HomeViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "-appliedPriceFilters:"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "-didApplyCuisineFilters:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
