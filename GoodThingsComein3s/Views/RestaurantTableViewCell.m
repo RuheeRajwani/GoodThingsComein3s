@@ -11,6 +11,20 @@
 
 
 @implementation RestaurantTableViewCell
+
+- (instancetype)initWithCoder:(NSCoder *)coder{
+    if (self = [super initWithCoder:coder]){
+        UITapGestureRecognizer *doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didDoubleTap:)];
+        [doubleTapGesture setNumberOfTapsRequired:2];
+        [self addGestureRecognizer:doubleTapGesture];
+    }
+    return self;
+}
+
+-(void) didDoubleTap: (UITapGestureRecognizer *)recognizer {
+    [self.delegate didTapLikeForRestaurant:self.restaurant];
+}
+
 - (IBAction)homeViewControllerDidTapLike:(id)sender {
     [self.delegate didTapLikeForRestaurant:self.restaurant];
     [self.likeButton setImage:[UIImage systemImageNamed:@"heart.fill"] forState:UIControlStateNormal];
