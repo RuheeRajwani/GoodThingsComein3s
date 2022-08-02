@@ -14,8 +14,9 @@
 #import "AFNetworking.h"
 #import "DetailsViewController.h"
 #import "Restaurant.h"
+#import "SignUpLoginViewController.h"
 
-@interface ProfileViewController ()<UICollectionViewDataSource>
+@interface ProfileViewController ()<SignUpLoginViewControllerDelegate,UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UILabel *nameFieldToFill;
 @property (weak, nonatomic) IBOutlet UICollectionView *profileLikedRestaurantsCollectionView;
@@ -41,7 +42,7 @@
         [self.profileLikedRestaurantsCollectionView reloadData];
        
     } else {
-        [self performSegueWithIdentifier:@"profileToSignUpLogin" sender:@"profileView"];
+        [self performSegueWithIdentifier:@"profilePageToSignUpLoginSegue" sender:@"profileView"];
     }
 }
 
@@ -70,8 +71,12 @@
         NSIndexPath *restaurantIndexPath = [self.profileLikedRestaurantsCollectionView indexPathForCell:sender];
         DetailsViewController *detailVC = [segue destinationViewController];
         detailVC.restaurantToShow = [self _pfObjectToRestaurant: self.likedRestaurants[restaurantIndexPath.row]];
-        
     }
+    if ([[segue identifier] isEqualToString:@"profilePageToSignUpLoginSegue"]) {
+        SignUpLoginViewController *signUpLoginVC = [segue destinationViewController];
+        signUpLoginVC.delegate = self;
+    }
+    
 }
 
 - (Restaurant *) _pfObjectToRestaurant:(PFObject *)likedRestaurant{
@@ -107,7 +112,12 @@
     return self.likedRestaurants.count;
 }
 
+- (void)signUpLoginViewControllerDidDismissForUser {
+        [self getUserInformation];
+    }
+    
 
-
-
-@end
+    
+   
+    
+    @end
