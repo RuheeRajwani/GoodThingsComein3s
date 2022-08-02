@@ -13,6 +13,7 @@
 #import "APIManager.h"
 #import "AFNetworking.h"
 #import "DetailsViewController.h"
+#import "Restaurant.h"
 
 @interface ProfileViewController ()<UICollectionViewDataSource>
 
@@ -30,7 +31,7 @@
     [self getUserInformation];
 }
 
--(void) getUserInformation {
+- (void)getUserInformation {
     PFUser *curr = [PFUser currentUser];
     if(curr != nil) {
         NSString *greeting =@"Hi ";
@@ -67,11 +68,30 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"likedRestaurantToDetailsView"]) {
         NSIndexPath *restaurantIndexPath = [self.profileLikedRestaurantsCollectionView indexPathForCell:sender];
-        PFObject *restaurantToView = self.likedRestaurants[restaurantIndexPath.row];
         DetailsViewController *detailVC = [segue destinationViewController];
-        detailVC.yelpRestaurantID = restaurantToView[@"yelpID"];
+        detailVC.restaurantToShow = [self _pfObjectToRestaurant: self.likedRestaurants[restaurantIndexPath.row]];
         
     }
+}
+
+- (Restaurant *) _pfObjectToRestaurant:(PFObject *)likedRestaurant{
+    Restaurant *restaurantToReturn = [[Restaurant alloc]init];
+    [likedRestaurant fetchIfNeeded];
+    restaurantToReturn.name = likedRestaurant[@"name"];
+    restaurantToReturn.displayAddress = likedRestaurant[@"displayAddress"];
+    restaurantToReturn.price = likedRestaurant[@"price"];
+    restaurantToReturn.categories = likedRestaurant[@"categories"];
+    restaurantToReturn.restaurantYelpID = likedRestaurant[@"restaurantYelpID"];
+    
+    PFFileObject *restaurantImageFile = likedRestaurant[@"restaurantImage"];
+    NSData *restaurantImageData = restaurantImageFile.getData;
+    restaurantToReturn.restaurantImage = [UIImage imageWithData:restaurantImageData];
+    
+    PFFileObject *ratingImageFile = likedRestaurant[@"ratingImage"];
+    NSData *ratingImageData = ratingImageFile.getData;
+    restaurantToReturn.ratingImage = [UIImage imageWithData:ratingImageData];
+    
+    return restaurantToReturn;
 }
 
 #pragma mark - Collection View
@@ -79,7 +99,7 @@
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     RestaurantCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RestaurantCollectionViewCell" forIndexPath:indexPath];
-    cell.restaurant = self.likedRestaurants[indexPath.row];
+    cell.restaurant = [self _pfObjectToRestaurant:self.likedRestaurants[indexPath.row]];
     return cell;
 }
 
