@@ -61,7 +61,7 @@
     [self dollarSignButtonTapped:sender :@"4"];
 }
 
--(void)dollarSignButtonTapped:(id)sender :(NSString *)number {
+-(void) dollarSignButtonTapped:(id)sender :(NSString *)number {
     if([sender isSelected] == NO) {
         [sender setSelected:YES];
         [self.selectedPriceFilters addObject:number];

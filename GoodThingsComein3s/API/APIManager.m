@@ -35,21 +35,11 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
     return self;
 }
 
--(NSArray*) setRequestAndSession: (NSString *)urlString {
-    
-    NSMutableArray *toReturn = [[NSMutableArray alloc] init];
-
+-(NSMutableURLRequest*) _getURLRequestForURLString: (NSString *)urlString {
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
-    
     [request setValue:self.authHeader forHTTPHeaderField:@"Authorization"];
-    
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-    
-    [toReturn addObject:request];
-    [toReturn addObject:session];
-    
-    return toReturn;
+    return request;
 }
 
 #pragma mark - Requests
@@ -69,8 +59,10 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
         urlString = [NSString stringWithFormat:@"%@%@%@",urlString, @"&categories=", price];
     }
     
-    NSArray *requestAndSession =  [self setRequestAndSession:urlString];
-    NSURLSessionDataTask *task = [requestAndSession[1] dataTaskWithRequest:requestAndSession[0] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSMutableURLRequest *request =  [self _getURLRequestForURLString:urlString];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             if (error != nil) {
                NSLog(@"%@",error.description);
            }
@@ -84,11 +76,12 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
     [task resume];
 }
 
--(void)getRestaurantSearchResults:(NSString *)location searchTerm:(NSString *)searchTerm completion:(void(^)(NSArray *restaurants, NSError *error))completion {
+- (void)getRestaurantSearchResults:(NSString *)location searchTerm:(NSString *)searchTerm completion:(void(^)(NSArray *restaurants, NSError *error))completion {
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%@", yelpBuisnessSearchString,@"?location=",location, @"&term=", searchTerm];
     
-    NSArray *requestAndSession =  [self setRequestAndSession:urlString];
-    NSURLSessionDataTask *task = [requestAndSession[1] dataTaskWithRequest:requestAndSession[0] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSMutableURLRequest *request =  [self _getURLRequestForURLString:urlString];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
            if (error != nil) {
                NSLog(@"%@",error.description);
            }
@@ -105,8 +98,9 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
 - (void)getRestaurantDetails:(NSString *)restaurantID completion:(void(^)(NSDictionary *restaurant, NSError *error))completion {
     NSString *urlString = [NSString stringWithFormat:@"%@%@", yelpBuisnessDetailsString, restaurantID];
     
-    NSArray *requestAndSession = [self setRequestAndSession:urlString];
-    NSURLSessionDataTask *task = [requestAndSession[1] dataTaskWithRequest:requestAndSession[0] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSMutableURLRequest *request =  [self _getURLRequestForURLString:urlString];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
            if (error != nil) {
                NSLog(@"%@",error.description);
            }
@@ -121,8 +115,9 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
 - (void)getRestaurantReviews:(NSString *)restaurantID completion:(void(^)(NSArray *reviews, NSError *error))completion {
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@", yelpBuisnessDetailsString, restaurantID,@"/reviews"];
     
-    NSArray *requestAndSession = [self setRequestAndSession:urlString];
-    NSURLSessionDataTask *task = [requestAndSession[1] dataTaskWithRequest:requestAndSession[0] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSMutableURLRequest *request =  [self _getURLRequestForURLString:urlString];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
            if (error != nil) {
                NSLog(@"%@",error.description);
            }
