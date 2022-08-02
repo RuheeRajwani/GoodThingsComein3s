@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol SignUpLoginViewControllerDelegate
--(void) signUpLoginViewControllerDidDismissForUser;
+- (void)signUpLoginViewControllerDidDismissForUser;
 
 @end
 

@@ -7,21 +7,15 @@
 
 #import "RestaurantCollectionViewCell.h"
 #import <Parse/Parse.h>
+#import "Restaurant.h"
 
 @implementation RestaurantCollectionViewCell
 
--(void) setRestaurant:(PFObject *)restaurant {
+- (void)setRestaurant:(Restaurant *)restaurant {
     _restaurant = restaurant;
-    [self.restaurant fetchIfNeeded];
     if (restaurant != nil) {
-        self.restaurantName.text = self.restaurant[@"name"];
-        [self.restaurant[@"image"] getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-            if (!error) {
-                UIImage *image = [UIImage imageWithData:imageData];
-                self.restaurantImage.image = image;
-            }
-        }];
-        
+        self.restaurantName.text = self.restaurant.name;
+        self.restaurantImage.image = self.restaurant.restaurantImage;
     }
 }
 
