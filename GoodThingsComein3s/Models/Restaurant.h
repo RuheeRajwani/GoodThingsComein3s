@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) UIImage *restaurantImage;
 @property (nonatomic) UIImage *ratingImage;
 @property (nonatomic) NSString *restaurantYelpID;
+@property (nonatomic) NSNumber *score;
+@property (nonatomic) NSNumber *ratingValue;
+
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 + (NSMutableArray *)restaurantsWithArray:(NSArray *)dictionaries;

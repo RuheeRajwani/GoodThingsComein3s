@@ -43,21 +43,21 @@
     self.displayAddress = locationLabelText;
     
     NSNumber *rating = buisness[@"rating"];
-    int ratingValue = (int)(rating.doubleValue +.5);
+    self.ratingValue = [NSNumber numberWithInt:(int)(rating.doubleValue +.5)];
     
-    if (ratingValue == 1) {
+    if (self.ratingValue == 1) {
         self.ratingImage = [UIImage imageNamed:@"1StarWhiteBackground"];
         
-    } else if (ratingValue == 2) {
+    } else if (self.ratingValue == 2) {
         self.ratingImage = [UIImage imageNamed:@"2StarsWhiteBackground"];
         
-    } else if (ratingValue == 3) {
+    } else if (self.ratingValue == 3) {
         self.ratingImage = [UIImage imageNamed:@"3StarsWhiteBackground"];
         
-    }else if (ratingValue == 4) {
+    }else if (self.ratingValue == 4) {
         self.ratingImage = [UIImage imageNamed:@"4StarsWhiteBackground"];
         
-    }else if(ratingValue == 5) {
+    }else if(self.ratingValue == 5) {
         self.ratingImage = [UIImage imageNamed:@"5StarsWhiteBackground"];
     }
     return self;

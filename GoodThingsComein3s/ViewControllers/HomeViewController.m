@@ -166,6 +166,8 @@
     restaurantToAdd[@"price"] = restaurantToConvert.price;
     restaurantToAdd[@"displayAddress"] =  restaurantToConvert.displayAddress;
     restaurantToAdd[@"categories"] = restaurantToConvert.categories;
+    restaurantToAdd[@"score"] = restaurantToConvert.score;
+    restaurantToAdd[@"ratingValue"] = restaurantToConvert.ratingValue;
     
     NSData *restaurantImageData = UIImagePNGRepresentation(restaurantToConvert.restaurantImage);
     NSString *restaurantImageName = [NSString stringWithFormat:@"%@%@",restaurantToConvert.restaurantYelpID, @"image"];

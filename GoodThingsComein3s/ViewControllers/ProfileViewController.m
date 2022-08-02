@@ -87,6 +87,8 @@
     restaurantToReturn.price = likedRestaurant[@"price"];
     restaurantToReturn.categories = likedRestaurant[@"categories"];
     restaurantToReturn.restaurantYelpID = likedRestaurant[@"restaurantYelpID"];
+    restaurantToReturn.ratingValue = likedRestaurant[@"ratingValue"];
+    restaurantToReturn.score = likedRestaurant[@"score"];
     
     PFFileObject *restaurantImageFile = likedRestaurant[@"restaurantImage"];
     NSData *restaurantImageData = restaurantImageFile.getData;
