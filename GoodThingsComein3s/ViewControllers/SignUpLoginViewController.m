@@ -25,7 +25,7 @@
     [self performSegueWithIdentifier:@"signUpSegue" sender:nil];
 }
 
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"loginSegue"]) {
         LoginViewController *loginVC = [segue destinationViewController];
         loginVC.delegate= self;

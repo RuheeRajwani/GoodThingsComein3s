@@ -35,7 +35,7 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
     return self;
 }
 
--(NSMutableURLRequest*) _getURLRequestForURLString: (NSString *)urlString {
+- (NSMutableURLRequest*)_getURLRequestForURLString: (NSString *)urlString {
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     [request setValue:self.authHeader forHTTPHeaderField:@"Authorization"];
