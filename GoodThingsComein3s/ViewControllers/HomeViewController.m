@@ -45,7 +45,7 @@
     self.activityIndicator.hidden =YES;
 }
 
--(void) fetchRestaurants {
+- (void)fetchRestaurants {
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
     [[APIManager shared] getGeneratedRestaurants:@"Seattle" price:self.priceFilters categories:self.categories radius:0 completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {

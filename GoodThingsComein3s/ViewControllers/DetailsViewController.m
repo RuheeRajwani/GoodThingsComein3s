@@ -61,7 +61,7 @@
     
 }
 
--(void) setRestaurantView {
+- (void)setRestaurantView {
     self.restaurantNameLabel.text = self.restaurantToShow.name;
     self.restaurantPriceLabel.text = self.restaurantToShow.price;
     self.restaurantCategoriesLabel.text = self.restaurantToShow.categories;
@@ -81,11 +81,11 @@
     
 }
 
--(void) startTimeThread {
+- (void)startTimeThread {
     self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
 }
 
--(void) timerAction {
+- (void) timerAction {
     int desiredScrollPosition = (self.currentIndex <self.imageURLS.count - 1) ? self.currentIndex + 1 : 0;
     [self.restaurantPhotosCollectionView setNeedsLayout];
     [self.restaurantPhotosCollectionView layoutIfNeeded];

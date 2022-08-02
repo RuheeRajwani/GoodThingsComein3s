@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol PriceFilterViewControllerDelegate
--(void) appliedPriceFilters:(NSString *)priceStringToSend;
+- (void)appliedPriceFilters:(NSString *)priceStringToSend;
 
 @end
 

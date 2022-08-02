@@ -16,7 +16,7 @@
     [self.likeButton setImage:[UIImage systemImageNamed:@"heart.fill"] forState:UIControlStateNormal];
 }
 
--(void) setRestaurant:(Restaurant *)restaurant {
+- (void)setRestaurant:(Restaurant *)restaurant {
     if (restaurant !=nil) {
         _restaurant = restaurant;
         

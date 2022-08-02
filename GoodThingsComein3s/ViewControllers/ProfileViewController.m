@@ -31,7 +31,7 @@
     [self getUserInformation];
 }
 
--(void) getUserInformation {
+- (void)getUserInformation {
     PFUser *curr = [PFUser currentUser];
     if(curr != nil) {
         NSString *greeting =@"Hi ";

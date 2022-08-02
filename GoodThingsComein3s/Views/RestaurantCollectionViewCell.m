@@ -11,7 +11,7 @@
 
 @implementation RestaurantCollectionViewCell
 
--(void) setRestaurant:(Restaurant *)restaurant {
+- (void)setRestaurant:(Restaurant *)restaurant {
     _restaurant = restaurant;
     if (restaurant != nil) {
         self.restaurantName.text = self.restaurant.name;
