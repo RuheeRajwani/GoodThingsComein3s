@@ -36,7 +36,7 @@
         
         self.restaurantNameLabel.text = self.restaurant.name;
         self.restaurantAddressLabel.text = self.restaurant.displayAddress;
-        self.restaurantCategoriesLabel.text = self.restaurant.categories;
+        self.restaurantCategoriesLabel.text = self.restaurant.categoriesDisplayString;
         self.restaurantPriceLabel.text = self.restaurant.price;
         self.restaurantImageView.image = self.restaurant.restaurantImage;
         self.ratingImageView.image = self.restaurant.ratingImage;

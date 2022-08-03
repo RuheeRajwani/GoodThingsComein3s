@@ -64,7 +64,7 @@
 - (void)setRestaurantView {
     self.restaurantNameLabel.text = self.restaurantToShow.name;
     self.restaurantPriceLabel.text = self.restaurantToShow.price;
-    self.restaurantCategoriesLabel.text = self.restaurantToShow.categories;
+    self.restaurantCategoriesLabel.text = self.restaurantToShow.categoriesDisplayString;
     self.restaurantAddressLabel.text = self.restaurantToShow.displayAddress;
     self.restaurantRatingImageView.image = self.restaurantToShow.ratingImage;
     

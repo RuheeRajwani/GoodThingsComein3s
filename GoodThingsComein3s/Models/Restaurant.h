@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *price;
-@property (nonatomic) NSString *categories;
+@property (nonatomic) NSString *categoriesDisplayString;
+@property (nonatomic) NSArray *categoriesArray;
 @property (nonatomic) NSString *displayAddress;
 @property (nonatomic) UIImage *restaurantImage;
 @property (nonatomic) UIImage *ratingImage;

@@ -38,45 +38,45 @@
 - (void)setButtons {
     [self.applyButton setEnabled:self.selectedRatingFilters.count!=0];
     
-    if ([self.selectedRatingFilters containsObject:@"1"]) {
+    if ([self.selectedRatingFilters containsObject:@1]) {
         [self.oneStarButton setSelected:YES];
     }
-    if ([self.selectedRatingFilters containsObject:@"2"]) {
+    if ([self.selectedRatingFilters containsObject:@2]) {
         [self.twoStarButton setSelected:YES];
     }
-    if ([self.selectedRatingFilters containsObject:@"3"]) {
+    if ([self.selectedRatingFilters containsObject:@3]) {
         [self.threeStarButton setSelected:YES];
     }
-    if ([self.selectedRatingFilters containsObject:@"4"]) {
+    if ([self.selectedRatingFilters containsObject:@4]) {
         [self.fourStarButton setSelected:YES];
     }
-    if ([self.selectedRatingFilters containsObject:@"5"]) {
+    if ([self.selectedRatingFilters containsObject:@5]) {
         [self.fourStarButton setSelected:YES];
     }
 
 }
 
 - (IBAction)ratingsFilterViewControllerDidTap5Stars:(id)sender {
-    [self ratingButtonTapped:sender :@"5"];
+    [self ratingButtonTapped:sender :@5];
 }
 
 - (IBAction)ratingsFilterViewControllerDidTap4Stars:(id)sender {
-    [self ratingButtonTapped:sender :@"4"];
+    [self ratingButtonTapped:sender :@4];
 }
 
 - (IBAction)ratingsFilterViewControllerDidTap3Stars:(id)sender {
-    [self ratingButtonTapped:sender :@"3"];
+    [self ratingButtonTapped:sender :@3];
 }
 
 - (IBAction)ratingsFilterViewControllerDidTap2Stars:(id)sender {
-    [self ratingButtonTapped:sender :@"2"];
+    [self ratingButtonTapped:sender :@2];
 }
 
 - (IBAction)ratingsFilterViewControllerDidTap1Star:(id)sender {
-    [self ratingButtonTapped:sender :@"1"];
+    [self ratingButtonTapped:sender :@1];
 }
 
-- (void)ratingButtonTapped:(id)sender :(NSString *)number {
+- (void)ratingButtonTapped:(id)sender :(NSNumber *)number {
     if([sender isSelected] == NO) {
         [sender setSelected:YES];
         [self.selectedRatingFilters addObject:number];

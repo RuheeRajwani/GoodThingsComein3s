@@ -15,6 +15,7 @@
     self.name = buisness[@"name"];
     self.price = buisness[@"price"];
     self.restaurantYelpID = buisness[@"id"];
+    self.categoriesArray = buisness[@"categories"];
     
     NSURL *restaurantImageURL = [NSURL URLWithString: buisness[@"image_url"]];
     NSData *restaurantImageData = [NSData dataWithContentsOfURL:restaurantImageURL];
@@ -29,7 +30,7 @@
                 categoryLabelText = [NSString stringWithFormat:@"%@%@%@", categoryLabelText,@", " ,category[@"title"] ];
             }
         }
-        self.categories = categoryLabelText;
+        self.categoriesDisplayString= categoryLabelText;
     }
     
     NSString *locationLabelText = [[NSString alloc] init];
@@ -45,19 +46,19 @@
     NSNumber *rating = buisness[@"rating"];
     self.ratingValue = [NSNumber numberWithInt:(int)(rating.doubleValue +.5)];
     
-    if (self.ratingValue == 1) {
+    if ([self.ratingValue intValue] == 1) {
         self.ratingImage = [UIImage imageNamed:@"1StarWhiteBackground"];
         
-    } else if (self.ratingValue == 2) {
+    } else if ([self.ratingValue intValue] == 2) {
         self.ratingImage = [UIImage imageNamed:@"2StarsWhiteBackground"];
         
-    } else if (self.ratingValue == 3) {
+    } else if ([self.ratingValue intValue] == 3) {
         self.ratingImage = [UIImage imageNamed:@"3StarsWhiteBackground"];
         
-    }else if (self.ratingValue == 4) {
+    }else if ([self.ratingValue intValue] == 4) {
         self.ratingImage = [UIImage imageNamed:@"4StarsWhiteBackground"];
         
-    }else if(self.ratingValue == 5) {
+    }else if([self.ratingValue intValue] == 5) {
         self.ratingImage = [UIImage imageNamed:@"5StarsWhiteBackground"];
     }
     return self;

@@ -20,17 +20,21 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *homeRestaurantTableView;
 @property (nonatomic) NSArray *restaurantArray;
+
 @property (nonatomic) NSArray *priceFilters;
 @property (nonatomic) NSArray *cuisineFilters;
 @property (nonatomic) NSArray *ratingFilters;
 @property (nonatomic) NSNumber *radius;
+
 @property (weak, nonatomic) IBOutlet UIButton *priceFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *cuisineFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *ratingFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *distanceFilterButton;
-@property (nonatomic) NSString *categories;
-@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic) NSMutableArray *filterPriority;
+
+@property (nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 @property (nonatomic) Restaurant *restaurantToAddToLikesFollowingLoginSignup;
 
 @end
@@ -56,12 +60,32 @@
     self.priceFilters = [[NSArray alloc] init];
     self.cuisineFilters = [[NSArray alloc] init];
     self.ratingFilters = [[NSArray alloc] init];
+    self.filterPriority = [[NSMutableArray alloc] init];
 }
 
 - (void)fetchRestaurants {
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
+    
+    NSString *location = @"Seattle";
+    if ([PFUser currentUser] != nil){
+        [[PFUser currentUser] fetchIfNeeded];
+        location = [PFUser currentUser][@"location"];
     }
+    NSNumber *milesToMeters = [NSNumber numberWithInt:(int) [self.radius intValue] * 1609.34];
+    [[APIManager shared] getGeneratedRestaurants:location prices:self.priceFilters cuisines:self.cuisineFilters ratings:self.ratingFilters radius:milesToMeters filterPriority:[self.filterPriority copy] completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
+        if(restaurants) {
+            self.restaurantArray = restaurants;
+            NSLog(@"Successfully loaded array");
+        } else {
+            NSLog(@"Error loading restaurants");
+        }
+        [self.homeRestaurantTableView reloadData];
+        [self.refreshControl endRefreshing];
+        [self.activityIndicator stopAnimating];
+        self.homeRestaurantTableView.hidden = NO;
+    }];
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"LiketoSignUpLoginSegue"]) {
@@ -115,6 +139,9 @@
     self.priceFilters = selectedFilters;
     if(self.priceFilters.count != 0){
         [self.priceFilterButton setSelected:YES];
+        if (![self.filterPriority containsObject:@"price"]){
+            [self.filterPriority addObject:@"price"];
+        }
     }
 }
 
@@ -122,6 +149,9 @@
     self.ratingFilters = selectedFilters;
     if(self.ratingFilters.count != 0){
         [self.ratingFilterButton setSelected:YES];
+        if (![self.filterPriority containsObject:@"rating"]){
+            [self.filterPriority addObject:@"rating"];
+        }
     }
 }
 
@@ -129,6 +159,9 @@
     self.cuisineFilters = selectedFilters;
     if(self.cuisineFilters.count != 0){
         [self.cuisineFilterButton setSelected:YES];
+        if (![self.filterPriority containsObject:@"cuisine"]){
+            [self.filterPriority addObject:@"cuisine"];
+        }
     }
 }
 
@@ -165,9 +198,8 @@
     restaurantToAdd[@"restaurantYelpID"] = restaurantToConvert.restaurantYelpID;
     restaurantToAdd[@"price"] = restaurantToConvert.price;
     restaurantToAdd[@"displayAddress"] =  restaurantToConvert.displayAddress;
-    restaurantToAdd[@"categories"] = restaurantToConvert.categories;
-    restaurantToAdd[@"score"] = restaurantToConvert.score;
-    restaurantToAdd[@"ratingValue"] = restaurantToConvert.ratingValue;
+    restaurantToAdd[@"categoriesDisplayString"] = restaurantToConvert.categoriesDisplayString;
+    
     
     NSData *restaurantImageData = UIImagePNGRepresentation(restaurantToConvert.restaurantImage);
     NSString *restaurantImageName = [NSString stringWithFormat:@"%@%@",restaurantToConvert.restaurantYelpID, @"image"];
