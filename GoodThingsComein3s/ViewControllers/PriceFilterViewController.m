@@ -16,8 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *fourDollarSignButton;
 @property (nonatomic) NSMutableArray *selectedPriceFilters;
 
-
-
 @end
 
 @implementation PriceFilterViewController

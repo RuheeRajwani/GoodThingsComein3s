@@ -9,7 +9,6 @@
 #import "LoginViewController.h"
 #import "SignUpViewController.h"
 
-
 @interface SignUpLoginViewController ()<LoginViewControllerDelegate,SignUpViewControllerDelegate>
 
 @end
@@ -51,6 +50,5 @@
         
     }];
 }
-
 
 @end

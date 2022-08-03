@@ -36,8 +36,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *distanceFilterButton;
 @property (weak, nonatomic) IBOutlet UILabel *noRemainingRestaurantsLabel;
 
-
-
 @property (nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 

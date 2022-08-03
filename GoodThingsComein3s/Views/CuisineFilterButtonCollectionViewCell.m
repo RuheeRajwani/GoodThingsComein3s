@@ -8,6 +8,7 @@
 #import "CuisineFilterButtonCollectionViewCell.h"
 
 @implementation CuisineFilterButtonCollectionViewCell
+
 - (IBAction)didTapFilterButton:(id)sender {
     [self.delegate didTapFilterButton: self.filterButton];
 }

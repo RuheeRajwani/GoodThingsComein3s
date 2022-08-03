@@ -114,10 +114,6 @@
 
 - (void)signUpLoginViewControllerDidDismissForUser {
         [self getUserInformation];
-    }
+}
     
-
-    
-   
-    
-    @end
+@end

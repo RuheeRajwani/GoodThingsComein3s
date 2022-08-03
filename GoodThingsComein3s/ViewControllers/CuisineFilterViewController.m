@@ -16,10 +16,7 @@
 @property (nonatomic) NSDictionary *cuisineFilterDictionary;
 @property (weak, nonatomic) IBOutlet UIButton *applyButton;
 
-
-
 @end
-
 
 @implementation CuisineFilterViewController
 
@@ -75,9 +72,5 @@
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.cuisineButtonText.count;
 }
-
-
-
-
 
 @end
