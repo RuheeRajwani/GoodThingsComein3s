@@ -55,10 +55,10 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
     self.ratingFilters = ratingFilters;
     self.cuisineFilters = cuisineFilters;
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%i", yelpBuisnessSearchString,@"?location=",location,@"&limit=", 50];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%i%@%@", yelpBuisnessSearchString,@"?location=",location,@"&limit=", 50, @"&categories=",@"restaurants"];
     
     if (radius != nil){
-        urlString = [NSString stringWithFormat:@"%@%@%@%@%i%@%i", yelpBuisnessSearchString,@"?location=",location, @"&radius=", radius.intValue,@"&limit=", 50];
+        urlString = [NSString stringWithFormat:@"%@%@%@%@%i%@%i%@%@", yelpBuisnessSearchString,@"?location=",location, @"&radius=", radius.intValue,@"&limit=", 50, @"&categories=",@"restaurants"];
     }
     
     NSMutableURLRequest *request =  [self _getURLRequestForURLString:urlString];
@@ -80,17 +80,19 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
 }
 
 - (NSArray*)filterRestaurants: (NSArray*)restaurantsToFilter {
-    for(Restaurant *restaurant in restaurantsToFilter){
-        restaurant.score = [self calculateRestaurantScore:restaurant];
-    }
-    restaurantsToFilter = [restaurantsToFilter sortedArrayUsingComparator:^NSComparisonResult(Restaurant *restaurant1, Restaurant *restaurant2) {
-        if (restaurant1.score.intValue < restaurant2.score.intValue) {
-            return NSOrderedDescending;
-        } else if (restaurant1.score.intValue > restaurant2.score.intValue) {
-            return NSOrderedAscending;
+    if (self.filterPriority.count != 0){
+        for(Restaurant *restaurant in restaurantsToFilter){
+            restaurant.score = [self calculateRestaurantScore:restaurant];
         }
-        return NSOrderedSame;
-    }];
+        restaurantsToFilter = [restaurantsToFilter sortedArrayUsingComparator:^NSComparisonResult(Restaurant *restaurant1, Restaurant *restaurant2) {
+            if (restaurant1.score.intValue < restaurant2.score.intValue) {
+                return NSOrderedDescending;
+            } else if (restaurant1.score.intValue > restaurant2.score.intValue) {
+                return NSOrderedAscending;
+            }
+            return NSOrderedSame;
+        }];
+    }
     return restaurantsToFilter;
 }
 
