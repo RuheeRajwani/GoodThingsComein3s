@@ -13,7 +13,8 @@
     self = [super init];
     
     self.name = buisness[@"name"];
-    self.price = buisness[@"price"];
+    self.priceDisplayString = buisness[@"price"];
+    self.priceValue = [NSNumber numberWithInt:(int)self.priceDisplayString.length];
     self.restaurantYelpID = buisness[@"id"];
     self.categoriesArray = buisness[@"categories"];
     

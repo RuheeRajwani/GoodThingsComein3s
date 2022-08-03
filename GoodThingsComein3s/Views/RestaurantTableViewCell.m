@@ -37,7 +37,7 @@
         self.restaurantNameLabel.text = self.restaurant.name;
         self.restaurantAddressLabel.text = self.restaurant.displayAddress;
         self.restaurantCategoriesLabel.text = self.restaurant.categoriesDisplayString;
-        self.restaurantPriceLabel.text = self.restaurant.price;
+        self.restaurantPriceLabel.text = self.restaurant.priceDisplayString;
         self.restaurantImageView.image = self.restaurant.restaurantImage;
         self.ratingImageView.image = self.restaurant.ratingImage;
         [self.likeButton setImage:[UIImage systemImageNamed:@"heart"] forState:UIControlStateNormal];

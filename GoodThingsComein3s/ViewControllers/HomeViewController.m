@@ -196,7 +196,7 @@
     PFObject *restaurantToAdd = [[PFObject alloc] initWithClassName:@"Restaurant"];
     restaurantToAdd[@"name"] = restaurantToConvert.name;
     restaurantToAdd[@"restaurantYelpID"] = restaurantToConvert.restaurantYelpID;
-    restaurantToAdd[@"price"] = restaurantToConvert.price;
+    restaurantToAdd[@"priceDisplayString"] = restaurantToConvert.priceDisplayString;
     restaurantToAdd[@"displayAddress"] =  restaurantToConvert.displayAddress;
     restaurantToAdd[@"categoriesDisplayString"] = restaurantToConvert.categoriesDisplayString;
     
