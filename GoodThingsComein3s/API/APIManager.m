@@ -55,10 +55,10 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
     self.ratingFilters = ratingFilters;
     self.cuisineFilters = cuisineFilters;
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", yelpBuisnessSearchString,@"?location=",location];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%i", yelpBuisnessSearchString,@"?location=",location,@"&limit=", 50];
     
     if (radius != nil){
-        urlString = [NSString stringWithFormat:@"%@%@%@%@%i", yelpBuisnessSearchString,@"?location=",location, @"&radius=", radius.intValue];
+        urlString = [NSString stringWithFormat:@"%@%@%@%@%i%@%i", yelpBuisnessSearchString,@"?location=",location, @"&radius=", radius.intValue,@"&limit=", 50];
     }
     
     NSMutableURLRequest *request =  [self _getURLRequestForURLString:urlString];
