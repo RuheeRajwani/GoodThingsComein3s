@@ -48,11 +48,11 @@
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"RestaurantSearchCellToRestaurantDetailsView"]) {
-        NSIndexPath *restaurantIndexPath = [self.searchTableView indexPathForCell:sender];
-        DetailsViewController *detailVC = [segue destinationViewController];
-        detailVC.restaurantToShow = self.filteredData[restaurantIndexPath.row];
-    }
+   if ([[segue identifier] isEqualToString:@"RestaurantTableViewCellToRestaurantDetailsView"]) {
+         NSIndexPath *restaurantIndexPath = [self.searchTableView indexPathForCell:sender];
+         DetailsViewController *detailVC = [segue destinationViewController];
+         detailVC.restaurantToShow = self.filteredData[restaurantIndexPath.row];
+     }
 }
 
 #pragma mark - Table view

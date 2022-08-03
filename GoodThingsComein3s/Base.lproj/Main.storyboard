@@ -901,6 +901,9 @@
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="tinted" title="Details"/>
+                                                    <connections>
+                                                        <segue destination="Yko-b9-5Qt" kind="show" identifier="RestaurantTableViewCellToRestaurantDetailsView" id="jkp-W0-mLw"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1320,7 +1323,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="s4j-MO-2U8"/>
         <segue reference="xcO-Bp-M1A"/>
-        <segue reference="bn4-OO-FaL"/>
+        <segue reference="jkp-W0-mLw"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1Star" width="21" height="21"/>
