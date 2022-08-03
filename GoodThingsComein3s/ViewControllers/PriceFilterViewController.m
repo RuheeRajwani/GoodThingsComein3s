@@ -39,38 +39,38 @@
 -(void)setButtons {
     [self.applyButton setEnabled:self.selectedPriceFilters.count != 0];
     
-    if ([self.selectedPriceFilters containsObject:@"$"]) {
+    if ([self.selectedPriceFilters containsObject:@1]) {
         [self.oneDollarSignButton setSelected:YES];
     }
-    if ([self.selectedPriceFilters containsObject:@"$$"]) {
+    if ([self.selectedPriceFilters containsObject:@2]) {
         [self.twoDollarSignButton setSelected:YES];
     }
-    if ([self.selectedPriceFilters containsObject:@"$$$"]) {
+    if ([self.selectedPriceFilters containsObject:@3]) {
         [self.threeDollarSignButton setSelected:YES];
     }
-    if ([self.selectedPriceFilters containsObject:@"$$$$"]) {
+    if ([self.selectedPriceFilters containsObject:@4]) {
         [self.fourDollarSignButton setSelected:YES];
     }
 }
 
 - (IBAction)priceFilterViewControllerDidTap1Sign:(id)sender {
-    [self dollarSignButtonTapped:sender :@"$"];
+    [self dollarSignButtonTapped:sender :@1];
 }
 
 - (IBAction)priceFilterViewControllerDidTap2Sign:(id)sender {
-    [self dollarSignButtonTapped:sender :@"$$"];
+    [self dollarSignButtonTapped:sender :@2];
 }
 
 
 - (IBAction)priceFilterViewControllerDidTap3Sign:(id)sender {
-    [self dollarSignButtonTapped:sender :@"$$$"];
+    [self dollarSignButtonTapped:sender :@3];
 }
 
 - (IBAction)priceFilterViewControllerDidTap4Sign:(id)sender {
-    [self dollarSignButtonTapped:sender :@"$$$$"];
+    [self dollarSignButtonTapped:sender :@4];
 }
 
-- (void)dollarSignButtonTapped:(id)sender :(NSString *)filterToAdd {
+- (void)dollarSignButtonTapped:(id)sender :(NSNumber *)filterToAdd {
     if([sender isSelected] == NO) {
         [sender setSelected:YES];
         [self.selectedPriceFilters addObject:filterToAdd];
