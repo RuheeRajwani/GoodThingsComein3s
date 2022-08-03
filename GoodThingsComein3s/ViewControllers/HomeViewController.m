@@ -133,7 +133,6 @@
         ratingFilterVC.previouslySelectedRatingFilters = self.ratingFilters;
         ratingFilterVC.delegate= self;
     }
-    
 }
 
 #pragma mark - Table view
@@ -220,7 +219,11 @@
 }
 
 - (void)didApplyDistanceFilter:(NSNumber *)selectedRadius {
-    self.didFiltersChange = [selectedRadius isEqualToNumber:self.radius];
+    if(self.radius != nil){
+        self.didFiltersChange = [selectedRadius isEqualToNumber:self.radius];
+    } else {
+        self.didFiltersChange = YES;
+    }
     self.radius = selectedRadius;
     if(self.radius != nil) {
         [self.distanceFilterButton setSelected:YES];

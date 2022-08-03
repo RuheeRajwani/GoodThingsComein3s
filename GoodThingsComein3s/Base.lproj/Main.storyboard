@@ -1257,8 +1257,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Apply"/>
                                 <connections>
-                                    <action selector="distanceFilterViewControllerDidTapApply:" destination="CnM-Cf-EzH" eventType="touchUpInside" id="CeI-7u-nZq"/>
-                                    <action selector="distanceFilterViewControllerDidTapApply:" destination="Waw-ds-NC5" eventType="touchUpInside" id="Ixz-W2-qwe"/>
+                                    <action selector="distanceFilterViewControllerDidTapApply:" destination="CnM-Cf-EzH" eventType="touchUpInside" id="68J-So-8Bb"/>
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSM-O1-GJ8">
@@ -1282,7 +1281,7 @@
                                             <constraint firstAttribute="width" constant="275" id="pp5-5D-K0U"/>
                                         </constraints>
                                         <connections>
-                                            <action selector="distanceSliderValueDidChange:" destination="CnM-Cf-EzH" eventType="valueChanged" id="3Wb-gP-3e4"/>
+                                            <action selector="distanceSliderValueDidChange:" destination="CnM-Cf-EzH" eventType="valueChanged" id="Oeg-Xv-f0c"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25 miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMF-sV-XrB">
@@ -1309,13 +1308,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="applyButton" destination="7zD-pu-Qrp" id="xQZ-eH-pY1"/>
-                        <outlet property="distanceSlider" destination="z9V-R5-777" id="plS-FB-7oD"/>
-                        <outlet property="distanceSliderValueLabel" destination="vSM-O1-GJ8" id="85K-1B-b34"/>
+                        <outlet property="applyButton" destination="7zD-pu-Qrp" id="CrP-Ah-nyp"/>
+                        <outlet property="distanceSlider" destination="z9V-R5-777" id="o1t-xh-LCH"/>
+                        <outlet property="distanceSliderValueLabel" destination="vSM-O1-GJ8" id="kb4-rw-9kz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1rH-aB-EGs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="Waw-ds-NC5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-5618.840579710145" y="-1923.2142857142856"/>
         </scene>
