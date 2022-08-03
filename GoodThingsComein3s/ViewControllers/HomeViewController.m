@@ -19,18 +19,21 @@
 @interface HomeViewController () <PriceFilterViewControllerDelegate, CuisineFilterDelegate, DistanceFilterDelegate, RatingFilterViewControllerDelegate, RestaurantTableViewCellDelegate, SignUpLoginViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *homeRestaurantTableView;
-@property (nonatomic) NSArray *restaurantArray;
+@property (nonatomic) NSMutableArray *restaurantArray;
 
 @property (nonatomic) NSArray *priceFilters;
 @property (nonatomic) NSArray *cuisineFilters;
 @property (nonatomic) NSArray *ratingFilters;
 @property (nonatomic) NSNumber *radius;
+@property (nonatomic) NSMutableArray *filterPriority;
+
+@property (nonatomic)Boolean didFiltersChange;
 
 @property (weak, nonatomic) IBOutlet UIButton *priceFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *cuisineFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *ratingFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *distanceFilterButton;
-@property (nonatomic) NSMutableArray *filterPriority;
+
 
 @property (nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -61,6 +64,8 @@
     self.cuisineFilters = [[NSArray alloc] init];
     self.ratingFilters = [[NSArray alloc] init];
     self.filterPriority = [[NSMutableArray alloc] init];
+    
+    self.didFiltersChange = YES;
 }
 
 - (void)fetchRestaurants {
@@ -73,18 +78,29 @@
         location = [PFUser currentUser][@"location"];
     }
     NSNumber *milesToMeters = [NSNumber numberWithInt:(int) [self.radius intValue] * 1609.34];
-    [[APIManager shared] getGeneratedRestaurants:location prices:self.priceFilters cuisines:self.cuisineFilters ratings:self.ratingFilters radius:milesToMeters filterPriority:[self.filterPriority copy] completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
-        if(restaurants) {
-            self.restaurantArray = restaurants;
-            NSLog(@"Successfully loaded array");
-        } else {
-            NSLog(@"Error loading restaurants");
-        }
-        [self.homeRestaurantTableView reloadData];
-        [self.refreshControl endRefreshing];
-        [self.activityIndicator stopAnimating];
-        self.homeRestaurantTableView.hidden = NO;
-    }];
+    
+    if(self.didFiltersChange) {
+        self.didFiltersChange = NO;
+        [[APIManager shared] getGeneratedRestaurants:location prices:self.priceFilters cuisines:self.cuisineFilters ratings:self.ratingFilters radius:milesToMeters filterPriority:[self.filterPriority copy] completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
+            if(restaurants) {
+                self.restaurantArray = [restaurants mutableCopy];
+                NSLog(@"Successfully loaded array");
+                [self.homeRestaurantTableView reloadData];
+                [self _refreshHomeScreen];
+            } else {
+                NSLog(@"Error loading restaurants");
+            }
+        }];
+    } else {
+        [self _refreshHomeScreen];
+    }
+}
+
+- (void) _refreshHomeScreen {
+    [self.homeRestaurantTableView reloadData];
+    [self.refreshControl endRefreshing];
+    [self.activityIndicator stopAnimating];
+    self.homeRestaurantTableView.hidden = NO;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -125,6 +141,11 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     RestaurantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RestaurantTableViewCell" forIndexPath:indexPath];
     cell.restaurant = self.restaurantArray[indexPath.row];
+    if(indexPath.row == 2){
+        for (int i=0; i<3; i++){
+            [self.restaurantArray removeObjectAtIndex:0];
+        }
+    }
     cell.delegate = self;
     return cell;
 }
@@ -135,7 +156,38 @@
 
 #pragma mark - Delegates
 
+- (Boolean)_didRatingPriceFilterChange:(NSArray *)array1 array2:(NSArray *)array2{
+    if(array1.count==array2.count){
+        for( int i=0; i<array1.count;i++){
+            NSNumber *array1Val = array1[i];
+            NSNumber *array2Val = array2[i];
+            if(array1Val.intValue != array2Val.intValue){
+                return YES;
+            }
+        }
+    } else {
+        return YES;
+    }
+    return NO;
+}
+
+- (Boolean)_didCuisineFilterChange:(NSArray *)array1 array2:(NSArray *)array2{
+    if(array1.count==array2.count){
+        for( int i=0; i<array1.count;i++){
+            NSString *array1String = array1[i];
+            NSString *array2String = array2[i];
+            if(![array1String isEqualToString:array2String]){
+                return YES;
+            }
+        }
+    } else {
+        return YES;
+    }
+    return NO;
+}
+
 - (void)didApplyPriceFilters:(NSArray *)selectedFilters {
+    self.didFiltersChange = [self _didRatingPriceFilterChange:selectedFilters array2:self.priceFilters];
     self.priceFilters = selectedFilters;
     if(self.priceFilters.count != 0){
         [self.priceFilterButton setSelected:YES];
@@ -146,6 +198,7 @@
 }
 
 - (void)didApplyRatingFilters:(nonnull NSArray *)selectedFilters {
+    self.didFiltersChange = [self _didRatingPriceFilterChange:selectedFilters array2:self.ratingFilters];
     self.ratingFilters = selectedFilters;
     if(self.ratingFilters.count != 0){
         [self.ratingFilterButton setSelected:YES];
@@ -156,6 +209,7 @@
 }
 
 - (void)didApplyCuisineFilters:(nonnull NSArray *)selectedFilters {
+    self.didFiltersChange = [self _didCuisineFilterChange:selectedFilters array2:self.cuisineFilters];
     self.cuisineFilters = selectedFilters;
     if(self.cuisineFilters.count != 0){
         [self.cuisineFilterButton setSelected:YES];
@@ -165,8 +219,9 @@
     }
 }
 
-- (void)didApplyDistanceFilter:(NSNumber *)radius {
-    self.radius = radius;
+- (void)didApplyDistanceFilter:(NSNumber *)selectedRadius {
+    self.didFiltersChange = [selectedRadius isEqualToNumber:self.radius];
+    self.radius = selectedRadius;
     if(self.radius != nil) {
         [self.distanceFilterButton setSelected:YES];
     }
