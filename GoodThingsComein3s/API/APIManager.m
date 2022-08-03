@@ -132,12 +132,10 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
                     }
                 }
             }
-
-
             if(cuisineScore == perfectScore){
                 score += (10*scalingFactor);
-            } else if (cuisineScore!=0 && cuisineScore > 10){
-                score += (8*scalingFactor);
+            } else if (cuisineScore!=0){
+                score += (8*scalingFactor && cuisineScore>2);
             } else {
                 score += (cuisineScore*scalingFactor);
             }
