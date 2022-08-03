@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BA8B8EFD-F38E-4923-A170-CB02EE985DA8"
-            shouldBeEnabled = "No"
+            uuid = "A08B621F-8884-437A-BFC7-47C22C7A30CE"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GoodThingsComein3s/API/APIManager.m"
+            filePath = "GoodThingsComein3s/ViewControllers/HomeViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "-getGeneratedRestaurants:prices:cuisines:ratings:radius:filterPriority:completion:"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
+            landmarkName = "-didApplyCuisineFilters:categoriesParamRequestString:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

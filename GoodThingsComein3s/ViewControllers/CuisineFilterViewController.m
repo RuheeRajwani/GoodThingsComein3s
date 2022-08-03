@@ -25,8 +25,6 @@
 
 - (IBAction)didTapApply:(id)sender {
     [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
-    
-    [self.delegate didApplyCuisineFilters:self.selectedCuisineFilters categoriesParamRequestString:[self _getCategoriesParamRequestString]];
 }
 
 - (void)viewDidLoad{
@@ -38,15 +36,15 @@
     self.selectedCuisineFilters = [self.previouslySelectedCuisineFilters mutableCopy];
     self.cuisineButtonText = [NSArray arrayWithObjects:@"Afghan",@"American (New)",@"American (Traditional)", @"Brazilian",@"Chinese",@"Ethiopian",@"French",@"Filipino",@"Greek",@"Indian",@"Italian", @"Japanese", @"Korean",@"Mediterranean", @"Mexican",@"Pakistani",@"Turkish", nil];
     self.cuisineFilterDictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"afghani",@"newamerican",@"tradamerican",@"brazilian",@"chinese",@"ethiopian", @"french", @"filipino", @"greek", @"indpak", @"italian", @"japanese", @"korean",  @"mediterranean",@"mexican",@"pakistani", @"turkish", nil] forKeys:self.cuisineButtonText];
-    
-    
-    [self.applyButton setEnabled:self.selectedCuisineFilters.count != 0];
 }
 
 - (NSString *)_getCategoriesParamRequestString {
-    NSString *paramString = self.cuisineFilterDictionary[self.selectedCuisineFilters[0]];
-    for (int i=1; i<self.selectedCuisineFilters.count;i++){
-        paramString =[NSString stringWithFormat:@"%@%@%@",paramString,@",",self.cuisineFilterDictionary[self.selectedCuisineFilters[i]] ];
+    NSString *paramString;
+    if (self.selectedCuisineFilters.count >0){
+    paramString = self.cuisineFilterDictionary[self.selectedCuisineFilters[0]];
+        for (int i=1; i<self.selectedCuisineFilters.count;i++){
+            paramString =[NSString stringWithFormat:@"%@%@%@",paramString,@",",self.cuisineFilterDictionary[self.selectedCuisineFilters[i]] ];
+        }
     }
     return paramString;
 }
@@ -59,7 +57,8 @@
         [self.selectedCuisineFilters addObject:button.titleLabel.text];
         [button setSelected:YES];
     }
-    [self.applyButton setEnabled:self.selectedCuisineFilters.count != 0];
+    [self.delegate didApplyCuisineFilters:self.selectedCuisineFilters categoriesParamRequestString:[self _getCategoriesParamRequestString]];
+
 }
 
 #pragma mark - Collection view
