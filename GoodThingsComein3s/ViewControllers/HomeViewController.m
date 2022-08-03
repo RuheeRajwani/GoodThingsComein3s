@@ -168,18 +168,24 @@
 #pragma mark - Delegates
 
 - (Boolean)_didRatingPriceFilterChange:(NSArray *)array1 array2:(NSArray *)array2{
-    if(array1.count==array2.count){
-        for( int i=0; i<array1.count;i++){
-            NSNumber *array1Val = array1[i];
-            NSNumber *array2Val = array2[i];
-            if(array1Val.intValue != array2Val.intValue){
-                return YES;
+    if (array1 != nil && array2 !=nil){
+        if(array1.count == array2.count){
+            for( int i=0; i<array1.count;i++){
+                NSNumber *array1Num = array1[i];
+                NSNumber *array2Num = array2[i];
+                if(array1Num.intValue != array2Num.intValue){
+                    return YES;
+                }
             }
+        } else {
+            return YES;
         }
+    } else if (array1 == nil && array2 == nil){
+        return NO;
     } else {
         return YES;
     }
-    return NO;
+    return YES;
 }
 
 - (Boolean)_didCuisineFilterChange:(NSArray *)array1 array2:(NSArray *)array2{
@@ -205,28 +211,40 @@
 
 - (void)didApplyPriceFilters:(NSArray *)selectedFilters {
     self.didFiltersChange = [self _didRatingPriceFilterChange:selectedFilters array2:self.priceFilters];
-    self.priceFilters = selectedFilters;
-    if(self.priceFilters.count != 0){
+    if(selectedFilters.count!=0){
         [self.priceFilterButton setSelected:YES];
-        if (![self.filterPriority containsObject:@"price"]){
+        if(![self.filterPriority containsObject:@"price"]){
             [self.filterPriority addObject:@"price"];
         }
+    } else {
+        [self.priceFilterButton setSelected:NO];
+        if([self.filterPriority containsObject:@"price"]){
+            [self.filterPriority removeObject:@"price"];
+        }
     }
+    self.priceFilters = selectedFilters;
 }
 
 - (void)didApplyRatingFilters:(nonnull NSArray *)selectedFilters {
     self.didFiltersChange = [self _didRatingPriceFilterChange:selectedFilters array2:self.ratingFilters];
-    self.ratingFilters = selectedFilters;
-    if(self.ratingFilters.count != 0){
+    if(selectedFilters.count!=0){
         [self.ratingFilterButton setSelected:YES];
-        if (![self.filterPriority containsObject:@"rating"]){
+        if(![self.filterPriority containsObject:@"rating"]){
             [self.filterPriority addObject:@"rating"];
         }
+    } else {
+        [self.ratingFilterButton setSelected:NO];
+        if([self.filterPriority containsObject:@"rating"]){
+            [self.filterPriority removeObject:@"rating"];
+        }
     }
+    self.ratingFilters = selectedFilters;
 }
 
 -(void) didApplyCuisineFilters:(NSArray *)selectedFilters categoriesParamRequestString:(NSString *)categoriesParamRequestString{
     self.cuisineFilterParamRequestString = categoriesParamRequestString;
+    self.didFiltersChange = [self _didCuisineFilterChange:selectedFilters array2:self.cuisineFilters];
+    
     if(selectedFilters.count != 0){
         self.didFiltersChange = [self _didCuisineFilterChange:selectedFilters array2:self.cuisineFilters];
         [self.cuisineFilterButton setSelected:YES];
@@ -238,21 +256,13 @@
         if ([self.filterPriority containsObject:@"cuisine"]){
             [self.filterPriority removeObject:@"cuisine"];
         }
-        self.didFiltersChange = [self _didCuisineFilterChange:selectedFilters array2:self.cuisineFilters];
     }
     self.cuisineFilters = selectedFilters;
 }
 
 - (void)didApplyDistanceFilter:(NSNumber *)selectedRadius {
-    if(self.radius != nil){
-        self.didFiltersChange = [selectedRadius isEqualToNumber:self.radius];
-    } else {
-        self.didFiltersChange = YES;
-    }
-    self.radius = selectedRadius;
-    if(self.radius != nil) {
-        [self.distanceFilterButton setSelected:YES];
-    }
+    self.didFiltersChange = [selectedRadius isEqualToNumber:self.radius];
+    [self.distanceFilterButton setSelected:YES];
 }
 
 - (void)addLikedRestaurantToUser: (Restaurant*) restaurant {

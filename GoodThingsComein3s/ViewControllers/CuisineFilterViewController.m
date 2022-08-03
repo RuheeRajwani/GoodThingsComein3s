@@ -25,6 +25,7 @@
 
 - (IBAction)didTapApply:(id)sender {
     [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+    [self.delegate didApplyCuisineFilters:self.selectedCuisineFilters categoriesParamRequestString:[self _getCategoriesParamRequestString]];
 }
 
 - (void)viewDidLoad{
@@ -57,8 +58,6 @@
         [self.selectedCuisineFilters addObject:button.titleLabel.text];
         [button setSelected:YES];
     }
-    [self.delegate didApplyCuisineFilters:self.selectedCuisineFilters categoriesParamRequestString:[self _getCategoriesParamRequestString]];
-
 }
 
 #pragma mark - Collection view
