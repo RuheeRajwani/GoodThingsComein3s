@@ -10,13 +10,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol PriceFilterViewControllerDelegate
-- (void)appliedPriceFilters:(NSString *)priceStringToSend;
+-(void) didApplyPriceFilters:(NSArray *)selectedFilters;
 
 @end
 
 @interface PriceFilterViewController : UIViewController
 
 @property (nonatomic, weak) id<PriceFilterViewControllerDelegate> delegate;
+@property (nonatomic) NSArray *previouslySelectedPriceFilters;
 
 @end
 

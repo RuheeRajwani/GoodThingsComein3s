@@ -13,12 +13,17 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Restaurant : NSObject
 
 @property (nonatomic) NSString *name;
-@property (nonatomic) NSString *price;
-@property (nonatomic) NSString *categories;
+@property (nonatomic) NSString *priceDisplayString;
+@property (nonatomic) NSNumber *priceValue;
+@property (nonatomic) NSString *categoriesDisplayString;
+@property (nonatomic) NSArray *categoriesArray;
 @property (nonatomic) NSString *displayAddress;
 @property (nonatomic) UIImage *restaurantImage;
 @property (nonatomic) UIImage *ratingImage;
 @property (nonatomic) NSString *restaurantYelpID;
+@property (nonatomic) NSNumber *score;
+@property (nonatomic) NSNumber *ratingValue;
+
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 + (NSMutableArray *)restaurantsWithArray:(NSArray *)dictionaries;

@@ -84,8 +84,8 @@
     [likedRestaurant fetchIfNeeded];
     restaurantToReturn.name = likedRestaurant[@"name"];
     restaurantToReturn.displayAddress = likedRestaurant[@"displayAddress"];
-    restaurantToReturn.price = likedRestaurant[@"price"];
-    restaurantToReturn.categories = likedRestaurant[@"categories"];
+    restaurantToReturn.priceDisplayString = likedRestaurant[@"priceDisplayString"];
+    restaurantToReturn.categoriesDisplayString = likedRestaurant[@"categoriesDisplayString"];
     restaurantToReturn.restaurantYelpID = likedRestaurant[@"restaurantYelpID"];
     
     PFFileObject *restaurantImageFile = likedRestaurant[@"restaurantImage"];

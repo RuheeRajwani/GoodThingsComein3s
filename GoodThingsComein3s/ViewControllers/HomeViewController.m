@@ -6,22 +6,35 @@
 //
 
 #import "HomeViewController.h"
-#import "PriceFilterViewController.h"
 #import "APIManager.h"
 #import "AFNetworking.h"
 #import "RestaurantTableViewCell.h"
 #import "SignUpLoginViewController.h"
 #import "DetailsViewController.h"
+#import "PriceFilterViewController.h"
+#import "CuisineFilterViewController.h"
+#import "DistanceFilterViewController.h"
+#import "RatingFilterViewController.h"
 
-@interface HomeViewController () <PriceFilterViewControllerDelegate, RestaurantTableViewCellDelegate, SignUpLoginViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface HomeViewController () <PriceFilterViewControllerDelegate, CuisineFilterDelegate, DistanceFilterDelegate, RatingFilterViewControllerDelegate, RestaurantTableViewCellDelegate, SignUpLoginViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *homeRestaurantTableView;
 @property (nonatomic) NSArray *restaurantArray;
-@property (nonatomic) NSString *priceFilters;
-@property (nonatomic) NSString *categories;
-@property (nonatomic) NSInteger *radius;
-@property (nonatomic, strong) UIRefreshControl *refreshControl;
+
+@property (nonatomic) NSArray *priceFilters;
+@property (nonatomic) NSArray *cuisineFilters;
+@property (nonatomic) NSArray *ratingFilters;
+@property (nonatomic) NSNumber *radius;
+
+@property (weak, nonatomic) IBOutlet UIButton *priceFilterButton;
+@property (weak, nonatomic) IBOutlet UIButton *cuisineFilterButton;
+@property (weak, nonatomic) IBOutlet UIButton *ratingFilterButton;
+@property (weak, nonatomic) IBOutlet UIButton *distanceFilterButton;
+@property (nonatomic) NSMutableArray *filterPriority;
+
+@property (nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 @property (nonatomic) Restaurant *restaurantToAddToLikesFollowingLoginSignup;
 
 @end
@@ -43,14 +56,26 @@
     self.homeRestaurantTableView.delegate = self;
     self.homeRestaurantTableView.hidden = YES;
     self.activityIndicator.hidden =YES;
+    
+    self.priceFilters = [[NSArray alloc] init];
+    self.cuisineFilters = [[NSArray alloc] init];
+    self.ratingFilters = [[NSArray alloc] init];
+    self.filterPriority = [[NSMutableArray alloc] init];
 }
 
 - (void)fetchRestaurants {
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
-    [[APIManager shared] getGeneratedRestaurants:@"Seattle" price:self.priceFilters categories:self.categories radius:0 completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
-        if (restaurants) {
-            self.restaurantArray = (NSMutableArray*) restaurants;
+    
+    NSString *location = @"Seattle";
+    if ([PFUser currentUser] != nil){
+        [[PFUser currentUser] fetchIfNeeded];
+        location = [PFUser currentUser][@"location"];
+    }
+    NSNumber *milesToMeters = [NSNumber numberWithInt:(int) [self.radius intValue] * 1609.34];
+    [[APIManager shared] getGeneratedRestaurants:location prices:self.priceFilters cuisines:self.cuisineFilters ratings:self.ratingFilters radius:milesToMeters filterPriority:[self.filterPriority copy] completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
+        if(restaurants) {
+            self.restaurantArray = restaurants;
             NSLog(@"Successfully loaded array");
         } else {
             NSLog(@"Error loading restaurants");
@@ -60,13 +85,9 @@
         [self.activityIndicator stopAnimating];
         self.homeRestaurantTableView.hidden = NO;
     }];
-    }
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"HomeToPriceFilterSegue"]) {
-        PriceFilterViewController *priceFilterVC = [segue destinationViewController];
-        priceFilterVC.delegate= self;
-    }
     if ([[segue identifier] isEqualToString:@"LiketoSignUpLoginSegue"]) {
         SignUpLoginViewController *signUpLoginVC = [segue destinationViewController];
         signUpLoginVC.delegate= self;
@@ -76,6 +97,27 @@
         DetailsViewController *detailVC = [segue destinationViewController];
         detailVC.restaurantToShow = self.restaurantArray[restaurantIndexPath.row];
     }
+    if ([[segue identifier] isEqualToString:@"HomeToCuisineFilterSegue"]) {
+        CuisineFilterViewController *cuisineFilterVC = [segue destinationViewController];
+        cuisineFilterVC.previouslySelectedCuisineFilters = self.cuisineFilters;
+        cuisineFilterVC.delegate= self;
+    }
+    if ([[segue identifier] isEqualToString:@"HomeToDistanceFilterSegue"]) {
+        DistanceFilterViewController *distanceFilterVC = [segue destinationViewController];
+        distanceFilterVC.previouslySelectedRadius = self.radius;
+        distanceFilterVC.delegate= self;
+    }
+    if ([[segue identifier] isEqualToString:@"HomeToPriceFilterSegue"]) {
+        PriceFilterViewController *priceFilterVC = [segue destinationViewController];
+        priceFilterVC.previouslySelectedPriceFilters = self.priceFilters;
+        priceFilterVC.delegate= self;
+    }
+    if ([[segue identifier] isEqualToString:@"HomeToRatingFilterSegue"]) {
+        RatingFilterViewController *ratingFilterVC = [segue destinationViewController];
+        ratingFilterVC.previouslySelectedRatingFilters = self.ratingFilters;
+        ratingFilterVC.delegate= self;
+    }
+    
 }
 
 #pragma mark - Table view
@@ -93,8 +135,41 @@
 
 #pragma mark - Delegates
 
-- (void)appliedPriceFilters:(NSString *)priceStringToSend {
-    self.priceFilters = priceStringToSend;
+- (void)didApplyPriceFilters:(NSArray *)selectedFilters {
+    self.priceFilters = selectedFilters;
+    if(self.priceFilters.count != 0){
+        [self.priceFilterButton setSelected:YES];
+        if (![self.filterPriority containsObject:@"price"]){
+            [self.filterPriority addObject:@"price"];
+        }
+    }
+}
+
+- (void)didApplyRatingFilters:(nonnull NSArray *)selectedFilters {
+    self.ratingFilters = selectedFilters;
+    if(self.ratingFilters.count != 0){
+        [self.ratingFilterButton setSelected:YES];
+        if (![self.filterPriority containsObject:@"rating"]){
+            [self.filterPriority addObject:@"rating"];
+        }
+    }
+}
+
+- (void)didApplyCuisineFilters:(nonnull NSArray *)selectedFilters {
+    self.cuisineFilters = selectedFilters;
+    if(self.cuisineFilters.count != 0){
+        [self.cuisineFilterButton setSelected:YES];
+        if (![self.filterPriority containsObject:@"cuisine"]){
+            [self.filterPriority addObject:@"cuisine"];
+        }
+    }
+}
+
+- (void)didApplyDistanceFilter:(NSNumber *)radius {
+    self.radius = radius;
+    if(self.radius != nil) {
+        [self.distanceFilterButton setSelected:YES];
+    }
 }
 
 - (void)addLikedRestaurantToUser: (Restaurant*) restaurant {
@@ -121,9 +196,10 @@
     PFObject *restaurantToAdd = [[PFObject alloc] initWithClassName:@"Restaurant"];
     restaurantToAdd[@"name"] = restaurantToConvert.name;
     restaurantToAdd[@"restaurantYelpID"] = restaurantToConvert.restaurantYelpID;
-    restaurantToAdd[@"price"] = restaurantToConvert.price;
+    restaurantToAdd[@"priceDisplayString"] = restaurantToConvert.priceDisplayString;
     restaurantToAdd[@"displayAddress"] =  restaurantToConvert.displayAddress;
-    restaurantToAdd[@"categories"] = restaurantToConvert.categories;
+    restaurantToAdd[@"categoriesDisplayString"] = restaurantToConvert.categoriesDisplayString;
+    
     
     NSData *restaurantImageData = UIImagePNGRepresentation(restaurantToConvert.restaurantImage);
     NSString *restaurantImageName = [NSString stringWithFormat:@"%@%@",restaurantToConvert.restaurantYelpID, @"image"];

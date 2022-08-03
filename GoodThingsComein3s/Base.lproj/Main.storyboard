@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -135,7 +136,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Cuisine"/>
                                         <connections>
-                                            <segue destination="B3k-3l-bW2" kind="presentation" id="dZ2-yj-u1D"/>
+                                            <segue destination="B3k-3l-bW2" kind="presentation" identifier="HomeToCuisineFilterSegue" id="dZ2-yj-u1D"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GzQ-sA-Xcf">
@@ -151,7 +152,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Distance"/>
                                         <connections>
-                                            <segue destination="CnM-Cf-EzH" kind="presentation" id="UkZ-Za-Ior"/>
+                                            <segue destination="CnM-Cf-EzH" kind="presentation" identifier="HomeToDistanceFilterSegue" id="UkZ-Za-Ior"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLp-lF-Bmx">
@@ -159,7 +160,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Rating"/>
                                         <connections>
-                                            <segue destination="FSn-47-lAM" kind="presentation" id="mfJ-kR-y7V"/>
+                                            <segue destination="FSn-47-lAM" kind="presentation" identifier="HomeToRatingFilterSegue" id="mfJ-kR-y7V"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -189,7 +190,11 @@
                     <navigationItem key="navigationItem" id="mhi-4a-m5i"/>
                     <connections>
                         <outlet property="activityIndicator" destination="bfb-UT-bol" id="qh5-UT-TKx"/>
+                        <outlet property="cuisineFilterButton" destination="xxD-Zw-QT0" id="6of-SV-SU0"/>
+                        <outlet property="distanceFilterButton" destination="rUz-vT-wCO" id="OsB-1e-wff"/>
                         <outlet property="homeRestaurantTableView" destination="WcC-jV-8Wk" id="hfu-jB-4c7"/>
+                        <outlet property="priceFilterButton" destination="GzQ-sA-Xcf" id="PRN-8R-qxd"/>
+                        <outlet property="ratingFilterButton" destination="nLp-lF-Bmx" id="obt-P7-ovV"/>
                         <segue destination="gAB-pC-lhx" kind="presentation" identifier="LiketoSignUpLoginSegue" modalPresentationStyle="automatic" id="xcO-Bp-M1A"/>
                     </connections>
                 </viewController>
@@ -408,7 +413,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="$"/>
                                         <connections>
-                                            <action selector="priceFilterViewControllerDidTap1Sign:" destination="jGc-oQ-v7h" eventType="touchUpInside" id="Ds4-Bz-h6H"/>
+                                            <action selector="priceFilterViewControllerDidTap1Sign:" destination="jGc-oQ-v7h" eventType="touchUpInside" id="iOR-mr-MBT"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rk8-gk-Z81">
@@ -463,6 +468,10 @@
                     </view>
                     <connections>
                         <outlet property="applyButton" destination="FQC-fj-jVx" id="cgg-SV-UJ2"/>
+                        <outlet property="fourDollarSignButton" destination="8LT-nM-Bup" id="qKd-dz-roY"/>
+                        <outlet property="oneDollarSignButton" destination="11u-Zg-kTc" id="6fC-uR-AsZ"/>
+                        <outlet property="threeDollarSignButton" destination="XoV-dP-89l" id="0oE-qz-Em6"/>
+                        <outlet property="twoDollarSignButton" destination="rk8-gk-Z81" id="YoJ-Og-K6A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yaX-fW-c9s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -892,6 +901,9 @@
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="tinted" title="Details"/>
+                                                    <connections>
+                                                        <segue destination="Yko-b9-5Qt" kind="show" identifier="RestaurantTableViewCellToRestaurantDetailsView" id="jkp-W0-mLw"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1031,140 +1043,85 @@
         <!--Cuisine Filter-->
         <scene sceneID="SUL-VS-Xe0">
             <objects>
-                <viewController title="Cuisine Filter" id="B3k-3l-bW2" sceneMemberID="viewController">
+                <viewController title="Cuisine Filter" id="B3k-3l-bW2" customClass="CuisineFilterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KiB-aR-7de">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="JOc-QB-DdU">
-                                <rect key="frame" x="28.5" y="94" width="357.5" height="383"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cuisine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlu-p9-Wff">
-                                        <rect key="frame" x="0.0" y="0.0" width="357.5" height="30"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="cyE-uj-SQg">
-                                        <rect key="frame" x="0.0" y="55" width="357.5" height="31"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4tR-WB-Nhf">
-                                                <rect key="frame" x="0.0" y="0.0" width="85" height="31"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="American"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tvc-RL-ABF">
-                                                <rect key="frame" x="145" y="0.0" width="70" height="31"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="Afghan"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyX-hn-8Cd">
-                                                <rect key="frame" x="275" y="0.0" width="82.5" height="31"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="Brazillian"/>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="83" translatesAutoresizingMaskIntoConstraints="NO" id="fgb-Xe-kWx">
-                                        <rect key="frame" x="0.0" y="111" width="357.5" height="48"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="576-VJ-a38">
-                                                <rect key="frame" x="0.0" y="0.0" width="69" height="48"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="Filipino"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jKd-MX-hje">
-                                                <rect key="frame" x="152" y="0.0" width="62" height="48"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="Greek"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qb6-IJ-bdM">
-                                                <rect key="frame" x="297" y="0.0" width="60.5" height="48"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="Indian"/>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="kGr-QH-0KX">
-                                        <rect key="frame" x="0.0" y="184" width="357.5" height="31"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9u-Hg-tIq">
-                                                <rect key="frame" x="0.0" y="0.0" width="146" height="31"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="Mediterranean">
-                                                    <color key="titleColor" systemColor="linkColor"/>
-                                                </state>
-                                                <buttonConfiguration key="configuration" style="gray" title="Mediterranean">
-                                                    <color key="baseForegroundColor" systemColor="linkColor"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bqs-g0-4Yj">
-                                                <rect key="frame" x="157" y="0.0" width="96" height="31"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="Mexican"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9em-l1-ort">
-                                                <rect key="frame" x="264" y="0.0" width="93.5" height="31"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="Turkish"/>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="59" translatesAutoresizingMaskIntoConstraints="NO" id="aut-iX-EuS">
-                                        <rect key="frame" x="0.0" y="240" width="357.5" height="31"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tn2-QE-8gx">
-                                                <rect key="frame" x="0.0" y="0.0" width="66.5" height="31"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="Italian"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOU-qW-9v0">
-                                                <rect key="frame" x="125.5" y="0.0" width="91.5" height="31"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="Japanese"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="weA-FY-Jb0">
-                                                <rect key="frame" x="276" y="0.0" width="81.5" height="31"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="Korean"/>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="61" translatesAutoresizingMaskIntoConstraints="NO" id="5r4-vX-Gvz">
-                                        <rect key="frame" x="0.0" y="296" width="357.5" height="31"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xUM-GR-2qU">
-                                                <rect key="frame" x="0.0" y="0.0" width="77.5" height="31"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="Chinese"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q86-eq-AL0">
-                                                <rect key="frame" x="138.5" y="0.0" width="85.5" height="31"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="Ethiopian"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wmb-7A-5Vb">
-                                                <rect key="frame" x="285" y="0.0" width="72.5" height="31"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="French"/>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHL-Te-RsU">
-                                        <rect key="frame" x="0.0" y="352" width="357.5" height="31"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Apply"/>
-                                    </button>
-                                </subviews>
-                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cuisine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlu-p9-Wff">
+                                <rect key="frame" x="20" y="94" width="88" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tQT-OU-2JD">
+                                <rect key="frame" x="20" y="144" width="374" height="465"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="EvP-6m-82O">
+                                    <size key="itemSize" width="87" height="35"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CuisineFilterButtonCollectionViewCell" id="dXv-Qr-qXt" customClass="CuisineFilterButtonCollectionViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="87" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CVW-V8-ChV">
+                                            <rect key="frame" x="0.0" y="0.0" width="87" height="35"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9l-HT-d2e">
+                                                    <rect key="frame" x="1" y="1" width="85" height="33"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="gray" title="Button"/>
+                                                    <connections>
+                                                        <action selector="didTapFilterButton:" destination="dXv-Qr-qXt" eventType="touchUpInside" id="KzF-Im-N3y"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="c9l-HT-d2e" secondAttribute="bottom" constant="1" id="8jQ-RI-kAt"/>
+                                                <constraint firstItem="c9l-HT-d2e" firstAttribute="leading" secondItem="CVW-V8-ChV" secondAttribute="leading" constant="1" id="XIk-GH-muh"/>
+                                                <constraint firstItem="c9l-HT-d2e" firstAttribute="top" secondItem="CVW-V8-ChV" secondAttribute="top" constant="1" id="pqL-PC-dfk"/>
+                                                <constraint firstAttribute="trailing" secondItem="c9l-HT-d2e" secondAttribute="trailing" constant="1" id="yXc-gL-XPk"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="87" height="35"/>
+                                        <connections>
+                                            <outlet property="filterButton" destination="c9l-HT-d2e" id="AD6-Xe-oyJ"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tJR-5R-cVr">
+                                <rect key="frame" x="176.5" y="629" width="61" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Apply"/>
+                                <connections>
+                                    <action selector="didTapApply:" destination="B3k-3l-bW2" eventType="touchUpInside" id="ZkJ-21-Snl"/>
+                                    <action selector="ratingsFilterViewControllerDidTapApply:" destination="xEZ-No-HTz" eventType="touchUpInside" id="9wd-gm-jt2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CCn-Qd-zCL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="JOc-QB-DdU" firstAttribute="top" secondItem="CCn-Qd-zCL" secondAttribute="top" constant="50" id="38x-Ez-5ju"/>
-                            <constraint firstItem="JOc-QB-DdU" firstAttribute="centerX" secondItem="CCn-Qd-zCL" secondAttribute="centerX" id="dCh-XY-2hF"/>
+                            <constraint firstItem="tJR-5R-cVr" firstAttribute="centerX" secondItem="CCn-Qd-zCL" secondAttribute="centerX" id="DEO-gv-sLF"/>
+                            <constraint firstItem="nlu-p9-Wff" firstAttribute="leading" secondItem="CCn-Qd-zCL" secondAttribute="leading" constant="20" id="GMC-IF-ZHr"/>
+                            <constraint firstItem="tQT-OU-2JD" firstAttribute="top" secondItem="nlu-p9-Wff" secondAttribute="bottom" constant="20" id="Hy7-rU-QHq"/>
+                            <constraint firstItem="nlu-p9-Wff" firstAttribute="top" secondItem="CCn-Qd-zCL" secondAttribute="top" constant="50" id="J5s-ZB-5yY"/>
+                            <constraint firstItem="CCn-Qd-zCL" firstAttribute="bottom" secondItem="tJR-5R-cVr" secondAttribute="bottom" constant="182" id="LUw-GZ-oAj"/>
+                            <constraint firstItem="tQT-OU-2JD" firstAttribute="leading" secondItem="CCn-Qd-zCL" secondAttribute="leading" constant="20" id="QNo-HG-6HQ"/>
+                            <constraint firstItem="CCn-Qd-zCL" firstAttribute="trailing" secondItem="tQT-OU-2JD" secondAttribute="trailing" constant="20" id="aDq-eg-OH4"/>
+                            <constraint firstItem="CCn-Qd-zCL" firstAttribute="trailing" secondItem="nlu-p9-Wff" secondAttribute="trailing" constant="306" id="tOv-fp-BBV"/>
+                            <constraint firstItem="tJR-5R-cVr" firstAttribute="top" secondItem="tQT-OU-2JD" secondAttribute="bottom" constant="20" id="tfp-gG-EMb"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="applyButton" destination="tJR-5R-cVr" id="xUA-M8-UNe"/>
+                        <outlet property="cuisineFilterButtonCollectionView" destination="tQT-OU-2JD" id="bZK-DN-ahG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DdJ-xQ-DNu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1173,7 +1130,7 @@
         <!--Ratings Filter-->
         <scene sceneID="o57-i4-sct">
             <objects>
-                <viewController title="Ratings Filter" id="FSn-47-lAM" sceneMemberID="viewController">
+                <viewController title="Ratings Filter" id="FSn-47-lAM" customClass="RatingFilterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yM8-KS-Wzn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1189,6 +1146,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Apply"/>
                                 <connections>
+                                    <action selector="ratingsFilterViewControllerDidTapApply:" destination="FSn-47-lAM" eventType="touchUpInside" id="dyY-tb-Cjv"/>
                                     <action selector="ratingsFilterViewControllerDidTapApply:" destination="xEZ-No-HTz" eventType="touchUpInside" id="dzk-ca-8CM"/>
                                 </connections>
                             </button>
@@ -1204,6 +1162,7 @@
                                                 <buttonConfiguration key="configuration" style="gray" image="1Star" title=""/>
                                                 <connections>
                                                     <action selector="ratingsFilterViewControllerDidTap1Star:" destination="xEZ-No-HTz" eventType="touchUpInside" id="S4t-xW-9dH"/>
+                                                    <action selector="ratingsFilterViewControllerDidTap1Star:" destination="FSn-47-lAM" eventType="touchUpInside" id="SLc-HZ-UYO"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OEf-zx-Tun">
@@ -1212,6 +1171,7 @@
                                                 <buttonConfiguration key="configuration" style="gray" image="2Stars" title=""/>
                                                 <connections>
                                                     <action selector="ratingsFilterViewControllerDidTap2Stars:" destination="xEZ-No-HTz" eventType="touchUpInside" id="86K-we-9Kh"/>
+                                                    <action selector="ratingsFilterViewControllerDidTap2Stars:" destination="FSn-47-lAM" eventType="touchUpInside" id="ons-qU-DZk"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7B-gW-v09">
@@ -1220,6 +1180,7 @@
                                                 <buttonConfiguration key="configuration" style="gray" image="3Stars" title=""/>
                                                 <connections>
                                                     <action selector="ratingsFilterViewControllerDidTap3Stars:" destination="xEZ-No-HTz" eventType="touchUpInside" id="9bL-bp-tbU"/>
+                                                    <action selector="ratingsFilterViewControllerDidTap3Stars:" destination="FSn-47-lAM" eventType="touchUpInside" id="ya8-Tp-X0Z"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1232,6 +1193,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" image="4Stars" title=""/>
                                                 <connections>
+                                                    <action selector="ratingsFilterViewControllerDidTap4Stars:" destination="FSn-47-lAM" eventType="touchUpInside" id="7Hp-DF-Dc9"/>
                                                     <action selector="ratingsFilterViewControllerDidTap4Stars:" destination="xEZ-No-HTz" eventType="touchUpInside" id="Y4M-8L-nam"/>
                                                 </connections>
                                             </button>
@@ -1240,6 +1202,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="gray" image="5Stars" title=""/>
                                                 <connections>
+                                                    <action selector="ratingsFilterViewControllerDidTap5Stars:" destination="FSn-47-lAM" eventType="touchUpInside" id="ZkW-1w-VKF"/>
                                                     <action selector="ratingsFilterViewControllerDidTap5Stars:" destination="xEZ-No-HTz" eventType="touchUpInside" id="j4L-70-ETX"/>
                                                 </connections>
                                             </button>
@@ -1261,6 +1224,14 @@
                             <constraint firstItem="kAo-NH-JSO" firstAttribute="bottom" secondItem="SB3-jG-YJe" secondAttribute="bottom" constant="485" id="vJw-9b-Idw"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="applyButton" destination="SB3-jG-YJe" id="wuR-f1-zJI"/>
+                        <outlet property="fiveStarButton" destination="8MY-fB-SmH" id="1MI-hE-sud"/>
+                        <outlet property="fourStarButton" destination="Vxr-37-0WJ" id="PBg-O9-keq"/>
+                        <outlet property="oneStarButton" destination="snM-Xa-Z5w" id="Vtr-RP-nCb"/>
+                        <outlet property="threeStarButton" destination="u7B-gW-v09" id="3kZ-pi-gEa"/>
+                        <outlet property="twoStarButton" destination="OEf-zx-Tun" id="iez-2M-uOp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GC0-BO-fiY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="xEZ-No-HTz" userLabel="Exit" sceneMemberID="exit"/>
@@ -1270,7 +1241,7 @@
         <!--Distance Filter-->
         <scene sceneID="w1B-L9-oxl">
             <objects>
-                <viewController title="Distance Filter" id="CnM-Cf-EzH" sceneMemberID="viewController">
+                <viewController title="Distance Filter" id="CnM-Cf-EzH" customClass="DistanceFilterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GGa-wl-X0G">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1281,45 +1252,78 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="z9V-R5-777">
-                                <rect key="frame" x="22.5" y="164" width="369" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="365" id="onu-hO-80W"/>
-                                </constraints>
-                            </slider>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zD-pu-Qrp">
-                                <rect key="frame" x="176.5" y="244" width="61" height="31"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zD-pu-Qrp">
+                                <rect key="frame" x="176.5" y="284.5" width="61" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Apply"/>
                                 <connections>
+                                    <action selector="distanceFilterViewControllerDidTapApply:" destination="CnM-Cf-EzH" eventType="touchUpInside" id="CeI-7u-nZq"/>
                                     <action selector="distanceFilterViewControllerDidTapApply:" destination="Waw-ds-NC5" eventType="touchUpInside" id="Ixz-W2-qwe"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSM-O1-GJ8">
+                                <rect key="frame" x="186.5" y="214" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="KIh-G9-Dlx">
+                                <rect key="frame" x="25" y="164" width="364.5" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5O8-Hn-AEq">
+                                        <rect key="frame" x="0.0" y="0.0" width="10.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="z9V-R5-777">
+                                        <rect key="frame" x="16.5" y="0.0" width="279" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="275" id="pp5-5D-K0U"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="distanceSliderValueDidChange:" destination="CnM-Cf-EzH" eventType="valueChanged" id="3Wb-gP-3e4"/>
+                                        </connections>
+                                    </slider>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25 miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMF-sV-XrB">
+                                        <rect key="frame" x="301.5" y="0.0" width="63" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LOc-4c-peh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="LOc-4c-peh" firstAttribute="trailing" secondItem="s4D-6f-hrg" secondAttribute="trailing" constant="290" id="5Jt-Dm-cPp"/>
-                            <constraint firstItem="z9V-R5-777" firstAttribute="centerX" secondItem="LOc-4c-peh" secondAttribute="centerX" id="NQZ-Td-53G"/>
-                            <constraint firstItem="s4D-6f-hrg" firstAttribute="top" secondItem="LOc-4c-peh" secondAttribute="top" constant="50" id="Orq-fm-4bq"/>
-                            <constraint firstItem="s4D-6f-hrg" firstAttribute="leading" secondItem="LOc-4c-peh" secondAttribute="leading" constant="20" id="k7Y-ZL-HPs"/>
-                            <constraint firstItem="7zD-pu-Qrp" firstAttribute="top" secondItem="z9V-R5-777" secondAttribute="bottom" constant="50" id="kC7-9N-4RQ"/>
-                            <constraint firstItem="z9V-R5-777" firstAttribute="top" secondItem="s4D-6f-hrg" secondAttribute="bottom" constant="40" id="qTJ-wZ-TBZ"/>
-                            <constraint firstItem="7zD-pu-Qrp" firstAttribute="centerX" secondItem="LOc-4c-peh" secondAttribute="centerX" id="z3O-Lu-OpO"/>
-                            <constraint firstItem="LOc-4c-peh" firstAttribute="bottom" secondItem="7zD-pu-Qrp" secondAttribute="bottom" constant="567" id="zGr-Ny-ylb"/>
+                            <constraint firstItem="LOc-4c-peh" firstAttribute="trailing" secondItem="s4D-6f-hrg" secondAttribute="trailing" constant="290" id="BU4-fc-Tm0"/>
+                            <constraint firstItem="vSM-O1-GJ8" firstAttribute="top" secondItem="KIh-G9-Dlx" secondAttribute="bottom" constant="20" id="CuT-V1-eNq"/>
+                            <constraint firstItem="7zD-pu-Qrp" firstAttribute="centerX" secondItem="LOc-4c-peh" secondAttribute="centerX" id="GRH-9B-Lhi"/>
+                            <constraint firstItem="7zD-pu-Qrp" firstAttribute="top" secondItem="vSM-O1-GJ8" secondAttribute="bottom" constant="50" id="NXx-ln-tsZ"/>
+                            <constraint firstItem="vSM-O1-GJ8" firstAttribute="centerX" secondItem="LOc-4c-peh" secondAttribute="centerX" id="dK6-Rz-QGi"/>
+                            <constraint firstItem="s4D-6f-hrg" firstAttribute="top" secondItem="LOc-4c-peh" secondAttribute="top" constant="50" id="gKb-QT-sut"/>
+                            <constraint firstItem="KIh-G9-Dlx" firstAttribute="top" secondItem="s4D-6f-hrg" secondAttribute="bottom" constant="40" id="h2l-Mj-EnT"/>
+                            <constraint firstItem="KIh-G9-Dlx" firstAttribute="centerX" secondItem="LOc-4c-peh" secondAttribute="centerX" id="uKQ-uz-l6J"/>
+                            <constraint firstItem="s4D-6f-hrg" firstAttribute="leading" secondItem="LOc-4c-peh" secondAttribute="leading" constant="20" id="umt-kD-mit"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="applyButton" destination="7zD-pu-Qrp" id="xQZ-eH-pY1"/>
+                        <outlet property="distanceSlider" destination="z9V-R5-777" id="plS-FB-7oD"/>
+                        <outlet property="distanceSliderValueLabel" destination="vSM-O1-GJ8" id="85K-1B-b34"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1rH-aB-EGs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Waw-ds-NC5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-5617.3913043478269" y="-1923.2142857142856"/>
+            <point key="canvasLocation" x="-5618.840579710145" y="-1923.2142857142856"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="s4j-MO-2U8"/>
-        <segue reference="afM-et-cLZ"/>
-        <segue reference="ivS-0Z-ATf"/>
+        <segue reference="xcO-Bp-M1A"/>
+        <segue reference="bn4-OO-FaL"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1Star" width="21" height="21"/>
@@ -1328,9 +1332,6 @@
         <image name="4Stars" width="104" height="25"/>
         <image name="5Stars" width="123" height="23"/>
         <image name="heart" catalog="system" width="128" height="109"/>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

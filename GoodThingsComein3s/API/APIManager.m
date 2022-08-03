@@ -13,6 +13,10 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
 @interface APIManager()
 
 @property (nonatomic) NSString *authHeader;
+@property (nonatomic) NSArray *filterPriority;
+@property (nonatomic) NSArray *priceFilters;
+@property (nonatomic) NSArray *cuisineFilters;
+@property (nonatomic) NSArray *ratingFilters;
 
 @end
 
@@ -44,36 +48,104 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
 
 #pragma mark - Requests
 
-- (void)getGeneratedRestaurants:(NSString *)location price:(NSString *)price categories:(NSString *)categories radius:(NSInteger)radius completion:(void(^)(NSArray *restaurants, NSError *error))completion {
-    NSString *urlString = yelpBuisnessSearchString;
+- (void)getGeneratedRestaurants:(NSString *)location prices:(NSArray *)priceFilters cuisines:(NSArray *)cuisineFilters ratings:(NSArray *)ratingFilters radius:(NSNumber *)radius filterPriority:(NSArray *)filterPriority completion:(void(^)(NSArray *restaurants, NSError *error))completion {
     
-    //adding parameters to url
-    if (location==nil) {
-        location = @"Seattle";
-    }
-    urlString = [NSString stringWithFormat:@"%@%@%@",urlString, @"?location=", location];
-    if (price!=nil) {
-        urlString = [NSString stringWithFormat:@"%@%@%@",urlString, @"&price=", price];
-    }
-    if (categories!=nil) {
-        urlString = [NSString stringWithFormat:@"%@%@%@",urlString, @"&categories=", price];
+    self.filterPriority = filterPriority;
+    self.priceFilters = priceFilters;
+    self.ratingFilters = ratingFilters;
+    self.cuisineFilters = cuisineFilters;
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%i", yelpBuisnessSearchString,@"?location=",location,@"&limit=", 50];
+    
+    if (radius != nil){
+        urlString = [NSString stringWithFormat:@"%@%@%@%@%i%@%i", yelpBuisnessSearchString,@"?location=",location, @"&radius=", radius.intValue,@"&limit=", 50];
     }
     
     NSMutableURLRequest *request =  [self _getURLRequestForURLString:urlString];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-    
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            if (error != nil) {
+           if (error != nil) {
                NSLog(@"%@",error.description);
            }
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                NSArray *restaurantDictionaries= dataDictionary[@"businesses"];
-               NSMutableArray *restaurants = [Restaurant restaurantsWithArray:restaurantDictionaries];
-               completion(restaurants,nil);
+               NSArray *restaurants = [Restaurant restaurantsWithArray:restaurantDictionaries];
+               
+               completion([self filterRestaurants:restaurants],nil);
            }
     }];
     [task resume];
+    
+}
+
+- (NSArray*)filterRestaurants: (NSArray*)restaurantsToFilter {
+    for(Restaurant *restaurant in restaurantsToFilter){
+        restaurant.score = [self calculateRestaurantScore:restaurant];
+    }
+    restaurantsToFilter = [restaurantsToFilter sortedArrayUsingComparator:^NSComparisonResult(Restaurant *restaurant1, Restaurant *restaurant2) {
+        if (restaurant1.score.intValue < restaurant2.score.intValue) {
+            return NSOrderedDescending;
+        } else if (restaurant1.score.intValue > restaurant2.score.intValue) {
+            return NSOrderedAscending;
+        }
+        return NSOrderedSame;
+    }];
+    return restaurantsToFilter;
+}
+
+- (NSNumber*)calculateRestaurantScore: (Restaurant *)restaurant{
+    int scalingFactor = 6;
+    int score = 0;
+    for (NSString *filter in self.filterPriority){
+        if([filter isEqualToString:@"price"]){
+            int priceScore = 0;
+            for(NSNumber *priceFilter in self.priceFilters){
+                if([priceFilter intValue] == [restaurant.priceValue intValue]){
+                    priceScore= 10*scalingFactor;
+                    break;
+                } else if ([priceFilter intValue] >  [restaurant.priceValue intValue]){
+                    priceScore = 5*scalingFactor;
+                }
+            }
+            score += priceScore;
+            
+        } else if ([filter isEqualToString:@"rating"]){
+            int ratingScore =0;
+            for (NSNumber *ratingFilter in self.ratingFilters){
+                if([ratingFilter intValue] == [restaurant.ratingValue intValue]){
+                    ratingScore = 10*scalingFactor;
+                    break;
+                } else if ([ratingFilter intValue] < [restaurant.ratingValue intValue]){
+                    ratingScore = 8*scalingFactor;
+                }
+            }
+            score += ratingScore;
+            
+        } else if ([filter isEqualToString:@"cuisine"]){
+            int cuisineScore=0;
+            NSUInteger perfectScore = self.cuisineFilters.count;
+            for (NSString *cuisineFilter in self.cuisineFilters){
+                for (NSDictionary *category in restaurant.categoriesArray){
+                    if([category[@"title"] isEqualToString:cuisineFilter]){
+                        cuisineScore++;
+                    }
+                }
+            }
+
+
+            if(cuisineScore == perfectScore){
+                score += (10*scalingFactor);
+            } else if (cuisineScore!=0 && cuisineScore > 10){
+                score += (8*scalingFactor);
+            } else {
+                score += (cuisineScore*scalingFactor);
+            }
+            
+        }
+        scalingFactor-=2;
+    }
+    return [NSNumber numberWithInt:score];
 }
 
 - (void)getRestaurantSearchResults:(NSString *)location searchTerm:(NSString *)searchTerm completion:(void(^)(NSArray *restaurants, NSError *error))completion {

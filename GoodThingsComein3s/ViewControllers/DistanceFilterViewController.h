@@ -9,7 +9,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol DistanceFilterDelegate
+-(void) didApplyDistanceFilter:(NSNumber *)radius;
+
+@end
+
 @interface DistanceFilterViewController : UIViewController
+
+@property (nonatomic, weak) id<DistanceFilterDelegate> delegate;
+@property NSNumber *previouslySelectedRadius;
 
 @end
 
