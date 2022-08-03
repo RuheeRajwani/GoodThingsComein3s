@@ -23,6 +23,7 @@
 
 @property (nonatomic) NSArray *priceFilters;
 @property (nonatomic) NSArray *cuisineFilters;
+@property (nonatomic) NSString *cuisineFilterParamRequestString;
 @property (nonatomic) NSArray *ratingFilters;
 @property (nonatomic) NSNumber *radius;
 @property (nonatomic) NSMutableArray *filterPriority;
@@ -77,11 +78,12 @@
         [[PFUser currentUser] fetchIfNeeded];
         location = [PFUser currentUser][@"location"];
     }
+    
     NSNumber *milesToMeters = [NSNumber numberWithInt:(int) [self.radius intValue] * 1609.34];
     
     if(self.didFiltersChange) {
         self.didFiltersChange = NO;
-        [[APIManager shared] getGeneratedRestaurants:location prices:self.priceFilters cuisines:self.cuisineFilters ratings:self.ratingFilters radius:milesToMeters filterPriority:[self.filterPriority copy] completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
+        [[APIManager shared] getGeneratedRestaurants:location prices:self.priceFilters cuisines:self.cuisineFilterParamRequestString ratings:self.ratingFilters radius:milesToMeters filterPriority:[self.filterPriority copy] completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
             if(restaurants) {
                 self.restaurantArray = [restaurants mutableCopy];
                 NSLog(@"Successfully loaded array");
@@ -207,7 +209,8 @@
     }
 }
 
-- (void)didApplyCuisineFilters:(nonnull NSArray *)selectedFilters {
+-(void) didApplyCuisineFilters:(NSArray *)selectedFilters categoriesParamRequestString:(NSString *)categoriesParamRequestString{
+    self.cuisineFilterParamRequestString = categoriesParamRequestString;
     self.didFiltersChange = [self _didCuisineFilterChange:selectedFilters array2:self.cuisineFilters];
     self.cuisineFilters = selectedFilters;
     if(self.cuisineFilters.count != 0){

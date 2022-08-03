@@ -13,7 +13,9 @@
 @property NSArray *cuisineButtonText;
 @property (weak, nonatomic) IBOutlet UICollectionView *cuisineFilterButtonCollectionView;
 @property (nonatomic) NSMutableArray *selectedCuisineFilters;
+@property (nonatomic) NSDictionary *cuisineFilterDictionary;
 @property (weak, nonatomic) IBOutlet UIButton *applyButton;
+
 
 
 @end
@@ -23,20 +25,30 @@
 
 - (IBAction)didTapApply:(id)sender {
     [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
-    [self.delegate didApplyCuisineFilters:self.selectedCuisineFilters];
+    
+    [self.delegate didApplyCuisineFilters:self.selectedCuisineFilters categoriesParamRequestString:[self _getCategoriesParamRequestString]];
 }
 
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    self.selectedCuisineFilters = [self.previouslySelectedCuisineFilters mutableCopy];
-    
-    self.cuisineButtonText = [NSArray arrayWithObjects:@"American (New)",@"American (Traditional)", @"Afghan", @"Brazilian", @"Chinese", @"Ethiopian", @"French", @"Filipino", @"Greek", @"Indian", @"Italian", @"Japanese", @"Korean", @"Mediterranean", @"Mexican", @"Turkish", nil];
-    
     self.cuisineFilterButtonCollectionView.dataSource = self;
     self.cuisineFilterButtonCollectionView.delegate = self;
     
+    self.selectedCuisineFilters = [self.previouslySelectedCuisineFilters mutableCopy];
+    self.cuisineButtonText = [NSArray arrayWithObjects:@"Afghan",@"American (New)",@"American (Traditional)", @"Brazilian",@"Chinese",@"Ethiopian",@"French",@"Filipino",@"Greek",@"Indian",@"Italian", @"Japanese", @"Korean",@"Mediterranean", @"Mexican",@"Pakistani",@"Turkish", nil];
+    self.cuisineFilterDictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"afghani",@"newamerican",@"tradamerican",@"brazilian",@"chinese",@"ethiopian", @"french", @"filipino", @"greek", @"indpak", @"italian", @"japanese", @"korean",  @"mediterranean",@"mexican",@"pakistani", @"turkish", nil] forKeys:self.cuisineButtonText];
+    
+    
     [self.applyButton setEnabled:self.selectedCuisineFilters.count != 0];
+}
+
+- (NSString *)_getCategoriesParamRequestString {
+    NSString *paramString = self.cuisineFilterDictionary[self.selectedCuisineFilters[0]];
+    for (int i=1; i<self.selectedCuisineFilters.count;i++){
+        paramString =[NSString stringWithFormat:@"%@%@%@",paramString,@",",self.cuisineFilterDictionary[self.selectedCuisineFilters[i]] ];
+    }
+    return paramString;
 }
 
 - (void)didTapFilterButton:(UIButton *)button{

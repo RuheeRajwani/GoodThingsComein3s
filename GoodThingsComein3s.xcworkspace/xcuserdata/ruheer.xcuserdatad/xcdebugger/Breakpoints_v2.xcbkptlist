@@ -7,32 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9A835702-8E34-426E-A7C9-091D88C5FDD7"
-            shouldBeEnabled = "Yes"
+            uuid = "BA8B8EFD-F38E-4923-A170-CB02EE985DA8"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GoodThingsComein3s/ViewControllers/DistanceFilterViewController.m"
+            filePath = "GoodThingsComein3s/API/APIManager.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "-distanceFilterViewControllerDidTapApply:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E5F1865F-C909-4FBC-ADD1-6376C7C6B13F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoodThingsComein3s/ViewControllers/HomeViewController.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
-            landmarkName = "-didApplyDistanceFilter:"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "-getGeneratedRestaurants:prices:cuisines:ratings:radius:filterPriority:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

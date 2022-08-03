@@ -15,7 +15,6 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
 @property (nonatomic) NSString *authHeader;
 @property (nonatomic) NSArray *filterPriority;
 @property (nonatomic) NSArray *priceFilters;
-@property (nonatomic) NSArray *cuisineFilters;
 @property (nonatomic) NSArray *ratingFilters;
 
 @end
@@ -48,17 +47,22 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
 
 #pragma mark - Requests
 
-- (void)getGeneratedRestaurants:(NSString *)location prices:(NSArray *)priceFilters cuisines:(NSArray *)cuisineFilters ratings:(NSArray *)ratingFilters radius:(NSNumber *)radius filterPriority:(NSArray *)filterPriority completion:(void(^)(NSArray *restaurants, NSError *error))completion {
+- (void)getGeneratedRestaurants:(NSString *)location prices:(NSArray *)priceFilters cuisines:(NSString *)cuisineFilters ratings:(NSArray *)ratingFilters radius:(NSNumber *)radius filterPriority:(NSArray *)filterPriority completion:(void(^)(NSArray *restaurants, NSError *error))completion {
     
     self.filterPriority = filterPriority;
     self.priceFilters = priceFilters;
     self.ratingFilters = ratingFilters;
-    self.cuisineFilters = cuisineFilters;
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%i%@%@", yelpBuisnessSearchString,@"?location=",location,@"&limit=", 50, @"&categories=",@"restaurants"];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%i", yelpBuisnessSearchString,@"?location=",location,@"&limit=", 50];
     
-    if (radius != nil){
-        urlString = [NSString stringWithFormat:@"%@%@%@%@%i%@%i%@%@", yelpBuisnessSearchString,@"?location=",location, @"&radius=", radius.intValue,@"&limit=", 50, @"&categories=",@"restaurants"];
+    if (radius != 0){
+        urlString = [NSString stringWithFormat:@"%@%@%@%@%i%@%i", yelpBuisnessSearchString,@"?location=",location, @"&radius=", radius.intValue,@"&limit=", 50];
+    }
+    
+    if (cuisineFilters != nil){
+        urlString = [NSString stringWithFormat:@"%@%@%@", urlString, @"&categories=", cuisineFilters];
+    } else {
+        urlString = [NSString stringWithFormat:@"%@%@", urlString, @"&categories=restaurants"];
     }
     
     NSMutableURLRequest *request =  [self _getURLRequestForURLString:urlString];
@@ -76,7 +80,6 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
            }
     }];
     [task resume];
-    
 }
 
 - (NSArray*)filterRestaurants: (NSArray*)restaurantsToFilter {
@@ -111,7 +114,6 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
                 }
             }
             score += priceScore;
-            
         } else if ([filter isEqualToString:@"rating"]){
             int ratingScore =0;
             for (NSNumber *ratingFilter in self.ratingFilters){
@@ -123,27 +125,7 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
                 }
             }
             score += ratingScore;
-            
-        } else if ([filter isEqualToString:@"cuisine"]){
-            int cuisineScore=0;
-            NSUInteger perfectScore = self.cuisineFilters.count;
-            for (NSString *cuisineFilter in self.cuisineFilters){
-                for (NSDictionary *category in restaurant.categoriesArray){
-                    if([category[@"title"] isEqualToString:cuisineFilter]){
-                        cuisineScore++;
-                    }
-                }
-            }
-            if(cuisineScore == perfectScore){
-                score += (10*scalingFactor);
-            } else if (cuisineScore!=0){
-                score += (8*scalingFactor && cuisineScore>2);
-            } else {
-                score += (cuisineScore*scalingFactor);
-            }
-            
         }
-        scalingFactor-=2;
     }
     return [NSNumber numberWithInt:score];
 }
@@ -197,7 +179,6 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                NSArray *reviews= dataDictionary[@"reviews"];
                completion(reviews,nil);
-              
            }
     }];
     [task resume];

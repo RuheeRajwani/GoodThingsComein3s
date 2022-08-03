@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol CuisineFilterDelegate
--(void) didApplyCuisineFilters:(NSArray *)selectedFilters;
+-(void) didApplyCuisineFilters:(NSArray *)selectedFilters categoriesParamRequestString:(NSString *)categoriesParamRequestString;
 
 @end
 
