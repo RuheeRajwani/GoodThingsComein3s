@@ -18,10 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="bfb-UT-bol">
-                                <rect key="frame" x="0.0" y="198" width="414" height="601"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no remaining restaurants to display. Please adjust your filters and try agian " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftN-Q6-oUy">
                                 <rect key="frame" x="20" y="242.5" width="374" height="107.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
@@ -199,7 +195,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="mhi-4a-m5i"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="bfb-UT-bol" id="qh5-UT-TKx"/>
                         <outlet property="cuisineFilterButton" destination="xxD-Zw-QT0" id="6of-SV-SU0"/>
                         <outlet property="distanceFilterButton" destination="rUz-vT-wCO" id="OsB-1e-wff"/>
                         <outlet property="homeRestaurantTableView" destination="WcC-jV-8Wk" id="hfu-jB-4c7"/>

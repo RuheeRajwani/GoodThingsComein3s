@@ -15,6 +15,7 @@
 #import "CuisineFilterViewController.h"
 #import "DistanceFilterViewController.h"
 #import "RatingFilterViewController.h"
+#import "DGActivityIndicatorView.h"
 
 @interface HomeViewController () <PriceFilterViewControllerDelegate, CuisineFilterDelegate, DistanceFilterDelegate, RatingFilterViewControllerDelegate, RestaurantTableViewCellDelegate, SignUpLoginViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -37,7 +38,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *noRemainingRestaurantsLabel;
 
 @property (nonatomic) UIRefreshControl *refreshControl;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (nonatomic) DGActivityIndicatorView *activityIndicatorView;
 
 @property (nonatomic) Restaurant *restaurantToAddToLikesFollowingLoginSignup;
 
@@ -59,36 +60,40 @@
     self.homeRestaurantTableView.dataSource = self;
     self.homeRestaurantTableView.delegate = self;
     self.homeRestaurantTableView.hidden = YES;
-    self.activityIndicator.hidden =YES;
     
     self.priceFilters = [[NSArray alloc] init];
     self.cuisineFilters = [[NSArray alloc] init];
     self.ratingFilters = [[NSArray alloc] init];
     self.filterPriority = [[NSMutableArray alloc] init];
     
+    self.activityIndicatorView = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeBallPulseSync tintColor:[UIColor colorWithRed:45/255.0 green:121/255.0 blue:253/255.0 alpha:1.0] size:50.0f];
+    self.activityIndicatorView.frame = CGRectMake(self.view.center.x - 25, self.view.center.y - 25, 50.0f, 50.0f);
+    [self.view addSubview:self.activityIndicatorView];
+    
     self.didFiltersChange = YES;
 }
 
 - (void)fetchRestaurants {
-    self.activityIndicator.hidden = NO;
-    [self.activityIndicator startAnimating];
-    
-    NSString *location = @"Seattle";
-    if ([PFUser currentUser] != nil){
-        [[PFUser currentUser] fetchIfNeeded];
-        location = [PFUser currentUser][@"location"];
-    }
-    
-    NSNumber *milesToMeters = [NSNumber numberWithInt:(int) [self.radius intValue] * 1609.34];
+    [self.activityIndicatorView setHidden:NO];
+    [self.activityIndicatorView startAnimating];
     
     if(self.didFiltersChange) {
         self.didFiltersChange = NO;
+        NSString *location = @"Seattle";
+        if ([PFUser currentUser] != nil){
+            [[PFUser currentUser] fetchIfNeeded];
+            location = [PFUser currentUser][@"location"];
+        }
+        
+        NSNumber *milesToMeters = [NSNumber numberWithInt:(int) [self.radius intValue] * 1609.34];
+        
         [[APIManager shared] getGeneratedRestaurants:location prices:self.priceFilters cuisines:self.cuisineFilterParamRequestString ratings:self.ratingFilters radius:milesToMeters filterPriority:[self.filterPriority copy] completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
             if(restaurants) {
                 self.restaurantArray = [restaurants mutableCopy];
                 NSLog(@"Successfully loaded array");
-                [self.homeRestaurantTableView reloadData];
                 [self _refreshHomeScreen];
+                [self stopAnimating];
+                
             } else {
                 NSLog(@"Error loading restaurants");
             }
@@ -96,20 +101,24 @@
     } else {
         if (self.restaurantArray.count<3){
             [self.noRemainingRestaurantsLabel setHidden:NO];
-            [self.refreshControl endRefreshing];
-            [self.activityIndicator setHidden:YES];
             
         } else {
             [self _refreshHomeScreen];
         }
+        [self stopAnimating];
     }
+   
+}
+
+- (void) stopAnimating {
+    [self.refreshControl endRefreshing];
+    [self.activityIndicatorView stopAnimating];
+    [self.activityIndicatorView setHidden:YES];
 }
 
 - (void) _refreshHomeScreen {
     [self.noRemainingRestaurantsLabel setHidden:YES];
     [self.homeRestaurantTableView reloadData];
-    [self.refreshControl endRefreshing];
-    [self.activityIndicator stopAnimating];
     self.homeRestaurantTableView.hidden = NO;
 }
 

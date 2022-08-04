@@ -9,5 +9,6 @@ target 'GoodThingsComein3s' do
 
 	pod 'Parse'
 	pod 'AFNetworking'
+	pod 'DGActivityIndicatorView'
   
 end
