@@ -259,7 +259,12 @@
 }
 
 - (void)didApplyDistanceFilter:(NSNumber *)selectedRadius {
-    self.didFiltersChange = [selectedRadius isEqualToNumber:self.radius];
+    if (self.radius != nil) {
+        self.didFiltersChange = (selectedRadius.floatValue != self.radius.floatValue);
+    } else {
+        self.didFiltersChange = YES;
+    }
+    self.radius = selectedRadius;
     [self.distanceFilterButton setSelected:YES];
 }
 

@@ -1268,7 +1268,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Apply"/>
                                 <connections>
-                                    <action selector="distanceFilterViewControllerDidTapApply:" destination="CnM-Cf-EzH" eventType="touchUpInside" id="68J-So-8Bb"/>
+                                    <action selector="distanceFilterViewControllerDidTapApply:" destination="CnM-Cf-EzH" eventType="touchUpInside" id="Xmu-Su-0tp"/>
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSM-O1-GJ8">
@@ -1292,7 +1292,7 @@
                                             <constraint firstAttribute="width" constant="275" id="pp5-5D-K0U"/>
                                         </constraints>
                                         <connections>
-                                            <action selector="distanceSliderValueDidChange:" destination="CnM-Cf-EzH" eventType="valueChanged" id="Oeg-Xv-f0c"/>
+                                            <action selector="distanceSliderValueDidChange:" destination="CnM-Cf-EzH" eventType="valueChanged" id="b1c-zd-JX0"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25 miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMF-sV-XrB">
@@ -1319,9 +1319,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="applyButton" destination="7zD-pu-Qrp" id="CrP-Ah-nyp"/>
-                        <outlet property="distanceSlider" destination="z9V-R5-777" id="o1t-xh-LCH"/>
-                        <outlet property="distanceSliderValueLabel" destination="vSM-O1-GJ8" id="kb4-rw-9kz"/>
+                        <outlet property="applyButton" destination="7zD-pu-Qrp" id="q65-El-uB1"/>
+                        <outlet property="distanceSlider" destination="z9V-R5-777" id="M0J-kq-YPH"/>
+                        <outlet property="distanceSliderValueLabel" destination="vSM-O1-GJ8" id="h4t-Lc-XOO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1rH-aB-EGs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -7,48 +7,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F7977433-C575-453B-BA29-E920447818D0"
+            uuid = "1B1E4E87-AF9E-474E-89CC-92221970DF6B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GoodThingsComein3s/ViewControllers/PriceFilterViewController.m"
+            filePath = "GoodThingsComein3s/ViewControllers/HomeViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "-fetchRestaurants"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "137EE9E9-F99F-4174-BEC8-45BD5E1A5588"
+            uuid = "F76F2D1B-6B11-434A-9B29-186A1B368EB2"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GoodThingsComein3s/ViewControllers/PriceFilterViewController.m"
+            filePath = "GoodThingsComein3s/ViewControllers/DistanceFilterViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "-priceFilterViewControllerDidTapApply:"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "-distanceFilterViewControllerDidTapApply:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "85C89354-F02C-4D53-9D8B-A5BDA853C883"
+            uuid = "75083B94-771D-4C14-9416-FA422C52756A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GoodThingsComein3s/ViewControllers/RatingFilterViewController.m"
+            filePath = "GoodThingsComein3s/ViewControllers/HomeViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "-ratingButtonTapped::"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
+            landmarkName = "-didApplyDistanceFilter:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
