@@ -19,18 +19,22 @@
 @interface HomeViewController () <PriceFilterViewControllerDelegate, CuisineFilterDelegate, DistanceFilterDelegate, RatingFilterViewControllerDelegate, RestaurantTableViewCellDelegate, SignUpLoginViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *homeRestaurantTableView;
-@property (nonatomic) NSArray *restaurantArray;
+@property (nonatomic) NSMutableArray *restaurantArray;
 
 @property (nonatomic) NSArray *priceFilters;
 @property (nonatomic) NSArray *cuisineFilters;
+@property (nonatomic) NSString *cuisineFilterParamRequestString;
 @property (nonatomic) NSArray *ratingFilters;
 @property (nonatomic) NSNumber *radius;
+@property (nonatomic) NSMutableArray *filterPriority;
+
+@property (nonatomic)Boolean didFiltersChange;
 
 @property (weak, nonatomic) IBOutlet UIButton *priceFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *cuisineFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *ratingFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *distanceFilterButton;
-@property (nonatomic) NSMutableArray *filterPriority;
+@property (weak, nonatomic) IBOutlet UILabel *noRemainingRestaurantsLabel;
 
 @property (nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -61,6 +65,8 @@
     self.cuisineFilters = [[NSArray alloc] init];
     self.ratingFilters = [[NSArray alloc] init];
     self.filterPriority = [[NSMutableArray alloc] init];
+    
+    self.didFiltersChange = YES;
 }
 
 - (void)fetchRestaurants {
@@ -72,19 +78,39 @@
         [[PFUser currentUser] fetchIfNeeded];
         location = [PFUser currentUser][@"location"];
     }
+    
     NSNumber *milesToMeters = [NSNumber numberWithInt:(int) [self.radius intValue] * 1609.34];
-    [[APIManager shared] getGeneratedRestaurants:location prices:self.priceFilters cuisines:self.cuisineFilters ratings:self.ratingFilters radius:milesToMeters filterPriority:[self.filterPriority copy] completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
-        if(restaurants) {
-            self.restaurantArray = restaurants;
-            NSLog(@"Successfully loaded array");
+    
+    if(self.didFiltersChange) {
+        self.didFiltersChange = NO;
+        [[APIManager shared] getGeneratedRestaurants:location prices:self.priceFilters cuisines:self.cuisineFilterParamRequestString ratings:self.ratingFilters radius:milesToMeters filterPriority:[self.filterPriority copy] completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
+            if(restaurants) {
+                self.restaurantArray = [restaurants mutableCopy];
+                NSLog(@"Successfully loaded array");
+                [self.homeRestaurantTableView reloadData];
+                [self _refreshHomeScreen];
+            } else {
+                NSLog(@"Error loading restaurants");
+            }
+        }];
+    } else {
+        if (self.restaurantArray.count<3){
+            [self.noRemainingRestaurantsLabel setHidden:NO];
+            [self.refreshControl endRefreshing];
+            [self.activityIndicator setHidden:YES];
+            
         } else {
-            NSLog(@"Error loading restaurants");
+            [self _refreshHomeScreen];
         }
-        [self.homeRestaurantTableView reloadData];
-        [self.refreshControl endRefreshing];
-        [self.activityIndicator stopAnimating];
-        self.homeRestaurantTableView.hidden = NO;
-    }];
+    }
+}
+
+- (void) _refreshHomeScreen {
+    [self.noRemainingRestaurantsLabel setHidden:YES];
+    [self.homeRestaurantTableView reloadData];
+    [self.refreshControl endRefreshing];
+    [self.activityIndicator stopAnimating];
+    self.homeRestaurantTableView.hidden = NO;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -117,7 +143,6 @@
         ratingFilterVC.previouslySelectedRatingFilters = self.ratingFilters;
         ratingFilterVC.delegate= self;
     }
-    
 }
 
 #pragma mark - Table view
@@ -125,6 +150,11 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     RestaurantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RestaurantTableViewCell" forIndexPath:indexPath];
     cell.restaurant = self.restaurantArray[indexPath.row];
+    if(indexPath.row == 2){
+        for (int i=0; i<3; i++){
+            [self.restaurantArray removeObjectAtIndex:0];
+        }
+    }
     cell.delegate = self;
     return cell;
 }
@@ -135,41 +165,107 @@
 
 #pragma mark - Delegates
 
+- (Boolean)_didRatingPriceFilterChange:(NSArray *)array1 array2:(NSArray *)array2{
+    if (array1 != nil && array2 !=nil){
+        if(array1.count == array2.count){
+            for( int i=0; i<array1.count;i++){
+                NSNumber *array1Num = array1[i];
+                NSNumber *array2Num = array2[i];
+                if(array1Num.intValue != array2Num.intValue){
+                    return YES;
+                }
+            }
+        } else {
+            return YES;
+        }
+    } else if (array1 == nil && array2 == nil){
+        return NO;
+    } else {
+        return YES;
+    }
+    return YES;
+}
+
+- (Boolean)_didCuisineFilterChange:(NSArray *)array1 array2:(NSArray *)array2{
+    if (array1 != nil && array2 !=nil){
+        if(array1.count == array2.count){
+            for( int i=0; i<array1.count;i++){
+                NSString *array1String = array1[i];
+                NSString *array2String = array2[i];
+                if(![array1String isEqualToString:array2String]){
+                    return YES;
+                }
+            }
+        } else {
+            return YES;
+        }
+    } else if (array1 == nil && array2 == nil){
+        return NO;
+    } else {
+        return YES;
+    }
+    return YES;
+}
+
 - (void)didApplyPriceFilters:(NSArray *)selectedFilters {
-    self.priceFilters = selectedFilters;
-    if(self.priceFilters.count != 0){
+    self.didFiltersChange = [self _didRatingPriceFilterChange:selectedFilters array2:self.priceFilters];
+    if(selectedFilters.count!=0){
         [self.priceFilterButton setSelected:YES];
-        if (![self.filterPriority containsObject:@"price"]){
+        if(![self.filterPriority containsObject:@"price"]){
             [self.filterPriority addObject:@"price"];
         }
+    } else {
+        [self.priceFilterButton setSelected:NO];
+        if([self.filterPriority containsObject:@"price"]){
+            [self.filterPriority removeObject:@"price"];
+        }
     }
+    self.priceFilters = selectedFilters;
 }
 
 - (void)didApplyRatingFilters:(nonnull NSArray *)selectedFilters {
-    self.ratingFilters = selectedFilters;
-    if(self.ratingFilters.count != 0){
+    self.didFiltersChange = [self _didRatingPriceFilterChange:selectedFilters array2:self.ratingFilters];
+    if(selectedFilters.count!=0){
         [self.ratingFilterButton setSelected:YES];
-        if (![self.filterPriority containsObject:@"rating"]){
+        if(![self.filterPriority containsObject:@"rating"]){
             [self.filterPriority addObject:@"rating"];
         }
+    } else {
+        [self.ratingFilterButton setSelected:NO];
+        if([self.filterPriority containsObject:@"rating"]){
+            [self.filterPriority removeObject:@"rating"];
+        }
     }
+    self.ratingFilters = selectedFilters;
 }
 
-- (void)didApplyCuisineFilters:(nonnull NSArray *)selectedFilters {
-    self.cuisineFilters = selectedFilters;
-    if(self.cuisineFilters.count != 0){
+-(void) didApplyCuisineFilters:(NSArray *)selectedFilters categoriesParamRequestString:(NSString *)categoriesParamRequestString{
+    self.cuisineFilterParamRequestString = categoriesParamRequestString;
+    self.didFiltersChange = [self _didCuisineFilterChange:selectedFilters array2:self.cuisineFilters];
+    
+    if(selectedFilters.count != 0){
+        self.didFiltersChange = [self _didCuisineFilterChange:selectedFilters array2:self.cuisineFilters];
         [self.cuisineFilterButton setSelected:YES];
         if (![self.filterPriority containsObject:@"cuisine"]){
             [self.filterPriority addObject:@"cuisine"];
         }
+    } else {
+        [self.cuisineFilterButton setSelected:NO];
+        if ([self.filterPriority containsObject:@"cuisine"]){
+            [self.filterPriority removeObject:@"cuisine"];
+        }
     }
+    self.cuisineFilters = selectedFilters;
 }
 
-- (void)didApplyDistanceFilter:(NSNumber *)radius {
-    self.radius = radius;
-    if(self.radius != nil) {
-        [self.distanceFilterButton setSelected:YES];
+- (void)didApplyDistanceFilter:(NSNumber *)selectedRadius {
+    if (self.radius != nil) {
+        self.didFiltersChange = (selectedRadius.floatValue != self.radius.floatValue);
+    } else {
+        self.didFiltersChange = YES;
     }
+    self.radius = selectedRadius;
+    [self.distanceFilterButton setSelected:YES];
 }
 
 - (void)addLikedRestaurantToUser: (Restaurant*) restaurant {

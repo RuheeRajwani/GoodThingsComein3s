@@ -16,8 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *fourDollarSignButton;
 @property (nonatomic) NSMutableArray *selectedPriceFilters;
 
-
-
 @end
 
 @implementation PriceFilterViewController
@@ -36,9 +34,7 @@
 
 #pragma mark - Button logic
 
--(void)setButtons {
-    [self.applyButton setEnabled:self.selectedPriceFilters.count != 0];
-    
+-(void)setButtons {    
     if ([self.selectedPriceFilters containsObject:@1]) {
         [self.oneDollarSignButton setSelected:YES];
     }
@@ -78,7 +74,6 @@
         [sender setSelected:NO];
         [self.selectedPriceFilters removeObject:filterToAdd];
     }
-    [self.applyButton setEnabled:self.selectedPriceFilters.count != 0];
 }
 
 @end

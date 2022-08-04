@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol CuisineFilterButtonCollectionViewCellDelegate
+
 -(void) didTapFilterButton:(UIButton *)button;
 
 @end

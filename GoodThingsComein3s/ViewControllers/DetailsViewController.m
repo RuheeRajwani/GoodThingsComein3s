@@ -28,7 +28,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *restaurantReviewsTableView;
 @property (nonatomic) NSDictionary *additionalRestaurantDetails;
 
-
 @end
 
 @implementation DetailsViewController

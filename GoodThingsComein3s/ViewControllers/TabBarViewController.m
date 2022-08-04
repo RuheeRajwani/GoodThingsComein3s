@@ -12,8 +12,6 @@
 #import <Parse/Parse.h>
 #import "SignUpLoginViewController.h"
 
-
-
 @interface TabBarViewController ()
 
 @end

@@ -22,7 +22,13 @@
                                 <rect key="frame" x="0.0" y="198" width="414" height="601"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WcC-jV-8Wk">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no remaining restaurants to display. Please adjust your filters and try agian " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftN-Q6-oUy">
+                                <rect key="frame" x="20" y="242.5" width="374" height="107.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WcC-jV-8Wk">
                                 <rect key="frame" x="0.0" y="210" width="414" height="598"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -179,9 +185,13 @@
                         <constraints>
                             <constraint firstItem="0H5-Od-7Yd" firstAttribute="bottom" secondItem="WcC-jV-8Wk" secondAttribute="bottom" constant="5" id="47Y-ay-blU"/>
                             <constraint firstItem="WcC-jV-8Wk" firstAttribute="leading" secondItem="0H5-Od-7Yd" secondAttribute="leading" id="4O1-VQ-jfM"/>
+                            <constraint firstItem="ftN-Q6-oUy" firstAttribute="top" secondItem="0H5-Od-7Yd" secondAttribute="top" constant="154.5" id="BN0-aV-okU"/>
                             <constraint firstItem="WcC-jV-8Wk" firstAttribute="top" secondItem="XvL-qA-XkZ" secondAttribute="bottom" constant="20" id="Fbh-Bh-UQM"/>
                             <constraint firstItem="XvL-qA-XkZ" firstAttribute="top" secondItem="DDL-KZ-tXu" secondAttribute="bottom" constant="30" id="Fhq-uf-bII"/>
+                            <constraint firstItem="0H5-Od-7Yd" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ftN-Q6-oUy" secondAttribute="bottom" constant="5" id="Fjx-wn-1wW"/>
                             <constraint firstItem="DDL-KZ-tXu" firstAttribute="centerX" secondItem="0H5-Od-7Yd" secondAttribute="centerX" id="MkY-Tz-mCM"/>
+                            <constraint firstItem="ftN-Q6-oUy" firstAttribute="leading" secondItem="0H5-Od-7Yd" secondAttribute="leading" constant="20" id="P4X-X7-RVz"/>
+                            <constraint firstItem="0H5-Od-7Yd" firstAttribute="trailing" secondItem="ftN-Q6-oUy" secondAttribute="trailing" constant="20" id="VsB-wm-tMF"/>
                             <constraint firstItem="XvL-qA-XkZ" firstAttribute="centerX" secondItem="0H5-Od-7Yd" secondAttribute="centerX" id="YLM-zk-r9g"/>
                             <constraint firstItem="DDL-KZ-tXu" firstAttribute="top" secondItem="0H5-Od-7Yd" secondAttribute="top" constant="10" id="pdm-9R-fgt"/>
                             <constraint firstItem="WcC-jV-8Wk" firstAttribute="trailing" secondItem="0H5-Od-7Yd" secondAttribute="trailing" id="tEo-Fg-tR1"/>
@@ -193,6 +203,7 @@
                         <outlet property="cuisineFilterButton" destination="xxD-Zw-QT0" id="6of-SV-SU0"/>
                         <outlet property="distanceFilterButton" destination="rUz-vT-wCO" id="OsB-1e-wff"/>
                         <outlet property="homeRestaurantTableView" destination="WcC-jV-8Wk" id="hfu-jB-4c7"/>
+                        <outlet property="noRemainingRestaurantsLabel" destination="ftN-Q6-oUy" id="wOx-8Z-Ta7"/>
                         <outlet property="priceFilterButton" destination="GzQ-sA-Xcf" id="PRN-8R-qxd"/>
                         <outlet property="ratingFilterButton" destination="nLp-lF-Bmx" id="obt-P7-ovV"/>
                         <segue destination="gAB-pC-lhx" kind="presentation" identifier="LiketoSignUpLoginSegue" modalPresentationStyle="automatic" id="xcO-Bp-M1A"/>
@@ -442,7 +453,7 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQC-fj-jVx">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQC-fj-jVx">
                                 <rect key="frame" x="176.5" y="245" width="61" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Apply"/>
@@ -1094,7 +1105,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tJR-5R-cVr">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tJR-5R-cVr">
                                 <rect key="frame" x="176.5" y="629" width="61" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Apply"/>
@@ -1141,7 +1152,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SB3-jG-YJe">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SB3-jG-YJe">
                                 <rect key="frame" x="176.5" y="326" width="61" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Apply"/>
@@ -1257,8 +1268,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Apply"/>
                                 <connections>
-                                    <action selector="distanceFilterViewControllerDidTapApply:" destination="CnM-Cf-EzH" eventType="touchUpInside" id="CeI-7u-nZq"/>
-                                    <action selector="distanceFilterViewControllerDidTapApply:" destination="Waw-ds-NC5" eventType="touchUpInside" id="Ixz-W2-qwe"/>
+                                    <action selector="distanceFilterViewControllerDidTapApply:" destination="CnM-Cf-EzH" eventType="touchUpInside" id="Xmu-Su-0tp"/>
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSM-O1-GJ8">
@@ -1282,7 +1292,7 @@
                                             <constraint firstAttribute="width" constant="275" id="pp5-5D-K0U"/>
                                         </constraints>
                                         <connections>
-                                            <action selector="distanceSliderValueDidChange:" destination="CnM-Cf-EzH" eventType="valueChanged" id="3Wb-gP-3e4"/>
+                                            <action selector="distanceSliderValueDidChange:" destination="CnM-Cf-EzH" eventType="valueChanged" id="b1c-zd-JX0"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25 miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMF-sV-XrB">
@@ -1309,13 +1319,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="applyButton" destination="7zD-pu-Qrp" id="xQZ-eH-pY1"/>
-                        <outlet property="distanceSlider" destination="z9V-R5-777" id="plS-FB-7oD"/>
-                        <outlet property="distanceSliderValueLabel" destination="vSM-O1-GJ8" id="85K-1B-b34"/>
+                        <outlet property="applyButton" destination="7zD-pu-Qrp" id="q65-El-uB1"/>
+                        <outlet property="distanceSlider" destination="z9V-R5-777" id="M0J-kq-YPH"/>
+                        <outlet property="distanceSliderValueLabel" destination="vSM-O1-GJ8" id="h4t-Lc-XOO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1rH-aB-EGs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="Waw-ds-NC5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-5618.840579710145" y="-1923.2142857142856"/>
         </scene>

@@ -23,7 +23,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.selectedRatingFilters = [self.previouslySelectedRatingFilters mutableCopy];
     [self setButtons];
 }
@@ -36,8 +35,6 @@
 #pragma mark - Button logic
 
 - (void)setButtons {
-    [self.applyButton setEnabled:self.selectedRatingFilters.count!=0];
-    
     if ([self.selectedRatingFilters containsObject:@1]) {
         [self.oneStarButton setSelected:YES];
     }
@@ -51,7 +48,7 @@
         [self.fourStarButton setSelected:YES];
     }
     if ([self.selectedRatingFilters containsObject:@5]) {
-        [self.fourStarButton setSelected:YES];
+        [self.fiveStarButton setSelected:YES];
     }
 
 }
@@ -84,10 +81,6 @@
         [sender setSelected:NO];
         [self.selectedRatingFilters removeObject:number];
     }
-    [self.applyButton setEnabled:self.selectedRatingFilters.count != 0];
 }
-
-
-
 
 @end
