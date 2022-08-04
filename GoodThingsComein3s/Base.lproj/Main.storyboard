@@ -590,6 +590,7 @@
                     <connections>
                         <outlet property="nameFieldToFill" destination="hTN-Sh-2yB" id="Ste-kJ-SvX"/>
                         <outlet property="profileLikedRestaurantsCollectionView" destination="Pgp-wR-Orv" id="7m8-I7-MRx"/>
+                        <outlet property="yourSavedRestaurantsLabel" destination="jZx-Go-Qm6" id="OJy-Ey-YdI"/>
                         <segue destination="gAB-pC-lhx" kind="presentation" identifier="profilePageToSignUpLoginSegue" id="afM-et-cLZ"/>
                     </connections>
                 </viewController>
@@ -1326,8 +1327,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="s4j-MO-2U8"/>
-        <segue reference="xcO-Bp-M1A"/>
-        <segue reference="bn4-OO-FaL"/>
+        <segue reference="afM-et-cLZ"/>
+        <segue reference="jkp-W0-mLw"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1Star" width="21" height="21"/>
