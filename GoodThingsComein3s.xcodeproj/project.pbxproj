@@ -85,7 +85,6 @@
 		EFD2FC8E2885C6EB0095DD85 /* RestaurantTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestaurantTableViewCell.m; sourceTree = "<group>"; };
 		EFD2FC902885C7FB0095DD85 /* Restaurant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
 		EFD2FC912885C7FB0095DD85 /* Restaurant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
-		EFEC761F289DB4CF00566846 /* Filters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Filters.h; sourceTree = "<group>"; };
 		EFF469152893265600EAB67B /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		EFF469162893265600EAB67B /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		EFF4691E289371F100EAB67B /* RestaurantPhotoCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestaurantPhotoCollectionViewCell.h; sourceTree = "<group>"; };
@@ -213,7 +212,6 @@
 				EFC241B828762BD10059EBE7 /* SceneDelegate.m */,
 				EFBC0224287763BD00B9D09F /* Config.plist */,
 				EFBC02322878CF3500B9D09F /* Assests.xcassets */,
-				EFEC761F289DB4CF00566846 /* Filters.h */,
 			);
 			path = GoodThingsComein3s;
 			sourceTree = "<group>";
