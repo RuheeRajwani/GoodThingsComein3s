@@ -949,6 +949,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="L2G-Zw-bGg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="icb-ln-721" firstAttribute="leading" secondItem="L2G-Zw-bGg" secondAttribute="leading" id="HUb-Xu-wa2"/>
                             <constraint firstItem="icb-ln-721" firstAttribute="trailing" secondItem="L2G-Zw-bGg" secondAttribute="trailing" id="Nqh-vS-5N9"/>
@@ -958,6 +959,9 @@
                             <constraint firstItem="h4i-ST-uwM" firstAttribute="top" secondItem="L2G-Zw-bGg" secondAttribute="top" constant="12" id="iZf-nI-bf3"/>
                             <constraint firstItem="h4i-ST-uwM" firstAttribute="leading" secondItem="L2G-Zw-bGg" secondAttribute="leading" id="r8b-Cc-ql2"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="N5w-Qe-1iS" appends="YES" id="Jzh-wA-IEN"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="Eb1-dd-D3q"/>
                     <connections>
@@ -966,6 +970,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Goz-NI-ZeV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="N5w-Qe-1iS">
+                    <connections>
+                        <action selector="didTapGestureRecognizer:" destination="oog-wm-T3q" id="i0m-p3-KsR"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-10510.144927536232" y="-2764.2857142857142"/>
         </scene>
@@ -1327,7 +1336,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="s4j-MO-2U8"/>
-        <segue reference="afM-et-cLZ"/>
+        <segue reference="xcO-Bp-M1A"/>
         <segue reference="jkp-W0-mLw"/>
     </inferredMetricsTieBreakers>
     <resources>
