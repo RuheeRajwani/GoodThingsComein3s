@@ -15,6 +15,7 @@ PODS:
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
   - Bolts/Tasks (1.9.1)
+  - DGActivityIndicatorView (2.1.1)
   - Parse (1.19.3):
     - Parse/Core (= 1.19.3)
   - Parse/Core (1.19.3):
@@ -22,19 +23,22 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - DGActivityIndicatorView
   - Parse
 
 SPEC REPOS:
   trunk:
     - AFNetworking
     - Bolts
+    - DGActivityIndicatorView
     - Parse
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
+  DGActivityIndicatorView: ff2c76073d79692f724863c8dd38685866a03cb6
   Parse: 0abb63a0ff6fa34a3f64b81d595a294e2ece143a
 
-PODFILE CHECKSUM: 3df5e1449f48645d3983192771011e641eb9bf68
+PODFILE CHECKSUM: 69131f572a50e7eb46117f768f78d1b426bbf822
 
 COCOAPODS: 1.11.3

@@ -10,6 +10,7 @@
 #import "RestaurantTableViewCell.h"
 #import "APIManager.h"
 #import "DetailsViewController.h"
+#import "DGActivityIndicatorView.h"
 
 
 @interface SearchViewController ()
@@ -17,12 +18,16 @@
 @property (weak, nonatomic) IBOutlet UITableView *searchTableView;
 @property (strong, nonatomic) NSArray *filteredData;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (nonatomic) DGActivityIndicatorView *activityIndicatorView;
 
 @end
 
 @implementation SearchViewController
 
 - (IBAction)searchViewControllerDidTapSearch:(id)sender {
+    [self.activityIndicatorView setHidden:NO];
+    [self.activityIndicatorView startAnimating];
+    
     NSString *searchText = self.searchBar.text;
     [[APIManager shared] getRestaurantSearchResults:@"Seattle" searchTerm:searchText completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
 
@@ -33,6 +38,8 @@
         } else {
             NSLog(@"Error loading restaurants");
         }
+        [self.activityIndicatorView setHidden:YES];
+        [self.activityIndicatorView stopAnimating];
     }];
 }
 
@@ -45,6 +52,11 @@
     self.searchBar.delegate = self;
     
     self.filteredData = [[NSArray alloc] init];
+    
+    self.activityIndicatorView = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeBallPulseSync tintColor:[UIColor colorWithRed:45/255.0 green:121/255.0 blue:253/255.0 alpha:1.0] size:50.0f];
+    self.activityIndicatorView.frame = CGRectMake(self.view.center.x - 25, self.view.center.y - 25, 50.0f, 50.0f);
+    [self.view addSubview:self.activityIndicatorView];
+    
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

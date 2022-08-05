@@ -15,12 +15,15 @@
 #import "DetailsViewController.h"
 #import "Restaurant.h"
 #import "SignUpLoginViewController.h"
+#import "DGActivityIndicatorView.h"
 
 @interface ProfileViewController ()<SignUpLoginViewControllerDelegate,UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UILabel *nameFieldToFill;
 @property (weak, nonatomic) IBOutlet UICollectionView *profileLikedRestaurantsCollectionView;
 @property (nonatomic) NSMutableArray *likedRestaurants;
+@property (weak, nonatomic) IBOutlet UILabel *yourSavedRestaurantsLabel;
+@property (nonatomic) DGActivityIndicatorView *activityIndicatorView;
 
 @end
 
@@ -33,6 +36,12 @@
 }
 
 - (void)getUserInformation {
+    [self.activityIndicatorView startAnimating];
+    [self.activityIndicatorView setHidden:NO];
+    
+    [self.nameFieldToFill setHidden:YES];
+    [self.yourSavedRestaurantsLabel setHidden:YES];
+    
     PFUser *curr = [PFUser currentUser];
     if(curr != nil) {
         NSString *greeting =@"Hi ";
@@ -40,10 +49,16 @@
         self.nameFieldToFill.text =[NSString stringWithFormat:@"%@%@%@", greeting, [PFUser currentUser].username, exclaimation];
         self.likedRestaurants = [PFUser currentUser][@"likedRestaurants"];
         [self.profileLikedRestaurantsCollectionView reloadData];
+        
+        [self.nameFieldToFill setHidden:NO];
+        [self.yourSavedRestaurantsLabel setHidden:NO];
+        [self.activityIndicatorView stopAnimating];
+        [self.activityIndicatorView setHidden:YES];
        
     } else {
         [self performSegueWithIdentifier:@"profilePageToSignUpLoginSegue" sender:@"profileView"];
     }
+    
 }
 
 - (void)viewDidLoad {
@@ -52,6 +67,10 @@
     self.profileLikedRestaurantsCollectionView.dataSource = self;
     self.likedRestaurants = [[NSMutableArray alloc]init];
     
+    self.activityIndicatorView = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeBallPulseSync tintColor:[UIColor colorWithRed:45/255.0 green:121/255.0 blue:253/255.0 alpha:1.0] size:50.0f];
+    self.activityIndicatorView.frame = CGRectMake(self.view.center.x - 25, self.view.center.y - 25, 50.0f, 50.0f);
+    [self.view addSubview:self.activityIndicatorView];
+     
     [self getUserInformation];
 }
 
