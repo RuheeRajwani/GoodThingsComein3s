@@ -11,6 +11,7 @@
 #import "RestaurantPhotoCollectionViewCell.h"
 #import "RestaurantReviewTableViewCell.h"
 #import "Restaurant.h"
+#import "DGActivityIndicatorView.h"
 
 @interface DetailsViewController () <UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource>
 
@@ -27,6 +28,9 @@
 @property (nonatomic) NSTimer *timer;
 @property (weak, nonatomic) IBOutlet UITableView *restaurantReviewsTableView;
 @property (nonatomic) NSDictionary *additionalRestaurantDetails;
+@property (nonatomic) DGActivityIndicatorView *activityIndicatorView;
+@property (weak, nonatomic) IBOutlet UIStackView *labelStackView;
+@property (weak, nonatomic) IBOutlet UILabel *reviewsTitleLabel;
 
 @end
 
@@ -43,6 +47,13 @@
 
     self.imageURLS = [[NSMutableArray alloc] init];
     
+    self.activityIndicatorView = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeBallPulseSync tintColor:[UIColor colorWithRed:45/255.0 green:121/255.0 blue:253/255.0 alpha:1.0] size:50.0f];
+    self.activityIndicatorView.frame = CGRectMake(self.view.center.x - 25, self.view.center.y - 25, 50.0f, 50.0f);
+    [self.view addSubview:self.activityIndicatorView];
+    
+    [self hideShowViewElements:YES];
+    [self.activityIndicatorView startAnimating];
+    
     [[APIManager shared] getRestaurantDetails:self.restaurantToShow.restaurantYelpID completion:^(NSDictionary * _Nonnull restaurant, NSError * _Nonnull error) {
         if (error == nil) {
         self.additionalRestaurantDetails = restaurant;
@@ -54,9 +65,19 @@
         if (error == nil) {
             self.reviews = reviews;
             [self.restaurantReviewsTableView reloadData];
+            [self.activityIndicatorView stopAnimating];
+            [self hideShowViewElements:NO];
         }
     }];
     
+    
+}
+
+- (void)hideShowViewElements:(Boolean)toHide {
+    [self.restaurantNameLabel setHidden:toHide];
+    [self.activityIndicatorView setHidden:!toHide];
+    [self.labelStackView setHidden:toHide];
+    [self.reviewsTitleLabel setHidden:toHide];
     
 }
 

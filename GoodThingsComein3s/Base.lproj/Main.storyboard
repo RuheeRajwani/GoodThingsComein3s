@@ -380,6 +380,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="r6h-E6-blf"/>
                     <connections>
+                        <outlet property="labelStackView" destination="bbF-CS-wRT" id="1Zx-db-k2E"/>
                         <outlet property="restaurantAddressLabel" destination="6NU-eg-CsP" id="SmO-ft-5Rq"/>
                         <outlet property="restaurantCategoriesLabel" destination="obw-ZF-qY1" id="860-MB-3Er"/>
                         <outlet property="restaurantImageCollectionViewPageControl" destination="sMK-3d-v8N" id="7NX-YY-bap"/>
@@ -388,6 +389,7 @@
                         <outlet property="restaurantPriceLabel" destination="ByP-yC-NBA" id="ZVd-x1-qmp"/>
                         <outlet property="restaurantRatingImageView" destination="cQn-gE-saJ" id="iup-P7-9HC"/>
                         <outlet property="restaurantReviewsTableView" destination="rkt-O4-oNe" id="aEi-8h-Iae"/>
+                        <outlet property="reviewsTitleLabel" destination="aPQ-dB-dc1" id="R0L-cV-dA5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ea-rD-vZb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
