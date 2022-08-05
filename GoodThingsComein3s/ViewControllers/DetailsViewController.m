@@ -51,13 +51,13 @@
     self.activityIndicatorView.frame = CGRectMake(self.view.center.x - 25, self.view.center.y - 25, 50.0f, 50.0f);
     [self.view addSubview:self.activityIndicatorView];
     
-    [self hideShowViewElements:YES];
+    [self _hideShowViewElements:YES];
     [self.activityIndicatorView startAnimating];
     
     [[APIManager shared] getRestaurantDetails:self.restaurantToShow.restaurantYelpID completion:^(NSDictionary * _Nonnull restaurant, NSError * _Nonnull error) {
         if (error == nil) {
         self.additionalRestaurantDetails = restaurant;
-        [self setRestaurantView];
+        [self _setRestaurantView];
         }
     }];
 
@@ -66,14 +66,27 @@
             self.reviews = reviews;
             [self.restaurantReviewsTableView reloadData];
             [self.activityIndicatorView stopAnimating];
-            [self hideShowViewElements:NO];
+            [self _hideShowViewElements:NO];
         }
     }];
-    
-    
 }
 
-- (void)hideShowViewElements:(Boolean)toHide {
+#pragma mark - Timer 
+
+- (void)_startTimeThread {
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+}
+
+- (void) timerAction {
+    int desiredScrollPosition = (self.currentIndex <self.imageURLS.count - 1) ? self.currentIndex + 1 : 0;
+    [self.restaurantPhotosCollectionView setNeedsLayout];
+    [self.restaurantPhotosCollectionView layoutIfNeeded];
+    [self.restaurantPhotosCollectionView setContentOffset:CGPointMake(desiredScrollPosition*self.restaurantPhotosCollectionView.frame.size.width, 0) animated:YES];
+}
+
+#pragma mark - Helper Methods
+
+- (void)_hideShowViewElements:(Boolean)toHide {
     [self.restaurantNameLabel setHidden:toHide];
     [self.restaurantImageCollectionViewPageControl setHidden:toHide];
     [self.activityIndicatorView setHidden:!toHide];
@@ -82,7 +95,7 @@
     
 }
 
-- (void)setRestaurantView {
+- (void)_setRestaurantView {
     self.restaurantNameLabel.text = self.restaurantToShow.name;
     self.restaurantPriceLabel.text = self.restaurantToShow.priceDisplayString;
     self.restaurantCategoriesLabel.text = self.restaurantToShow.categoriesDisplayString;
@@ -98,19 +111,7 @@
     self.currentIndex = 0;
         
     [self.restaurantPhotosCollectionView reloadData];
-    [self startTimeThread];
-    
-}
-
-- (void)startTimeThread {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
-}
-
-- (void) timerAction {
-    int desiredScrollPosition = (self.currentIndex <self.imageURLS.count - 1) ? self.currentIndex + 1 : 0;
-    [self.restaurantPhotosCollectionView setNeedsLayout];
-    [self.restaurantPhotosCollectionView layoutIfNeeded];
-    [self.restaurantPhotosCollectionView setContentOffset:CGPointMake(desiredScrollPosition*self.restaurantPhotosCollectionView.frame.size.width, 0) animated:YES];
+    [self _startTimeThread];
 }
 
 #pragma mark - Image Collection View
@@ -122,7 +123,6 @@
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.imageURLS.count;
 }
-
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     RestaurantPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RestaurantPhotoCollectionViewCell" forIndexPath:indexPath];
@@ -155,7 +155,6 @@
     
     cell.restaurantReviewUsernameLabel.text = review[@"user"][@"name"];
     cell.restaurantReviewTextLabel.text = review[@"text"];
-    
     
     return cell;
 }

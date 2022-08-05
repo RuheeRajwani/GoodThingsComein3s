@@ -5,12 +5,7 @@
 //  Created by Ruhee Rajwani on 7/7/22.
 //
 
-#import "TabBarViewController.h"
-#import "SearchViewController.h"
-#import "HomeViewController.h"
-#import "ProfileViewController.h"
-#import <Parse/Parse.h>
-#import "SignUpLoginViewController.h"
+#import  "TabBarViewController.h"
 
 @interface TabBarViewController ()
 

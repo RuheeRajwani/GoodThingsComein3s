@@ -74,55 +74,6 @@
     self.didFiltersChange = YES;
 }
 
-- (void)fetchRestaurants {
-    [self.activityIndicatorView setHidden:NO];
-    [self.activityIndicatorView startAnimating];
-    
-    if(self.didFiltersChange) {
-        self.didFiltersChange = NO;
-        NSString *location = @"Seattle";
-        if ([PFUser currentUser] != nil){
-            [[PFUser currentUser] fetchIfNeeded];
-            location = [PFUser currentUser][@"location"];
-        }
-        
-        NSNumber *milesToMeters = [NSNumber numberWithInt:(int) [self.radius intValue] * 1609.34];
-        
-        [[APIManager shared] getGeneratedRestaurants:location prices:self.priceFilters cuisines:self.cuisineFilterParamRequestString ratings:self.ratingFilters radius:milesToMeters filterPriority:[self.filterPriority copy] completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
-            if(restaurants) {
-                self.restaurantArray = [restaurants mutableCopy];
-                NSLog(@"Successfully loaded array");
-                [self _refreshHomeScreen];
-                [self stopAnimating];
-                
-            } else {
-                NSLog(@"Error loading restaurants");
-            }
-        }];
-    } else {
-        if (self.restaurantArray.count<3){
-            [self.noRemainingRestaurantsLabel setHidden:NO];
-            
-        } else {
-            [self _refreshHomeScreen];
-        }
-        [self stopAnimating];
-    }
-   
-}
-
-- (void) stopAnimating {
-    [self.refreshControl endRefreshing];
-    [self.activityIndicatorView stopAnimating];
-    [self.activityIndicatorView setHidden:YES];
-}
-
-- (void) _refreshHomeScreen {
-    [self.noRemainingRestaurantsLabel setHidden:YES];
-    [self.homeRestaurantTableView reloadData];
-    self.homeRestaurantTableView.hidden = NO;
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"LiketoSignUpLoginSegue"]) {
         SignUpLoginViewController *signUpLoginVC = [segue destinationViewController];
@@ -173,7 +124,96 @@
     return 3;
 }
 
-#pragma mark - Delegates
+#pragma mark - Helper Methods
+
+- (void)fetchRestaurants {
+    [self.activityIndicatorView setHidden:NO];
+    [self.activityIndicatorView startAnimating];
+    
+    if(self.didFiltersChange) {
+        self.didFiltersChange = NO;
+        NSString *location = @"Seattle";
+        if ([PFUser currentUser] != nil){
+            [[PFUser currentUser] fetchIfNeeded];
+            location = [PFUser currentUser][@"location"];
+        }
+        
+        NSNumber *milesToMeters = [NSNumber numberWithInt:(int) [self.radius intValue] * 1609.34];
+        
+        [[APIManager shared] getGeneratedRestaurants:location prices:self.priceFilters cuisines:self.cuisineFilterParamRequestString ratings:self.ratingFilters radius:milesToMeters filterPriority:[self.filterPriority copy] completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
+            if(restaurants) {
+                self.restaurantArray = [restaurants mutableCopy];
+                NSLog(@"Successfully loaded array");
+                [self _refreshHomeScreen];
+                [self _stopAnimating];
+                
+            } else {
+                NSLog(@"Error loading restaurants");
+            }
+        }];
+    } else {
+        if (self.restaurantArray.count<3){
+            [self.noRemainingRestaurantsLabel setHidden:NO];
+            
+        } else {
+            [self _refreshHomeScreen];
+        }
+        [self _stopAnimating];
+    }
+   
+}
+
+- (void) _stopAnimating {
+    [self.refreshControl endRefreshing];
+    [self.activityIndicatorView stopAnimating];
+    [self.activityIndicatorView setHidden:YES];
+}
+
+- (void) _refreshHomeScreen {
+    [self.noRemainingRestaurantsLabel setHidden:YES];
+    [self.homeRestaurantTableView reloadData];
+    self.homeRestaurantTableView.hidden = NO;
+}
+
+- (void)_addLikedRestaurantToUser: (Restaurant*) restaurant {
+    PFUser *currUser = [PFUser currentUser];
+    if(currUser != nil) {
+        NSMutableArray *likedRestaurants = currUser[@"likedRestaurants"];
+        [likedRestaurants addObject: [self _restaurantToParseObject:restaurant]];
+        currUser[@"likedRestaurants"]=likedRestaurants;
+        [currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+          if (succeeded) {
+              NSLog(@"Successfully added");
+              NSLog(@"%@", currUser[@"likedRestaurants"]);
+          } else {
+              NSLog(@"Error liking restaurant");
+          }
+        }];
+    } else {
+        self.restaurantToAddToLikesFollowingLoginSignup = restaurant;
+        [self performSegueWithIdentifier:@"LiketoSignUpLoginSegue" sender:nil];
+    }
+}
+
+- (PFObject *) _restaurantToParseObject:(Restaurant *) restaurantToConvert {
+    PFObject *restaurantToAdd = [[PFObject alloc] initWithClassName:@"Restaurant"];
+    restaurantToAdd[@"name"] = restaurantToConvert.name;
+    restaurantToAdd[@"restaurantYelpID"] = restaurantToConvert.restaurantYelpID;
+    restaurantToAdd[@"priceDisplayString"] = restaurantToConvert.priceDisplayString;
+    restaurantToAdd[@"displayAddress"] =  restaurantToConvert.displayAddress;
+    restaurantToAdd[@"categoriesDisplayString"] = restaurantToConvert.categoriesDisplayString;
+    
+    
+    NSData *restaurantImageData = UIImagePNGRepresentation(restaurantToConvert.restaurantImage);
+    NSString *restaurantImageName = [NSString stringWithFormat:@"%@%@",restaurantToConvert.restaurantYelpID, @"image"];
+    restaurantToAdd[@"restaurantImage"] = [PFFileObject fileObjectWithName:restaurantImageName data:restaurantImageData];
+    
+    NSData *ratingImageData = UIImagePNGRepresentation(restaurantToConvert.ratingImage);
+    NSString *ratingImageName = [NSString stringWithFormat:@"%@%@",restaurantToConvert.restaurantYelpID, @"image"];
+    restaurantToAdd[@"ratingImage"] = [PFFileObject fileObjectWithName:ratingImageName data:ratingImageData];
+    
+    return restaurantToAdd;
+}
 
 - (Boolean)_didRatingPriceFilterChange:(NSArray *)array1 array2:(NSArray *)array2{
     if (array1 != nil && array2 !=nil){
@@ -217,6 +257,8 @@
     return YES;
 }
 
+#pragma mark - Delegates
+
 - (void)didApplyPriceFilters:(NSArray *)selectedFilters {
     self.didFiltersChange = [self _didRatingPriceFilterChange:selectedFilters array2:self.priceFilters];
     if(selectedFilters.count!=0){
@@ -249,7 +291,7 @@
     self.ratingFilters = selectedFilters;
 }
 
--(void) didApplyCuisineFilters:(NSArray *)selectedFilters categoriesParamRequestString:(NSString *)categoriesParamRequestString{
+- (void)didApplyCuisineFilters:(NSArray *)selectedFilters categoriesParamRequestString:(NSString *)categoriesParamRequestString{
     self.cuisineFilterParamRequestString = categoriesParamRequestString;
     self.didFiltersChange = [self _didCuisineFilterChange:selectedFilters array2:self.cuisineFilters];
     
@@ -278,53 +320,14 @@
     [self.distanceFilterButton setSelected:YES];
 }
 
-- (void)addLikedRestaurantToUser: (Restaurant*) restaurant {
-    PFUser *currUser = [PFUser currentUser];
-    if(currUser != nil) {
-        NSMutableArray *likedRestaurants = currUser[@"likedRestaurants"];
-        [likedRestaurants addObject: [self _restaurantToParseObject:restaurant]];
-        currUser[@"likedRestaurants"]=likedRestaurants;
-        [currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-          if (succeeded) {
-              NSLog(@"Successfully added");
-              NSLog(@"%@", currUser[@"likedRestaurants"]);
-          } else {
-              NSLog(@"Error liking restaurant");
-          }
-        }];
-    } else {
-        self.restaurantToAddToLikesFollowingLoginSignup = restaurant;
-        [self performSegueWithIdentifier:@"LiketoSignUpLoginSegue" sender:nil];
-    }
-}
-
-- (PFObject *) _restaurantToParseObject:(Restaurant *) restaurantToConvert {
-    PFObject *restaurantToAdd = [[PFObject alloc] initWithClassName:@"Restaurant"];
-    restaurantToAdd[@"name"] = restaurantToConvert.name;
-    restaurantToAdd[@"restaurantYelpID"] = restaurantToConvert.restaurantYelpID;
-    restaurantToAdd[@"priceDisplayString"] = restaurantToConvert.priceDisplayString;
-    restaurantToAdd[@"displayAddress"] =  restaurantToConvert.displayAddress;
-    restaurantToAdd[@"categoriesDisplayString"] = restaurantToConvert.categoriesDisplayString;
-    
-    
-    NSData *restaurantImageData = UIImagePNGRepresentation(restaurantToConvert.restaurantImage);
-    NSString *restaurantImageName = [NSString stringWithFormat:@"%@%@",restaurantToConvert.restaurantYelpID, @"image"];
-    restaurantToAdd[@"restaurantImage"] = [PFFileObject fileObjectWithName:restaurantImageName data:restaurantImageData];
-    
-    NSData *ratingImageData = UIImagePNGRepresentation(restaurantToConvert.ratingImage);
-    NSString *ratingImageName = [NSString stringWithFormat:@"%@%@",restaurantToConvert.restaurantYelpID, @"image"];
-    restaurantToAdd[@"ratingImage"] = [PFFileObject fileObjectWithName:ratingImageName data:ratingImageData];
-    
-    return restaurantToAdd;
-}
-
 - (void)didTapLikeForRestaurant:(nonnull Restaurant *)restaurant {
-    [self addLikedRestaurantToUser:restaurant];
+    [self _addLikedRestaurantToUser:restaurant];
 }
 
 - (void)signUpLoginViewControllerDidDismissForUser {
-    [self addLikedRestaurantToUser:self.restaurantToAddToLikesFollowingLoginSignup];
+    [self _addLikedRestaurantToUser:self.restaurantToAddToLikesFollowingLoginSignup];
 }
+
 
 @end
 
