@@ -25,6 +25,7 @@
 @implementation SearchViewController
 
 - (IBAction)searchViewControllerDidTapSearch:(id)sender {
+    [self.searchTableView setHidden:YES];
     [self.activityIndicatorView setHidden:NO];
     [self.activityIndicatorView startAnimating];
     
@@ -40,6 +41,7 @@
         }
         [self.activityIndicatorView setHidden:YES];
         [self.activityIndicatorView stopAnimating];
+        [self.searchTableView setHidden:NO];
     }];
 }
 
