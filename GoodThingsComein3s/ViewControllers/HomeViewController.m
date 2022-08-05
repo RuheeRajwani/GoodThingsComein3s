@@ -48,6 +48,7 @@
 
 - (IBAction)homeViewControllerDidTapGenerate:(id)sender {
     self.homeRestaurantTableView.hidden = YES;
+    self.noRemainingRestaurantsLabel.hidden = YES;
     [self fetchRestaurants];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchRestaurants) forControlEvents:UIControlEventValueChanged];
