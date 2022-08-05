@@ -19,7 +19,6 @@
     [self performSegueWithIdentifier:@"loginSegue" sender:nil];
 }
 
-
 - (IBAction)signUpViewControllerDidTapSignUp:(id)sender {
     [self performSegueWithIdentifier:@"signUpSegue" sender:nil];
 }

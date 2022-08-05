@@ -45,42 +45,7 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
     return request;
 }
 
-#pragma mark - Requests
-
-- (void)getGeneratedRestaurants:(NSString *)location prices:(NSArray *)priceFilters cuisines:(NSString *)cuisineFilters ratings:(NSArray *)ratingFilters radius:(NSNumber *)radius filterPriority:(NSArray *)filterPriority completion:(void(^)(NSArray *restaurants, NSError *error))completion {
-    
-    self.filterPriority = filterPriority;
-    self.priceFilters = priceFilters;
-    self.ratingFilters = ratingFilters;
-    
-    NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%i", yelpBuisnessSearchString,@"?location=",location,@"&limit=", 50];
-    
-    if (radius != 0){
-        urlString = [NSString stringWithFormat:@"%@%@%@%@%i%@%i", yelpBuisnessSearchString,@"?location=",location, @"&radius=", radius.intValue,@"&limit=", 50];
-    }
-    
-    if (cuisineFilters != nil){
-        urlString = [NSString stringWithFormat:@"%@%@%@", urlString, @"&categories=", cuisineFilters];
-    } else {
-        urlString = [NSString stringWithFormat:@"%@%@", urlString, @"&categories=restaurants"];
-    }
-    
-    NSMutableURLRequest *request =  [self _getURLRequestForURLString:urlString];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-           if (error != nil) {
-               NSLog(@"%@",error.description);
-           }
-           else {
-               NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               NSArray *restaurantDictionaries= dataDictionary[@"businesses"];
-               NSArray *restaurants = [Restaurant restaurantsWithArray:restaurantDictionaries];
-               
-               completion([self filterRestaurants:restaurants],nil);
-           }
-    }];
-    [task resume];
-}
+#pragma mark - Helper Methods
 
 - (NSArray*)filterRestaurants: (NSArray*)restaurantsToFilter {
     if (self.filterPriority.count != 0){
@@ -128,6 +93,43 @@ static NSString * const yelpBuisnessDetailsString = @"https://api.yelp.com/v3/bu
         }
     }
     return [NSNumber numberWithInt:score];
+}
+
+#pragma mark - Requests
+
+- (void)getGeneratedRestaurants:(NSString *)location prices:(NSArray *)priceFilters cuisines:(NSString *)cuisineFilters ratings:(NSArray *)ratingFilters radius:(NSNumber *)radius filterPriority:(NSArray *)filterPriority completion:(void(^)(NSArray *restaurants, NSError *error))completion {
+    
+    self.filterPriority = filterPriority;
+    self.priceFilters = priceFilters;
+    self.ratingFilters = ratingFilters;
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%i", yelpBuisnessSearchString,@"?location=",location,@"&limit=", 50];
+    
+    if (radius != 0){
+        urlString = [NSString stringWithFormat:@"%@%@%@%@%i%@%i", yelpBuisnessSearchString,@"?location=",location, @"&radius=", radius.intValue,@"&limit=", 50];
+    }
+    
+    if (cuisineFilters != nil){
+        urlString = [NSString stringWithFormat:@"%@%@%@", urlString, @"&categories=", cuisineFilters];
+    } else {
+        urlString = [NSString stringWithFormat:@"%@%@", urlString, @"&categories=restaurants"];
+    }
+    
+    NSMutableURLRequest *request =  [self _getURLRequestForURLString:urlString];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+           if (error != nil) {
+               NSLog(@"%@",error.description);
+           }
+           else {
+               NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+               NSArray *restaurantDictionaries= dataDictionary[@"businesses"];
+               NSArray *restaurants = [Restaurant restaurantsWithArray:restaurantDictionaries];
+               
+               completion([self filterRestaurants:restaurants],nil);
+           }
+    }];
+    [task resume];
 }
 
 - (void)getRestaurantSearchResults:(NSString *)location searchTerm:(NSString *)searchTerm completion:(void(^)(NSArray *restaurants, NSError *error))completion {

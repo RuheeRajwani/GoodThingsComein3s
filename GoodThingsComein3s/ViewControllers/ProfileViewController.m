@@ -32,10 +32,68 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     
-    [self getUserInformation];
+    [self _getUserInformation];
 }
 
-- (void)getUserInformation {
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.profileLikedRestaurantsCollectionView.dataSource = self;
+    self.likedRestaurants = [[NSMutableArray alloc]init];
+    
+    self.activityIndicatorView = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeBallPulseSync tintColor:[UIColor colorWithRed:45/255.0 green:121/255.0 blue:253/255.0 alpha:1.0] size:50.0f];
+    self.activityIndicatorView.frame = CGRectMake(self.view.center.x - 25, self.view.center.y - 25, 50.0f, 50.0f);
+    [self.view addSubview:self.activityIndicatorView];
+     
+    [self _getUserInformation];
+}
+
+- (IBAction)profileViewControllerDidTapLogout:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        SceneDelegate *mySceneDelegate = (SceneDelegate * ) UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        TabBarViewController *tabBarVC = [storyboard instantiateViewControllerWithIdentifier:@"tabBar"];
+        mySceneDelegate.window.rootViewController = tabBarVC;
+        
+    }];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"likedRestaurantToDetailsView"]) {
+        NSIndexPath *restaurantIndexPath = [self.profileLikedRestaurantsCollectionView indexPathForCell:sender];
+        DetailsViewController *detailVC = [segue destinationViewController];
+        detailVC.restaurantToShow = [self _pfObjectToRestaurant: self.likedRestaurants[restaurantIndexPath.row]];
+    }
+    if ([[segue identifier] isEqualToString:@"profilePageToSignUpLoginSegue"]) {
+        SignUpLoginViewController *signUpLoginVC = [segue destinationViewController];
+        signUpLoginVC.delegate = self;
+    }
+    
+}
+
+#pragma mark - Helper Methods
+
+- (Restaurant *) _pfObjectToRestaurant:(PFObject *)likedRestaurant{
+    Restaurant *restaurantToReturn = [[Restaurant alloc]init];
+    [likedRestaurant fetchIfNeeded];
+    restaurantToReturn.name = likedRestaurant[@"name"];
+    restaurantToReturn.displayAddress = likedRestaurant[@"displayAddress"];
+    restaurantToReturn.priceDisplayString = likedRestaurant[@"priceDisplayString"];
+    restaurantToReturn.categoriesDisplayString = likedRestaurant[@"categoriesDisplayString"];
+    restaurantToReturn.restaurantYelpID = likedRestaurant[@"restaurantYelpID"];
+    
+    PFFileObject *restaurantImageFile = likedRestaurant[@"restaurantImage"];
+    NSData *restaurantImageData = restaurantImageFile.getData;
+    restaurantToReturn.restaurantImage = [UIImage imageWithData:restaurantImageData];
+    
+    PFFileObject *ratingImageFile = likedRestaurant[@"ratingImage"];
+    NSData *ratingImageData = ratingImageFile.getData;
+    restaurantToReturn.ratingImage = [UIImage imageWithData:ratingImageData];
+    
+    return restaurantToReturn;
+}
+
+- (void)_getUserInformation {
     [self.activityIndicatorView startAnimating];
     [self.activityIndicatorView setHidden:NO];
     
@@ -61,65 +119,7 @@
     
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.profileLikedRestaurantsCollectionView.dataSource = self;
-    self.likedRestaurants = [[NSMutableArray alloc]init];
-    
-    self.activityIndicatorView = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeBallPulseSync tintColor:[UIColor colorWithRed:45/255.0 green:121/255.0 blue:253/255.0 alpha:1.0] size:50.0f];
-    self.activityIndicatorView.frame = CGRectMake(self.view.center.x - 25, self.view.center.y - 25, 50.0f, 50.0f);
-    [self.view addSubview:self.activityIndicatorView];
-     
-    [self getUserInformation];
-}
-
-
-- (IBAction)profileViewControllerDidTapLogout:(id)sender {
-    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        SceneDelegate *mySceneDelegate = (SceneDelegate * ) UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        TabBarViewController *tabBarVC = [storyboard instantiateViewControllerWithIdentifier:@"tabBar"];
-        mySceneDelegate.window.rootViewController = tabBarVC;
-        
-    }];
-}
-
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"likedRestaurantToDetailsView"]) {
-        NSIndexPath *restaurantIndexPath = [self.profileLikedRestaurantsCollectionView indexPathForCell:sender];
-        DetailsViewController *detailVC = [segue destinationViewController];
-        detailVC.restaurantToShow = [self _pfObjectToRestaurant: self.likedRestaurants[restaurantIndexPath.row]];
-    }
-    if ([[segue identifier] isEqualToString:@"profilePageToSignUpLoginSegue"]) {
-        SignUpLoginViewController *signUpLoginVC = [segue destinationViewController];
-        signUpLoginVC.delegate = self;
-    }
-    
-}
-
-- (Restaurant *) _pfObjectToRestaurant:(PFObject *)likedRestaurant{
-    Restaurant *restaurantToReturn = [[Restaurant alloc]init];
-    [likedRestaurant fetchIfNeeded];
-    restaurantToReturn.name = likedRestaurant[@"name"];
-    restaurantToReturn.displayAddress = likedRestaurant[@"displayAddress"];
-    restaurantToReturn.priceDisplayString = likedRestaurant[@"priceDisplayString"];
-    restaurantToReturn.categoriesDisplayString = likedRestaurant[@"categoriesDisplayString"];
-    restaurantToReturn.restaurantYelpID = likedRestaurant[@"restaurantYelpID"];
-    
-    PFFileObject *restaurantImageFile = likedRestaurant[@"restaurantImage"];
-    NSData *restaurantImageData = restaurantImageFile.getData;
-    restaurantToReturn.restaurantImage = [UIImage imageWithData:restaurantImageData];
-    
-    PFFileObject *ratingImageFile = likedRestaurant[@"ratingImage"];
-    NSData *ratingImageData = ratingImageFile.getData;
-    restaurantToReturn.ratingImage = [UIImage imageWithData:ratingImageData];
-    
-    return restaurantToReturn;
-}
-
 #pragma mark - Collection View
-
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     RestaurantCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RestaurantCollectionViewCell" forIndexPath:indexPath];
@@ -132,7 +132,7 @@
 }
 
 - (void)signUpLoginViewControllerDidDismissForUser {
-        [self getUserInformation];
+        [self _getUserInformation];
 }
     
 @end
