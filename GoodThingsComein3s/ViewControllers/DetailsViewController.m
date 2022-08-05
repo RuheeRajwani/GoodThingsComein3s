@@ -75,6 +75,7 @@
 
 - (void)hideShowViewElements:(Boolean)toHide {
     [self.restaurantNameLabel setHidden:toHide];
+    [self.restaurantImageCollectionViewPageControl setHidden:toHide];
     [self.activityIndicatorView setHidden:!toHide];
     [self.labelStackView setHidden:toHide];
     [self.reviewsTitleLabel setHidden:toHide];
