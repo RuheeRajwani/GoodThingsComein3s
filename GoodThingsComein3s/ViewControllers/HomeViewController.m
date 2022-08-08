@@ -148,7 +148,7 @@
         }];
     } else {
         for (int i=0; i<3;i++){
-            [self.restaurantArray removeObjectAtIndex:i];
+            [self.restaurantArray removeObjectAtIndex:0];
         }
         if (self.restaurantArray.count<3){
             [self.noRemainingRestaurantsLabel setHidden:NO];
