@@ -509,6 +509,7 @@
 				DEVELOPMENT_TEAM = H7P92584Z4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GoodThingsComein3s/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = GTC3;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -538,6 +539,7 @@
 				DEVELOPMENT_TEAM = H7P92584Z4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GoodThingsComein3s/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = GTC3;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
