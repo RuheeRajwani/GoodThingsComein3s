@@ -29,8 +29,14 @@
     [self.activityIndicatorView setHidden:NO];
     [self.activityIndicatorView startAnimating];
     
+    NSString *location = @"Seattle";
+    if ([PFUser currentUser] != nil){
+        [[PFUser currentUser] fetchIfNeeded];
+        location = [PFUser currentUser][@"location"];
+    }
+    
     NSString *searchText = self.searchBar.text;
-    [[APIManager shared] getRestaurantSearchResults:@"Seattle" searchTerm:searchText completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
+    [[APIManager shared] getRestaurantSearchResults:location searchTerm:searchText completion:^(NSArray * _Nonnull restaurants, NSError * _Nonnull error) {
 
         if (restaurants) {
             self.filteredData = restaurants;

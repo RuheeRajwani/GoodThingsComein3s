@@ -111,11 +111,6 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     RestaurantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RestaurantTableViewCell" forIndexPath:indexPath];
     cell.restaurant = self.restaurantArray[indexPath.row];
-    if(indexPath.row == 2){
-        for (int i=0; i<3; i++){
-            [self.restaurantArray removeObjectAtIndex:0];
-        }
-    }
     cell.delegate = self;
     return cell;
 }
@@ -152,6 +147,9 @@
             }
         }];
     } else {
+        for (int i=0; i<3;i++){
+            [self.restaurantArray removeObjectAtIndex:i];
+        }
         if (self.restaurantArray.count<3){
             [self.noRemainingRestaurantsLabel setHidden:NO];
             
