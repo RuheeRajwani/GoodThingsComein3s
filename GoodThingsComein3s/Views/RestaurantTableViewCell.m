@@ -22,10 +22,14 @@
 }
 
 -(void) didDoubleTap: (UITapGestureRecognizer *)recognizer {
-    [self.delegate didTapLikeForRestaurant:self.restaurant];
+    [self didLike];
 }
 
 - (IBAction)homeViewControllerDidTapLike:(id)sender {
+    [self didLike];
+}
+
+- (void)didLike {
     [self.delegate didTapLikeForRestaurant:self.restaurant];
     [self.likeButton setImage:[UIImage systemImageNamed:@"heart.fill"] forState:UIControlStateNormal];
 }
