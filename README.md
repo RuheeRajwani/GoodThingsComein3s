@@ -13,6 +13,9 @@ Good things come in 3s - README
 ### Description
 In our society of abundance, finding a place to eat can become overwhelming. Good things come in 3 makes the decision simple. Users have the options to input filters like cravings, distance, price range etc or not. Then users will be presented with 3 restaurant options based on their previous restaurant experiences and/or their filters. Users can continuously generate options until they have exhausted the options. Users preferences and experiences are saved to a profile which can effect future reccomendations and allow them to compare profiles with friends. 
 
+### Description
+Video Demo: https://drive.google.com/file/d/15RHVVE_Za0hJksJ3i-GT4L3LYVJsj5hb/view?usp=sharing 
+
 ### App Evaluation
 [Evaluation of your app across the following attributes]
 - **Category:** Food 
